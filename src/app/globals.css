@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+:root {
+  --ks-ink: #f7fbfb;
+  --ks-navy: #001112;
+  --ks-navy-2: #031d20;
+  --ks-paper: #f6f8f8;
+  --ks-line: rgba(255, 255, 255, 0.16);
+  --ks-teal: #21d4c2;
+  --ks-cyan: #6fffe7;
+  --ks-blue: #2d8cff;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ks-ink);
+  background: var(--ks-paper);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a { color: inherit; }
+
+::selection {
+  background: var(--ks-teal);
+  color: var(--ks-navy);
+}

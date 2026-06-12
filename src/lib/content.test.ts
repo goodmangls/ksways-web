@@ -1,0 +1,16 @@
+import { describe, expect, it } from 'vitest';
+import { homeContent } from './content';
+
+describe('KSWAYS bilingual homepage content', () => {
+  it('keeps English as the default public message', () => {
+    expect(homeContent.en.hero.headline).toContain('The smart way to global logistics');
+    expect(homeContent.en.hero.primaryCta).toBe('Get a Quote');
+    expect(homeContent.en.hero.secondaryCta).toBe('Explore Partner Network');
+  });
+
+  it('provides Korean content for the /kr route without using /ko', () => {
+    expect(homeContent.kr.hero.headline).toContain('글로벌 물류를 위한 스마트한 길');
+    expect(homeContent.kr.hero.primaryCta).toBe('견적 문의');
+    expect(homeContent.kr.hero.secondaryCta).toBe('파트너 네트워크 보기');
+  });
+});
