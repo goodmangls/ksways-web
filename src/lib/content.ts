@@ -3,6 +3,7 @@ import type { Locale } from './i18n';
 type Service = {
   title: string;
   body: string;
+  href?: string;
 };
 
 type HomeCopy = {
@@ -103,6 +104,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
         { title: 'Ocean Freight', body: 'FCL/LCL routing with practical carrier and partner coordination.' },
         { title: 'Cross-border', body: 'Express and commerce flows for growing brands and recurring shipments.' },
         { title: 'Project Support', body: 'Case-by-case handling for special pickup, stuffing, and schedule constraints.' },
+        { title: 'BridgeLogis', body: 'Digital logistics service access for smarter shipment coordination and connected operations.', href: 'https://bridgelogis.com' },
       ],
     },
     network: {
@@ -173,6 +175,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
         { title: '해상 운송', body: 'FCL/LCL 기반의 실용적인 운송사 및 파트너 조율.' },
         { title: '크로스보더', body: '성장 브랜드와 반복 운송을 위한 특송·이커머스 물류 흐름.' },
         { title: '프로젝트 지원', body: '특수 픽업, 적입, 일정 제약이 있는 화물의 케이스별 지원.' },
+        { title: 'BridgeLogis', body: '더 스마트한 운송 조율과 연결된 운영을 위한 디지털 물류 서비스 접근 채널.', href: 'https://bridgelogis.com' },
       ],
     },
     network: {
