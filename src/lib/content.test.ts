@@ -6,11 +6,15 @@ describe('KSWAYS bilingual homepage content', () => {
     expect(homeContent.en.hero.headline).toContain('The smart way to global logistics');
     expect(homeContent.en.hero.primaryCta).toBe('Get a Quote');
     expect(homeContent.en.hero.secondaryCta).toBe('Explore Partner Network');
+    expect(homeContent.en.contact.email).toBe('info@ksways.co');
+    expect(homeContent.en.contact.chat).toBe('Contact on Intercom');
   });
 
   it('provides Korean content for the /kr route without using /ko', () => {
     expect(homeContent.kr.hero.headline).toContain('글로벌 물류를 위한 스마트한 길');
     expect(homeContent.kr.hero.primaryCta).toBe('견적 문의');
     expect(homeContent.kr.hero.secondaryCta).toBe('파트너 네트워크 보기');
+    expect(homeContent.kr.contact.email).toBe('info@ksways.co');
+    expect(homeContent.kr.contact.chat).toBe('Intercom으로 문의');
   });
 });
