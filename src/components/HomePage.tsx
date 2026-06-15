@@ -154,13 +154,27 @@ export function HomePage({ locale, copy }: Props) {
           <p className="text-sm font-black uppercase tracking-[.14em] text-[#7d888a]">{copy.operating.kicker}</p>
           <h2 className="mt-4 max-w-4xl text-[clamp(40px,5.2vw,76px)] font-black leading-[.96] tracking-[-.07em] text-[#001112]">{copy.operating.headline}</h2>
           <p className="mt-5 max-w-3xl text-lg leading-relaxed text-[#001112]/60">{copy.operating.body}</p>
-          <div className="mt-10 grid overflow-hidden rounded-[28px] border border-[#001112]/12 md:grid-cols-4">
-            {copy.operating.services.map((service) => (
-              <article key={service.title} className="min-h-40 border-b border-[#001112]/10 p-7 transition hover:bg-[#f4f7f6] md:border-b-0 md:border-r last:border-0">
-                <h3 className="text-xl font-black tracking-[-.03em]">{service.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#001112]/56">{service.body}</p>
-              </article>
-            ))}
+          <div className="mt-10 grid overflow-hidden rounded-[28px] border border-[#001112]/12 md:grid-cols-2 lg:grid-cols-5">
+            {copy.operating.services.map((service) => {
+              const cardClassName = 'min-h-40 border-b border-[#001112]/10 p-7 transition hover:bg-[#f4f7f6] md:border-r lg:border-b-0 last:border-0';
+              const cardContent = (
+                <>
+                  <h3 className="text-xl font-black tracking-[-.03em]">{service.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[#001112]/56">{service.body}</p>
+                  {service.href ? <p className="mt-5 text-xs font-black uppercase tracking-[.12em] text-[#007f74]">Visit service →</p> : null}
+                </>
+              );
+
+              return service.href ? (
+                <a key={service.title} href={service.href} target="_blank" rel="noopener noreferrer" className={cardClassName} aria-label={`${service.title} opens in a new tab`}>
+                  {cardContent}
+                </a>
+              ) : (
+                <article key={service.title} className={cardClassName}>
+                  {cardContent}
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
