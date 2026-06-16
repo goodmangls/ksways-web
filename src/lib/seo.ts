@@ -14,7 +14,7 @@ export const homeSeo: Record<Locale, Metadata> = {
       canonical: '/',
       languages: {
         en: '/',
-        kr: '/kr',
+        'ko-KR': '/kr',
         'x-default': '/',
       },
     },
@@ -34,7 +34,7 @@ export const homeSeo: Record<Locale, Metadata> = {
       canonical: '/kr',
       languages: {
         en: '/',
-        kr: '/kr',
+        'ko-KR': '/kr',
         'x-default': '/',
       },
     },

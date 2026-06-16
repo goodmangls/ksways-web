@@ -42,6 +42,7 @@ export function HomePage({ locale, copy }: Props) {
   const toggleHref = getLocalizedPath(locale === 'en' ? '/' : '/kr', alternateLocale);
   const quoteSubject = locale === 'kr' ? 'KSWAYS 견적 문의' : 'KSWAYS freight quote request';
   const quoteHref = `mailto:${copy.contact.email}?subject=${encodeURIComponent(quoteSubject)}`;
+  const networkHref = '/network/korea-agent-network';
   const faqs = homeFaqs[locale];
 
   return (
@@ -165,14 +166,22 @@ export function HomePage({ locale, copy }: Props) {
                 </>
               );
 
-              return service.href ? (
+              if (!service.href) {
+                return (
+                  <article key={service.title} className={cardClassName}>
+                    {cardContent}
+                  </article>
+                );
+              }
+
+              return service.href.startsWith('http') ? (
                 <a key={service.title} href={service.href} target="_blank" rel="noopener noreferrer" className={cardClassName} aria-label={`${service.title} opens in a new tab`}>
                   {cardContent}
                 </a>
               ) : (
-                <article key={service.title} className={cardClassName}>
+                <Link key={service.title} href={service.href} className={cardClassName}>
                   {cardContent}
-                </article>
+                </Link>
               );
             })}
           </div>
@@ -191,6 +200,9 @@ export function HomePage({ locale, copy }: Props) {
               <li key={point} className="rounded-2xl border border-white/12 bg-white/[.045] p-5 font-bold text-white/86 shadow-[inset_0_1px_0_rgba(255,255,255,.04)]">{point}</li>
             ))}
           </ul>
+          <Link href={networkHref} className="mt-8 inline-flex min-h-[52px] items-center rounded-full border border-[#6fffe7]/65 px-7 font-black text-[#6fffe7] transition hover:border-[#6fffe7] hover:bg-[#6fffe7]/10">
+            {locale === 'kr' ? '파트너 네트워크 자세히 보기' : 'Explore Korea agent network'}
+          </Link>
         </div>
       </section>
 
