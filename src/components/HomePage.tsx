@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Locale } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/i18n';
@@ -14,6 +15,19 @@ type Props = {
 };
 
 const flowNodes = ['AIR', 'OCEAN', 'EXPRESS', 'PARTNER'];
+
+function BrandLogo({ priority = false }: { priority?: boolean }) {
+  return (
+    <Image
+      src="/assets/ksways-logo-reverse.png"
+      alt="KSWAYS"
+      width={935}
+      height={337}
+      priority={priority}
+      className="h-8 w-auto object-contain drop-shadow-[0_0_18px_rgba(33,212,194,.18)] transition-transform group-hover:scale-[1.03] sm:h-9"
+    />
+  );
+}
 
 function HighlightedHeadline({ headline }: { headline: string }) {
   const english = headline.split(' global ');
@@ -42,6 +56,7 @@ export function HomePage({ locale, copy }: Props) {
   const toggleHref = getLocalizedPath(locale === 'en' ? '/' : '/kr', alternateLocale);
   const quoteSubject = locale === 'kr' ? 'KSWAYS 견적 문의' : 'KSWAYS freight quote request';
   const quoteHref = `mailto:${copy.contact.email}?subject=${encodeURIComponent(quoteSubject)}`;
+  const networkHref = '/network/korea-agent-network';
   const faqs = homeFaqs[locale];
 
   return (
@@ -64,9 +79,8 @@ export function HomePage({ locale, copy }: Props) {
         <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#001112] to-transparent" />
 
         <header className="relative z-10 flex h-[78px] items-center justify-between px-6 sm:px-10 lg:px-14">
-          <Link href={locale === 'en' ? '/' : '/kr'} className="group flex items-center gap-2 text-xl font-black italic tracking-[-.04em]" aria-label="KSWAYS home">
-            <span className="h-4 w-4 rotate-45 rounded-[3px] border-2 border-b-transparent border-l-transparent border-[#21d4c2] shadow-[0_0_18px_rgba(33,212,194,.7)] transition-transform group-hover:scale-110" />
-            KSWAYS
+          <Link href={locale === 'en' ? '/' : '/kr'} className="group flex items-center" aria-label="KSWAYS home">
+            <BrandLogo priority />
           </Link>
           <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-sm font-bold text-white/72 lg:flex">
             <a href="#company" className="transition hover:text-white">{copy.nav.company}</a>
@@ -165,14 +179,22 @@ export function HomePage({ locale, copy }: Props) {
                 </>
               );
 
-              return service.href ? (
+              if (!service.href) {
+                return (
+                  <article key={service.title} className={cardClassName}>
+                    {cardContent}
+                  </article>
+                );
+              }
+
+              return service.href.startsWith('http') ? (
                 <a key={service.title} href={service.href} target="_blank" rel="noopener noreferrer" className={cardClassName} aria-label={`${service.title} opens in a new tab`}>
                   {cardContent}
                 </a>
               ) : (
-                <article key={service.title} className={cardClassName}>
+                <Link key={service.title} href={service.href} className={cardClassName}>
                   {cardContent}
-                </article>
+                </Link>
               );
             })}
           </div>
@@ -191,6 +213,9 @@ export function HomePage({ locale, copy }: Props) {
               <li key={point} className="rounded-2xl border border-white/12 bg-white/[.045] p-5 font-bold text-white/86 shadow-[inset_0_1px_0_rgba(255,255,255,.04)]">{point}</li>
             ))}
           </ul>
+          <Link href={networkHref} className="mt-8 inline-flex min-h-[52px] items-center rounded-full border border-[#6fffe7]/65 px-7 font-black text-[#6fffe7] transition hover:border-[#6fffe7] hover:bg-[#6fffe7]/10">
+            {locale === 'kr' ? '파트너 네트워크 자세히 보기' : 'Explore Korea agent network'}
+          </Link>
         </div>
       </section>
 
