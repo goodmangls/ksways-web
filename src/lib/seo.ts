@@ -5,6 +5,12 @@ export const siteUrl = 'https://ksways.co';
 export const companyName = 'KS WAYS CO., LTD.';
 export const brandName = 'KS WAYS';
 export const contactEmail = 'info@ksways.co';
+export const shareImage = {
+  url: '/assets/ksways-logo-color.png',
+  width: 1200,
+  height: 630,
+  alt: 'KS WAYS global ocean and air logistics',
+};
 
 export const homeSeo: Record<Locale, Metadata> = {
   en: {
@@ -25,6 +31,13 @@ export const homeSeo: Record<Locale, Metadata> = {
       siteName: brandName,
       type: 'website',
       locale: 'en_US',
+      images: [shareImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'KS WAYS — Global Ocean & Air Logistics Company',
+      description: 'Global ocean and air freight execution with sea freight strength and WCA member network cooperation.',
+      images: [shareImage],
     },
   },
   kr: {
@@ -45,6 +58,13 @@ export const homeSeo: Record<Locale, Metadata> = {
       siteName: brandName,
       type: 'website',
       locale: 'ko_KR',
+      images: [shareImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'KS WAYS — 글로벌 해상·항공 물류회사',
+      description: '해상과 항공 화물을 책임지는 글로벌 물류회사, 해운 강점과 WCA 회원 네트워크 기반 협력.',
+      images: [shareImage],
     },
   },
 };

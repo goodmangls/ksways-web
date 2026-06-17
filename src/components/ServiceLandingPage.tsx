@@ -45,11 +45,11 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
             <p className="text-sm font-black uppercase tracking-[.16em] text-[#6fffe7]">{page.eyebrow}</p>
             <h1 className="mt-5 text-[clamp(46px,7vw,104px)] font-black leading-[.92] tracking-[-.075em] text-balance">{page.title}</h1>
             <p className="mt-7 max-w-3xl text-[clamp(17px,1.35vw,22px)] leading-relaxed text-white/70">{page.lead}</p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <a href={quoteHref} className="inline-flex min-h-[52px] items-center rounded-full bg-gradient-to-br from-[#21d4c2] to-[#6fffe7] px-7 font-black text-[#001112]">
+            <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <a href={quoteHref} className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full bg-gradient-to-br from-[#21d4c2] to-[#6fffe7] px-7 font-black text-[#001112] sm:w-auto">
                 Send shipment details
               </a>
-              <Link href="/#services" className="inline-flex min-h-[52px] items-center rounded-full border border-white/40 px-7 font-black text-white">
+              <Link href="/#services" className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-white/40 px-7 font-black text-white sm:w-auto">
                 Back to services
               </Link>
             </div>
@@ -92,8 +92,11 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
           </div>
           <div className="grid gap-3">
             {page.faqs.map((faq) => (
-              <details key={faq.question} className="rounded-3xl border border-[#001112]/10 bg-[#f4f7f6] p-6 open:bg-white">
-                <summary className="cursor-pointer list-none text-lg font-black tracking-[-.03em] text-[#001112] marker:hidden">{faq.question}</summary>
+              <details key={faq.question} className="group rounded-3xl border border-[#001112]/10 bg-[#f4f7f6] p-6 open:bg-white">
+                <summary className="flex min-h-11 cursor-pointer list-none items-start justify-between gap-5 text-lg font-black tracking-[-.03em] text-[#001112] marker:hidden">
+                  <span>{faq.question}</span>
+                  <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#001112] text-white transition-transform duration-200 group-open:rotate-45">+</span>
+                </summary>
                 <p className="mt-4 leading-relaxed text-[#001112]/62">{faq.answer}</p>
               </details>
             ))}

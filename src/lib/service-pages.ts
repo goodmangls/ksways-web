@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { shareImage } from './seo';
 
 export type ServicePage = {
   slug: string;
@@ -32,6 +33,13 @@ export const servicePages: ServicePage[] = [
         url: 'https://ksways.co/services/air-freight-korea',
         siteName: 'KS WAYS',
         type: 'website',
+        images: [shareImage],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Air Freight Korea — KS WAYS Global Logistics',
+        description: 'Korea-connected air freight for urgent, high-value, and time-sensitive cargo.',
+        images: [shareImage],
       },
     },
     eyebrow: 'Air Freight Korea',
@@ -73,6 +81,13 @@ export const servicePages: ServicePage[] = [
         url: 'https://ksways.co/services/ocean-freight-korea',
         siteName: 'KS WAYS',
         type: 'website',
+        images: [shareImage],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Ocean Freight Korea — FCL and LCL Logistics by KS WAYS',
+        description: 'Global FCL and LCL ocean freight coordination with KS WAYS sea freight strength.',
+        images: [shareImage],
       },
     },
     eyebrow: 'Ocean Freight Korea',
@@ -114,6 +129,13 @@ export const servicePages: ServicePage[] = [
         url: 'https://ksways.co/services/exw-pickup-korea',
         siteName: 'KS WAYS',
         type: 'website',
+        images: [shareImage],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'EXW Pickup Korea — Local Handling and Export Coordination',
+        description: 'EXW pickup and local handling review for Korea export shipments.',
+        images: [shareImage],
       },
     },
     eyebrow: 'EXW Pickup Korea',
@@ -155,6 +177,13 @@ export const servicePages: ServicePage[] = [
         url: 'https://ksways.co/network/korea-agent-network',
         siteName: 'KS WAYS',
         type: 'website',
+        images: [shareImage],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Korea Logistics Agent Network — Partner with KS WAYS',
+        description: 'A reliable Korea logistics partner for overseas freight agents.',
+        images: [shareImage],
       },
     },
     eyebrow: 'Korea Agent Network',
