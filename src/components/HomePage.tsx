@@ -49,6 +49,34 @@ function HighlightedHeadline({ headline }: { headline: string }) {
   return headline;
 }
 
+function FooterLink({ href, label }: { href: string; label: string }) {
+  const isExternal = href.startsWith('http');
+  const isInternalRoute = href.startsWith('/');
+  const className = 'inline-flex min-h-11 items-center text-sm font-bold text-white/62 transition hover:text-[#6fffe7]';
+
+  if (isExternal) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {label}
+      </a>
+    );
+  }
+
+  if (isInternalRoute) {
+    return (
+      <Link href={href} className={className}>
+        {label}
+      </Link>
+    );
+  }
+
+  return (
+    <a href={href} className={className}>
+      {label}
+    </a>
+  );
+}
+
 export function HomePage({ locale, copy }: Props) {
   const alternateLocale: Locale = locale === 'en' ? 'kr' : 'en';
   const toggleHref = getLocalizedPath(locale === 'en' ? '/' : '/kr', alternateLocale);
@@ -282,6 +310,54 @@ export function HomePage({ locale, copy }: Props) {
           />
         </div>
       </section>
+
+      <footer aria-label="KS WAYS global logistics footer" className="relative overflow-hidden bg-[#001112] px-6 pb-8 pt-16 text-white sm:px-10 lg:px-14">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_12%,rgba(33,212,194,.18),transparent_28%),radial-gradient(circle_at_84%_18%,rgba(45,140,255,.12),transparent_28%)]" />
+        <div className="relative mx-auto max-w-[1500px]">
+          <div className="grid gap-10 border-b border-white/10 pb-12 lg:grid-cols-[1.1fr_.9fr] lg:items-start">
+            <div>
+              <Link href={locale === 'en' ? '/' : '/kr'} className="group inline-flex min-h-11 items-center" aria-label="KS WAYS home">
+                <BrandLogo />
+              </Link>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/66">{copy.footer.tagline}</p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                {copy.footer.credentials.map((item) => (
+                  <div key={item.label} className="rounded-3xl border border-white/12 bg-white/[.045] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,.05)]">
+                    <p className="font-mono text-[10px] font-black uppercase tracking-[.16em] text-[#6fffe7]">{item.label}</p>
+                    <p className="mt-3 text-sm font-bold leading-relaxed text-white/72">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <nav aria-label="Footer navigation" className="grid gap-8 sm:grid-cols-3">
+              {copy.footer.columns.map((column) => (
+                <div key={column.title}>
+                  <h2 className="font-mono text-[11px] font-black uppercase tracking-[.18em] text-white/42">{column.title}</h2>
+                  <ul className="mt-4 space-y-1">
+                    {column.links.map((link) => (
+                      <li key={link.href + link.label}>
+                        <FooterLink href={link.href} label={link.label} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </nav>
+          </div>
+
+          <div className="flex flex-col gap-5 pt-8 text-sm text-white/48 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="font-black text-white/72">{copy.footer.companyName}</p>
+              <p className="mt-1">{copy.footer.legal}</p>
+            </div>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+              <a href={`mailto:${copy.footer.email}`} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#6fffe7]">{copy.footer.email}</a>
+              <span>© {new Date().getFullYear()} KS WAYS. All rights reserved.</span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

@@ -58,6 +58,14 @@ type HomeCopy = {
     partner: string;
     schedule: string;
   };
+  footer: {
+    tagline: string;
+    companyName: string;
+    email: string;
+    credentials: Array<{ label: string; value: string }>;
+    columns: Array<{ title: string; links: Array<{ label: string; href: string }> }>;
+    legal: string;
+  };
 };
 
 export const homeContent: Record<Locale, HomeCopy> = {
@@ -131,6 +139,43 @@ export const homeContent: Record<Locale, HomeCopy> = {
       partner: 'Become a partner',
       schedule: 'Schedule consultation',
     },
+    footer: {
+      tagline: 'A global ocean and air logistics company built for accountable shipment coordination, WCA-backed partner cooperation, and ocean-led freight execution.',
+      companyName: 'KS WAYS CO., LTD.',
+      email: 'info@ksways.co',
+      credentials: [
+        { label: 'WCA Member', value: 'Global agent cooperation' },
+        { label: 'Ocean strength', value: 'FCL · LCL execution' },
+        { label: 'Air logistics', value: 'Urgent cargo support' },
+      ],
+      columns: [
+        {
+          title: 'Company',
+          links: [
+            { label: 'About KS WAYS', href: '#company' },
+            { label: 'Partner network', href: '#network' },
+            { label: 'How we work', href: '#solutions' },
+          ],
+        },
+        {
+          title: 'Services',
+          links: [
+            { label: 'Ocean Freight', href: '/services/ocean-freight-korea' },
+            { label: 'Air Freight', href: '/services/air-freight-korea' },
+            { label: 'EXW Pickup Korea', href: '/services/exw-pickup-korea' },
+          ],
+        },
+        {
+          title: 'Contact',
+          links: [
+            { label: 'Request a quote', href: '#contact' },
+            { label: 'Email info@ksways.co', href: 'mailto:info@ksways.co' },
+            { label: 'BridgeLogis', href: 'https://bridgelogis.com' },
+          ],
+        },
+      ],
+      legal: 'Global ocean freight, air freight, and WCA partner cooperation.',
+    },
   },
   kr: {
     nav: {
@@ -201,6 +246,43 @@ export const homeContent: Record<Locale, HomeCopy> = {
       quote: '견적 문의하기',
       partner: '파트너 문의하기',
       schedule: '상담 일정 잡기',
+    },
+    footer: {
+      tagline: 'KS WAYS는 책임 있는 운송 조율, WCA 기반 파트너 협력, 해운 중심 실행력을 갖춘 글로벌 해상·항공 물류회사입니다.',
+      companyName: 'KS WAYS CO., LTD.',
+      email: 'info@ksways.co',
+      credentials: [
+        { label: 'WCA 회원사', value: '글로벌 에이전트 협력' },
+        { label: '해운 강점', value: 'FCL · LCL 실행' },
+        { label: '항공 물류', value: '긴급 화물 지원' },
+      ],
+      columns: [
+        {
+          title: '회사',
+          links: [
+            { label: 'KS WAYS 소개', href: '#company' },
+            { label: '파트너 네트워크', href: '#network' },
+            { label: '업무 방식', href: '#solutions' },
+          ],
+        },
+        {
+          title: '서비스',
+          links: [
+            { label: '해상 운송', href: '/services/ocean-freight-korea' },
+            { label: '항공 운송', href: '/services/air-freight-korea' },
+            { label: '한국 EXW 픽업', href: '/services/exw-pickup-korea' },
+          ],
+        },
+        {
+          title: '문의',
+          links: [
+            { label: '견적 문의', href: '#contact' },
+            { label: 'info@ksways.co 이메일', href: 'mailto:info@ksways.co' },
+            { label: 'BridgeLogis', href: 'https://bridgelogis.com' },
+          ],
+        },
+      ],
+      legal: '글로벌 해상 운송, 항공 운송, WCA 파트너 협력을 지원합니다.',
     },
   },
 };
