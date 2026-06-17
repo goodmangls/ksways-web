@@ -49,6 +49,34 @@ function HighlightedHeadline({ headline }: { headline: string }) {
   return headline;
 }
 
+function FooterLink({ href, label }: { href: string; label: string }) {
+  const isExternal = href.startsWith('http');
+  const isInternalRoute = href.startsWith('/');
+  const className = 'inline-flex min-h-11 items-center text-sm font-bold text-white/62 transition hover:text-[#6fffe7]';
+
+  if (isExternal) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {label}
+      </a>
+    );
+  }
+
+  if (isInternalRoute) {
+    return (
+      <Link href={href} className={className}>
+        {label}
+      </Link>
+    );
+  }
+
+  return (
+    <a href={href} className={className}>
+      {label}
+    </a>
+  );
+}
+
 export function HomePage({ locale, copy }: Props) {
   const alternateLocale: Locale = locale === 'en' ? 'kr' : 'en';
   const toggleHref = getLocalizedPath(locale === 'en' ? '/' : '/kr', alternateLocale);
@@ -78,7 +106,7 @@ export function HomePage({ locale, copy }: Props) {
         <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#001112] to-transparent" />
 
         <header className="relative z-10 flex h-[78px] items-center justify-between px-6 sm:px-10 lg:px-14">
-          <Link href={locale === 'en' ? '/' : '/kr'} className="group flex items-center" aria-label="KS WAYS home">
+          <Link href={locale === 'en' ? '/' : '/kr'} className="group flex min-h-11 items-center" aria-label="KS WAYS home">
             <BrandLogo priority />
           </Link>
           <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-sm font-bold text-white/72 lg:flex">
@@ -99,13 +127,13 @@ export function HomePage({ locale, copy }: Props) {
         <div className="relative z-10 grid min-h-[calc(100vh-78px)] items-end gap-10 px-6 pb-14 pt-8 sm:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(340px,.56fr)] lg:px-14">
           <div>
             <p className="mb-5 max-w-2xl text-[clamp(14px,1.2vw,17px)] tracking-[-.01em] text-white/74">{copy.hero.eyebrow}</p>
-            <h1 className="max-w-5xl text-[clamp(52px,7.8vw,116px)] font-black leading-[.9] tracking-[-.075em] text-balance">
+            <h1 className="max-w-5xl text-[clamp(44px,12.8vw,56px)] font-black leading-[1.04] tracking-[-.062em] text-balance sm:text-[clamp(52px,7.8vw,116px)] sm:leading-[.9] sm:tracking-[-.075em]">
               <HighlightedHeadline headline={copy.hero.headline} />
             </h1>
             <p className="mt-7 max-w-2xl text-[clamp(17px,1.3vw,21px)] leading-relaxed tracking-[-.018em] text-white/70">{copy.hero.lead}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href={quoteHref} className="inline-flex min-h-[52px] items-center rounded-full bg-gradient-to-br from-[#21d4c2] to-[#6fffe7] px-7 font-black text-[#001112] shadow-[0_16px_46px_rgba(33,212,194,.24)] transition hover:scale-[1.02]">{copy.hero.primaryCta}</a>
-              <a href="#network" className="inline-flex min-h-[52px] items-center rounded-full border border-white/45 px-7 font-black text-white transition hover:border-white">{copy.hero.secondaryCta}</a>
+            <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <a href={quoteHref} className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full bg-gradient-to-br from-[#21d4c2] to-[#6fffe7] px-7 font-black text-[#001112] shadow-[0_16px_46px_rgba(33,212,194,.24)] transition hover:scale-[1.02] sm:w-auto">{copy.hero.primaryCta}</a>
+              <a href="#network" className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full border border-white/45 px-7 font-black text-white transition hover:border-white sm:w-auto">{copy.hero.secondaryCta}</a>
             </div>
             <dl className="mt-10 grid max-w-3xl overflow-hidden rounded-[28px] border border-white/10 bg-[#001112]/56 shadow-[0_30px_90px_rgba(0,0,0,.24)] backdrop-blur-xl sm:grid-cols-3" aria-label="Key proof points">
               {copy.hero.proof.map((item) => (
@@ -151,7 +179,7 @@ export function HomePage({ locale, copy }: Props) {
         <div className="grid gap-10 lg:grid-cols-[.92fr_1.08fr] lg:items-end">
           <div>
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#7d888a]">{copy.company.kicker}</p>
-            <h2 className="mt-4 max-w-4xl text-[clamp(38px,5vw,74px)] font-black leading-[.96] tracking-[-.07em] text-[#001112]">{copy.company.headline}</h2>
+            <h2 className="mt-4 max-w-4xl text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.055em] text-[#001112] sm:text-[clamp(38px,5vw,74px)] sm:leading-[.96] sm:tracking-[-.07em]">{copy.company.headline}</h2>
           </div>
           <p className="max-w-3xl text-lg leading-relaxed text-[#001112]/62 lg:pb-2">{copy.company.body}</p>
         </div>
@@ -169,7 +197,7 @@ export function HomePage({ locale, copy }: Props) {
       <section id="services" className="px-6 pb-20 sm:px-10 lg:px-14">
         <div className="rounded-[36px] border border-[#001112]/10 bg-white p-7 shadow-[0_24px_90px_rgba(0,17,18,.06)] sm:p-10 lg:p-12">
           <p className="text-sm font-black uppercase tracking-[.14em] text-[#7d888a]">{copy.operating.kicker}</p>
-          <h2 className="mt-4 max-w-4xl text-[clamp(40px,5.2vw,76px)] font-black leading-[.96] tracking-[-.07em] text-[#001112]">{copy.operating.headline}</h2>
+          <h2 className="mt-4 max-w-4xl text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.055em] text-[#001112] sm:text-[clamp(40px,5.2vw,76px)] sm:leading-[.96] sm:tracking-[-.07em]">{copy.operating.headline}</h2>
           <p className="mt-5 max-w-3xl text-lg leading-relaxed text-[#001112]/60">{copy.operating.body}</p>
           <div className="mt-10 grid overflow-hidden rounded-[28px] border border-[#001112]/12 md:grid-cols-2 lg:grid-cols-5">
             {copy.operating.services.map((service) => {
@@ -207,7 +235,7 @@ export function HomePage({ locale, copy }: Props) {
       <section id="network" className="grid gap-10 bg-[#001112] px-6 py-20 text-white sm:px-10 lg:grid-cols-[.88fr_1.12fr] lg:px-14">
         <div>
           <p className="text-sm font-black uppercase tracking-[.14em] text-[#6fffe7]">{copy.network.kicker}</p>
-          <h2 className="mt-4 text-[clamp(38px,5vw,70px)] font-black leading-[.96] tracking-[-.065em]">{copy.network.headline}</h2>
+          <h2 className="mt-4 text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.052em] sm:text-[clamp(38px,5vw,70px)] sm:leading-[.96] sm:tracking-[-.065em]">{copy.network.headline}</h2>
         </div>
         <div>
           <p className="text-lg leading-relaxed text-white/68">{copy.network.body}</p>
@@ -226,7 +254,7 @@ export function HomePage({ locale, copy }: Props) {
         <div className="grid gap-10 lg:grid-cols-[.86fr_1.14fr] lg:items-start">
           <div className="lg:sticky lg:top-10">
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#7d888a]">{copy.solutions.kicker}</p>
-            <h2 className="mt-4 text-[clamp(38px,5vw,72px)] font-black leading-[.96] tracking-[-.07em]">{copy.solutions.headline}</h2>
+            <h2 className="mt-4 text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.055em] sm:text-[clamp(38px,5vw,72px)] sm:leading-[.96] sm:tracking-[-.07em]">{copy.solutions.headline}</h2>
             <p className="mt-5 text-lg leading-relaxed text-[#001112]/60">{copy.solutions.body}</p>
           </div>
           <div className="grid gap-4">
@@ -244,7 +272,7 @@ export function HomePage({ locale, copy }: Props) {
         <div className="grid gap-10 rounded-[36px] border border-[#001112]/10 bg-white p-7 shadow-[0_24px_90px_rgba(0,17,18,.06)] sm:p-10 lg:grid-cols-[.78fr_1.22fr] lg:p-12">
           <div>
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#7d888a]">FAQ</p>
-            <h2 className="mt-4 text-[clamp(34px,4.6vw,66px)] font-black leading-[.96] tracking-[-.065em]">
+            <h2 className="mt-4 text-[clamp(32px,9vw,40px)] font-black leading-[1.04] tracking-[-.052em] sm:text-[clamp(34px,4.6vw,66px)] sm:leading-[.96] sm:tracking-[-.065em]">
               {locale === 'kr' ? '자주 묻는 물류 문의' : 'Freight questions, answered clearly.'}
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-[#001112]/60">
@@ -256,7 +284,7 @@ export function HomePage({ locale, copy }: Props) {
           <div className="grid gap-3">
             {faqs.map((faq) => (
               <details key={faq.question} className="group rounded-3xl border border-[#001112]/10 bg-[#f4f7f6] p-6 open:bg-white">
-                <summary className="cursor-pointer list-none text-lg font-black tracking-[-.03em] text-[#001112] marker:hidden">
+                <summary className="min-h-11 cursor-pointer list-none text-lg font-black tracking-[-.03em] text-[#001112] marker:hidden">
                   {faq.question}
                 </summary>
                 <p className="mt-4 leading-relaxed text-[#001112]/62">{faq.answer}</p>
@@ -269,7 +297,7 @@ export function HomePage({ locale, copy }: Props) {
       <section id="contact" className="px-6 pb-20 sm:px-10 lg:px-14">
         <div className="overflow-hidden rounded-[34px] bg-[#001112] p-8 text-white shadow-[0_30px_100px_rgba(0,17,18,.16)] sm:p-12 lg:flex lg:items-end lg:justify-between">
           <div>
-            <h2 className="max-w-3xl text-[clamp(40px,5vw,76px)] font-black leading-[.96] tracking-[-.07em]">{copy.contact.headline}</h2>
+            <h2 className="max-w-3xl text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.055em] sm:text-[clamp(40px,5vw,76px)] sm:leading-[.96] sm:tracking-[-.07em]">{copy.contact.headline}</h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/68">{copy.contact.body}</p>
           </div>
           <ContactActions
@@ -282,6 +310,54 @@ export function HomePage({ locale, copy }: Props) {
           />
         </div>
       </section>
+
+      <footer aria-label="KS WAYS global logistics footer" className="relative overflow-hidden bg-[#001112] px-6 pb-8 pt-16 text-white sm:px-10 lg:px-14">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_12%,rgba(33,212,194,.18),transparent_28%),radial-gradient(circle_at_84%_18%,rgba(45,140,255,.12),transparent_28%)]" />
+        <div className="relative mx-auto max-w-[1500px]">
+          <div className="grid gap-10 border-b border-white/10 pb-12 lg:grid-cols-[1.1fr_.9fr] lg:items-start">
+            <div>
+              <Link href={locale === 'en' ? '/' : '/kr'} className="group inline-flex min-h-11 items-center" aria-label="KS WAYS home">
+                <BrandLogo />
+              </Link>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/66">{copy.footer.tagline}</p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                {copy.footer.credentials.map((item) => (
+                  <div key={item.label} className="rounded-3xl border border-white/12 bg-white/[.045] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,.05)]">
+                    <p className="font-mono text-[10px] font-black uppercase tracking-[.16em] text-[#6fffe7]">{item.label}</p>
+                    <p className="mt-3 text-sm font-bold leading-relaxed text-white/72">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <nav aria-label="Footer navigation" className="grid gap-8 sm:grid-cols-3">
+              {copy.footer.columns.map((column) => (
+                <div key={column.title}>
+                  <h2 className="font-mono text-[11px] font-black uppercase tracking-[.18em] text-white/42">{column.title}</h2>
+                  <ul className="mt-4 space-y-1">
+                    {column.links.map((link) => (
+                      <li key={link.href + link.label}>
+                        <FooterLink href={link.href} label={link.label} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </nav>
+          </div>
+
+          <div className="flex flex-col gap-5 pt-8 text-sm text-white/48 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="font-black text-white/72">{copy.footer.companyName}</p>
+              <p className="mt-1">{copy.footer.legal}</p>
+            </div>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+              <a href={`mailto:${copy.footer.email}`} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#6fffe7]">{copy.footer.email}</a>
+              <span>© {new Date().getFullYear()} KS WAYS. All rights reserved.</span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
