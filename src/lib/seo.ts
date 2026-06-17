@@ -3,13 +3,13 @@ import type { Locale } from './i18n';
 
 export const siteUrl = 'https://ksways.co';
 export const companyName = 'KS WAYS CO., LTD.';
-export const brandName = 'KSWAYS';
+export const brandName = 'KS WAYS';
 export const contactEmail = 'info@ksways.co';
 
 export const homeSeo: Record<Locale, Metadata> = {
   en: {
-    title: 'KSWAYS — Global Ocean & Air Logistics Company',
-    description: 'KSWAYS is a global logistics company for ocean freight and air freight, with strong sea freight execution and WCA member network cooperation.',
+    title: 'KS WAYS — Global Ocean & Air Logistics Company',
+    description: 'KS WAYS is a global logistics company for ocean freight and air freight, with strong sea freight execution and WCA member network cooperation.',
     alternates: {
       canonical: '/',
       languages: {
@@ -19,7 +19,7 @@ export const homeSeo: Record<Locale, Metadata> = {
       },
     },
     openGraph: {
-      title: 'KSWAYS — Global Ocean & Air Logistics Company',
+      title: 'KS WAYS — Global Ocean & Air Logistics Company',
       description: 'Global ocean and air freight execution with sea freight strength and WCA member network cooperation.',
       url: siteUrl,
       siteName: brandName,
@@ -28,8 +28,8 @@ export const homeSeo: Record<Locale, Metadata> = {
     },
   },
   kr: {
-    title: 'KSWAYS — 글로벌 해상·항공 물류회사',
-    description: 'KSWAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사로, 해운 강점과 WCA 회원 네트워크 기반 협력을 제공합니다.',
+    title: 'KS WAYS — 글로벌 해상·항공 물류회사',
+    description: 'KS WAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사로, 해운 강점과 WCA 회원 네트워크 기반 협력을 제공합니다.',
     alternates: {
       canonical: '/kr',
       languages: {
@@ -39,7 +39,7 @@ export const homeSeo: Record<Locale, Metadata> = {
       },
     },
     openGraph: {
-      title: 'KSWAYS — 글로벌 해상·항공 물류회사',
+      title: 'KS WAYS — 글로벌 해상·항공 물류회사',
       description: '해상과 항공 화물을 책임지는 글로벌 물류회사, 해운 강점과 WCA 회원 네트워크 기반 협력.',
       url: `${siteUrl}/kr`,
       siteName: brandName,
@@ -57,45 +57,45 @@ export type FaqItem = {
 export const homeFaqs: Record<Locale, FaqItem[]> = {
   en: [
     {
-      question: 'What does KSWAYS do?',
-      answer: 'KSWAYS is a global logistics company responsible for ocean freight and air freight, with particular strength in sea freight and WCA member network cooperation.',
+      question: 'What does KS WAYS do?',
+      answer: 'KS WAYS is a global logistics company responsible for ocean freight and air freight, with particular strength in sea freight and WCA member network cooperation.',
     },
     {
-      question: 'Is KSWAYS a WCA member logistics company?',
-      answer: 'Yes. KSWAYS is a WCA member and works with global logistics partners for ocean freight, air freight, and practical shipment coordination.',
+      question: 'Is KS WAYS a WCA member logistics company?',
+      answer: 'Yes. KS WAYS is a WCA member and works with global logistics partners for ocean freight, air freight, and practical shipment coordination.',
     },
     {
-      question: 'Can KSWAYS handle EXW pickup in Korea?',
-      answer: 'KSWAYS can review EXW pickup requirements in Korea, including shipper location, cargo dimensions, loading conditions, vehicle access, stuffing requirements, and local handling needs. Final feasibility depends on the cargo and pickup site conditions.',
+      question: 'Can KS WAYS handle EXW pickup in Korea?',
+      answer: 'KS WAYS can review EXW pickup requirements in Korea, including shipper location, cargo dimensions, loading conditions, vehicle access, stuffing requirements, and local handling needs. Final feasibility depends on the cargo and pickup site conditions.',
     },
     {
       question: 'What information is needed for a freight quote?',
       answer: 'A freight quote usually requires origin, destination, Incoterms, cargo description, dimensions, gross weight, package count, cargo ready date, service mode, pickup conditions, and any special handling requirements.',
     },
     {
-      question: 'How can I contact KSWAYS?',
-      answer: `For quotation or partnership enquiries, contact KSWAYS through the official group email: ${contactEmail}.`,
+      question: 'How can I contact KS WAYS?',
+      answer: `For quotation or partnership enquiries, contact KS WAYS through the official group email: ${contactEmail}.`,
     },
   ],
   kr: [
     {
-      question: 'KSWAYS는 어떤 회사인가요?',
-      answer: 'KSWAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사입니다. 특히 해운에 강점을 두고 WCA 회원 네트워크 기반의 파트너 협력을 제공합니다.',
+      question: 'KS WAYS는 어떤 회사인가요?',
+      answer: 'KS WAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사입니다. 특히 해운에 강점을 두고 WCA 회원 네트워크 기반의 파트너 협력을 제공합니다.',
     },
     {
-      question: 'KSWAYS는 WCA 회원 물류회사인가요?',
-      answer: '네. KSWAYS는 WCA 회원사로서 해상 운송, 항공 운송, 실무 중심의 국제 화물 조율을 지원합니다.',
+      question: 'KS WAYS는 WCA 회원 물류회사인가요?',
+      answer: '네. KS WAYS는 WCA 회원사로서 해상 운송, 항공 운송, 실무 중심의 국제 화물 조율을 지원합니다.',
     },
     {
-      question: 'KSWAYS는 한국 EXW 픽업을 지원하나요?',
-      answer: 'KSWAYS는 한국 내 EXW 픽업 조건을 검토할 수 있습니다. 화주 위치, 화물 규격, 상차 조건, 차량 접근성, 적입 필요 여부, 현장 핸들링 조건에 따라 가능 여부와 방식이 달라집니다.',
+      question: 'KS WAYS는 한국 EXW 픽업을 지원하나요?',
+      answer: 'KS WAYS는 한국 내 EXW 픽업 조건을 검토할 수 있습니다. 화주 위치, 화물 규격, 상차 조건, 차량 접근성, 적입 필요 여부, 현장 핸들링 조건에 따라 가능 여부와 방식이 달라집니다.',
     },
     {
       question: '운임 견적에는 어떤 정보가 필요한가요?',
       answer: '운임 견적에는 출발지, 도착지, Incoterms, 화물명, 규격, 총중량, 포장 수량, 화물 준비일, 운송 모드, 픽업 조건, 특수 취급 필요 여부가 필요합니다.',
     },
     {
-      question: 'KSWAYS에 어떻게 문의할 수 있나요?',
+      question: 'KS WAYS에 어떻게 문의할 수 있나요?',
       answer: `견적 또는 파트너십 문의는 공식 그룹 이메일 ${contactEmail}로 보내 주시면 됩니다.`,
     },
   ],
@@ -111,8 +111,8 @@ export function organizationJsonLd(locale: Locale) {
     email: contactEmail,
     description:
       locale === 'kr'
-        ? 'KSWAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사로, 해운 강점과 WCA 회원 네트워크 기반 협력을 제공합니다.'
-        : 'KSWAYS is a global logistics company for ocean freight and air freight, with strong sea freight execution and WCA member network cooperation.',
+        ? 'KS WAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사로, 해운 강점과 WCA 회원 네트워크 기반 협력을 제공합니다.'
+        : 'KS WAYS is a global logistics company for ocean freight and air freight, with strong sea freight execution and WCA member network cooperation.',
     areaServed: 'Worldwide',
     knowsAbout: [
       'Freight forwarding',
