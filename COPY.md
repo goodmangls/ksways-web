@@ -190,13 +190,13 @@ Long-tail keywords:
 
 ### Meta title options
 
-1. `KS WAYS — Korea-Based Global Logistics Partner`
-2. `KS WAYS — Freight Forwarding and Global Logistics from Korea`
+1. `KS WAYS — Global Ocean & Air Logistics Company`
+2. `KS WAYS — Ocean-Led Freight Forwarding and Air Logistics`
 3. `KS WAYS — The Smart Way to Global Logistics`
 
 Recommended default:
 
-`KS WAYS — Korea-Based Global Logistics Partner`
+`KS WAYS — Global Ocean & Air Logistics Company`
 
 ### Meta description options
 
@@ -371,13 +371,13 @@ Recommended:
 
 #### Body
 
-`Share your cargo details or partnership enquiry through info@ksways.co or Intercom. We will help you find the most practical way forward.`
+`Start with the right path: send structured cargo details, introduce your company for partner cooperation, or request a Zoom / Calendly consultation through info@ksways.co.`
 
 #### CTA labels
 
 - `Request a quote`
 - `Become a partner`
-- `Contact on Intercom`
+- `Schedule consultation`
 
 #### Contact email
 
@@ -387,7 +387,8 @@ Recommended:
 
 - Quote CTA: open a pre-filled email to `info@ksways.co`.
 - Partner CTA: open a pre-filled partnership email to `info@ksways.co`.
-- Intercom CTA: open Intercom Messenger when `NEXT_PUBLIC_INTERCOM_APP_ID` is configured; fall back to the quote email if Messenger is not available.
+- Schedule CTA: use `NEXT_PUBLIC_KSWAYS_CALENDLY_URL` when an official booking link is configured; otherwise open a pre-filled Zoom / Calendly meeting-request email to `info@ksways.co`.
+- Do not load a public live-chat widget by default; keep the conversion path focused on email, partner details, and scheduled consultation requests.
 
 ---
 
@@ -466,7 +467,7 @@ KS WAYS focuses on practical execution in Korea, clear partner communication, an
 
 ### Q10. How can I contact KS WAYS?
 
-For quotation or partnership enquiries, contact KS WAYS through the official group email `info@ksways.co` or through the Intercom Messenger on the website.
+For quotation, partnership, or consultation enquiries, contact KS WAYS through the official group email `info@ksways.co`. The website CTA can also request a Zoom / Calendly consultation slot.
 
 ---
 
@@ -739,11 +740,11 @@ Recommended services:
 
 ### Phase 1: Homepage metadata and FAQ
 
-1. Update homepage metadata to include `Korea-Based Global Logistics Partner`.
+1. Update homepage metadata to position KS WAYS as a global ocean and air logistics company.
 2. Add an FAQ section with 5 AEO-ready questions.
 3. Add JSON-LD Organization schema.
 4. Add FAQ schema only if FAQ is visible on the page.
-5. Configure `NEXT_PUBLIC_INTERCOM_APP_ID` in the deployment environment when Intercom Messenger should be active.
+5. Configure `NEXT_PUBLIC_KSWAYS_CALENDLY_URL` only when an official booking link is available; otherwise keep consultation requests routed through `info@ksways.co`.
 
 ### Phase 2: Service landing pages
 
