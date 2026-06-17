@@ -284,8 +284,9 @@ export function HomePage({ locale, copy }: Props) {
           <div className="grid gap-3">
             {faqs.map((faq) => (
               <details key={faq.question} className="group rounded-3xl border border-[#001112]/10 bg-[#f4f7f6] p-6 open:bg-white">
-                <summary className="min-h-11 cursor-pointer list-none text-lg font-black tracking-[-.03em] text-[#001112] marker:hidden">
-                  {faq.question}
+                <summary className="flex min-h-11 cursor-pointer list-none items-start justify-between gap-5 text-lg font-black tracking-[-.03em] text-[#001112] marker:hidden">
+                  <span>{faq.question}</span>
+                  <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#001112] text-white transition-transform duration-200 group-open:rotate-45">+</span>
                 </summary>
                 <p className="mt-4 leading-relaxed text-[#001112]/62">{faq.answer}</p>
               </details>

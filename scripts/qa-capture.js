@@ -49,9 +49,11 @@ const fs = require('fs');
       // Keep leak checks outside the browser object literal to avoid minifier/parsing surprises.
       const leakCheck = await page.evaluate(() => {
         const bodyText = document.body.innerText;
+        const collapsedBrandTerms = ['KSWAYS', 'KSWays', 'KS Ways'];
         return {
           hasKSWAYS: bodyText.includes('KSWAYS'),
-          forbiddenCopyLeak: ['MLM', 'network-marketing', 'Goodman GLS family', 'design principles'].some(term => bodyText.includes(term)),
+          noBrandCollapse: collapsedBrandTerms.every(term => !bodyText.includes(term)),
+          forbiddenCopyLeak: ['MLM', 'network-marketing', 'Network Marketing', 'Goodman GLS family', 'design principles', 'Korea-based local company'].some(term => bodyText.includes(term)),
         };
       });
 
@@ -84,7 +86,14 @@ const fs = require('fs');
     noOverflow: results.every(r => !r.snapshot.hasOverflow),
     jsonLdPresent: results.every(r => r.snapshot.jsonLdCount > 0),
     faqPresent: results.every(r => r.snapshot.hasFaq),
+    noBrandCollapse: results.every(r => r.snapshot.noBrandCollapse),
     noForbiddenCopyLeak: results.every(r => !r.snapshot.forbiddenCopyLeak),
   };
   console.log(JSON.stringify({ summary, results }, null, 2));
+  const passed = Object.entries(summary)
+    .filter(([key]) => !['outDir', 'jsonPath', 'total'].includes(key))
+    .every(([, value]) => value === true);
+  if (!passed) {
+    process.exitCode = 1;
+  }
 })();
