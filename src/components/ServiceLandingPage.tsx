@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import type { ServicePage } from '@/lib/service-pages';
 import { contactEmail, faqJsonLd, serviceJsonLd, siteUrl } from '@/lib/seo';
@@ -25,9 +26,15 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(33,212,194,.26),transparent_30%),linear-gradient(120deg,rgba(0,17,18,.98),rgba(2,31,34,.88))]" />
         <div className="relative z-10">
           <header className="flex items-center justify-between gap-6">
-            <Link href="/" className="flex items-center gap-2 text-xl font-black italic tracking-[-.04em]" aria-label="KSWAYS home">
-              <span className="h-4 w-4 rotate-45 rounded-[3px] border-2 border-b-transparent border-l-transparent border-[#21d4c2]" />
-              KSWAYS
+            <Link href="/" className="group flex items-center" aria-label="KSWAYS home">
+              <Image
+                src="/assets/ksways-logo-reverse.png"
+                alt="KSWAYS"
+                width={935}
+                height={337}
+                priority
+                className="h-8 w-auto object-contain drop-shadow-[0_0_18px_rgba(33,212,194,.18)] transition-transform group-hover:scale-[1.03] sm:h-9"
+              />
             </Link>
             <a href={quoteHref} className="inline-flex min-h-11 items-center rounded-full bg-gradient-to-br from-[#21d4c2] to-[#6fffe7] px-5 text-sm font-black text-[#001112]">
               Get a quote
