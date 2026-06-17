@@ -1,0 +1,120 @@
+<svg width="1120" height="920" viewBox="0 0 1120 920" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">KS WAYS global logistics network technology visualization</title>
+  <desc id="desc">A modern abstract global logistics network with ocean, air, partner nodes, data routes, and technology dashboard elements.</desc>
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="42%" r="58%">
+      <stop offset="0%" stop-color="#21D4C2" stop-opacity="0.45"/>
+      <stop offset="42%" stop-color="#2D8CFF" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#001112" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cyanBlue" x1="136" y1="110" x2="934" y2="802" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6FFFE7"/>
+      <stop offset="0.48" stop-color="#21D4C2"/>
+      <stop offset="1" stop-color="#2D8CFF"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="238" y1="106" x2="876" y2="836" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.035"/>
+    </linearGradient>
+    <filter id="softShadow" x="64" y="36" width="992" height="852" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="34" stdDeviation="42" flood-color="#000000" flood-opacity="0.34"/>
+    </filter>
+    <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" stroke="#FFFFFF" stroke-opacity="0.055" stroke-width="1"/>
+    </pattern>
+    <style>
+      .mono{font-family:Inter,Arial,sans-serif;font-weight:800;letter-spacing:.17em}
+      .label{font-family:Inter,Arial,sans-serif;font-weight:900;letter-spacing:.08em}
+      .small{font-family:Inter,Arial,sans-serif;font-weight:700;letter-spacing:.12em}
+    </style>
+  </defs>
+
+  <rect width="1120" height="920" rx="58" fill="#001112"/>
+  <rect width="1120" height="920" rx="58" fill="url(#bgGlow)"/>
+  <rect x="38" y="38" width="1044" height="844" rx="54" stroke="#FFFFFF" stroke-opacity="0.14"/>
+  <rect x="38" y="38" width="1044" height="844" rx="54" fill="url(#grid)" opacity="0.55"/>
+
+  <g filter="url(#softShadow)">
+    <path d="M166 520C166 310 337 140 548 140C760 140 930 310 930 520C930 731 760 826 548 826C337 826 166 731 166 520Z" fill="url(#panel)" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="2"/>
+  </g>
+
+  <g opacity="0.62" stroke="#FFFFFF" stroke-width="1.5">
+    <path d="M250 516C334 457 421 428 544 428C665 428 762 459 848 516" stroke-opacity="0.22"/>
+    <path d="M248 600C342 660 436 686 548 686C666 686 760 656 850 600" stroke-opacity="0.16"/>
+    <path d="M548 170C500 270 477 385 477 516C477 646 503 750 548 824" stroke-opacity="0.16"/>
+    <path d="M548 170C596 270 619 385 619 516C619 646 593 750 548 824" stroke-opacity="0.16"/>
+    <path d="M212 516H884" stroke-opacity="0.20"/>
+    <path d="M548 162V824" stroke-opacity="0.13"/>
+  </g>
+
+  <g stroke="url(#cyanBlue)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.94">
+    <path d="M280 532C374 402 493 347 664 378C751 394 805 334 862 260"/>
+    <path d="M264 626C380 704 484 686 604 586C692 512 774 530 876 596"/>
+    <path d="M342 288C442 330 522 420 548 516C573 610 649 678 770 716"/>
+    <path d="M236 474C339 481 414 522 490 612C568 704 678 720 840 666" opacity="0.56"/>
+  </g>
+
+  <g filter="url(#nodeGlow)">
+    <circle cx="280" cy="532" r="13" fill="#6FFFE7"/>
+    <circle cx="664" cy="378" r="13" fill="#21D4C2"/>
+    <circle cx="862" cy="260" r="13" fill="#2D8CFF"/>
+    <circle cx="264" cy="626" r="10" fill="#21D4C2"/>
+    <circle cx="604" cy="586" r="12" fill="#6FFFE7"/>
+    <circle cx="876" cy="596" r="11" fill="#2D8CFF"/>
+    <circle cx="342" cy="288" r="11" fill="#6FFFE7"/>
+    <circle cx="770" cy="716" r="12" fill="#21D4C2"/>
+  </g>
+
+  <g transform="translate(420 394)">
+    <rect x="0" y="0" width="260" height="220" rx="38" fill="#001112" fill-opacity="0.86" stroke="#6FFFE7" stroke-opacity="0.58" stroke-width="2"/>
+    <rect x="26" y="24" width="208" height="44" rx="22" fill="#FFFFFF" fill-opacity="0.07"/>
+    <text x="130" y="52" text-anchor="middle" fill="#6FFFE7" class="mono" font-size="15">NETWORK OPS</text>
+    <text x="130" y="116" text-anchor="middle" fill="#FFFFFF" class="label" font-size="34">KS WAYS</text>
+    <text x="130" y="147" text-anchor="middle" fill="#FFFFFF" opacity="0.62" class="small" font-size="13">OCEAN · AIR · PARTNER</text>
+    <path d="M56 178H204" stroke="url(#cyanBlue)" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="56" cy="178" r="9" fill="#6FFFE7"/>
+    <circle cx="130" cy="178" r="9" fill="#21D4C2"/>
+    <circle cx="204" cy="178" r="9" fill="#2D8CFF"/>
+  </g>
+
+  <g transform="translate(126 160)">
+    <rect width="236" height="98" rx="26" fill="#FFFFFF" fill-opacity="0.085" stroke="#FFFFFF" stroke-opacity="0.18"/>
+    <text x="28" y="38" fill="#6FFFE7" class="mono" font-size="13">GLOBAL NETWORK</text>
+    <text x="28" y="70" fill="#FFFFFF" class="label" font-size="22">WCA Partner Routes</text>
+  </g>
+
+  <g transform="translate(754 704)">
+    <rect width="238" height="100" rx="26" fill="#FFFFFF" fill-opacity="0.085" stroke="#FFFFFF" stroke-opacity="0.18"/>
+    <text x="28" y="38" fill="#6FFFE7" class="mono" font-size="13">TECH ENABLED</text>
+    <text x="28" y="70" fill="#FFFFFF" class="label" font-size="22">Data-led Handoffs</text>
+  </g>
+
+  <g transform="translate(770 142)">
+    <path d="M0 52C74 26 128 26 204 52" stroke="#FFFFFF" stroke-opacity="0.38" stroke-width="2" stroke-linecap="round"/>
+    <path d="M72 18L118 52L72 86L84 56H0V48H84L72 18Z" fill="#6FFFE7"/>
+    <text x="116" y="110" text-anchor="middle" fill="#FFFFFF" opacity="0.62" class="mono" font-size="12">AIR CORRIDOR</text>
+  </g>
+
+  <g transform="translate(132 698)" opacity="0.92">
+    <path d="M0 54H214" stroke="#FFFFFF" stroke-opacity="0.32" stroke-width="2"/>
+    <path d="M28 24H178L204 54H0L28 24Z" fill="#21D4C2" fill-opacity="0.22" stroke="#6FFFE7" stroke-opacity="0.52"/>
+    <rect x="46" y="34" width="34" height="20" rx="4" fill="#6FFFE7" fill-opacity="0.74"/>
+    <rect x="90" y="34" width="34" height="20" rx="4" fill="#2D8CFF" fill-opacity="0.64"/>
+    <rect x="134" y="34" width="34" height="20" rx="4" fill="#FFFFFF" fill-opacity="0.32"/>
+    <text x="107" y="84" text-anchor="middle" fill="#FFFFFF" opacity="0.62" class="mono" font-size="12">OCEAN FREIGHT</text>
+  </g>
+
+  <g opacity="0.44">
+    <path d="M96 96L226 96" stroke="#6FFFE7" stroke-width="8" stroke-linecap="round"/>
+    <path d="M96 120L174 120" stroke="#2D8CFF" stroke-width="8" stroke-linecap="round"/>
+    <path d="M894 842L1018 842" stroke="#6FFFE7" stroke-width="8" stroke-linecap="round"/>
+    <path d="M944 816L1018 816" stroke="#2D8CFF" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>

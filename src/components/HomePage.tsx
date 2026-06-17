@@ -14,8 +14,6 @@ type Props = {
   copy: HomeCopy;
 };
 
-const flowNodes = ['AIR', 'OCEAN', 'EXPRESS', 'PARTNER'];
-
 function BrandLogo({ priority = false }: { priority?: boolean }) {
   return (
     <Image
@@ -119,25 +117,29 @@ export function HomePage({ locale, copy }: Props) {
             </dl>
           </div>
 
-          <aside className="mb-8 hidden max-w-[392px] justify-self-end rounded-[34px] border border-white/18 bg-white/[.09] p-6 shadow-[0_30px_90px_rgba(0,0,0,.42)] backdrop-blur-2xl lg:block" aria-label="KS WAYS logistics control tower card">
-            <div className="mb-6 flex items-start justify-between gap-4">
+          <aside className="w-full max-w-[470px] justify-self-center rounded-[38px] border border-white/18 bg-white/[.08] p-5 shadow-[0_34px_110px_rgba(0,0,0,.44)] backdrop-blur-2xl lg:mb-8 lg:justify-self-end" aria-label="KS WAYS global logistics network technology visual">
+            <div className="mb-5 flex items-start justify-between gap-4 px-1">
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[.18em] text-white/45">Control tower</p>
+                <p className="font-mono text-[10px] uppercase tracking-[.18em] text-[#6fffe7]/78">Network · Tech · Logistics</p>
                 <h2 className="mt-2 text-2xl font-black tracking-[-.04em]">{copy.hero.controlTitle}</h2>
               </div>
-              <span className="rounded-full bg-[#6fffe7] px-3 py-1 text-[10px] font-black text-[#001112]">LIVE</span>
+              <span className="rounded-full bg-[#6fffe7] px-3 py-1 text-[10px] font-black text-[#001112] shadow-[0_0_22px_rgba(111,255,231,.24)]">LIVE MAP</span>
             </div>
-            <div className="relative min-h-[226px] overflow-hidden rounded-3xl border border-white/14 bg-[radial-gradient(circle_at_50%_50%,rgba(33,212,194,.24),transparent_28%),linear-gradient(135deg,rgba(255,255,255,.08),rgba(0,17,18,.24))]">
-              <div className="absolute left-7 right-7 top-1/2 h-px bg-white/15" />
-              <div className="absolute bottom-7 left-1/2 top-7 w-px bg-white/15" />
-              {flowNodes.map((label, index) => (
-                <div key={label} className={`absolute grid h-12 w-24 place-items-center rounded-2xl border border-white/10 bg-[#001112]/82 ${index === 0 ? 'left-5 top-6' : ''}${index === 1 ? 'right-5 top-6' : ''}${index === 2 ? 'bottom-6 left-5' : ''}${index === 3 ? 'bottom-6 right-5' : ''}`}>
-                  <span className="font-mono text-[9px] uppercase tracking-[.12em] text-white/52">{label}</span>
-                  <span className="h-1 w-12 rounded-full bg-gradient-to-r from-[#21d4c2] to-[#2d8cff]" />
-                </div>
-              ))}
-              <div className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-[#21d4c2]/45 bg-[#001112] text-center font-mono text-[9px] uppercase tracking-[.14em] shadow-[0_0_40px_rgba(33,212,194,.22)]">
-                {copy.hero.controlCenter}
+            <div className="relative overflow-hidden rounded-[32px] border border-white/14 bg-[#001112]/72 shadow-[inset_0_1px_0_rgba(255,255,255,.08)]">
+              <Image
+                src="/assets/ksways-global-network-tech-hero.svg"
+                alt="KS WAYS global logistics network and technology visualization"
+                width={1120}
+                height={920}
+                priority
+                className="h-auto w-full object-cover"
+              />
+              <div className="pointer-events-none absolute inset-x-4 bottom-4 grid grid-cols-3 gap-2">
+                {['Ocean', 'Air', 'Data'].map((label) => (
+                  <span key={label} className="rounded-2xl border border-white/12 bg-[#001112]/68 px-3 py-2 text-center font-mono text-[9px] font-black uppercase tracking-[.16em] text-white/70 backdrop-blur-md">
+                    {label}
+                  </span>
+                ))}
               </div>
             </div>
           </aside>
