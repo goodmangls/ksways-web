@@ -56,7 +56,7 @@ type HomeCopy = {
     email: string;
     quote: string;
     partner: string;
-    chat: string;
+    schedule: string;
   };
 };
 
@@ -125,11 +125,11 @@ export const homeContent: Record<Locale, HomeCopy> = {
     },
     contact: {
       headline: 'Ready to move smarter?',
-      body: 'Share your cargo details or partnership enquiry through info@ksways.co or Intercom. We will help you find the most practical way forward.',
+      body: 'Start with the right path: send structured cargo details, introduce your company for partner cooperation, or request a Zoom / Calendly consultation through info@ksways.co.',
       email: 'info@ksways.co',
       quote: 'Request a quote',
       partner: 'Become a partner',
-      chat: 'Contact on Intercom',
+      schedule: 'Schedule consultation',
     },
   },
   kr: {
@@ -196,11 +196,11 @@ export const homeContent: Record<Locale, HomeCopy> = {
     },
     contact: {
       headline: '더 스마트하게 이동할 준비가 되셨나요?',
-      body: '화물 정보 또는 파트너십 문의는 info@ksways.co 또는 Intercom으로 보내 주세요. KS WAYS가 가장 실용적인 다음 경로를 함께 찾겠습니다.',
+      body: '견적, 파트너십, 상담 일정을 목적별로 남겨 주세요. info@ksways.co 그룹 이메일을 통해 화물 정보, 파트너사 프로필, Zoom / Calendly 미팅 요청을 명확하게 접수합니다.',
       email: 'info@ksways.co',
       quote: '견적 문의하기',
       partner: '파트너 문의하기',
-      chat: 'Intercom으로 문의',
+      schedule: '상담 일정 잡기',
     },
   },
 };

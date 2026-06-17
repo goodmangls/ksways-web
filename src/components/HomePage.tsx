@@ -57,6 +57,7 @@ export function HomePage({ locale, copy }: Props) {
   const quoteSubject = locale === 'kr' ? 'KS WAYS 견적 문의' : 'KS WAYS freight quote request';
   const quoteHref = `mailto:${copy.contact.email}?subject=${encodeURIComponent(quoteSubject)}`;
   const networkHref = '/network/korea-agent-network';
+  const scheduleUrl = process.env.NEXT_PUBLIC_KSWAYS_CALENDLY_URL?.trim();
   const faqs = homeFaqs[locale];
 
   return (
@@ -269,7 +270,14 @@ export function HomePage({ locale, copy }: Props) {
             <h2 className="max-w-3xl text-[clamp(40px,5vw,76px)] font-black leading-[.96] tracking-[-.07em]">{copy.contact.headline}</h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/68">{copy.contact.body}</p>
           </div>
-          <ContactActions quoteLabel={copy.contact.quote} partnerLabel={copy.contact.partner} chatLabel={copy.contact.chat} email={copy.contact.email} locale={locale} />
+          <ContactActions
+            quoteLabel={copy.contact.quote}
+            partnerLabel={copy.contact.partner}
+            scheduleLabel={copy.contact.schedule}
+            email={copy.contact.email}
+            locale={locale}
+            scheduleUrl={scheduleUrl}
+          />
         </div>
       </section>
     </main>
