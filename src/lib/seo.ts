@@ -8,8 +8,8 @@ export const contactEmail = 'info@ksways.co';
 
 export const homeSeo: Record<Locale, Metadata> = {
   en: {
-    title: 'KSWAYS — Korea-Based Global Logistics Partner',
-    description: 'KSWAYS is a Korea-based global logistics company supporting air freight, ocean freight, cross-border logistics, EXW pickup, and partner-network cooperation.',
+    title: 'KSWAYS — Global Ocean & Air Logistics Company',
+    description: 'KSWAYS is a global logistics company for ocean freight and air freight, with strong sea freight execution and WCA member network cooperation.',
     alternates: {
       canonical: '/',
       languages: {
@@ -19,8 +19,8 @@ export const homeSeo: Record<Locale, Metadata> = {
       },
     },
     openGraph: {
-      title: 'KSWAYS — Korea-Based Global Logistics Partner',
-      description: 'Move cargo between Korea and the world with air freight, ocean freight, cross-border logistics, local handling, and trusted agent cooperation.',
+      title: 'KSWAYS — Global Ocean & Air Logistics Company',
+      description: 'Global ocean and air freight execution with sea freight strength and WCA member network cooperation.',
       url: siteUrl,
       siteName: brandName,
       type: 'website',
@@ -28,8 +28,8 @@ export const homeSeo: Record<Locale, Metadata> = {
     },
   },
   kr: {
-    title: 'KSWAYS — 한국 기반 글로벌 물류 파트너',
-    description: 'KSWAYS는 항공, 해상, 크로스보더, EXW 픽업, 파트너 네트워크 협력을 지원하는 한국 기반 글로벌 물류 회사입니다.',
+    title: 'KSWAYS — 글로벌 해상·항공 물류회사',
+    description: 'KSWAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사로, 해운 강점과 WCA 회원 네트워크 기반 협력을 제공합니다.',
     alternates: {
       canonical: '/kr',
       languages: {
@@ -39,8 +39,8 @@ export const homeSeo: Record<Locale, Metadata> = {
       },
     },
     openGraph: {
-      title: 'KSWAYS — 한국 기반 글로벌 물류 파트너',
-      description: '한국과 세계를 연결하는 항공, 해상, 크로스보더, EXW 픽업, 파트너 기반 글로벌 물류 회사입니다.',
+      title: 'KSWAYS — 글로벌 해상·항공 물류회사',
+      description: '해상과 항공 화물을 책임지는 글로벌 물류회사, 해운 강점과 WCA 회원 네트워크 기반 협력.',
       url: `${siteUrl}/kr`,
       siteName: brandName,
       type: 'website',
@@ -58,11 +58,11 @@ export const homeFaqs: Record<Locale, FaqItem[]> = {
   en: [
     {
       question: 'What does KSWAYS do?',
-      answer: 'KSWAYS is a Korea-based global logistics company that supports air freight, ocean freight, cross-border logistics, EXW pickup coordination, project cargo support, and partner-network cooperation for Korea-connected shipments.',
+      answer: 'KSWAYS is a global logistics company responsible for ocean freight and air freight, with particular strength in sea freight and WCA member network cooperation.',
     },
     {
-      question: 'Is KSWAYS a freight forwarder in Korea?',
-      answer: 'Yes. KSWAYS operates as a Korea-based logistics partner and freight-forwarding coordinator for companies and overseas agents that need reliable shipment execution in the Korean market.',
+      question: 'Is KSWAYS a WCA member logistics company?',
+      answer: 'Yes. KSWAYS is a WCA member and works with global logistics partners for ocean freight, air freight, and practical shipment coordination.',
     },
     {
       question: 'Can KSWAYS handle EXW pickup in Korea?',
@@ -80,11 +80,11 @@ export const homeFaqs: Record<Locale, FaqItem[]> = {
   kr: [
     {
       question: 'KSWAYS는 어떤 회사인가요?',
-      answer: 'KSWAYS는 한국 기반 글로벌 물류 회사입니다. 항공 운송, 해상 운송, 크로스보더 물류, EXW 픽업, 프로젝트 화물 지원, 파트너 네트워크 협력을 통해 한국과 세계를 연결합니다.',
+      answer: 'KSWAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사입니다. 특히 해운에 강점을 두고 WCA 회원 네트워크 기반의 파트너 협력을 제공합니다.',
     },
     {
-      question: 'KSWAYS는 한국 포워더인가요?',
-      answer: '네. KSWAYS는 한국 시장에서 신뢰할 수 있는 운송 실행이 필요한 기업과 해외 에이전트를 위해 화물 운송과 포워딩 조율을 지원하는 한국 기반 물류 파트너입니다.',
+      question: 'KSWAYS는 WCA 회원 물류회사인가요?',
+      answer: '네. KSWAYS는 WCA 회원사로서 해상 운송, 항공 운송, 실무 중심의 국제 화물 조율을 지원합니다.',
     },
     {
       question: 'KSWAYS는 한국 EXW 픽업을 지원하나요?',
@@ -111,8 +111,8 @@ export function organizationJsonLd(locale: Locale) {
     email: contactEmail,
     description:
       locale === 'kr'
-        ? 'KSWAYS는 항공, 해상, 크로스보더, EXW 픽업, 파트너 네트워크 협력을 지원하는 한국 기반 글로벌 물류 회사입니다.'
-        : 'KSWAYS is a Korea-based global logistics company supporting air freight, ocean freight, cross-border logistics, EXW pickup, and partner-network cooperation.',
+        ? 'KSWAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사로, 해운 강점과 WCA 회원 네트워크 기반 협력을 제공합니다.'
+        : 'KSWAYS is a global logistics company for ocean freight and air freight, with strong sea freight execution and WCA member network cooperation.',
     areaServed: 'Worldwide',
     knowsAbout: [
       'Freight forwarding',

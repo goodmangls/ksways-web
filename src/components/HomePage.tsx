@@ -247,7 +247,7 @@ export function HomePage({ locale, copy }: Props) {
             <p className="mt-5 text-lg leading-relaxed text-[#001112]/60">
               {locale === 'kr'
                 ? '견적과 파트너십 문의 전에 필요한 핵심 정보를 짧고 명확하게 정리했습니다.'
-                : 'Clear answers for quote, partnership, and Korea-connected logistics enquiries.'}
+                : 'Clear answers for ocean freight, air freight, and WCA partner enquiries.'}
             </p>
           </div>
           <div className="grid gap-3">

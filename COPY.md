@@ -10,31 +10,32 @@ It should be used as the source of truth for homepage copy, service-page expansi
 
 ### Core positioning
 
-KSWAYS is a Korea-based global logistics partner helping companies move cargo between Korea and the world through practical freight execution, responsive partner coordination, and reliable route planning.
+KSWAYS is a global logistics company responsible for ocean freight and air freight, with particular strength in sea freight and WCA member network cooperation.
 
 ### One-line positioning
 
-**KSWAYS connects Korea and the world through practical freight forwarding, partner-based logistics coordination, and clear shipment execution.**
+**KSWAYS supports global ocean and air cargo movement through practical freight execution, WCA-backed partner cooperation, and clear shipment coordination.**
 
 ### Short positioning paragraph
 
-KSWAYS is a global logistics company based in Korea, supporting exporters, importers, overseas agents, and growing brands with air freight, ocean freight, cross-border logistics, project cargo coordination, and partner-network cooperation. We focus on practical routing, clear communication, and accountable execution from enquiry to delivery.
+KSWAYS is a global logistics company supporting exporters, importers, overseas agents, and growing brands with ocean freight, air freight, cross-border logistics, project cargo coordination, and WCA member network cooperation. We focus on practical routing, clear communication, and accountable execution from enquiry to delivery, with ocean freight as a core strength.
 
 ### What KSWAYS should sound like
 
 - Professional, direct, and calm.
-- Global but grounded in Korea execution.
+- Global, ocean-strong, and partner-network driven.
 - Practical rather than exaggerated.
 - Reliable partner, not a marketplace or generic rate shop.
 - Clear about capabilities without promising outcomes that depend on carriers, customs, or third parties.
 
 ### Words to prefer
 
-- Korea gateway
+- Ocean freight strength
+- WCA member network
 - Global logistics partner
 - Freight forwarding
-- Air freight
 - Ocean freight
+- Air freight
 - Cross-border logistics
 - Partner network
 - Agent cooperation

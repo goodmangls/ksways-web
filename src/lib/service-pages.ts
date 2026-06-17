@@ -69,15 +69,15 @@ export const servicePages: ServicePage[] = [
       alternates: { canonical: '/services/ocean-freight-korea' },
       openGraph: {
         title: 'Ocean Freight Korea — FCL and LCL Logistics by KSWAYS',
-        description: 'FCL and LCL ocean freight coordination from Korea to the world.',
+        description: 'Global FCL and LCL ocean freight coordination with KSWAYS sea freight strength.',
         url: 'https://ksways.co/services/ocean-freight-korea',
         siteName: 'KSWAYS',
         type: 'website',
       },
     },
     eyebrow: 'Ocean Freight Korea',
-    title: 'Ocean freight forwarding from Korea to the world',
-    lead: 'Ocean freight is often the right choice for larger, heavier, or less time-sensitive cargo. KSWAYS supports FCL and LCL shipment coordination from Korea with attention to cargo dimensions, container suitability, loading requirements, destination needs, and schedule constraints.',
+    title: 'Ocean freight forwarding for global FCL and LCL cargo',
+    lead: 'Ocean freight is often the right choice for larger, heavier, or less time-sensitive cargo. KSWAYS supports global FCL and LCL shipment coordination with attention to cargo dimensions, container suitability, loading requirements, destination needs, and schedule constraints.',
     sections: [
       {
         title: 'FCL and LCL options',
