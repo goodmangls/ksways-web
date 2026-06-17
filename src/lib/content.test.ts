@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { homeContent } from './content';
 
-describe('KSWAYS bilingual homepage content', () => {
+describe('KS WAYS bilingual homepage content', () => {
   it('keeps English as the default public message', () => {
     expect(homeContent.en.hero.headline).toContain('The smart way to global logistics');
     expect(homeContent.en.hero.primaryCta).toBe('Get a Quote');

@@ -5,7 +5,7 @@ import { homeSeo, siteUrl } from './seo';
 
 const languages = homeSeo.en.alternates?.languages as Record<string, string>;
 
-describe('KSWAYS technical SEO plumbing', () => {
+describe('KS WAYS technical SEO plumbing', () => {
   it('uses standard Korean hreflang instead of non-standard kr', () => {
     expect(languages.en).toBe('/');
     expect(languages['ko-KR']).toBe('/kr');

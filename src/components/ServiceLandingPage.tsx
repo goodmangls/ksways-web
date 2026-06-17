@@ -4,7 +4,7 @@ import type { ServicePage } from '@/lib/service-pages';
 import { contactEmail, faqJsonLd, serviceJsonLd, siteUrl } from '@/lib/seo';
 
 export function ServiceLandingPage({ page, basePath }: { page: ServicePage; basePath: 'services' | 'network' }) {
-  const quoteHref = `mailto:${contactEmail}?subject=${encodeURIComponent(`KSWAYS enquiry — ${page.title}`)}`;
+  const quoteHref = `mailto:${contactEmail}?subject=${encodeURIComponent(`KS WAYS enquiry — ${page.title}`)}`;
   const pageUrl = `${siteUrl}/${basePath}/${page.slug}`;
 
   return (
@@ -26,10 +26,10 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(33,212,194,.26),transparent_30%),linear-gradient(120deg,rgba(0,17,18,.98),rgba(2,31,34,.88))]" />
         <div className="relative z-10">
           <header className="flex items-center justify-between gap-6">
-            <Link href="/" className="group flex items-center" aria-label="KSWAYS home">
+            <Link href="/" className="group flex items-center" aria-label="KS WAYS home">
               <Image
                 src="/assets/ksways-logo-reverse.png"
-                alt="KSWAYS"
+                alt="KS WAYS"
                 width={935}
                 height={337}
                 priority

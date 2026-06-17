@@ -20,7 +20,7 @@ function BrandLogo({ priority = false }: { priority?: boolean }) {
   return (
     <Image
       src="/assets/ksways-logo-reverse.png"
-      alt="KSWAYS"
+      alt="KS WAYS"
       width={935}
       height={337}
       priority={priority}
@@ -54,7 +54,7 @@ function HighlightedHeadline({ headline }: { headline: string }) {
 export function HomePage({ locale, copy }: Props) {
   const alternateLocale: Locale = locale === 'en' ? 'kr' : 'en';
   const toggleHref = getLocalizedPath(locale === 'en' ? '/' : '/kr', alternateLocale);
-  const quoteSubject = locale === 'kr' ? 'KSWAYS 견적 문의' : 'KSWAYS freight quote request';
+  const quoteSubject = locale === 'kr' ? 'KS WAYS 견적 문의' : 'KS WAYS freight quote request';
   const quoteHref = `mailto:${copy.contact.email}?subject=${encodeURIComponent(quoteSubject)}`;
   const networkHref = '/network/korea-agent-network';
   const faqs = homeFaqs[locale];
@@ -79,7 +79,7 @@ export function HomePage({ locale, copy }: Props) {
         <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#001112] to-transparent" />
 
         <header className="relative z-10 flex h-[78px] items-center justify-between px-6 sm:px-10 lg:px-14">
-          <Link href={locale === 'en' ? '/' : '/kr'} className="group flex items-center" aria-label="KSWAYS home">
+          <Link href={locale === 'en' ? '/' : '/kr'} className="group flex items-center" aria-label="KS WAYS home">
             <BrandLogo priority />
           </Link>
           <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-sm font-bold text-white/72 lg:flex">
@@ -118,7 +118,7 @@ export function HomePage({ locale, copy }: Props) {
             </dl>
           </div>
 
-          <aside className="mb-8 hidden max-w-[392px] justify-self-end rounded-[34px] border border-white/18 bg-white/[.09] p-6 shadow-[0_30px_90px_rgba(0,0,0,.42)] backdrop-blur-2xl lg:block" aria-label="KSWAYS logistics control tower card">
+          <aside className="mb-8 hidden max-w-[392px] justify-self-end rounded-[34px] border border-white/18 bg-white/[.09] p-6 shadow-[0_30px_90px_rgba(0,0,0,.42)] backdrop-blur-2xl lg:block" aria-label="KS WAYS logistics control tower card">
             <div className="mb-6 flex items-start justify-between gap-4">
               <div>
                 <p className="font-mono text-[10px] uppercase tracking-[.18em] text-white/45">Control tower</p>
@@ -247,7 +247,7 @@ export function HomePage({ locale, copy }: Props) {
             <p className="mt-5 text-lg leading-relaxed text-[#001112]/60">
               {locale === 'kr'
                 ? '견적과 파트너십 문의 전에 필요한 핵심 정보를 짧고 명확하게 정리했습니다.'
-                : 'Clear answers for quote, partnership, and Korea-connected logistics enquiries.'}
+                : 'Clear answers for ocean freight, air freight, and WCA partner enquiries.'}
             </p>
           </div>
           <div className="grid gap-3">

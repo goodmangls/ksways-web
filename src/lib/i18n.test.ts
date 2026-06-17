@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { getAlternateHref, getLocaleFromPath, getLocalizedPath, locales } from './i18n';
 
-describe('KSWAYS path-based locale policy', () => {
+describe('KS WAYS path-based locale policy', () => {
   it('uses English as the default clean root route and Korean at /kr', () => {
     expect(locales).toEqual(['en', 'kr']);
     expect(getLocaleFromPath('/')).toBe('en');

@@ -4,8 +4,8 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ksways.co'),
-  title: 'KSWAYS — The Smart Way to Global Logistics',
-  description: 'KSWAYS connects Korea and the world through reliable freight solutions, trusted partner networks, and smarter supply routes.',
+  title: 'KS WAYS — The Smart Way to Global Logistics',
+  description: 'KS WAYS is a global ocean and air logistics company with sea freight strength and WCA member network cooperation.',
   alternates: {
     canonical: '/',
     languages: {
@@ -15,10 +15,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'KSWAYS — The Smart Way to Global Logistics',
-    description: 'Partner-driven global logistics from Korea to the world.',
+    title: 'KS WAYS — The Smart Way to Global Logistics',
+    description: 'Global ocean and air logistics with sea freight strength and WCA member network cooperation.',
     url: 'https://ksways.co',
-    siteName: 'KSWAYS',
+    siteName: 'KS WAYS',
     type: 'website',
   },
 };

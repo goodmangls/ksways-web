@@ -12,16 +12,16 @@ function buildMailto(email: string, locale: Props['locale'], intent: 'quote' | '
   const subject =
     locale === 'kr'
       ? intent === 'quote'
-        ? 'KSWAYS 견적 문의'
-        : 'KSWAYS 파트너십 문의'
+        ? 'KS WAYS 견적 문의'
+        : 'KS WAYS 파트너십 문의'
       : intent === 'quote'
-        ? 'KSWAYS freight quote request'
-        : 'KSWAYS partnership enquiry';
+        ? 'KS WAYS freight quote request'
+        : 'KS WAYS partnership enquiry';
 
   const body =
     locale === 'kr'
-      ? '안녕하세요 KSWAYS 팀,\n\n아래 화물/파트너십 문의 검토 부탁드립니다.\n\n- 회사명:\n- 담당자:\n- 출발지 / 도착지:\n- Incoterms:\n- 화물명:\n- 포장 수량 / 중량 / 사이즈:\n- 준비일:\n- 요청사항:\n'
-      : 'Dear KSWAYS team,\n\nPlease review the cargo or partnership enquiry below.\n\n- Company:\n- Contact person:\n- Origin / destination:\n- Incoterms:\n- Commodity:\n- Package count / weight / dimensions:\n- Cargo ready date:\n- Request details:\n';
+      ? '안녕하세요 KS WAYS 팀,\n\n아래 화물/파트너십 문의 검토 부탁드립니다.\n\n- 회사명:\n- 담당자:\n- 출발지 / 도착지:\n- Incoterms:\n- 화물명:\n- 포장 수량 / 중량 / 사이즈:\n- 준비일:\n- 요청사항:\n'
+      : 'Dear KS WAYS team,\n\nPlease review the cargo or partnership enquiry below.\n\n- Company:\n- Contact person:\n- Origin / destination:\n- Incoterms:\n- Commodity:\n- Package count / weight / dimensions:\n- Cargo ready date:\n- Request details:\n';
 
   return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
