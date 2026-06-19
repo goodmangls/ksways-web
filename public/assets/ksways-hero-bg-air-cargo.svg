@@ -1,0 +1,33 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">KS WAYS full-bleed air cargo aircraft background</title>
+  <desc id="desc">A wide cinematic air freight logistics background with a cargo aircraft, runway lights, pallet containers, and global route lines.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse"><stop stop-color="#001112"/><stop offset=".48" stop-color="#063A3F"/><stop offset="1" stop-color="#071B2B"/></linearGradient>
+    <linearGradient id="runway" x1="0" y1="580" x2="1920" y2="1080" gradientUnits="userSpaceOnUse"><stop stop-color="#0A4046"/><stop offset=".62" stop-color="#031B20"/><stop offset="1" stop-color="#001112"/></linearGradient>
+    <linearGradient id="accent" x1="500" y1="240" x2="1530" y2="780" gradientUnits="userSpaceOnUse"><stop stop-color="#6FFFE7"/><stop offset=".55" stop-color="#21D4C2"/><stop offset="1" stop-color="#2D8CFF"/></linearGradient>
+    <radialGradient id="glow" cx="72%" cy="30%" r="58%"><stop stop-color="#2D8CFF" stop-opacity=".3"/><stop offset=".5" stop-color="#21D4C2" stop-opacity=".17"/><stop offset="1" stop-color="#001112" stop-opacity="0"/></radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="20"/></filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#glow)"/>
+  <path d="M0 628C318 560 598 592 884 620C1248 656 1530 592 1920 526V1080H0V628Z" fill="url(#runway)"/>
+  <g opacity=".18" stroke="#6FFFE7" stroke-width="3"><path d="M1450 120C1220 270 1070 396 910 630"/><path d="M1900 220C1540 356 1284 472 1010 664"/><path d="M250 160L820 650"/><path d="M0 470L738 726"/></g>
+  <g transform="translate(548 290)">
+    <path d="M88 234C244 148 456 100 716 98C804 98 908 114 980 144C1008 156 1010 194 984 210C916 250 796 270 618 270H158C92 270 66 246 88 234Z" fill="#E8FFFB" fill-opacity=".9"/>
+    <path d="M446 116L308 12H424L638 108L446 116Z" fill="#D7FFFA" fill-opacity=".86"/>
+    <path d="M500 264L356 402H470L730 270L500 264Z" fill="#D7FFFA" fill-opacity=".8"/>
+    <path d="M172 232L6 174L96 164L276 222L172 232Z" fill="#A7D7FF" fill-opacity=".76"/>
+    <path d="M892 151L1008 96L982 180L892 151Z" fill="#6FFFE7" fill-opacity=".82"/>
+    <circle cx="780" cy="178" r="18" fill="#001112" fill-opacity=".52"/><circle cx="704" cy="190" r="18" fill="#001112" fill-opacity=".52"/>
+    <path d="M102 232C302 146 536 122 854 144" stroke="url(#accent)" stroke-width="7" stroke-linecap="round" opacity=".5"/>
+  </g>
+  <g transform="translate(222 682)">
+    <path d="M0 90H370L330 198H42L0 90Z" fill="#F0FFFC" fill-opacity=".84"/>
+    <rect x="58" y="16" width="88" height="74" rx="8" fill="#21D4C2" opacity=".82"/><rect x="160" y="16" width="88" height="74" rx="8" fill="#2D8CFF" opacity=".76"/><rect x="262" y="16" width="88" height="74" rx="8" fill="#fff" opacity=".8"/>
+    <path d="M44 198H332" stroke="#6FFFE7" stroke-opacity=".34" stroke-width="5"/>
+  </g>
+  <g opacity=".56"><path d="M720 816C1010 700 1252 690 1588 768" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"/><path d="M846 880C1088 806 1340 806 1660 870" stroke="#6FFFE7" stroke-opacity=".28" stroke-width="4" stroke-linecap="round"/></g>
+  <g fill="#6FFFE7"><circle cx="948" cy="798" r="5"/><circle cx="1188" cy="760" r="5"/><circle cx="1450" cy="766" r="5"/><circle cx="1624" cy="856" r="5"/></g>
+  <g opacity=".32" filter="url(#blur)"><ellipse cx="1110" cy="674" rx="420" ry="48" fill="#21D4C2"/><ellipse cx="730" cy="796" rx="280" ry="42" fill="#2D8CFF"/></g>
+  <rect width="1920" height="1080" fill="#001112" opacity=".14"/>
+</svg>

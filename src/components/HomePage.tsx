@@ -15,21 +15,18 @@ type Props = {
   copy: HomeCopy;
 };
 
-const heroSlides = [
+const heroBackgroundSlides = [
   {
-    src: '/assets/ksways-global-network-tech-hero.svg',
-    alt: 'KS WAYS ocean freight vessel and air cargo aircraft logistics visualization',
-    label: 'Ocean · Air',
+    src: '/assets/ksways-hero-bg-ocean-port.svg',
+    alt: 'Full hero background image of an ocean freight port with a container vessel and cranes',
   },
   {
-    src: '/assets/ksways-hero-warehouse-tracking.svg',
-    alt: 'KS WAYS warehouse handling and shipment tracking logistics visualization',
-    label: 'Tracking',
+    src: '/assets/ksways-hero-bg-air-cargo.svg',
+    alt: 'Full hero background image of an air cargo aircraft with runway and freight pallets',
   },
   {
-    src: '/assets/ksways-hero-customs-handoff.svg',
-    alt: 'KS WAYS customs clearance and partner handoff logistics visualization',
-    label: 'Handoff',
+    src: '/assets/ksways-hero-bg-multimodal.svg',
+    alt: 'Full hero background image of multimodal container logistics with sea and air routes',
   },
 ] as const;
 
@@ -96,38 +93,25 @@ function FooterLink({ href, label }: { href: string; label: string }) {
   );
 }
 
-function HeroLogisticsVisual({ controlTitle }: { controlTitle: string }) {
+function HeroBackgroundSlideshow() {
   return (
-    <aside className="w-full max-w-[470px] justify-self-center rounded-[38px] border border-white/18 bg-white/[.08] p-5 shadow-[0_34px_110px_rgba(0,0,0,.44)] backdrop-blur-2xl lg:mb-8 lg:justify-self-end" aria-label="KS WAYS dynamic ocean air and logistics operations visual">
-      <div className="mb-5 flex items-start justify-between gap-4 px-1">
-        <div>
-          <p className="font-mono text-[10px] uppercase tracking-[.18em] text-[#6fffe7]/78">Ocean · Air · Logistics</p>
-          <h2 className="mt-2 text-2xl font-black tracking-[-.04em]">{controlTitle}</h2>
-        </div>
-        <span className="rounded-full bg-[#6fffe7] px-3 py-1 text-[10px] font-black text-[#001112] shadow-[0_0_22px_rgba(111,255,231,.24)]">LIVE FLOW</span>
-      </div>
-      <div className="relative aspect-[1120/920] overflow-hidden rounded-[32px] border border-white/14 bg-[#001112]/72 shadow-[inset_0_1px_0_rgba(255,255,255,.08)]">
-        {heroSlides.map((slide, index) => (
-          <Image
-            key={slide.src}
-            src={slide.src}
-            alt={slide.alt}
-            fill
-            priority={index === 0}
-            sizes="(min-width: 1024px) 470px, 100vw"
-            className="ks-hero-slide object-cover"
-            style={{ '--ks-slide-index': index } as CSSProperties}
-          />
-        ))}
-        <div className="pointer-events-none absolute inset-x-4 bottom-4 grid grid-cols-3 gap-2">
-          {heroSlides.map((slide) => (
-            <span key={slide.label} className="rounded-2xl border border-white/12 bg-[#001112]/68 px-3 py-2 text-center font-mono text-[9px] font-black uppercase tracking-[.16em] text-white/70 backdrop-blur-md">
-              {slide.label}
-            </span>
-          ))}
-        </div>
-      </div>
-    </aside>
+    <div className="absolute inset-0 -z-30" aria-label="Rotating full hero background images for ocean freight and air cargo logistics">
+      {heroBackgroundSlides.map((slide, index) => (
+        <Image
+          key={slide.src}
+          src={slide.src}
+          alt={slide.alt}
+          fill
+          priority={index === 0}
+          sizes="100vw"
+          className="ks-hero-bg-slide object-cover"
+          style={{ '--ks-slide-index': index } as CSSProperties}
+        />
+      ))}
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,17,18,.95)_0%,rgba(0,17,18,.82)_36%,rgba(0,17,18,.18)_62%,rgba(0,17,18,.16)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_46%,rgba(0,17,18,.08),rgba(0,17,18,.30)_56%,rgba(0,17,18,.44)_100%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#001112] to-transparent" />
+    </div>
   );
 }
 
@@ -154,10 +138,8 @@ export function HomePage({ locale, copy }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }}
       />
       <section className="relative isolate min-h-screen overflow-hidden bg-[#001112] text-white">
-        <div className="absolute inset-0 -z-30 bg-[radial-gradient(circle_at_78%_18%,rgba(33,212,194,.30),transparent_28%),radial-gradient(circle_at_18%_74%,rgba(45,140,255,.16),transparent_34%),linear-gradient(120deg,rgba(0,17,18,.98)_0%,rgba(0,17,18,.92)_46%,rgba(2,31,34,.82)_100%)]" />
-        <div className="absolute -right-[18%] -top-[18%] -z-20 h-[86%] w-[72%] rotate-[-16deg] rounded-[58px] border border-white/10 bg-[linear-gradient(90deg,rgba(33,212,194,.28)_0_3px,transparent_3px_80px),linear-gradient(90deg,rgba(255,255,255,.08)_0_1px,transparent_1px_40px),linear-gradient(135deg,rgba(33,212,194,.16),rgba(45,140,255,.08),rgba(255,255,255,.03))] shadow-[0_40px_140px_rgba(0,0,0,.38)]" />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(115deg,transparent_0_38%,rgba(33,212,194,.38)_38.1%_38.25%,transparent_38.35%_100%),linear-gradient(152deg,transparent_0_62%,rgba(111,255,231,.24)_62.1%_62.22%,transparent_62.35%_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#001112] to-transparent" />
+        <HeroBackgroundSlideshow />
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_78%_18%,rgba(33,212,194,.18),transparent_26%),radial-gradient(circle_at_18%_74%,rgba(45,140,255,.14),transparent_34%)]" />
 
         <header className="relative z-10 mx-auto flex h-[78px] w-full max-w-[1280px] items-center justify-between px-6 sm:px-10 lg:px-8">
           <Link href={locale === 'en' ? '/' : '/kr'} className="group flex min-h-11 items-center" aria-label="KS WAYS home">
@@ -178,8 +160,8 @@ export function HomePage({ locale, copy }: Props) {
           </div>
         </header>
 
-        <div className="relative z-10 mx-auto grid min-h-[calc(100vh-78px)] w-full max-w-[1280px] items-end gap-10 px-6 pb-14 pt-8 sm:px-10 lg:grid-cols-[minmax(0,.98fr)_minmax(340px,.52fr)] lg:px-8">
-          <div>
+        <div className="relative z-10 mx-auto grid min-h-[calc(100vh-78px)] w-full max-w-[1280px] items-end px-6 pb-14 pt-8 sm:px-10 lg:px-8">
+          <div className="max-w-3xl">
             <p className="mb-5 max-w-2xl text-[clamp(14px,1.2vw,17px)] tracking-[-.01em] text-white/74">{copy.hero.eyebrow}</p>
             <h1 className="max-w-5xl text-[clamp(44px,12.8vw,56px)] font-black leading-[1.04] tracking-[-.062em] text-balance sm:text-[clamp(52px,7.8vw,116px)] sm:leading-[.9] sm:tracking-[-.075em]">
               <HighlightedHeadline headline={copy.hero.headline} />
@@ -198,8 +180,6 @@ export function HomePage({ locale, copy }: Props) {
               ))}
             </dl>
           </div>
-
-          <HeroLogisticsVisual controlTitle={copy.hero.controlTitle} />
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-r from-[#21d4c2] via-[#6fffe7] to-[#2d8cff]" />
       </section>

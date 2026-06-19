@@ -1,0 +1,30 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">KS WAYS full-bleed multimodal container logistics background</title>
+  <desc id="desc">A wide cinematic multimodal logistics background with containers, sea and air routes, port yard lights, and Northeast Asia network movement.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse"><stop stop-color="#001112"/><stop offset=".5" stop-color="#053E43"/><stop offset="1" stop-color="#061D2B"/></linearGradient>
+    <linearGradient id="yard" x1="0" y1="580" x2="1920" y2="1080" gradientUnits="userSpaceOnUse"><stop stop-color="#0B3C42"/><stop offset="1" stop-color="#001112"/></linearGradient>
+    <linearGradient id="accent" x1="200" y1="180" x2="1710" y2="860" gradientUnits="userSpaceOnUse"><stop stop-color="#6FFFE7"/><stop offset=".5" stop-color="#21D4C2"/><stop offset="1" stop-color="#2D8CFF"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="66%"><stop stop-color="#21D4C2" stop-opacity=".28"/><stop offset=".52" stop-color="#2D8CFF" stop-opacity=".14"/><stop offset="1" stop-color="#001112" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#glow)"/>
+  <path d="M0 690C250 590 496 576 760 630C986 676 1148 682 1350 606C1538 536 1710 526 1920 594V1080H0V690Z" fill="url(#yard)"/>
+  <g opacity=".18" stroke="#6FFFE7" stroke-width="3"><path d="M180 260C458 390 680 494 896 706C1030 838 1220 882 1480 836"/><path d="M1740 180C1418 286 1194 456 960 700"/><path d="M0 810C410 690 710 704 1032 798C1294 876 1574 866 1920 740"/></g>
+  <g transform="translate(922 562) skewX(-8)">
+    <rect x="0" y="120" width="610" height="92" rx="9" fill="#21D4C2" opacity=".8"/><rect x="44" y="28" width="610" height="92" rx="9" fill="#2D8CFF" opacity=".72"/><rect x="226" y="-64" width="522" height="92" rx="9" fill="#F4FFFC" opacity=".82"/>
+    <g stroke="#001112" stroke-opacity=".26" stroke-width="4"><path d="M60 124V208M152 124V208M244 124V208M336 124V208M428 124V208M520 124V208M112 32V116M204 32V116M296 32V116M388 32V116M480 32V116M572 32V116M292 -60V24M384 -60V24M476 -60V24M568 -60V24M660 -60V24"/></g>
+  </g>
+  <g transform="translate(256 586) skewX(-8)">
+    <rect x="0" y="90" width="440" height="86" rx="8" fill="#F4FFFC" opacity=".82"/><rect x="90" y="8" width="470" height="86" rx="8" fill="#21D4C2" opacity=".76"/><rect x="188" y="-74" width="390" height="86" rx="8" fill="#2D8CFF" opacity=".72"/>
+    <g stroke="#001112" stroke-opacity=".25" stroke-width="4"><path d="M66 94V170M148 94V170M230 94V170M312 94V170M394 94V170M154 12V88M236 12V88M318 12V88M400 12V88M482 12V88M254 -70V4M336 -70V4M418 -70V4M500 -70V4"/></g>
+  </g>
+  <g transform="translate(1174 212)" opacity=".92">
+    <path d="M70 178C196 110 356 74 548 74C614 74 694 86 748 108C770 118 772 146 752 158C700 190 606 204 474 204H126C80 204 54 188 70 178Z" fill="#EFFFFB" opacity=".9"/>
+    <path d="M344 88L244 10H332L496 84L344 88Z" fill="#CFFFF8" opacity=".82"/><path d="M390 200L286 302H378L574 204L390 200Z" fill="#CFFFF8" opacity=".75"/>
+    <path d="M660 112L752 70L728 134L660 112Z" fill="#6FFFE7" opacity=".82"/>
+  </g>
+  <g transform="translate(420 282)" opacity=".84"><path d="M0 144H450L402 232H48L0 144Z" fill="#061A1D" stroke="#6FFFE7" stroke-opacity=".32" stroke-width="4"/><rect x="82" y="72" width="72" height="70" rx="5" fill="#21D4C2" opacity=".78"/><rect x="164" y="72" width="72" height="70" rx="5" fill="#2D8CFF" opacity=".72"/><rect x="246" y="72" width="72" height="70" rx="5" fill="#fff" opacity=".78"/><rect x="122" y="0" width="72" height="70" rx="5" fill="#2D8CFF" opacity=".72"/><rect x="204" y="0" width="72" height="70" rx="5" fill="#21D4C2" opacity=".78"/></g>
+  <g fill="#6FFFE7" opacity=".78"><circle cx="382" cy="814" r="5"/><circle cx="672" cy="744" r="5"/><circle cx="994" cy="802" r="5"/><circle cx="1270" cy="724" r="5"/><circle cx="1544" cy="840" r="5"/></g>
+  <rect width="1920" height="1080" fill="#001112" opacity=".14"/>
+</svg>

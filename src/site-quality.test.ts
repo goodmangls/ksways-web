@@ -70,29 +70,32 @@ describe('site quality hardening', () => {
 
     expect(homePage).toContain('max-w-[1280px]');
     expect(homePage).toContain('mx-auto max-w-[1280px]');
-    expect(homePage).toContain('lg:grid-cols-[minmax(0,.98fr)_minmax(340px,.52fr)]');
+    expect(homePage).toContain('min-h-[calc(100vh-78px)] w-full max-w-[1280px]');
     expect(servicePage).toContain('max-w-[1180px]');
     expect(servicePage).toContain('mx-auto max-w-[1180px]');
     expect(servicePage).not.toContain('lg:px-14');
   });
 
-  it('uses multiple animated logistics hero visuals instead of a single static image', () => {
+  it('uses rotating full-bleed air and ocean logistics images as the hero section background', () => {
     const homePage = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 'utf8');
     const css = readFileSync(join(process.cwd(), 'src/app/globals.css'), 'utf8');
-    const oceanAirSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-global-network-tech-hero.svg'), 'utf8');
-    const warehouseSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-hero-warehouse-tracking.svg'), 'utf8');
-    const customsSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-hero-customs-handoff.svg'), 'utf8');
+    const oceanPortSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-hero-bg-ocean-port.svg'), 'utf8');
+    const airCargoSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-hero-bg-air-cargo.svg'), 'utf8');
+    const multimodalSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-hero-bg-multimodal.svg'), 'utf8');
 
-    expect(homePage).toContain('const heroSlides = [');
-    expect(homePage).toContain('ksways-hero-warehouse-tracking.svg');
-    expect(homePage).toContain('ksways-hero-customs-handoff.svg');
-    expect(homePage).toContain('ks-hero-slide');
-    expect(homePage).toContain('LIVE FLOW');
-    expect(css).toContain('@keyframes ks-hero-cycle');
-    expect(css).toContain('animation-delay: calc(var(--ks-slide-index) * 6s)');
-    expect(oceanAirSvg).toContain('ocean and air freight logistics visualization');
-    expect(warehouseSvg).toContain('warehouse and shipment tracking logistics visualization');
-    expect(customsSvg).toContain('customs and partner handoff logistics visualization');
+    expect(homePage).toContain('const heroBackgroundSlides = [');
+    expect(homePage).toContain('HeroBackgroundSlideshow');
+    expect(homePage).toContain('ksways-hero-bg-ocean-port.svg');
+    expect(homePage).toContain('ksways-hero-bg-air-cargo.svg');
+    expect(homePage).toContain('ksways-hero-bg-multimodal.svg');
+    expect(homePage).toContain('className="ks-hero-bg-slide object-cover"');
+    expect(homePage).not.toContain('HeroLogisticsVisual');
+    expect(homePage).not.toContain('LIVE FLOW');
+    expect(css).toContain('@keyframes ks-hero-bg-cycle');
+    expect(css).toContain('animation-delay: calc(var(--ks-slide-index) * 7s)');
+    expect(oceanPortSvg).toContain('full-bleed ocean freight port background');
+    expect(airCargoSvg).toContain('full-bleed air cargo aircraft background');
+    expect(multimodalSvg).toContain('full-bleed multimodal container logistics background');
   });
 
   it('sets share-card images and Twitter metadata for home and service pages', () => {
