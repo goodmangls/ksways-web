@@ -64,6 +64,18 @@ describe('site quality hardening', () => {
     expect(servicePage).toContain('Partner confidence');
   });
 
+  it('keeps desktop marketing layouts centered in a corporate max-width container', () => {
+    const homePage = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 'utf8');
+    const servicePage = readFileSync(join(process.cwd(), 'src/components/ServiceLandingPage.tsx'), 'utf8');
+
+    expect(homePage).toContain('max-w-[1280px]');
+    expect(homePage).toContain('mx-auto max-w-[1280px]');
+    expect(homePage).toContain('lg:grid-cols-[minmax(0,.98fr)_minmax(340px,.52fr)]');
+    expect(servicePage).toContain('max-w-[1180px]');
+    expect(servicePage).toContain('mx-auto max-w-[1180px]');
+    expect(servicePage).not.toContain('lg:px-14');
+  });
+
   it('sets share-card images and Twitter metadata for home and service pages', () => {
     const seo = readFileSync(join(process.cwd(), 'src/lib/seo.ts'), 'utf8');
     const servicePages = readFileSync(join(process.cwd(), 'src/lib/service-pages.ts'), 'utf8');

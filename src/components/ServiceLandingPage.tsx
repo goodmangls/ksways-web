@@ -22,9 +22,9 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(page.faqs)) }}
       />
 
-      <section className="relative overflow-hidden bg-[#001112] px-6 py-8 text-white sm:px-10 lg:px-14">
+      <section className="relative overflow-hidden bg-[#001112] px-6 py-8 text-white sm:px-10 lg:px-8">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(33,212,194,.26),transparent_30%),linear-gradient(120deg,rgba(0,17,18,.98),rgba(2,31,34,.88))]" />
-        <div className="relative z-10">
+        <div className="relative z-10 mx-auto max-w-[1180px]">
           <header className="flex items-center justify-between gap-6">
             <Link href="/" className="group flex items-center" aria-label="KS WAYS home">
               <Image
@@ -71,7 +71,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         </div>
       </section>
 
-      <section className="grid gap-5 px-6 py-16 sm:px-10 lg:grid-cols-2 lg:px-14">
+      <section className="mx-auto grid max-w-[1180px] gap-5 px-6 py-16 sm:px-10 lg:grid-cols-2 lg:px-8">
         {page.sections.map((section) => (
           <article key={section.title} className="rounded-[32px] border border-[#001112]/10 bg-white p-7 shadow-[0_18px_70px_rgba(0,17,18,.055)] sm:p-9">
             <h2 className="text-3xl font-black tracking-[-.05em]">{section.title}</h2>
@@ -87,7 +87,8 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         ))}
       </section>
 
-      <section className="px-6 pb-16 sm:px-10 lg:px-14">
+      <section className="px-6 pb-16 sm:px-10 lg:px-8">
+        <div className="mx-auto max-w-[1180px]">
         <div className="rounded-[34px] bg-[#001112] p-8 text-white sm:p-10 lg:p-12">
           <h2 className="text-[clamp(34px,4.8vw,70px)] font-black leading-[.96] tracking-[-.07em]">{page.checklistTitle}</h2>
           <ul className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
@@ -96,10 +97,11 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
             ))}
           </ul>
         </div>
+        </div>
       </section>
 
-      <section className="px-6 pb-20 sm:px-10 lg:px-14">
-        <div className="grid gap-10 rounded-[36px] border border-[#001112]/10 bg-white p-7 shadow-[0_24px_90px_rgba(0,17,18,.06)] sm:p-10 lg:grid-cols-[.72fr_1.28fr] lg:p-12">
+      <section className="px-6 pb-20 sm:px-10 lg:px-8">
+        <div className="mx-auto grid max-w-[1180px] gap-10 rounded-[36px] border border-[#001112]/10 bg-white p-7 shadow-[0_24px_90px_rgba(0,17,18,.06)] sm:p-10 lg:grid-cols-[.72fr_1.28fr] lg:p-12">
           <div>
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#7d888a]">FAQ</p>
             <h2 className="mt-4 text-[clamp(34px,4.6vw,66px)] font-black leading-[.96] tracking-[-.065em]">Practical answers before you ship.</h2>

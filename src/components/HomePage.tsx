@@ -105,7 +105,7 @@ export function HomePage({ locale, copy }: Props) {
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(115deg,transparent_0_38%,rgba(33,212,194,.38)_38.1%_38.25%,transparent_38.35%_100%),linear-gradient(152deg,transparent_0_62%,rgba(111,255,231,.24)_62.1%_62.22%,transparent_62.35%_100%)]" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#001112] to-transparent" />
 
-        <header className="relative z-10 flex h-[78px] items-center justify-between px-6 sm:px-10 lg:px-14">
+        <header className="relative z-10 mx-auto flex h-[78px] w-full max-w-[1280px] items-center justify-between px-6 sm:px-10 lg:px-8">
           <Link href={locale === 'en' ? '/' : '/kr'} className="group flex min-h-11 items-center" aria-label="KS WAYS home">
             <BrandLogo priority />
           </Link>
@@ -124,7 +124,7 @@ export function HomePage({ locale, copy }: Props) {
           </div>
         </header>
 
-        <div className="relative z-10 grid min-h-[calc(100vh-78px)] items-end gap-10 px-6 pb-14 pt-8 sm:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(340px,.56fr)] lg:px-14">
+        <div className="relative z-10 mx-auto grid min-h-[calc(100vh-78px)] w-full max-w-[1280px] items-end gap-10 px-6 pb-14 pt-8 sm:px-10 lg:grid-cols-[minmax(0,.98fr)_minmax(340px,.52fr)] lg:px-8">
           <div>
             <p className="mb-5 max-w-2xl text-[clamp(14px,1.2vw,17px)] tracking-[-.01em] text-white/74">{copy.hero.eyebrow}</p>
             <h1 className="max-w-5xl text-[clamp(44px,12.8vw,56px)] font-black leading-[1.04] tracking-[-.062em] text-balance sm:text-[clamp(52px,7.8vw,116px)] sm:leading-[.9] sm:tracking-[-.075em]">
@@ -175,15 +175,15 @@ export function HomePage({ locale, copy }: Props) {
         <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-r from-[#21d4c2] via-[#6fffe7] to-[#2d8cff]" />
       </section>
 
-      <section id="company" className="px-6 py-20 sm:px-10 lg:px-14">
-        <div className="grid gap-10 lg:grid-cols-[.92fr_1.08fr] lg:items-end">
+      <section id="company" className="px-6 py-20 sm:px-10 lg:px-8">
+        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[.92fr_1.08fr] lg:items-end">
           <div>
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#7d888a]">{copy.company.kicker}</p>
             <h2 className="mt-4 max-w-4xl text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.055em] text-[#001112] sm:text-[clamp(38px,5vw,74px)] sm:leading-[.96] sm:tracking-[-.07em]">{copy.company.headline}</h2>
           </div>
           <p className="max-w-3xl text-lg leading-relaxed text-[#001112]/62 lg:pb-2">{copy.company.body}</p>
         </div>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-[1280px] gap-4 md:grid-cols-3">
           {copy.company.pillars.map((pillar) => (
             <article key={pillar.title} className="rounded-[28px] border border-[#001112]/10 bg-white p-7 shadow-[0_18px_70px_rgba(0,17,18,.06)]">
               <div className="mb-8 h-1.5 w-14 rounded-full bg-gradient-to-r from-[#21d4c2] to-[#2d8cff]" />
@@ -194,8 +194,8 @@ export function HomePage({ locale, copy }: Props) {
         </div>
       </section>
 
-      <section id="services" className="px-6 pb-20 sm:px-10 lg:px-14">
-        <div className="rounded-[36px] border border-[#001112]/10 bg-white p-7 shadow-[0_24px_90px_rgba(0,17,18,.06)] sm:p-10 lg:p-12">
+      <section id="services" className="px-6 pb-20 sm:px-10 lg:px-8">
+        <div className="mx-auto max-w-[1280px] rounded-[36px] border border-[#001112]/10 bg-white p-7 shadow-[0_24px_90px_rgba(0,17,18,.06)] sm:p-10 lg:p-12">
           <p className="text-sm font-black uppercase tracking-[.14em] text-[#7d888a]">{copy.operating.kicker}</p>
           <h2 className="mt-4 max-w-4xl text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.055em] text-[#001112] sm:text-[clamp(40px,5.2vw,76px)] sm:leading-[.96] sm:tracking-[-.07em]">{copy.operating.headline}</h2>
           <p className="mt-5 max-w-3xl text-lg leading-relaxed text-[#001112]/60">{copy.operating.body}</p>
@@ -232,12 +232,13 @@ export function HomePage({ locale, copy }: Props) {
         </div>
       </section>
 
-      <section id="network" className="grid gap-10 bg-[#001112] px-6 py-20 text-white sm:px-10 lg:grid-cols-[.88fr_1.12fr] lg:px-14">
-        <div>
+      <section id="network" className="bg-[#001112] px-6 py-20 text-white sm:px-10 lg:px-8">
+        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[.88fr_1.12fr]">
+          <div>
           <p className="text-sm font-black uppercase tracking-[.14em] text-[#6fffe7]">{copy.network.kicker}</p>
           <h2 className="mt-4 text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.052em] sm:text-[clamp(38px,5vw,70px)] sm:leading-[.96] sm:tracking-[-.065em]">{copy.network.headline}</h2>
-        </div>
-        <div>
+          </div>
+          <div>
           <p className="text-lg leading-relaxed text-white/68">{copy.network.body}</p>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2">
             {copy.network.points.map((point) => (
@@ -247,11 +248,12 @@ export function HomePage({ locale, copy }: Props) {
           <Link href={networkHref} className="mt-8 inline-flex min-h-[52px] items-center rounded-full border border-[#6fffe7]/65 px-7 font-black text-[#6fffe7] transition hover:border-[#6fffe7] hover:bg-[#6fffe7]/10">
             {locale === 'kr' ? '파트너 네트워크 자세히 보기' : 'Explore Korea agent network'}
           </Link>
+          </div>
         </div>
       </section>
 
-      <section id="solutions" className="px-6 py-20 sm:px-10 lg:px-14">
-        <div className="grid gap-10 lg:grid-cols-[.86fr_1.14fr] lg:items-start">
+      <section id="solutions" className="px-6 py-20 sm:px-10 lg:px-8">
+        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[.86fr_1.14fr] lg:items-start">
           <div className="lg:sticky lg:top-10">
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#7d888a]">{copy.solutions.kicker}</p>
             <h2 className="mt-4 text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.055em] sm:text-[clamp(38px,5vw,72px)] sm:leading-[.96] sm:tracking-[-.07em]">{copy.solutions.headline}</h2>
@@ -268,8 +270,8 @@ export function HomePage({ locale, copy }: Props) {
         </div>
       </section>
 
-      <section id="faq" className="px-6 pb-20 sm:px-10 lg:px-14">
-        <div className="grid gap-10 rounded-[36px] border border-[#001112]/10 bg-white p-7 shadow-[0_24px_90px_rgba(0,17,18,.06)] sm:p-10 lg:grid-cols-[.78fr_1.22fr] lg:p-12">
+      <section id="faq" className="px-6 pb-20 sm:px-10 lg:px-8">
+        <div className="mx-auto grid max-w-[1280px] gap-10 rounded-[36px] border border-[#001112]/10 bg-white p-7 shadow-[0_24px_90px_rgba(0,17,18,.06)] sm:p-10 lg:grid-cols-[.78fr_1.22fr] lg:p-12">
           <div>
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#7d888a]">FAQ</p>
             <h2 className="mt-4 text-[clamp(32px,9vw,40px)] font-black leading-[1.04] tracking-[-.052em] sm:text-[clamp(34px,4.6vw,66px)] sm:leading-[.96] sm:tracking-[-.065em]">
@@ -295,8 +297,8 @@ export function HomePage({ locale, copy }: Props) {
         </div>
       </section>
 
-      <section id="contact" className="px-6 pb-20 sm:px-10 lg:px-14">
-        <div className="overflow-hidden rounded-[34px] bg-[#001112] p-8 text-white shadow-[0_30px_100px_rgba(0,17,18,.16)] sm:p-12 lg:flex lg:items-end lg:justify-between">
+      <section id="contact" className="px-6 pb-20 sm:px-10 lg:px-8">
+        <div className="mx-auto max-w-[1280px] overflow-hidden rounded-[34px] bg-[#001112] p-8 text-white shadow-[0_30px_100px_rgba(0,17,18,.16)] sm:p-12 lg:flex lg:items-end lg:justify-between">
           <div>
             <h2 className="max-w-3xl text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.055em] sm:text-[clamp(40px,5vw,76px)] sm:leading-[.96] sm:tracking-[-.07em]">{copy.contact.headline}</h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/68">{copy.contact.body}</p>
@@ -317,9 +319,9 @@ export function HomePage({ locale, copy }: Props) {
         </div>
       </section>
 
-      <footer aria-label="KS WAYS global logistics footer" className="relative overflow-hidden bg-[#001112] px-6 pb-8 pt-16 text-white sm:px-10 lg:px-14">
+      <footer aria-label="KS WAYS global logistics footer" className="relative overflow-hidden bg-[#001112] px-6 pb-8 pt-16 text-white sm:px-10 lg:px-8">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_12%,rgba(33,212,194,.18),transparent_28%),radial-gradient(circle_at_84%_18%,rgba(45,140,255,.12),transparent_28%)]" />
-        <div className="relative mx-auto max-w-[1500px]">
+        <div className="relative mx-auto max-w-[1280px]">
           <div className="grid gap-10 border-b border-white/10 pb-12 lg:grid-cols-[1.1fr_.9fr] lg:items-start">
             <div>
               <Link href={locale === 'en' ? '/' : '/kr'} className="group inline-flex min-h-11 items-center" aria-label="KS WAYS home">
