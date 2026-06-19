@@ -1,0 +1,41 @@
+<svg width="1120" height="920" viewBox="0 0 1120 920" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">KS WAYS customs and partner handoff logistics visualization</title>
+  <desc id="desc">A premium logistics image showing customs documents, partner handoff, port-to-airport route lines, pallets, and delivery coordination panels.</desc>
+  <defs>
+    <radialGradient id="glow" cx="54%" cy="40%" r="66%"><stop offset="0%" stop-color="#21D4C2" stop-opacity=".34"/><stop offset="45%" stop-color="#2D8CFF" stop-opacity=".16"/><stop offset="100%" stop-color="#001112" stop-opacity="0"/></radialGradient>
+    <linearGradient id="cyanBlue" x1="116" y1="116" x2="988" y2="802" gradientUnits="userSpaceOnUse"><stop stop-color="#6FFFE7"/><stop offset=".5" stop-color="#21D4C2"/><stop offset="1" stop-color="#2D8CFF"/></linearGradient>
+    <linearGradient id="paper" x1="306" y1="170" x2="760" y2="692" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset=".62" stop-color="#E6FFFB"/><stop offset="1" stop-color="#A7D7FF"/></linearGradient>
+    <filter id="shadow" x="52" y="52" width="1020" height="820" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="34" stdDeviation="42" flood-color="#000" flood-opacity=".34"/></filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" stroke="#fff" stroke-opacity=".052"/></pattern>
+    <style>.mono{font-family:Inter,Arial,sans-serif;font-weight:800;letter-spacing:.16em}.label{font-family:Inter,Arial,sans-serif;font-weight:900;letter-spacing:.055em}.small{font-family:Inter,Arial,sans-serif;font-weight:800;letter-spacing:.1em}</style>
+  </defs>
+  <rect width="1120" height="920" rx="58" fill="#001112"/><rect width="1120" height="920" rx="58" fill="url(#glow)"/><rect x="38" y="38" width="1044" height="844" rx="54" stroke="#fff" stroke-opacity=".14"/><rect x="38" y="38" width="1044" height="844" rx="54" fill="url(#grid)" opacity=".5"/>
+  <g opacity=".46" stroke="#fff" stroke-width="1.4"><path d="M178 488C312 374 474 324 642 350C780 372 888 442 960 552" stroke-opacity=".15"/><path d="M192 626C346 552 514 544 674 600C778 636 878 638 958 610" stroke-opacity=".14"/><path d="M558 136V814" stroke-opacity=".1"/><path d="M196 518H932" stroke-opacity=".12"/></g>
+  <g stroke="url(#cyanBlue)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".9"><path d="M188 614C306 488 430 440 560 464C684 488 756 430 868 296"/><path d="M270 730C410 650 548 632 692 666C796 690 884 664 958 610" opacity=".58"/></g>
+  <g transform="translate(344 166)" filter="url(#shadow)">
+    <rect width="394" height="504" rx="42" fill="url(#paper)"/>
+    <rect x="38" y="42" width="172" height="22" rx="11" fill="#001112" fill-opacity=".7"/>
+    <text x="44" y="116" fill="#001112" class="label" font-size="34">CUSTOMS</text>
+    <text x="44" y="156" fill="#001112" opacity=".62" class="small" font-size="15">DOCUMENT REVIEW</text>
+    <g fill="#001112" opacity=".16"><rect x="44" y="214" width="300" height="14" rx="7"/><rect x="44" y="252" width="250" height="14" rx="7"/><rect x="44" y="290" width="310" height="14" rx="7"/><rect x="44" y="328" width="218" height="14" rx="7"/></g>
+    <rect x="44" y="386" width="140" height="54" rx="27" fill="#21D4C2"/><text x="114" y="420" text-anchor="middle" fill="#001112" class="mono" font-size="13">CLEARED</text>
+    <path d="M280 384L338 430L300 462" stroke="#2D8CFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(110 150)" filter="url(#shadow)">
+    <rect width="272" height="172" rx="30" fill="#001112" fill-opacity=".78" stroke="#fff" stroke-opacity=".14"/>
+    <text x="28" y="46" fill="#6FFFE7" class="mono" font-size="13">PARTNER HANDOFF</text>
+    <text x="28" y="88" fill="#fff" class="label" font-size="32">WCA READY</text>
+    <text x="28" y="122" fill="#fff" opacity=".64" class="small" font-size="14">Clear milestones</text>
+  </g>
+  <g transform="translate(744 526)" filter="url(#shadow)">
+    <rect width="266" height="180" rx="30" fill="#001112" fill-opacity=".80" stroke="#fff" stroke-opacity=".14"/>
+    <text x="28" y="46" fill="#6FFFE7" class="mono" font-size="13">DELIVERY PLAN</text>
+    <text x="28" y="88" fill="#fff" class="label" font-size="31">PORT → AIR</text>
+    <g stroke="url(#cyanBlue)" stroke-width="5" stroke-linecap="round"><path d="M36 128H92L126 104L164 120H226"/></g>
+    <circle cx="36" cy="128" r="8" fill="#6FFFE7"/><circle cx="126" cy="104" r="8" fill="#21D4C2"/><circle cx="226" cy="120" r="8" fill="#2D8CFF"/>
+  </g>
+  <g transform="translate(146 604)" filter="url(#shadow)">
+    <path d="M0 74H232L204 154H28L0 74Z" fill="#fff" fill-opacity=".88"/><rect x="36" y="18" width="66" height="56" rx="8" fill="#21D4C2"/><rect x="112" y="18" width="66" height="56" rx="8" fill="#2D8CFF"/><text x="116" y="190" text-anchor="middle" fill="#fff" opacity=".64" class="mono" font-size="12">PALLET CHECK</text>
+  </g>
+  <g filter="url(#shadow)"><circle cx="188" cy="614" r="12" fill="#6FFFE7"/><circle cx="560" cy="464" r="12" fill="#21D4C2"/><circle cx="868" cy="296" r="12" fill="#2D8CFF"/><circle cx="958" cy="610" r="10" fill="#6FFFE7"/></g>
+</svg>

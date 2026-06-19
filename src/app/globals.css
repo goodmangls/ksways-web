@@ -41,4 +41,42 @@ a { color: inherit; }
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+
+  .ks-hero-slide {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .ks-hero-slide:first-child {
+    opacity: 1 !important;
+  }
+}
+
+.ks-hero-slide {
+  opacity: 0;
+  animation: ks-hero-cycle 18s infinite;
+  animation-delay: calc(var(--ks-slide-index) * 6s);
+}
+
+.ks-hero-slide:first-child {
+  opacity: 1;
+}
+
+@keyframes ks-hero-cycle {
+  0%,
+  28% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  34%,
+  94% {
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

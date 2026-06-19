@@ -76,18 +76,23 @@ describe('site quality hardening', () => {
     expect(servicePage).not.toContain('lg:px-14');
   });
 
-  it('uses an ocean and air freight hero illustration instead of an abstract-only network graphic', () => {
+  it('uses multiple animated logistics hero visuals instead of a single static image', () => {
     const homePage = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 'utf8');
-    const heroSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-global-network-tech-hero.svg'), 'utf8');
+    const css = readFileSync(join(process.cwd(), 'src/app/globals.css'), 'utf8');
+    const oceanAirSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-global-network-tech-hero.svg'), 'utf8');
+    const warehouseSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-hero-warehouse-tracking.svg'), 'utf8');
+    const customsSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-hero-customs-handoff.svg'), 'utf8');
 
-    expect(homePage).toContain('Ocean · Air · Logistics');
-    expect(homePage).toContain('ocean freight vessel and air cargo aircraft');
-    expect(heroSvg).toContain('ocean and air freight logistics visualization');
-    expect(heroSvg).toContain('ocean freight vessel');
-    expect(heroSvg).toContain('air cargo aircraft');
-    expect(heroSvg).toContain('OCEAN FREIGHT');
-    expect(heroSvg).toContain('AIR CARGO');
-    expect(heroSvg).toContain('FCL · LCL');
+    expect(homePage).toContain('const heroSlides = [');
+    expect(homePage).toContain('ksways-hero-warehouse-tracking.svg');
+    expect(homePage).toContain('ksways-hero-customs-handoff.svg');
+    expect(homePage).toContain('ks-hero-slide');
+    expect(homePage).toContain('LIVE FLOW');
+    expect(css).toContain('@keyframes ks-hero-cycle');
+    expect(css).toContain('animation-delay: calc(var(--ks-slide-index) * 6s)');
+    expect(oceanAirSvg).toContain('ocean and air freight logistics visualization');
+    expect(warehouseSvg).toContain('warehouse and shipment tracking logistics visualization');
+    expect(customsSvg).toContain('customs and partner handoff logistics visualization');
   });
 
   it('sets share-card images and Twitter metadata for home and service pages', () => {
