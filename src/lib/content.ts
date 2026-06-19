@@ -172,6 +172,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
             { label: 'Air Freight', href: '/services/air-freight-korea' },
             { label: 'Special Cargo Korea', href: '/services/special-cargo-korea' },
             { label: 'EXW Pickup Korea', href: '/services/exw-pickup-korea' },
+            { label: 'BridgeLogis', href: 'https://bridgelogis.com' },
           ],
         },
         {
@@ -179,7 +180,6 @@ export const homeContent: Record<Locale, HomeCopy> = {
           links: [
             { label: 'Request a quote', href: '#contact' },
             { label: 'Email info@ksways.co', href: 'mailto:info@ksways.co' },
-            { label: 'BridgeLogis', href: 'https://bridgelogis.com' },
           ],
         },
       ],
@@ -285,6 +285,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
             { label: '항공 운송', href: '/services/air-freight-korea' },
             { label: '특수 화물', href: '/services/special-cargo-korea' },
             { label: '한국 EXW 픽업', href: '/services/exw-pickup-korea' },
+            { label: 'BridgeLogis', href: 'https://bridgelogis.com' },
           ],
         },
         {
@@ -292,7 +293,6 @@ export const homeContent: Record<Locale, HomeCopy> = {
           links: [
             { label: '견적 문의', href: '#contact' },
             { label: 'info@ksways.co 이메일', href: 'mailto:info@ksways.co' },
-            { label: 'BridgeLogis', href: 'https://bridgelogis.com' },
           ],
         },
       ],

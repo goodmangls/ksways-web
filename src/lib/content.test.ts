@@ -22,6 +22,11 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.en.footer.email).toBe('info@ksways.co');
     expect(homeContent.en.footer.phone).toBe('Tel. +82 2 6961 5778');
     expect(homeContent.en.footer.fax).toBe('Fax +82 2 6961 5765');
+
+    const englishServicesColumn = homeContent.en.footer.columns.find((column) => column.title === 'Services');
+    const englishContactColumn = homeContent.en.footer.columns.find((column) => column.title === 'Contact');
+    expect(englishServicesColumn?.links.map((link) => link.label)).toContain('BridgeLogis');
+    expect(englishContactColumn?.links.map((link) => link.label)).not.toContain('BridgeLogis');
   });
 
   it('emphasizes Korea-centered Northeast Asia reach and 30+ years of carrier/logistics experience', () => {
@@ -101,5 +106,10 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.kr.footer.email).toBe('info@ksways.co');
     expect(homeContent.kr.footer.phone).toBe('Tel. +82 2 6961 5778');
     expect(homeContent.kr.footer.fax).toBe('Fax +82 2 6961 5765');
+
+    const koreanServicesColumn = homeContent.kr.footer.columns.find((column) => column.title === '서비스');
+    const koreanContactColumn = homeContent.kr.footer.columns.find((column) => column.title === '문의');
+    expect(koreanServicesColumn?.links.map((link) => link.label)).toContain('BridgeLogis');
+    expect(koreanContactColumn?.links.map((link) => link.label)).not.toContain('BridgeLogis');
   });
 });
