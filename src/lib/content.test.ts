@@ -7,6 +7,7 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.en.hero.primaryCta).toBe('Get a Quote');
     expect(homeContent.en.hero.secondaryCta).toBe('Explore Partner Network');
     expect(homeContent.en.contact.email).toBe('info@ksways.co');
+    expect(homeContent.en.contact.phone).toBe('+82 6961 5778');
     expect(homeContent.en.contact.body).toContain('Zoom / Calendly');
     expect(homeContent.en.contact.schedule).toBe('Schedule consultation');
     expect(homeContent.en.operating.services.find((service) => service.title === 'Air Freight')?.href).toBe('/services/air-freight-korea');
@@ -18,6 +19,7 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.en.footer.credentials.map((item) => item.label)).toEqual(['WCA Member', 'Ocean strength', 'Carrier experience']);
     expect(homeContent.en.footer.companyName).toBe('KS WAYS CO., LTD.');
     expect(homeContent.en.footer.email).toBe('info@ksways.co');
+    expect(homeContent.en.footer.phone).toBe('+82 6961 5778');
   });
 
   it('emphasizes Korea-centered Northeast Asia reach and 30+ years of carrier/logistics experience', () => {
@@ -83,6 +85,7 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.kr.hero.primaryCta).toBe('견적 문의');
     expect(homeContent.kr.hero.secondaryCta).toBe('파트너 네트워크 보기');
     expect(homeContent.kr.contact.email).toBe('info@ksways.co');
+    expect(homeContent.kr.contact.phone).toBe('+82 6961 5778');
     expect(homeContent.kr.contact.body).toContain('Zoom / Calendly');
     expect(homeContent.kr.contact.schedule).toBe('상담 일정 잡기');
     expect(homeContent.kr.operating.services.find((service) => service.title === '항공 운송')?.href).toBe('/services/air-freight-korea');
@@ -93,5 +96,6 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.kr.footer.credentials.map((item) => item.label)).toEqual(['WCA 회원사', '해운 강점', '항공사 경력']);
     expect(homeContent.kr.footer.companyName).toBe('KS WAYS CO., LTD.');
     expect(homeContent.kr.footer.email).toBe('info@ksways.co');
+    expect(homeContent.kr.footer.phone).toBe('+82 6961 5778');
   });
 });

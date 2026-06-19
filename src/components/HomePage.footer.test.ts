@@ -9,7 +9,9 @@ describe('HomePage global logistics footer', () => {
     expect(source).toContain('<footer');
     expect(source).toContain('aria-label="KS WAYS global logistics footer"');
     expect(source).toContain('copy.footer.credentials.map');
-    expect(source).toContain('copy.footer.columns.map');
+    expect(source).toContain('copy.footer.email');
+    expect(source).toContain('copy.footer.phone');
+    expect(source).toContain('tel:${copy.footer.phone.replace');
   });
 
   it('keeps footer links usable on mobile', () => {
