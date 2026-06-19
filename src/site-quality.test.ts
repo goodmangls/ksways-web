@@ -76,6 +76,20 @@ describe('site quality hardening', () => {
     expect(servicePage).not.toContain('lg:px-14');
   });
 
+  it('uses an ocean and air freight hero illustration instead of an abstract-only network graphic', () => {
+    const homePage = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 'utf8');
+    const heroSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-global-network-tech-hero.svg'), 'utf8');
+
+    expect(homePage).toContain('Ocean · Air · Logistics');
+    expect(homePage).toContain('ocean freight vessel and air cargo aircraft');
+    expect(heroSvg).toContain('ocean and air freight logistics visualization');
+    expect(heroSvg).toContain('ocean freight vessel');
+    expect(heroSvg).toContain('air cargo aircraft');
+    expect(heroSvg).toContain('OCEAN FREIGHT');
+    expect(heroSvg).toContain('AIR CARGO');
+    expect(heroSvg).toContain('FCL · LCL');
+  });
+
   it('sets share-card images and Twitter metadata for home and service pages', () => {
     const seo = readFileSync(join(process.cwd(), 'src/lib/seo.ts'), 'utf8');
     const servicePages = readFileSync(join(process.cwd(), 'src/lib/service-pages.ts'), 'utf8');

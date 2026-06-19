@@ -145,10 +145,10 @@ export function HomePage({ locale, copy }: Props) {
             </dl>
           </div>
 
-          <aside className="w-full max-w-[470px] justify-self-center rounded-[38px] border border-white/18 bg-white/[.08] p-5 shadow-[0_34px_110px_rgba(0,0,0,.44)] backdrop-blur-2xl lg:mb-8 lg:justify-self-end" aria-label="KS WAYS global logistics network technology visual">
+          <aside className="w-full max-w-[470px] justify-self-center rounded-[38px] border border-white/18 bg-white/[.08] p-5 shadow-[0_34px_110px_rgba(0,0,0,.44)] backdrop-blur-2xl lg:mb-8 lg:justify-self-end" aria-label="KS WAYS ocean and air freight logistics visual">
             <div className="mb-5 flex items-start justify-between gap-4 px-1">
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[.18em] text-[#6fffe7]/78">Network · Tech · Logistics</p>
+                <p className="font-mono text-[10px] uppercase tracking-[.18em] text-[#6fffe7]/78">Ocean · Air · Logistics</p>
                 <h2 className="mt-2 text-2xl font-black tracking-[-.04em]">{copy.hero.controlTitle}</h2>
               </div>
               <span className="rounded-full bg-[#6fffe7] px-3 py-1 text-[10px] font-black text-[#001112] shadow-[0_0_22px_rgba(111,255,231,.24)]">LIVE MAP</span>
@@ -156,14 +156,14 @@ export function HomePage({ locale, copy }: Props) {
             <div className="relative overflow-hidden rounded-[32px] border border-white/14 bg-[#001112]/72 shadow-[inset_0_1px_0_rgba(255,255,255,.08)]">
               <Image
                 src="/assets/ksways-global-network-tech-hero.svg"
-                alt="KS WAYS global logistics network and technology visualization"
+                alt="KS WAYS ocean freight vessel and air cargo aircraft logistics visualization"
                 width={1120}
                 height={920}
                 priority
                 className="h-auto w-full object-cover"
               />
               <div className="pointer-events-none absolute inset-x-4 bottom-4 grid grid-cols-3 gap-2">
-                {['Ocean', 'Air', 'Data'].map((label) => (
+                {['Ocean', 'Air', 'Cargo'].map((label) => (
                   <span key={label} className="rounded-2xl border border-white/12 bg-[#001112]/68 px-3 py-2 text-center font-mono text-[9px] font-black uppercase tracking-[.16em] text-white/70 backdrop-blur-md">
                     {label}
                   </span>
