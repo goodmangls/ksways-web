@@ -31,11 +31,11 @@ export const servicePages: ServicePage[] = [
     slug: 'air-freight-korea',
     meta: {
       title: 'Air Freight Korea — KS WAYS Global Logistics',
-      description: 'KS WAYS supports Korea-connected air freight for urgent, high-value, DG, perishables, oversized, and time-sensitive cargo with practical routing and clear shipment follow-up.',
+      description: 'KS WAYS supports Korea-connected air freight with global coverage review, time-sensitive delivery planning, specialized handling checks, customs-document coordination, and transparent shipment follow-up.',
       alternates: { canonical: '/services/air-freight-korea' },
       openGraph: {
         title: 'Air Freight Korea — KS WAYS Global Logistics',
-        description: 'Korea-connected air freight for urgent, high-value, special, and time-sensitive cargo.',
+        description: 'Korea-connected air freight with global coverage review, urgent cargo planning, specialized handling checks, and transparent updates.',
         url: 'https://ksways.co/services/air-freight-korea',
         siteName: 'KS WAYS',
         type: 'website',
@@ -44,31 +44,57 @@ export const servicePages: ServicePage[] = [
       twitter: {
         card: 'summary_large_image',
         title: 'Air Freight Korea — KS WAYS Global Logistics',
-        description: 'Korea-connected air freight for urgent, high-value, special, and time-sensitive cargo.',
+        description: 'Korea-connected air freight with global coverage review, urgent cargo planning, specialized handling checks, and transparent updates.',
         images: [shareImage],
       },
     },
     eyebrow: 'Air Freight Korea',
     title: 'Air freight solutions for Korea-connected cargo',
-    lead: 'When timing matters, air freight needs fast review, accurate cargo information, and clear coordination between shipper, carrier, airport, and destination partner. KS WAYS helps exporters, importers, and overseas agents review Korea-connected air cargo, special handling needs, and practical routing options before booking.',
-    sections: [
+    lead: 'When timing matters, air freight needs fast review, accurate cargo information, and clear coordination between shipper, carrier, airport, customs, and destination partner. KS WAYS helps exporters, importers, and overseas agents review Korea-connected air cargo with global coverage, time-sensitive delivery planning, specialized handling checks, and transparent milestone updates before booking.',
+    trustCards: [
       {
-        title: 'When to use air freight',
-        body: 'Air freight is best for urgent, high-value, small-volume, or time-sensitive cargo where schedule reliability matters more than container-level cost efficiency.',
-        items: ['Urgent production parts', 'High-value commercial goods', 'Sample shipments', 'Time-sensitive buyer deadlines', 'DG, perishables, oversized, or fragile cargo requiring pre-check'],
+        label: 'Global coverage',
+        value: 'Worldwide air cargo reach',
+        body: 'Partner and carrier coordination helps review routes from Korea into Asia, Europe, Africa, the Americas, and wider global trade lanes.',
       },
       {
-        title: 'How KS WAYS coordinates air cargo',
-        body: 'KS WAYS reviews cargo facts, confirms route feasibility, coordinates booking and document flow, and keeps partners informed through key shipment milestones.',
+        label: 'Time-sensitive delivery',
+        value: 'Urgent cargo review',
+        body: 'Urgent production parts, express deliveries, and buyer-deadline cargo are screened for feasible schedules, cutoff risk, and practical alternatives.',
+      },
+      {
+        label: 'Specialized handling',
+        value: 'Special cargo checks',
+        body: 'Cargo sensitivity, documentation, packing, temperature, DG status, and airport handling constraints are checked before route confirmation.',
+      },
+    ],
+    sections: [
+      {
+        title: 'Global coverage and route options',
+        body: 'Air freight is best when cargo needs global reach with shorter transit time than ocean freight. KS WAYS reviews origin, destination, carrier availability, airport handling, and partner handoff so shipments can move through practical international routes.',
+        items: ['Asia, Europe, Africa, the Americas, and wider global destinations', 'Airport-to-airport or door-linked coordination', 'Carrier and partner feasibility review', 'Alternative routing when timing or capacity changes'],
+      },
+      {
+        title: 'Time-sensitive delivery planning',
+        body: 'For express deliveries, urgent production parts, and AOG-style enquiries, KS WAYS focuses on cargo ready time, cutoff feasibility, transit windows, destination requirements, and exception control to reduce avoidable delay.',
+        items: ['Urgent production parts', 'AOG-style replacement parts', 'Time-sensitive buyer deadlines', 'High-value commercial goods', 'Sample shipments'],
       },
       {
         title: 'Special cargo review before quotation',
-        body: 'For cargo that may need special handling, KS WAYS checks the operational details before presenting a route: commodity, packing, dimensions, temperature sensitivity, DG status, airport handling needs, customs documents, and the required delivery window.',
-        items: ['AOG or urgent replacement parts', 'Dangerous goods and regulated commodities', 'Perishables and temperature-sensitive cargo', 'Oversized or high-value shipments'],
+        body: 'For cargo that may need specialized handling, KS WAYS checks the operational details before presenting a route: commodity, packing, dimensions, temperature sensitivity, DG status, airport handling needs, customs documents, and the required delivery window.',
+        items: ['Dangerous goods and regulated commodities', 'Perishables and temperature-controlled cargo', 'Live animal or exotic-vehicle enquiries for case-by-case feasibility review', 'Oversized, fragile, or high-value shipments'],
       },
       {
-        title: 'Quote-ready information flow',
-        body: 'A faster quotation starts with complete cargo data. KS WAYS encourages structured enquiries so routing, chargeable weight, pickup needs, customs requirements, and partner handoff can be reviewed without avoidable back-and-forth.',
+        title: 'Customs-document coordination',
+        body: 'Smooth customs clearance starts before the cargo reaches the airport. KS WAYS reviews commercial invoice, packing list, HS code, shipper/consignee details, special documents, and partner requirements so documentation gaps can be addressed early.',
+      },
+      {
+        title: 'Tracking transparency and customer service',
+        body: 'KS WAYS keeps partners informed through key shipment milestones, routing notes, documentation requests, and exception updates. The goal is a clear, professional communication flow from quote request to final handoff.',
+      },
+      {
+        title: 'Tailored solutions and Industry Experience',
+        body: 'Every air shipment is different. KS WAYS uses practical Industry Experience to structure each enquiry around cargo facts, schedule targets, service mode, consolidation potential, temperature-control needs, destination handoff, and professional customer service so the proposed solution fits the shipment rather than forcing a generic route.',
       },
     ],
     checklistTitle: 'Information needed for an air freight quote',
@@ -76,7 +102,7 @@ export const servicePages: ServicePage[] = [
     faqs: [
       {
         question: 'Can KS WAYS support air freight from Korea?',
-        answer: 'Yes. KS WAYS can review Korea-connected air freight enquiries and coordinate practical routing for urgent, high-value, or time-sensitive cargo.',
+        answer: 'Yes. KS WAYS can review Korea-connected air freight enquiries and coordinate practical routing for urgent, high-value, special handling, or time-sensitive cargo to global destinations.',
       },
       {
         question: 'What determines the air freight cost?',
@@ -84,7 +110,7 @@ export const servicePages: ServicePage[] = [
       },
       {
         question: 'Can KS WAYS review special air cargo requirements?',
-        answer: 'Yes. KS WAYS can review special handling needs such as DG, perishables, oversized cargo, high-value goods, fragile items, and urgent replacement parts before confirming a practical route.',
+        answer: 'Yes. KS WAYS can review specialized handling needs such as DG, perishables, oversized cargo, high-value goods, fragile items, urgent replacement parts, live animal enquiries, and exotic-vehicle enquiries before confirming a practical route.',
       },
     ],
   },
