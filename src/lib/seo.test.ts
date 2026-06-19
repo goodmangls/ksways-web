@@ -47,7 +47,8 @@ describe('KS WAYS technical SEO plumbing', () => {
     expect(englishSeo).not.toContain('Asiana Airlines');
     expect(englishSeo).not.toContain('FedEx');
     expect(englishSeo).toContain('global freight forwarders');
-    expect(englishSeo).toContain('English website');
+    expect(englishSeo).not.toMatch(/English default/i);
+    expect(englishSeo).not.toMatch(/English website/i);
     expect(englishSeo).not.toMatch(/Western/i);
     expect(englishSeo).not.toMatch(/language barrier/i);
     expect(englishSeo).not.toContain('English-first');

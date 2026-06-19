@@ -86,12 +86,12 @@ export const homeContent: Record<Locale, HomeCopy> = {
     hero: {
       eyebrow: 'Global ocean and air logistics. WCA network member.',
       headline: 'The smart way to global logistics',
-      lead: 'KS WAYS gives global freight forwarders a trusted global forwarding company in Northeast Asia — an English website by default, WCA-backed cooperation, and Korea’s gateway position to China and Japan for ocean, air, and special cargo coordination.',
+      lead: 'KS WAYS gives global freight forwarders a trusted global forwarding company in Northeast Asia — WCA-backed cooperation, Korea’s gateway position to China and Japan, and reliable ocean, air, and special cargo coordination.',
       primaryCta: 'Get a Quote',
       secondaryCta: 'Explore Partner Network',
       proof: [
         { label: 'Global network', value: 'WCA Member' },
-        { label: 'Website', value: 'English default' },
+        { label: 'Core services', value: 'Ocean · Air' },
         { label: 'Industry Experience', value: '30+ years' },
       ],
       controlTitle: 'Route control tower',
@@ -103,7 +103,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       body: 'KS WAYS CO., LTD. combines 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding with partner access across Korea, China, Japan, and wider trade lanes.',
       pillars: [
         { title: 'Ocean freight strength', body: 'FCL/LCL planning, carrier coordination, loading review, and partner handoff for sea freight movements.' },
-        { title: 'Global partner communication', body: 'An English website by default, structured shipment questions, and clear milestone updates help partners review Korea-connected cargo with confidence.' },
+        { title: 'Global partner communication', body: 'Structured shipment questions, clear milestone updates, and accountable handoff help partners review Korea-connected cargo with confidence.' },
         { title: 'Industry experience', body: '30+ years across airline cargo, express logistics, shipping line operations, and global forwarding informs practical routing decisions.' },
       ],
     },
@@ -123,7 +123,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       kicker: 'Partner network',
       headline: 'WCA-backed cooperation for global cargo movement.',
       body: 'As a WCA member, KS WAYS works from Korea’s Northeast Asia position with China and Japan in reach, giving global freight forwarders practical routing, responsive updates, and partner-safe handoff control.',
-      points: ['WCA member network', 'Northeast Asia: Korea · China · Japan', 'English website by default', 'Partner-safe handoff control'],
+      points: ['WCA member network', 'Northeast Asia: Korea · China · Japan', 'Ocean · Air cargo coordination', 'Partner-safe handoff control'],
     },
     solutions: {
       kicker: 'How we work',
@@ -146,7 +146,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       schedule: 'Schedule consultation',
     },
     footer: {
-      tagline: 'A trusted global ocean and air logistics / global forwarding company for global freight forwarders working across Northeast Asia: Korea’s strategic gateway, China and Japan connectivity, an English website by default, WCA-backed partner cooperation, and 30+ years of airline, shipping line, and global forwarding experience.',
+      tagline: 'A trusted global ocean and air logistics / global forwarding company for global freight forwarders working across Northeast Asia: Korea’s strategic gateway, China and Japan connectivity, WCA-backed partner cooperation, and 30+ years of airline, shipping line, and global forwarding experience.',
       companyName: 'KS WAYS CO., LTD.',
       email: 'info@ksways.co',
       phone: 'Tel. +82 2 6961 5778',

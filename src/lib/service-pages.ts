@@ -276,7 +276,7 @@ export const servicePages: ServicePage[] = [
     slug: 'korea-agent-network',
     meta: {
       title: 'Korea Logistics Agent Network — Partner with KS WAYS',
-      description: 'Partner with KS WAYS for Northeast Asia cargo support across Korea, China, Japan, and wider global lanes through WCA cooperation, an English website by default, and 30+ years of airline, shipping line, and forwarding experience.',
+      description: 'Partner with KS WAYS for Northeast Asia cargo support across Korea, China, Japan, and wider global lanes through WCA cooperation and 30+ years of airline, shipping line, and forwarding experience.',
       alternates: { canonical: '/network/korea-agent-network' },
       openGraph: {
         title: 'Korea Logistics Agent Network — Partner with KS WAYS',
@@ -295,12 +295,12 @@ export const servicePages: ServicePage[] = [
     },
     eyebrow: 'Korea Agent Network',
     title: 'Northeast Asia logistics support for global partners',
-    lead: 'KS WAYS gives global freight forwarders a trusted global forwarding company in Korea with an English website by default, China and Japan reach, WCA cooperation, and 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
+    lead: 'KS WAYS gives global freight forwarders a trusted global forwarding company in Korea with China and Japan reach, WCA cooperation, and 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
     trustCards: [
       {
         label: 'Global access',
-        value: 'English website by default',
-        body: 'Partners can review services, send enquiries, and understand KS WAYS capabilities through a polished English public website from the first visit.',
+        value: 'Partner-ready coordination',
+        body: 'Partners can review services, send enquiries, and understand KS WAYS capabilities through clear service information and responsive coordination from the first contact.',
       },
       {
         label: 'Regional access',

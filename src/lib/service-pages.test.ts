@@ -46,12 +46,14 @@ describe('KS WAYS service and network page content', () => {
     ].join(' ');
 
     expect(visibleCopy).toContain('global freight forwarders');
-    expect(visibleCopy).toContain('English website');
+    expect(visibleCopy).toContain('Partner-ready coordination');
     expect(visibleCopy).toContain('Northeast Asia');
     expect(visibleCopy).toContain('China and Japan');
     expect(visibleCopy).toContain('trusted global forwarding company');
     expect(visibleCopy).toContain('WCA');
     expect(visibleCopy).toContain('30+ years');
+    expect(visibleCopy).not.toMatch(/English default/i);
+    expect(visibleCopy).not.toMatch(/English website/i);
     expect(visibleCopy).not.toMatch(/Western/i);
     expect(visibleCopy).not.toMatch(/language barrier/i);
     expect(visibleCopy).not.toContain('English-first');

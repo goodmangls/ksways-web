@@ -4,7 +4,7 @@ KS WAYS brand landing page built with Next.js 16, TypeScript, Tailwind CSS v4, a
 
 ## Routes
 
-- `/` — English default
+- `/` — Primary global homepage
 - `/kr` — Korean content
 - /quote — structured freight quote request form
 - `/services/special-cargo-korea` — Special cargo review service page

@@ -87,7 +87,7 @@ Make KS WAYS easy for answer engines, AI search, and featured snippets to cite w
 
 Current homepage should become the trust and conversion hub. Future SEO pages should expand from it.
 
-- `/` — Global homepage, English default.
+- `/` — Global homepage.
 - `/kr` — Korean homepage.
 - `/services/air-freight-korea` — Air freight from/to Korea.
 - `/services/ocean-freight-korea` — Ocean freight from/to Korea.
