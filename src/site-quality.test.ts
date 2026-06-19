@@ -76,6 +76,16 @@ describe('site quality hardening', () => {
     expect(servicePages).toContain('images: [shareImage]');
   });
 
+  it('keeps the Intercom messenger installed in the root layout', () => {
+    const layout = readFileSync(join(process.cwd(), 'src/app/layout.tsx'), 'utf8');
+
+    expect(layout).toContain("import Script from 'next/script';");
+    expect(layout).toContain('NEXT_PUBLIC_INTERCOM_APP_ID');
+    expect(layout).toContain('KS_WAYS_INTERCOM_APP_ID');
+    expect(layout).toContain('window.intercomSettings');
+    expect(layout).toContain('https://widget.intercom.io/widget/');
+  });
+
   it('keeps sitemap entries prioritized with service/network routes and no stale static-only policy', () => {
     const sitemap = readFileSync(join(process.cwd(), 'src/app/sitemap.ts'), 'utf8');
 
