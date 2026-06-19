@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import robots from '@/app/robots';
 import sitemap from '@/app/sitemap';
-import { contactTelephone, homeFaqs, homeSeo, organizationJsonLd, siteUrl } from './seo';
+import { contactFax, contactTelephone, homeFaqs, homeSeo, organizationJsonLd, siteUrl } from './seo';
 
 const languages = homeSeo.en.alternates?.languages as Record<string, string>;
 
@@ -53,9 +53,10 @@ describe('KS WAYS technical SEO plumbing', () => {
     expect(koreanSeo).toContain('페덱스');
   });
 
-  it('exposes the representative telephone number in structured organization data', () => {
-    expect(contactTelephone).toBe('+82 6961 5778');
-    expect(organizationJsonLd('en')).toMatchObject({ telephone: '+82 6961 5778' });
-    expect(organizationJsonLd('kr')).toMatchObject({ telephone: '+82 6961 5778' });
+  it('exposes the representative telephone and fax number in structured organization data', () => {
+    expect(contactTelephone).toBe('+82 2 6961 5778');
+    expect(contactFax).toBe('+82 2 6961 5765');
+    expect(organizationJsonLd('en')).toMatchObject({ telephone: '+82 2 6961 5778', faxNumber: '+82 2 6961 5765' });
+    expect(organizationJsonLd('kr')).toMatchObject({ telephone: '+82 2 6961 5778', faxNumber: '+82 2 6961 5765' });
   });
 });

@@ -55,6 +55,7 @@ type HomeCopy = {
     body: string;
     email: string;
     phone: string;
+    fax: string;
     quote: string;
     partner: string;
     schedule: string;
@@ -64,6 +65,7 @@ type HomeCopy = {
     companyName: string;
     email: string;
     phone: string;
+    fax: string;
     credentials: Array<{ label: string; value: string }>;
     columns: Array<{ title: string; links: Array<{ label: string; href: string }> }>;
     legal: string;
@@ -137,7 +139,8 @@ export const homeContent: Record<Locale, HomeCopy> = {
       headline: 'Ready to move smarter?',
       body: 'Start with the right path: Western freight forwarders can send structured cargo details, introduce partner lanes, or request a Zoom / Calendly consultation through info@ksways.co without a language barrier slowing the first review.',
       email: 'info@ksways.co',
-      phone: '+82 6961 5778',
+      phone: 'Tel. +82 2 6961 5778',
+      fax: 'Fax +82 2 6961 5765',
       quote: 'Request a quote',
       partner: 'Become a partner',
       schedule: 'Schedule consultation',
@@ -146,7 +149,8 @@ export const homeContent: Record<Locale, HomeCopy> = {
       tagline: 'A trusted global ocean and air logistics / global forwarding company for Western freight forwarders entering Northeast Asia: Korea’s strategic gateway, China and Japan connectivity, English-first coordination, WCA-backed partner cooperation, and 30+ years of airline, shipping line, and global forwarding experience.',
       companyName: 'KS WAYS CO., LTD.',
       email: 'info@ksways.co',
-      phone: '+82 6961 5778',
+      phone: 'Tel. +82 2 6961 5778',
+      fax: 'Fax +82 2 6961 5765',
       credentials: [
         { label: 'WCA Member', value: 'Global agent cooperation' },
         { label: 'Ocean strength', value: 'FCL · LCL execution' },
@@ -248,7 +252,8 @@ export const homeContent: Record<Locale, HomeCopy> = {
       headline: '더 스마트하게 이동할 준비가 되셨나요?',
       body: '견적, 파트너십, 상담 일정을 목적별로 남겨 주세요. info@ksways.co 그룹 이메일을 통해 화물 정보, 파트너사 프로필, Zoom / Calendly 미팅 요청을 명확하게 접수합니다.',
       email: 'info@ksways.co',
-      phone: '+82 6961 5778',
+      phone: 'Tel. +82 2 6961 5778',
+      fax: 'Fax +82 2 6961 5765',
       quote: '견적 문의하기',
       partner: '파트너 문의하기',
       schedule: '상담 일정 잡기',
@@ -257,7 +262,8 @@ export const homeContent: Record<Locale, HomeCopy> = {
       tagline: 'KS WAYS는 작은 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 지역적 강점, WCA 기반 파트너 협력, 30년 이상 항공사·해운사·글로벌 포워딩 경험을 갖춘 글로벌 해상·항공 물류회사입니다.',
       companyName: 'KS WAYS CO., LTD.',
       email: 'info@ksways.co',
-      phone: '+82 6961 5778',
+      phone: 'Tel. +82 2 6961 5778',
+      fax: 'Fax +82 2 6961 5765',
       credentials: [
         { label: 'WCA 회원사', value: '글로벌 에이전트 협력' },
         { label: '해운 강점', value: 'FCL · LCL 실행' },

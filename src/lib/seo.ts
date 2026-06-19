@@ -5,7 +5,8 @@ export const siteUrl = 'https://ksways.co';
 export const companyName = 'KS WAYS CO., LTD.';
 export const brandName = 'KS WAYS';
 export const contactEmail = 'info@ksways.co';
-export const contactTelephone = '+82 6961 5778';
+export const contactTelephone = '+82 2 6961 5778';
+export const contactFax = '+82 2 6961 5765';
 export const shareImage = {
   url: '/assets/ksways-logo-color.png',
   width: 1200,
@@ -95,7 +96,7 @@ export const homeFaqs: Record<Locale, FaqItem[]> = {
     },
     {
       question: 'How can I contact KS WAYS?',
-      answer: `For quotation or partnership enquiries, contact KS WAYS through the official group email: ${contactEmail}, or call ${contactTelephone}.`,
+      answer: `For quotation or partnership enquiries, contact KS WAYS through the official group email: ${contactEmail}, call Tel. ${contactTelephone}, or use Fax ${contactFax}.`,
     },
   ],
   kr: [
@@ -117,7 +118,7 @@ export const homeFaqs: Record<Locale, FaqItem[]> = {
     },
     {
       question: 'KS WAYS에 어떻게 문의할 수 있나요?',
-      answer: `견적 또는 파트너십 문의는 공식 그룹 이메일 ${contactEmail} 또는 대표 전화 ${contactTelephone}로 연락해 주시면 됩니다.`,
+      answer: `견적 또는 파트너십 문의는 공식 그룹 이메일 ${contactEmail}, 대표 전화 Tel. ${contactTelephone}, Fax ${contactFax}로 연락해 주시면 됩니다.`,
     },
   ],
 };
@@ -131,6 +132,7 @@ export function organizationJsonLd(locale: Locale) {
     url: siteUrl,
     email: contactEmail,
     telephone: contactTelephone,
+    faxNumber: contactFax,
     description:
       locale === 'kr'
         ? 'KS WAYS는 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 글로벌 해상·항공 물류회사로, 대한항공·아시아나항공·페덱스·해운사·글로벌 포워딩 30년 이상 경험을 기반으로 합니다.'
@@ -176,6 +178,7 @@ export function serviceJsonLd({ name, description, url }: { name: string; descri
       url: siteUrl,
       email: contactEmail,
       telephone: contactTelephone,
+      faxNumber: contactFax,
     },
     areaServed: 'Worldwide',
     url,

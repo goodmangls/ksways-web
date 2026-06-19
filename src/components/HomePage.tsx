@@ -303,6 +303,7 @@ export function HomePage({ locale, copy }: Props) {
             <div className="mt-5 flex flex-col gap-2 text-sm font-bold text-white/72 sm:flex-row sm:items-center sm:gap-5">
               <a href={`mailto:${copy.contact.email}`} className="inline-flex min-h-11 items-center transition hover:text-[#6fffe7]">{copy.contact.email}</a>
               <a href={phoneHref} className="inline-flex min-h-11 items-center transition hover:text-[#6fffe7]">{copy.contact.phone}</a>
+              <span className="inline-flex min-h-11 items-center">{copy.contact.fax}</span>
             </div>
           </div>
           <ContactActions
@@ -359,6 +360,7 @@ export function HomePage({ locale, copy }: Props) {
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
               <a href={`mailto:${copy.footer.email}`} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#6fffe7]">{copy.footer.email}</a>
               <a href={phoneHref} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#6fffe7]">{copy.footer.phone}</a>
+              <span className="inline-flex min-h-11 items-center font-bold text-white/64">{copy.footer.fax}</span>
               <span>© {new Date().getFullYear()} KS WAYS. All rights reserved.</span>
             </div>
           </div>

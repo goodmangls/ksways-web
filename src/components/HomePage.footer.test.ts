@@ -11,6 +11,7 @@ describe('HomePage global logistics footer', () => {
     expect(source).toContain('copy.footer.credentials.map');
     expect(source).toContain('copy.footer.email');
     expect(source).toContain('copy.footer.phone');
+    expect(source).toContain('copy.footer.fax');
     expect(source).toContain('tel:${copy.footer.phone.replace');
   });
 
