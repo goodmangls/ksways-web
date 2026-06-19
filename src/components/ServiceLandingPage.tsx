@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { ServicePage } from '@/lib/service-pages';
-import { contactEmail, faqJsonLd, serviceJsonLd, siteUrl } from '@/lib/seo';
+import { faqJsonLd, serviceJsonLd, siteUrl } from '@/lib/seo';
 
 export function ServiceLandingPage({ page, basePath }: { page: ServicePage; basePath: 'services' | 'network' }) {
-  const quoteHref = `mailto:${contactEmail}?subject=${encodeURIComponent(`KS WAYS enquiry — ${page.title}`)}`;
+  const quoteHref = page.quoteServiceKey ? `/quote?service=${page.quoteServiceKey}` : '/quote';
   const pageUrl = `${siteUrl}/${basePath}/${page.slug}`;
 
   return (
@@ -43,7 +43,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
 
           <div className="max-w-5xl py-20 lg:py-28">
             <p className="text-sm font-black uppercase tracking-[.16em] text-[#6fffe7]">{page.eyebrow}</p>
-            <h1 className="mt-5 text-[clamp(46px,7vw,104px)] font-black leading-[.92] tracking-[-.075em] text-balance">{page.title}</h1>
+            <h1 className="mt-5 text-[clamp(44px,6.4vw,92px)] font-black leading-[.94] tracking-[-.07em] text-balance">{page.title}</h1>
             <p className="mt-7 max-w-3xl text-[clamp(17px,1.35vw,22px)] leading-relaxed text-white/70">{page.lead}</p>
             <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <a href={quoteHref} className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full bg-gradient-to-br from-[#21d4c2] to-[#6fffe7] px-7 font-black text-[#001112] sm:w-auto">
@@ -53,6 +53,20 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
                 Back to services
               </Link>
             </div>
+            {page.trustCards ? (
+              <div className="mt-12 rounded-[30px] border border-white/12 bg-white/[.06] p-4 backdrop-blur md:p-5">
+                <p className="px-2 text-xs font-black uppercase tracking-[.18em] text-[#6fffe7]">Partner confidence</p>
+                <div className="mt-4 grid gap-3 lg:grid-cols-3">
+                  {page.trustCards.map((card) => (
+                    <article key={card.label} className="rounded-[24px] border border-white/12 bg-[#001112]/70 p-5 shadow-[0_18px_60px_rgba(0,0,0,.18)]">
+                      <p className="text-[11px] font-black uppercase tracking-[.16em] text-[#6fffe7]">{card.label}</p>
+                      <h2 className="mt-3 text-2xl font-black tracking-[-.05em] text-white">{card.value}</h2>
+                      <p className="mt-3 text-sm leading-relaxed text-white/68">{card.body}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </section>

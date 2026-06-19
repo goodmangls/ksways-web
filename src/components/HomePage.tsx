@@ -80,8 +80,7 @@ function FooterLink({ href, label }: { href: string; label: string }) {
 export function HomePage({ locale, copy }: Props) {
   const alternateLocale: Locale = locale === 'en' ? 'kr' : 'en';
   const toggleHref = getLocalizedPath(locale === 'en' ? '/' : '/kr', alternateLocale);
-  const quoteSubject = locale === 'kr' ? 'KS WAYS 견적 문의' : 'KS WAYS freight quote request';
-  const quoteHref = `mailto:${copy.contact.email}?subject=${encodeURIComponent(quoteSubject)}`;
+  const quoteHref = '/quote';
   const networkHref = '/network/korea-agent-network';
   const scheduleUrl = process.env.NEXT_PUBLIC_KSWAYS_CALENDLY_URL?.trim();
   const faqs = homeFaqs[locale];

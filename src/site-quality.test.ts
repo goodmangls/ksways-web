@@ -60,6 +60,8 @@ describe('site quality hardening', () => {
     expect(servicePage).toContain('flex-col items-stretch');
     expect(servicePage).toContain('w-full justify-center');
     expect(servicePage).toContain('sm:w-auto');
+    expect(servicePage).toContain('trustCards');
+    expect(servicePage).toContain('Partner confidence');
   });
 
   it('sets share-card images and Twitter metadata for home and service pages', () => {

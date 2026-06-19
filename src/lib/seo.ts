@@ -15,7 +15,7 @@ export const shareImage = {
 export const homeSeo: Record<Locale, Metadata> = {
   en: {
     title: 'KS WAYS — Global Ocean & Air Logistics Company',
-    description: 'KS WAYS is a global logistics company for ocean freight and air freight, with strong sea freight execution and WCA member network cooperation.',
+    description: 'KS WAYS is a trusted global forwarding company for Western freight forwarders entering Northeast Asia, offering English-first coordination from Korea to China and Japan backed by 30+ years across Korean Air, Asiana Airlines, FedEx, shipping line operations, and global forwarding.',
     alternates: {
       canonical: '/',
       languages: {
@@ -26,7 +26,7 @@ export const homeSeo: Record<Locale, Metadata> = {
     },
     openGraph: {
       title: 'KS WAYS — Global Ocean & Air Logistics Company',
-      description: 'Global ocean and air freight execution with sea freight strength and WCA member network cooperation.',
+      description: 'English-first Northeast Asia logistics for Western freight forwarders entering Korea, China and Japan, plus global lanes with low language barrier coordination.',
       url: siteUrl,
       siteName: brandName,
       type: 'website',
@@ -36,13 +36,13 @@ export const homeSeo: Record<Locale, Metadata> = {
     twitter: {
       card: 'summary_large_image',
       title: 'KS WAYS — Global Ocean & Air Logistics Company',
-      description: 'Global ocean and air freight execution with sea freight strength and WCA member network cooperation.',
+      description: 'English-first Northeast Asia logistics for Western freight forwarders entering Korea, China and Japan, plus global lanes with low language barrier coordination.',
       images: [shareImage],
     },
   },
   kr: {
     title: 'KS WAYS — 글로벌 해상·항공 물류회사',
-    description: 'KS WAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사로, 해운 강점과 WCA 회원 네트워크 기반 협력을 제공합니다.',
+    description: 'KS WAYS는 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 글로벌 해상·항공 물류회사로, 대한항공·아시아나항공·페덱스·해운사·글로벌 포워딩 30년 이상 경험을 기반으로 합니다.',
     alternates: {
       canonical: '/kr',
       languages: {
@@ -53,7 +53,7 @@ export const homeSeo: Record<Locale, Metadata> = {
     },
     openGraph: {
       title: 'KS WAYS — 글로벌 해상·항공 물류회사',
-      description: '해상과 항공 화물을 책임지는 글로벌 물류회사, 해운 강점과 WCA 회원 네트워크 기반 협력.',
+      description: '동북아 한국 거점에서 중국·일본과 글로벌 화물을 연결하는 해상·항공 물류회사, 30년 이상 항공사·해운사·글로벌 포워딩 경험.',
       url: `${siteUrl}/kr`,
       siteName: brandName,
       type: 'website',
@@ -63,7 +63,7 @@ export const homeSeo: Record<Locale, Metadata> = {
     twitter: {
       card: 'summary_large_image',
       title: 'KS WAYS — 글로벌 해상·항공 물류회사',
-      description: '해상과 항공 화물을 책임지는 글로벌 물류회사, 해운 강점과 WCA 회원 네트워크 기반 협력.',
+      description: '동북아 한국 거점에서 중국·일본과 글로벌 화물을 연결하는 해상·항공 물류회사, 30년 이상 항공사·해운사·글로벌 포워딩 경험.',
       images: [shareImage],
     },
   },
@@ -78,7 +78,7 @@ export const homeFaqs: Record<Locale, FaqItem[]> = {
   en: [
     {
       question: 'What does KS WAYS do?',
-      answer: 'KS WAYS is a global logistics company responsible for ocean freight and air freight, with particular strength in sea freight and WCA member network cooperation.',
+      answer: 'KS WAYS is a trusted global forwarding company for Western freight forwarders entering Northeast Asia, offering English-first coordination from Korea to China and Japan backed by 30+ years across Korean Air, Asiana Airlines, FedEx, shipping line operations, and global forwarding.',
     },
     {
       question: 'Is KS WAYS a WCA member logistics company?',
@@ -100,7 +100,7 @@ export const homeFaqs: Record<Locale, FaqItem[]> = {
   kr: [
     {
       question: 'KS WAYS는 어떤 회사인가요?',
-      answer: 'KS WAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사입니다. 특히 해운에 강점을 두고 WCA 회원 네트워크 기반의 파트너 협력을 제공합니다.',
+      answer: 'KS WAYS는 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 글로벌 해상·항공 물류회사입니다. 대한항공, 아시아나항공, 페덱스, 해운사, 글로벌 포워딩에서 축적한 30년 이상 경험을 기반으로 합니다.',
     },
     {
       question: 'KS WAYS는 WCA 회원 물류회사인가요?',
@@ -131,8 +131,8 @@ export function organizationJsonLd(locale: Locale) {
     email: contactEmail,
     description:
       locale === 'kr'
-        ? 'KS WAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사로, 해운 강점과 WCA 회원 네트워크 기반 협력을 제공합니다.'
-        : 'KS WAYS is a global logistics company for ocean freight and air freight, with strong sea freight execution and WCA member network cooperation.',
+        ? 'KS WAYS는 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 글로벌 해상·항공 물류회사로, 대한항공·아시아나항공·페덱스·해운사·글로벌 포워딩 30년 이상 경험을 기반으로 합니다.'
+        : 'KS WAYS is a trusted global forwarding company for Western freight forwarders entering Northeast Asia, offering English-first coordination from Korea to China and Japan backed by 30+ years across Korean Air, Asiana Airlines, FedEx, shipping line operations, and global forwarding.',
     areaServed: 'Worldwide',
     knowsAbout: [
       'Freight forwarding',

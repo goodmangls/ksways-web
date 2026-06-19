@@ -3,10 +3,16 @@ import { shareImage } from './seo';
 
 export type ServicePage = {
   slug: string;
+  quoteServiceKey?: string;
   meta: Metadata;
   eyebrow: string;
   title: string;
   lead: string;
+  trustCards?: Array<{
+    label: string;
+    value: string;
+    body: string;
+  }>;
   sections: Array<{
     title: string;
     body: string;
@@ -25,11 +31,11 @@ export const servicePages: ServicePage[] = [
     slug: 'air-freight-korea',
     meta: {
       title: 'Air Freight Korea — KS WAYS Global Logistics',
-      description: 'KS WAYS supports Korea-connected air freight for urgent, high-value, and time-sensitive cargo with practical routing and clear shipment follow-up.',
+      description: 'KS WAYS supports Korea-connected air freight for urgent, high-value, DG, perishables, oversized, and time-sensitive cargo with practical routing and clear shipment follow-up.',
       alternates: { canonical: '/services/air-freight-korea' },
       openGraph: {
         title: 'Air Freight Korea — KS WAYS Global Logistics',
-        description: 'Korea-connected air freight for urgent, high-value, and time-sensitive cargo.',
+        description: 'Korea-connected air freight for urgent, high-value, special, and time-sensitive cargo.',
         url: 'https://ksways.co/services/air-freight-korea',
         siteName: 'KS WAYS',
         type: 'website',
@@ -38,26 +44,35 @@ export const servicePages: ServicePage[] = [
       twitter: {
         card: 'summary_large_image',
         title: 'Air Freight Korea — KS WAYS Global Logistics',
-        description: 'Korea-connected air freight for urgent, high-value, and time-sensitive cargo.',
+        description: 'Korea-connected air freight for urgent, high-value, special, and time-sensitive cargo.',
         images: [shareImage],
       },
     },
     eyebrow: 'Air Freight Korea',
     title: 'Air freight solutions for Korea-connected cargo',
-    lead: 'When timing matters, air freight needs fast review, accurate cargo information, and clear coordination between shipper, carrier, airport, and destination partner. KS WAYS helps exporters, importers, and overseas agents review Korea-connected air cargo and select practical routing options.',
+    lead: 'When timing matters, air freight needs fast review, accurate cargo information, and clear coordination between shipper, carrier, airport, and destination partner. KS WAYS helps exporters, importers, and overseas agents review Korea-connected air cargo, special handling needs, and practical routing options before booking.',
     sections: [
       {
         title: 'When to use air freight',
         body: 'Air freight is best for urgent, high-value, small-volume, or time-sensitive cargo where schedule reliability matters more than container-level cost efficiency.',
-        items: ['Urgent production parts', 'High-value commercial goods', 'Sample shipments', 'Time-sensitive buyer deadlines'],
+        items: ['Urgent production parts', 'High-value commercial goods', 'Sample shipments', 'Time-sensitive buyer deadlines', 'DG, perishables, oversized, or fragile cargo requiring pre-check'],
       },
       {
         title: 'How KS WAYS coordinates air cargo',
         body: 'KS WAYS reviews cargo facts, confirms route feasibility, coordinates booking and document flow, and keeps partners informed through key shipment milestones.',
       },
+      {
+        title: 'Special cargo review before quotation',
+        body: 'For cargo that may need special handling, KS WAYS checks the operational details before presenting a route: commodity, packing, dimensions, temperature sensitivity, DG status, airport handling needs, customs documents, and the required delivery window.',
+        items: ['AOG or urgent replacement parts', 'Dangerous goods and regulated commodities', 'Perishables and temperature-sensitive cargo', 'Oversized or high-value shipments'],
+      },
+      {
+        title: 'Quote-ready information flow',
+        body: 'A faster quotation starts with complete cargo data. KS WAYS encourages structured enquiries so routing, chargeable weight, pickup needs, customs requirements, and partner handoff can be reviewed without avoidable back-and-forth.',
+      },
     ],
     checklistTitle: 'Information needed for an air freight quote',
-    checklist: ['Origin and destination', 'Cargo description', 'Package count', 'Dimensions and gross weight', 'Incoterms', 'Cargo ready date', 'Required delivery timing', 'Special handling requirements'],
+    checklist: ['Origin and destination', 'Cargo description and HS code if available', 'Package count', 'Dimensions and gross weight', 'Incoterms', 'Cargo ready date', 'Required delivery timing', 'Commodity sensitivity or DG/perishable status', 'Pickup, customs, or airport handling requirements'],
     faqs: [
       {
         question: 'Can KS WAYS support air freight from Korea?',
@@ -65,7 +80,11 @@ export const servicePages: ServicePage[] = [
       },
       {
         question: 'What determines the air freight cost?',
-        answer: 'Air freight cost depends on chargeable weight, route, airline capacity, cargo ready date, service level, pickup needs, and destination requirements.',
+        answer: 'Air freight cost depends on chargeable weight, route, airline capacity, cargo ready date, service level, pickup needs, customs requirements, cargo sensitivity, and destination requirements.',
+      },
+      {
+        question: 'Can KS WAYS review special air cargo requirements?',
+        answer: 'Yes. KS WAYS can review special handling needs such as DG, perishables, oversized cargo, high-value goods, fragile items, and urgent replacement parts before confirming a practical route.',
       },
     ],
   },
@@ -114,6 +133,68 @@ export const servicePages: ServicePage[] = [
       {
         question: 'When is ocean freight better than air freight?',
         answer: 'Ocean freight is usually better for larger, heavier, or less time-sensitive cargo where cost efficiency is more important than transit speed.',
+      },
+    ],
+  },
+  {
+    slug: 'special-cargo-korea',
+    quoteServiceKey: 'special-cargo',
+    meta: {
+      title: 'Special Cargo Korea — DG, Perishables, Oversized Cargo Review',
+      description: 'KS WAYS reviews Korea-connected special cargo, including dangerous goods, perishables, oversized cargo, high-value goods, urgent parts, and project cargo constraints.',
+      alternates: { canonical: '/services/special-cargo-korea' },
+      openGraph: {
+        title: 'Special Cargo Korea — KS WAYS Global Logistics',
+        description: 'Special cargo review for DG, perishables, oversized, high-value, urgent parts, and project constraints.',
+        url: 'https://ksways.co/services/special-cargo-korea',
+        siteName: 'KS WAYS',
+        type: 'website',
+        images: [shareImage],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Special Cargo Korea — KS WAYS Global Logistics',
+        description: 'Special cargo review for DG, perishables, oversized, high-value, urgent parts, and project constraints.',
+        images: [shareImage],
+      },
+    },
+    eyebrow: 'Special Cargo Korea',
+    title: 'Special cargo review for Korea-connected shipments',
+    lead: 'Special cargo needs more than a basic freight rate. KS WAYS reviews cargo sensitivity, packing, dimensions, compliance requirements, pickup conditions, carrier feasibility, and partner handoff before recommending a practical ocean or air route.',
+    sections: [
+      {
+        title: 'Cargo we can review',
+        body: 'KS WAYS supports case-by-case feasibility review for cargo that may require extra handling, documentation, or operational coordination before booking.',
+        items: ['Dangerous goods and regulated commodities', 'Perishables and temperature-sensitive cargo', 'Oversized, heavy, or awkward cargo', 'High-value or fragile shipments', 'Urgent production parts and AOG-style enquiries', 'Project cargo with site or schedule constraints'],
+      },
+      {
+        title: 'What we check before routing',
+        body: 'A special cargo route must match the physical cargo, cargo documents, pickup environment, carrier acceptance, airport or port handling, customs requirements, and the delivery deadline.',
+        items: ['Commodity and HS code', 'Packing, labeling, and handling marks', 'Dimensions, gross weight, and chargeable weight', 'MSDS, DG declaration, temperature range, or special documents if required'],
+      },
+      {
+        title: 'Ocean or air — selected by feasibility',
+        body: 'Some special cargo moves best by ocean freight because of size, cost, or handling constraints. Other cases require air freight because downtime, buyer deadlines, or production schedules matter more than cost. KS WAYS reviews the trade-off before execution.',
+      },
+      {
+        title: 'Partner handoff and exception control',
+        body: 'For cross-border special cargo, the handoff between shipper, pickup provider, carrier, customs broker, overseas agent, and consignee must be explicit. KS WAYS keeps the key facts visible so exceptions can be handled early.',
+      },
+    ],
+    checklistTitle: 'Information needed for special cargo review',
+    checklist: ['Origin and destination address or port/airport', 'Commodity description and HS code if available', 'Cargo photos, packing details, and handling marks', 'Dimensions, gross weight, and package count', 'MSDS, DG declaration, temperature range, or certificates if applicable', 'Cargo ready date and required delivery window', 'Incoterms and pickup conditions', 'Customs, insurance, or security requirements'],
+    faqs: [
+      {
+        question: 'Does KS WAYS handle dangerous goods or perishables?',
+        answer: 'KS WAYS can review DG, perishables, and other special cargo requirements case by case. Final feasibility depends on cargo documents, carrier acceptance, route, handling conditions, and regulatory requirements.',
+      },
+      {
+        question: 'Can KS WAYS support oversized or project cargo?',
+        answer: 'Yes. KS WAYS can review oversized, heavy, awkward, or project cargo constraints, including dimensions, loading method, site access, carrier suitability, and overseas partner handoff.',
+      },
+      {
+        question: 'Why is special cargo not quoted like standard freight?',
+        answer: 'Special cargo can require document checks, carrier approval, packaging review, temperature or DG handling, security controls, special pickup equipment, and route-specific restrictions before a reliable quotation can be confirmed.',
       },
     ],
   },
@@ -169,11 +250,11 @@ export const servicePages: ServicePage[] = [
     slug: 'korea-agent-network',
     meta: {
       title: 'Korea Logistics Agent Network — Partner with KS WAYS',
-      description: 'Partner with KS WAYS for Korea-connected cargo. We support overseas freight agents with practical routing, local coordination, and clear shipment handoffs.',
+      description: 'Partner with KS WAYS for English-first Northeast Asia cargo support. Western freight forwarders can reduce language barrier risk across Korea, China, Japan, and wider global lanes through WCA cooperation and 30+ years of airline, shipping line, and forwarding experience.',
       alternates: { canonical: '/network/korea-agent-network' },
       openGraph: {
         title: 'Korea Logistics Agent Network — Partner with KS WAYS',
-        description: 'A reliable Korea logistics partner for overseas freight agents.',
+        description: 'English-first Northeast Asia logistics partner for Western freight forwarders across Korea, China, Japan, and global lanes.',
         url: 'https://ksways.co/network/korea-agent-network',
         siteName: 'KS WAYS',
         type: 'website',
@@ -182,34 +263,51 @@ export const servicePages: ServicePage[] = [
       twitter: {
         card: 'summary_large_image',
         title: 'Korea Logistics Agent Network — Partner with KS WAYS',
-        description: 'A reliable Korea logistics partner for overseas freight agents.',
+        description: 'English-first Northeast Asia logistics partner for Western freight forwarders across Korea, China, Japan, and global lanes.',
         images: [shareImage],
       },
     },
     eyebrow: 'Korea Agent Network',
-    title: 'A reliable Korea logistics partner for overseas agents',
-    lead: 'Overseas freight agents need a Korea partner who can respond quickly, understand local execution, and communicate clearly from enquiry to delivery. KS WAYS supports partner cooperation for Korea-connected air freight, ocean freight, cross-border shipments, and special handling cases.',
+    title: 'English-first Northeast Asia logistics support for Western forwarders',
+    lead: 'For Western freight forwarders, Northeast Asia can feel complex because of language, local handoff, airport/port practices, and different partner expectations. KS WAYS gives you a trusted global forwarding company in Korea with English-first communication, China and Japan reach, WCA cooperation, and 30+ years of Korean Air, Asiana Airlines, FedEx, shipping line, and global forwarding experience.',
+    trustCards: [
+      {
+        label: 'Language barrier',
+        value: 'English-first communication',
+        body: 'Clear English enquiry review, routing notes, milestone updates, and exception escalation reduce translation friction for Western freight forwarders.',
+      },
+      {
+        label: 'Regional access',
+        value: 'Korea · China · Japan',
+        body: 'A compact Korea base with practical Northeast Asia awareness helps partners coordinate Korea-connected cargo and nearby China/Japan trade lanes.',
+      },
+      {
+        label: 'Trust base',
+        value: 'WCA + 30+ years',
+        body: 'Carrier-side and global forwarding experience supports reliable, partner-safe handoff instead of anonymous local handling.',
+      },
+    ],
     sections: [
       {
         title: 'Who we work with',
-        body: 'KS WAYS works with overseas freight forwarders, logistics networks, import agents, exporters, buyers, and companies that need reliable Korea-side execution.',
-        items: ['Overseas freight agents', 'Import and export partners', 'Route-development partners', 'Brands with Korea-connected cargo'],
+        body: 'KS WAYS works with Western freight forwarders, logistics networks, import agents, exporters, buyers, and companies that need reliable Korea-side execution without the usual language barrier.',
+        items: ['Western freight forwarders', 'Overseas freight agents', 'Import and export partners', 'Route-development partners', 'Brands with Korea-connected cargo'],
       },
       {
         title: 'What partners can expect',
-        body: 'Partners can expect practical enquiry review, clear information requests, responsive communication, and accountable handoff through the shipment process.',
+        body: 'Partners can expect English-first communication, practical enquiry review, clear information requests, responsive milestone updates, and accountable handoff through the shipment process.',
       },
     ],
     checklistTitle: 'Information to send for partner enquiries',
-    checklist: ['Company profile', 'Country and main routes', 'Cargo type', 'Expected cooperation scope', 'Current enquiry details if available', 'Preferred communication channel'],
+    checklist: ['Company profile', 'Country and main routes', 'Cargo type', 'Expected cooperation scope', 'Current enquiry details if available', 'Preferred communication channel', 'Language or reporting preference', 'China/Japan lane notes if relevant'],
     faqs: [
       {
-        question: 'Does KS WAYS work with overseas freight agents?',
-        answer: 'Yes. KS WAYS supports overseas freight agents that need Korea-side logistics coordination and partner cooperation for Korea-connected cargo.',
+        question: 'Does KS WAYS work with Western freight forwarders?',
+        answer: 'Yes. KS WAYS supports Western freight forwarders that need a trusted global forwarding company for English-first Korea-side and Northeast Asia logistics coordination.',
       },
       {
         question: 'How can an overseas agent contact KS WAYS?',
-        answer: 'Overseas agents can send shipment or partnership enquiries to info@ksways.co with cargo details, route, Incoterms, and required support scope.',
+        answer: 'Overseas agents can send shipment or partnership enquiries to info@ksways.co with cargo details, route, Incoterms, required support scope, and any preferred English reporting or language handoff requirements.',
       },
     ],
   },
