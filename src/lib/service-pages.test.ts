@@ -31,7 +31,7 @@ describe('KS WAYS service and network page content', () => {
     expect(visibleCopy).not.toContain(' ACE');
   });
 
-  it('positions the Korea agent network page for Western forwarders seeking low-friction Northeast Asia support', () => {
+  it('positions the Korea agent network page for global partners without language-barrier framing', () => {
     const page = getServicePage('korea-agent-network');
     expect(page).toBeDefined();
 
@@ -45,13 +45,16 @@ describe('KS WAYS service and network page content', () => {
       ...(page?.trustCards?.map((card) => `${card.label} ${card.value} ${card.body}`) ?? []),
     ].join(' ');
 
-    expect(visibleCopy).toContain('Western freight forwarders');
-    expect(visibleCopy).toContain('language barrier');
-    expect(visibleCopy).toContain('English-first communication');
+    expect(visibleCopy).toContain('global freight forwarders');
+    expect(visibleCopy).toContain('English website');
     expect(visibleCopy).toContain('Northeast Asia');
     expect(visibleCopy).toContain('China and Japan');
     expect(visibleCopy).toContain('trusted global forwarding company');
     expect(visibleCopy).toContain('WCA');
     expect(visibleCopy).toContain('30+ years');
+    expect(visibleCopy).not.toMatch(/Western/i);
+    expect(visibleCopy).not.toMatch(/language barrier/i);
+    expect(visibleCopy).not.toContain('English-first');
+    expect(visibleCopy).not.toContain('translation friction');
   });
 });

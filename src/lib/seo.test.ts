@@ -46,9 +46,11 @@ describe('KS WAYS technical SEO plumbing', () => {
     expect(englishSeo).not.toContain('Korean Air');
     expect(englishSeo).not.toContain('Asiana Airlines');
     expect(englishSeo).not.toContain('FedEx');
-    expect(englishSeo).toContain('Western freight forwarders');
-    expect(englishSeo).toContain('English-first');
-    expect(englishSeo).toContain('language barrier');
+    expect(englishSeo).toContain('global freight forwarders');
+    expect(englishSeo).toContain('English website');
+    expect(englishSeo).not.toMatch(/Western/i);
+    expect(englishSeo).not.toMatch(/language barrier/i);
+    expect(englishSeo).not.toContain('English-first');
     expect(koreanSeo).toContain('동북아');
     expect(koreanSeo).toContain('중국·일본');
     expect(koreanSeo).toContain('30년 이상');

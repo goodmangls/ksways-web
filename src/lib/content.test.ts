@@ -74,7 +74,7 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(koreanCopy).not.toContain('페덱스');
   });
 
-  it('signals low-friction English communication and trust for Western global forwarders', () => {
+  it('presents the English site as global by default without Western or language-barrier positioning', () => {
     const englishCopy = [
       homeContent.en.hero.lead,
       homeContent.en.company.body,
@@ -86,11 +86,14 @@ describe('KS WAYS bilingual homepage content', () => {
       ...homeContent.en.footer.credentials.map((item) => `${item.label} ${item.value}`),
     ].join(' ');
 
-    expect(englishCopy).toContain('Western freight forwarders');
-    expect(englishCopy).toContain('language barrier');
-    expect(englishCopy).toContain('English-first');
+    expect(englishCopy).toContain('global freight forwarders');
+    expect(englishCopy).toContain('English website');
     expect(englishCopy).toContain('trusted global forwarding company');
     expect(englishCopy).toContain('partner-safe handoff');
+    expect(englishCopy).not.toMatch(/Western/i);
+    expect(englishCopy).not.toMatch(/language barrier/i);
+    expect(englishCopy).not.toContain('English-first');
+    expect(englishCopy).not.toContain('low-friction');
   });
 
   it('provides Korean content for the /kr route without using /ko', () => {

@@ -276,11 +276,11 @@ export const servicePages: ServicePage[] = [
     slug: 'korea-agent-network',
     meta: {
       title: 'Korea Logistics Agent Network — Partner with KS WAYS',
-      description: 'Partner with KS WAYS for English-first Northeast Asia cargo support. Western freight forwarders can reduce language barrier risk across Korea, China, Japan, and wider global lanes through WCA cooperation and 30+ years of airline, shipping line, and forwarding experience.',
+      description: 'Partner with KS WAYS for Northeast Asia cargo support across Korea, China, Japan, and wider global lanes through WCA cooperation, an English website by default, and 30+ years of airline, shipping line, and forwarding experience.',
       alternates: { canonical: '/network/korea-agent-network' },
       openGraph: {
         title: 'Korea Logistics Agent Network — Partner with KS WAYS',
-        description: 'English-first Northeast Asia logistics partner for Western freight forwarders across Korea, China, Japan, and global lanes.',
+        description: 'Northeast Asia logistics partner for global freight forwarders across Korea, China, Japan, and global lanes.',
         url: 'https://ksways.co/network/korea-agent-network',
         siteName: 'KS WAYS',
         type: 'website',
@@ -289,18 +289,18 @@ export const servicePages: ServicePage[] = [
       twitter: {
         card: 'summary_large_image',
         title: 'Korea Logistics Agent Network — Partner with KS WAYS',
-        description: 'English-first Northeast Asia logistics partner for Western freight forwarders across Korea, China, Japan, and global lanes.',
+        description: 'Northeast Asia logistics partner for global freight forwarders across Korea, China, Japan, and global lanes.',
         images: [shareImage],
       },
     },
     eyebrow: 'Korea Agent Network',
-    title: 'English-first Northeast Asia logistics support for Western forwarders',
-    lead: 'For Western freight forwarders, Northeast Asia can feel complex because of language, local handoff, airport/port practices, and different partner expectations. KS WAYS gives you a trusted global forwarding company in Korea with English-first communication, China and Japan reach, WCA cooperation, and 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
+    title: 'Northeast Asia logistics support for global partners',
+    lead: 'KS WAYS gives global freight forwarders a trusted global forwarding company in Korea with an English website by default, China and Japan reach, WCA cooperation, and 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
     trustCards: [
       {
-        label: 'Language barrier',
-        value: 'English-first communication',
-        body: 'Clear English enquiry review, routing notes, milestone updates, and exception escalation reduce translation friction for Western freight forwarders.',
+        label: 'Global access',
+        value: 'English website by default',
+        body: 'Partners can review services, send enquiries, and understand KS WAYS capabilities through a polished English public website from the first visit.',
       },
       {
         label: 'Regional access',
@@ -316,24 +316,24 @@ export const servicePages: ServicePage[] = [
     sections: [
       {
         title: 'Who we work with',
-        body: 'KS WAYS works with Western freight forwarders, logistics networks, import agents, exporters, buyers, and companies that need reliable Korea-side execution without the usual language barrier.',
-        items: ['Western freight forwarders', 'Overseas freight agents', 'Import and export partners', 'Route-development partners', 'Brands with Korea-connected cargo'],
+        body: 'KS WAYS works with global freight forwarders, logistics networks, import agents, exporters, buyers, and companies that need reliable Korea-side execution.',
+        items: ['Global freight forwarders', 'Overseas freight agents', 'Import and export partners', 'Route-development partners', 'Brands with Korea-connected cargo'],
       },
       {
         title: 'What partners can expect',
-        body: 'Partners can expect English-first communication, practical enquiry review, clear information requests, responsive milestone updates, and accountable handoff through the shipment process.',
+        body: 'Partners can expect practical enquiry review, clear information requests, responsive milestone updates, and accountable handoff through the shipment process.',
       },
     ],
     checklistTitle: 'Information to send for partner enquiries',
-    checklist: ['Company profile', 'Country and main routes', 'Cargo type', 'Expected cooperation scope', 'Current enquiry details if available', 'Preferred communication channel', 'Language or reporting preference', 'China/Japan lane notes if relevant'],
+    checklist: ['Company profile', 'Country and main routes', 'Cargo type', 'Expected cooperation scope', 'Current enquiry details if available', 'Preferred communication channel', 'Reporting preference', 'China/Japan lane notes if relevant'],
     faqs: [
       {
-        question: 'Does KS WAYS work with Western freight forwarders?',
-        answer: 'Yes. KS WAYS supports Western freight forwarders that need a trusted global forwarding company for English-first Korea-side and Northeast Asia logistics coordination.',
+        question: 'Does KS WAYS work with global freight forwarders?',
+        answer: 'Yes. KS WAYS supports global freight forwarders that need a trusted global forwarding company for Korea-side and Northeast Asia logistics coordination.',
       },
       {
         question: 'How can an overseas agent contact KS WAYS?',
-        answer: 'Overseas agents can send shipment or partnership enquiries to info@ksways.co with cargo details, route, Incoterms, required support scope, and any preferred English reporting or language handoff requirements.',
+        answer: 'Overseas agents can send shipment or partnership enquiries to info@ksways.co with cargo details, route, Incoterms, required support scope, and any preferred reporting requirements.',
       },
     ],
   },

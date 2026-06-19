@@ -17,7 +17,7 @@ export const shareImage = {
 export const homeSeo: Record<Locale, Metadata> = {
   en: {
     title: 'KS WAYS — Global Ocean & Air Logistics Company',
-    description: 'KS WAYS is a trusted global forwarding company for Western freight forwarders entering Northeast Asia, offering English-first coordination from Korea to China and Japan backed by 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
+    description: 'KS WAYS is a trusted global forwarding company for global freight forwarders working across Northeast Asia, with an English website by default, Korea-to-China/Japan connectivity, and 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
     alternates: {
       canonical: '/',
       languages: {
@@ -28,7 +28,7 @@ export const homeSeo: Record<Locale, Metadata> = {
     },
     openGraph: {
       title: 'KS WAYS — Global Ocean & Air Logistics Company',
-      description: 'English-first Northeast Asia logistics for Western freight forwarders entering Korea, China and Japan, plus global lanes with low language barrier coordination.',
+      description: 'Northeast Asia logistics for global freight forwarders across Korea, China and Japan, plus wider global lanes with an English website by default.',
       url: siteUrl,
       siteName: brandName,
       type: 'website',
@@ -38,7 +38,7 @@ export const homeSeo: Record<Locale, Metadata> = {
     twitter: {
       card: 'summary_large_image',
       title: 'KS WAYS — Global Ocean & Air Logistics Company',
-      description: 'English-first Northeast Asia logistics for Western freight forwarders entering Korea, China and Japan, plus global lanes with low language barrier coordination.',
+      description: 'Northeast Asia logistics for global freight forwarders across Korea, China and Japan, plus wider global lanes with an English website by default.',
       images: [shareImage],
     },
   },
@@ -80,7 +80,7 @@ export const homeFaqs: Record<Locale, FaqItem[]> = {
   en: [
     {
       question: 'What does KS WAYS do?',
-      answer: 'KS WAYS is a trusted global forwarding company for Western freight forwarders entering Northeast Asia, offering English-first coordination from Korea to China and Japan backed by 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
+      answer: 'KS WAYS is a trusted global forwarding company for global freight forwarders working across Northeast Asia, with an English website by default, Korea-to-China/Japan connectivity, and 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
     },
     {
       question: 'Is KS WAYS a WCA member logistics company?',
@@ -136,7 +136,7 @@ export function organizationJsonLd(locale: Locale) {
     description:
       locale === 'kr'
         ? 'KS WAYS는 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 글로벌 해상·항공 물류회사로, 항공화물·특송 물류·해운사 운영·글로벌 포워딩 전반의 30년 이상 Industry Experience를 기반으로 합니다.'
-        : 'KS WAYS is a trusted global forwarding company for Western freight forwarders entering Northeast Asia, offering English-first coordination from Korea to China and Japan backed by 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
+        : 'KS WAYS is a trusted global forwarding company for global freight forwarders working across Northeast Asia, with an English website by default, Korea-to-China/Japan connectivity, and 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
     areaServed: 'Worldwide',
     knowsAbout: [
       'Freight forwarding',
