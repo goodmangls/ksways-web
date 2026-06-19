@@ -92,7 +92,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       proof: [
         { label: 'Global network', value: 'WCA Member' },
         { label: 'Communication', value: 'English-first' },
-        { label: 'Carrier experience', value: '30+ years' },
+        { label: 'Industry Experience', value: '30+ years' },
       ],
       controlTitle: 'Route control tower',
       controlCenter: 'KS WAYS',
@@ -100,11 +100,11 @@ export const homeContent: Record<Locale, HomeCopy> = {
     company: {
       kicker: 'Company',
       headline: 'A global logistics company built for ocean and air freight execution.',
-      body: 'KS WAYS CO., LTD. combines 30+ years of carrier-side experience from Korean Air, Asiana Airlines, FedEx, shipping line operations, and global forwarding with English-first communication and partner access across Korea, China, Japan, and wider trade lanes.',
+      body: 'KS WAYS CO., LTD. combines 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding with English-first communication and partner access across Korea, China, Japan, and wider trade lanes.',
       pillars: [
         { title: 'Ocean freight strength', body: 'FCL/LCL planning, carrier coordination, loading review, and partner handoff for sea freight movements.' },
         { title: 'Language-barrier removal', body: 'English-first communication, structured shipment questions, and clear milestone updates help Western partners work in Northeast Asia with less translation friction.' },
-        { title: 'Carrier-grounded expertise', body: '30+ years across Korean Air, Asiana Airlines, FedEx, shipping line operations, and global forwarding informs practical routing decisions.' },
+        { title: 'Industry experience', body: '30+ years across airline cargo, express logistics, shipping line operations, and global forwarding informs practical routing decisions.' },
       ],
     },
     operating: {
@@ -154,7 +154,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       credentials: [
         { label: 'WCA Member', value: 'Global agent cooperation' },
         { label: 'Ocean strength', value: 'FCL · LCL execution' },
-        { label: 'Carrier experience', value: 'Korean Air · Asiana Airlines · FedEx' },
+        { label: 'Industry Experience', value: 'Airline cargo · Express logistics · Shipping lines' },
       ],
       columns: [
         {
@@ -213,11 +213,11 @@ export const homeContent: Record<Locale, HomeCopy> = {
     company: {
       kicker: '회사 소개',
       headline: '해상과 항공 운송 실행력을 갖춘 글로벌 물류회사.',
-      body: 'KS WAYS CO., LTD.는 대한항공, 아시아나항공, 페덱스, 해운사 운영, 글로벌 포워딩에서 축적한 30년 이상 경력과 한국·중국·일본을 잇는 동북아 파트너 접근성을 결합합니다.',
+      body: 'KS WAYS CO., LTD.는 항공화물, 특송 물류, 해운사 운영, 글로벌 포워딩 전반에서 축적한 30년 이상 Industry Experience와 한국·중국·일본을 잇는 동북아 파트너 접근성을 결합합니다.',
       pillars: [
         { title: '해상물류 강점', body: 'FCL/LCL 라우팅, 운송사 조율, 적입 검토, 파트너 핸드오프까지 해운 중심 실행을 지원합니다.' },
         { title: 'WCA 네트워크 회원사', body: '세계 최대 글로벌 물류 네트워크 기반의 에이전트 협력으로 국제 커버리지를 확장합니다.' },
-        { title: '항공·해운 경력 기반', body: '대한항공, 아시아나항공, 페덱스, 해운사, 글로벌 포워딩 경험을 바탕으로 현실적인 라우팅과 실행 리스크를 검토합니다.' },
+        { title: 'Industry Experience', body: '항공화물, 특송 물류, 해운사 운영, 글로벌 포워딩 경험을 바탕으로 현실적인 라우팅과 실행 리스크를 검토합니다.' },
       ],
     },
     operating: {
@@ -267,7 +267,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       credentials: [
         { label: 'WCA 회원사', value: '글로벌 에이전트 협력' },
         { label: '해운 강점', value: 'FCL · LCL 실행' },
-        { label: '항공사 경력', value: '대한항공 · 아시아나항공 · 페덱스' },
+        { label: 'Industry Experience', value: '항공화물 · 특송 물류 · 해운사 운영' },
       ],
       columns: [
         {

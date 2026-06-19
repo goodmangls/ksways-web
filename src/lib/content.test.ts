@@ -17,7 +17,7 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.en.operating.services.find((service) => service.title === 'EXW & Handling')?.href).toBe('/services/exw-pickup-korea');
     expect(homeContent.en.operating.services.find((service) => service.title === 'BridgeLogis')?.href).toBe('https://bridgelogis.com');
     expect(homeContent.en.footer.tagline).toContain('global ocean and air logistics');
-    expect(homeContent.en.footer.credentials.map((item) => item.label)).toEqual(['WCA Member', 'Ocean strength', 'Carrier experience']);
+    expect(homeContent.en.footer.credentials.map((item) => item.label)).toEqual(['WCA Member', 'Ocean strength', 'Industry Experience']);
     expect(homeContent.en.footer.companyName).toBe('KS WAYS CO., LTD.');
     expect(homeContent.en.footer.email).toBe('info@ksways.co');
     expect(homeContent.en.footer.phone).toBe('Tel. +82 2 6961 5778');
@@ -29,7 +29,7 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(englishContactColumn?.links.map((link) => link.label)).not.toContain('BridgeLogis');
   });
 
-  it('emphasizes Korea-centered Northeast Asia reach and 30+ years of carrier/logistics experience', () => {
+  it('emphasizes Korea-centered Northeast Asia reach and 30+ years of industry experience without naming benchmark companies', () => {
     const englishCopy = [
       homeContent.en.hero.lead,
       homeContent.en.company.body,
@@ -52,20 +52,26 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(englishCopy).toContain('Northeast Asia');
     expect(englishCopy).toContain('China and Japan');
     expect(englishCopy).toContain('30+ years');
-    expect(englishCopy).toContain('Korean Air');
-    expect(englishCopy).toContain('Asiana Airlines');
-    expect(englishCopy).toContain('FedEx');
+    expect(englishCopy).toContain('Industry Experience');
+    expect(englishCopy).toContain('airline cargo');
+    expect(englishCopy).toContain('express logistics');
     expect(englishCopy).toContain('shipping line');
     expect(englishCopy).toContain('global forwarding');
+    expect(englishCopy).not.toContain('Korean Air');
+    expect(englishCopy).not.toContain('Asiana Airlines');
+    expect(englishCopy).not.toContain('FedEx');
 
     expect(koreanCopy).toContain('동북아');
     expect(koreanCopy).toContain('중국·일본');
     expect(koreanCopy).toContain('30년 이상');
-    expect(koreanCopy).toContain('대한항공');
-    expect(koreanCopy).toContain('아시아나항공');
-    expect(koreanCopy).toContain('페덱스');
+    expect(koreanCopy).toContain('Industry Experience');
+    expect(koreanCopy).toContain('항공화물');
+    expect(koreanCopy).toContain('특송 물류');
     expect(koreanCopy).toContain('해운사');
     expect(koreanCopy).toContain('글로벌 포워딩');
+    expect(koreanCopy).not.toContain('대한항공');
+    expect(koreanCopy).not.toContain('아시아나항공');
+    expect(koreanCopy).not.toContain('페덱스');
   });
 
   it('signals low-friction English communication and trust for Western global forwarders', () => {
@@ -101,7 +107,7 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.kr.operating.services.find((service) => service.title === '특수 화물')?.href).toBe('/services/special-cargo-korea');
     expect(homeContent.kr.operating.services.find((service) => service.title === 'EXW & 핸들링')?.href).toBe('/services/exw-pickup-korea');
     expect(homeContent.kr.footer.tagline).toContain('글로벌 해상·항공 물류회사');
-    expect(homeContent.kr.footer.credentials.map((item) => item.label)).toEqual(['WCA 회원사', '해운 강점', '항공사 경력']);
+    expect(homeContent.kr.footer.credentials.map((item) => item.label)).toEqual(['WCA 회원사', '해운 강점', 'Industry Experience']);
     expect(homeContent.kr.footer.companyName).toBe('KS WAYS CO., LTD.');
     expect(homeContent.kr.footer.email).toBe('info@ksways.co');
     expect(homeContent.kr.footer.phone).toBe('Tel. +82 2 6961 5778');

@@ -32,25 +32,32 @@ describe('KS WAYS technical SEO plumbing', () => {
     expect(urls).toContain(`${siteUrl}/network/korea-agent-network`);
   });
 
-  it('exposes Northeast Asia and 30+ years carrier experience in SEO/AEO surfaces', () => {
+  it('exposes Northeast Asia and 30+ years industry experience in SEO/AEO surfaces without naming benchmark companies', () => {
     const englishSeo = `${homeSeo.en.description} ${homeSeo.en.openGraph?.description} ${organizationJsonLd('en').description} ${homeFaqs.en.map((faq) => faq.answer).join(' ')}`;
     const koreanSeo = `${homeSeo.kr.description} ${homeSeo.kr.openGraph?.description} ${organizationJsonLd('kr').description} ${homeFaqs.kr.map((faq) => faq.answer).join(' ')}`;
 
     expect(englishSeo).toContain('Northeast Asia');
     expect(englishSeo).toContain('China and Japan');
     expect(englishSeo).toContain('30+ years');
-    expect(englishSeo).toContain('Korean Air');
-    expect(englishSeo).toContain('Asiana Airlines');
-    expect(englishSeo).toContain('FedEx');
+    expect(englishSeo).toContain('industry experience');
+    expect(englishSeo).toContain('airline cargo');
+    expect(englishSeo).toContain('express logistics');
+    expect(englishSeo).toContain('shipping line operations');
+    expect(englishSeo).not.toContain('Korean Air');
+    expect(englishSeo).not.toContain('Asiana Airlines');
+    expect(englishSeo).not.toContain('FedEx');
     expect(englishSeo).toContain('Western freight forwarders');
     expect(englishSeo).toContain('English-first');
     expect(englishSeo).toContain('language barrier');
     expect(koreanSeo).toContain('동북아');
     expect(koreanSeo).toContain('중국·일본');
     expect(koreanSeo).toContain('30년 이상');
-    expect(koreanSeo).toContain('대한항공');
-    expect(koreanSeo).toContain('아시아나항공');
-    expect(koreanSeo).toContain('페덱스');
+    expect(koreanSeo).toContain('Industry Experience');
+    expect(koreanSeo).toContain('항공화물');
+    expect(koreanSeo).toContain('특송 물류');
+    expect(koreanSeo).not.toContain('대한항공');
+    expect(koreanSeo).not.toContain('아시아나항공');
+    expect(koreanSeo).not.toContain('페덱스');
   });
 
   it('exposes the representative telephone and fax number in structured organization data', () => {

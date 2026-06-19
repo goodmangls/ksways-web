@@ -269,7 +269,7 @@ export const servicePages: ServicePage[] = [
     },
     eyebrow: 'Korea Agent Network',
     title: 'English-first Northeast Asia logistics support for Western forwarders',
-    lead: 'For Western freight forwarders, Northeast Asia can feel complex because of language, local handoff, airport/port practices, and different partner expectations. KS WAYS gives you a trusted global forwarding company in Korea with English-first communication, China and Japan reach, WCA cooperation, and 30+ years of Korean Air, Asiana Airlines, FedEx, shipping line, and global forwarding experience.',
+    lead: 'For Western freight forwarders, Northeast Asia can feel complex because of language, local handoff, airport/port practices, and different partner expectations. KS WAYS gives you a trusted global forwarding company in Korea with English-first communication, China and Japan reach, WCA cooperation, and 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
     trustCards: [
       {
         label: 'Language barrier',

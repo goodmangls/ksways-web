@@ -17,7 +17,7 @@ export const shareImage = {
 export const homeSeo: Record<Locale, Metadata> = {
   en: {
     title: 'KS WAYS — Global Ocean & Air Logistics Company',
-    description: 'KS WAYS is a trusted global forwarding company for Western freight forwarders entering Northeast Asia, offering English-first coordination from Korea to China and Japan backed by 30+ years across Korean Air, Asiana Airlines, FedEx, shipping line operations, and global forwarding.',
+    description: 'KS WAYS is a trusted global forwarding company for Western freight forwarders entering Northeast Asia, offering English-first coordination from Korea to China and Japan backed by 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
     alternates: {
       canonical: '/',
       languages: {
@@ -44,7 +44,7 @@ export const homeSeo: Record<Locale, Metadata> = {
   },
   kr: {
     title: 'KS WAYS — 글로벌 해상·항공 물류회사',
-    description: 'KS WAYS는 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 글로벌 해상·항공 물류회사로, 대한항공·아시아나항공·페덱스·해운사·글로벌 포워딩 30년 이상 경험을 기반으로 합니다.',
+    description: 'KS WAYS는 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 글로벌 해상·항공 물류회사로, 항공화물·특송 물류·해운사 운영·글로벌 포워딩 전반의 30년 이상 Industry Experience를 기반으로 합니다.',
     alternates: {
       canonical: '/kr',
       languages: {
@@ -80,7 +80,7 @@ export const homeFaqs: Record<Locale, FaqItem[]> = {
   en: [
     {
       question: 'What does KS WAYS do?',
-      answer: 'KS WAYS is a trusted global forwarding company for Western freight forwarders entering Northeast Asia, offering English-first coordination from Korea to China and Japan backed by 30+ years across Korean Air, Asiana Airlines, FedEx, shipping line operations, and global forwarding.',
+      answer: 'KS WAYS is a trusted global forwarding company for Western freight forwarders entering Northeast Asia, offering English-first coordination from Korea to China and Japan backed by 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
     },
     {
       question: 'Is KS WAYS a WCA member logistics company?',
@@ -102,7 +102,7 @@ export const homeFaqs: Record<Locale, FaqItem[]> = {
   kr: [
     {
       question: 'KS WAYS는 어떤 회사인가요?',
-      answer: 'KS WAYS는 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 글로벌 해상·항공 물류회사입니다. 대한항공, 아시아나항공, 페덱스, 해운사, 글로벌 포워딩에서 축적한 30년 이상 경험을 기반으로 합니다.',
+      answer: 'KS WAYS는 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 글로벌 해상·항공 물류회사입니다. 항공화물, 특송 물류, 해운사 운영, 글로벌 포워딩 전반에서 축적한 30년 이상 Industry Experience를 기반으로 합니다.',
     },
     {
       question: 'KS WAYS는 WCA 회원 물류회사인가요?',
@@ -135,8 +135,8 @@ export function organizationJsonLd(locale: Locale) {
     faxNumber: contactFax,
     description:
       locale === 'kr'
-        ? 'KS WAYS는 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 글로벌 해상·항공 물류회사로, 대한항공·아시아나항공·페덱스·해운사·글로벌 포워딩 30년 이상 경험을 기반으로 합니다.'
-        : 'KS WAYS is a trusted global forwarding company for Western freight forwarders entering Northeast Asia, offering English-first coordination from Korea to China and Japan backed by 30+ years across Korean Air, Asiana Airlines, FedEx, shipping line operations, and global forwarding.',
+        ? 'KS WAYS는 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 글로벌 해상·항공 물류회사로, 항공화물·특송 물류·해운사 운영·글로벌 포워딩 전반의 30년 이상 Industry Experience를 기반으로 합니다.'
+        : 'KS WAYS is a trusted global forwarding company for Western freight forwarders entering Northeast Asia, offering English-first coordination from Korea to China and Japan backed by 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
     areaServed: 'Worldwide',
     knowsAbout: [
       'Freight forwarding',
