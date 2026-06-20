@@ -84,26 +84,22 @@ describe('site quality hardening', () => {
     expect(servicePage).not.toContain('lg:px-14');
   });
 
-  it('uses rotating full-bleed air and ocean logistics images as the hero section background', () => {
+  it('uses approved Unsplash logistics images as the rotating full-bleed hero background', () => {
     const homePage = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 'utf8');
     const css = readFileSync(join(process.cwd(), 'src/app/globals.css'), 'utf8');
-    const oceanPortSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-hero-bg-ocean-port.svg'), 'utf8');
-    const airCargoSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-hero-bg-air-cargo.svg'), 'utf8');
-    const multimodalSvg = readFileSync(join(process.cwd(), 'public/assets/ksways-hero-bg-multimodal.svg'), 'utf8');
 
-    expect(homePage).toContain('const heroBackgroundSlides = [');
+    expect(homePage).toContain("import { getHeroUnsplashImages } from '@/lib/unsplash';");
+    expect(homePage).toContain('const heroBackgroundSlides = getHeroUnsplashImages();');
     expect(homePage).toContain('HeroBackgroundSlideshow');
-    expect(homePage).toContain('ksways-hero-bg-ocean-port.svg');
-    expect(homePage).toContain('ksways-hero-bg-air-cargo.svg');
-    expect(homePage).toContain('ksways-hero-bg-multimodal.svg');
-    expect(homePage).toContain('className="ks-hero-bg-slide object-cover"');
+    expect(homePage).toContain('ks-hero-bg-slide object-cover');
+    expect(homePage).toContain('ks-hero-bg-attribution');
+    expect(homePage).toContain('Photo:');
+    expect(homePage).toContain('Unsplash');
+    expect(homePage).not.toContain('ksways-hero-bg-ocean-port.svg');
     expect(homePage).not.toContain('HeroLogisticsVisual');
     expect(homePage).not.toContain('LIVE FLOW');
     expect(css).toContain('@keyframes ks-hero-bg-cycle');
     expect(css).toContain('animation-delay: calc(var(--ks-slide-index) * 7s)');
-    expect(oceanPortSvg).toContain('full-bleed ocean freight port background');
-    expect(airCargoSvg).toContain('full-bleed air cargo aircraft background');
-    expect(multimodalSvg).toContain('full-bleed multimodal container logistics background');
   });
 
   it('sets share-card images and Twitter metadata for home and service pages', () => {

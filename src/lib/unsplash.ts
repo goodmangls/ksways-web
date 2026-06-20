@@ -320,3 +320,7 @@ export function getApprovedUnsplashImages(topic?: string) {
   const safeTopic = resolveTopic(topic);
   return approvedUnsplashImages.filter((image) => image.topic === safeTopic);
 }
+
+export function getHeroUnsplashImages() {
+  return approvedUnsplashImages.filter((image) => image.brandUse === 'approved-hero-candidate');
+}

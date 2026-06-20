@@ -50,6 +50,15 @@ a { color: inherit; }
   .ks-hero-bg-slide:first-child {
     opacity: 1 !important;
   }
+
+  .ks-hero-bg-attribution {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .ks-hero-bg-attribution:first-child {
+    opacity: 1 !important;
+  }
 }
 
 .ks-hero-bg-slide {
@@ -58,7 +67,17 @@ a { color: inherit; }
   animation-delay: calc(var(--ks-slide-index) * 7s);
 }
 
+.ks-hero-bg-attribution {
+  opacity: 0;
+  animation: ks-hero-bg-cycle 21s infinite;
+  animation-delay: calc(var(--ks-slide-index) * 7s);
+}
+
 .ks-hero-bg-slide:first-child {
+  opacity: 1;
+}
+
+.ks-hero-bg-attribution:first-child {
   opacity: 1;
 }
 

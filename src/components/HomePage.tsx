@@ -5,6 +5,7 @@ import type { Locale } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/i18n';
 import type { homeContent } from '@/lib/content';
 import { faqJsonLd, homeFaqs, organizationJsonLd } from '@/lib/seo';
+import { getHeroUnsplashImages } from '@/lib/unsplash';
 import { ContactActions } from './ContactActions';
 import { HtmlLangSync } from './HtmlLangSync';
 
@@ -15,20 +16,7 @@ type Props = {
   copy: HomeCopy;
 };
 
-const heroBackgroundSlides = [
-  {
-    src: '/assets/ksways-hero-bg-ocean-port.svg',
-    alt: 'Full hero background image of an ocean freight port with a container vessel and cranes',
-  },
-  {
-    src: '/assets/ksways-hero-bg-air-cargo.svg',
-    alt: 'Full hero background image of an air cargo aircraft with runway and freight pallets',
-  },
-  {
-    src: '/assets/ksways-hero-bg-multimodal.svg',
-    alt: 'Full hero background image of multimodal container logistics with sea and air routes',
-  },
-] as const;
+const heroBackgroundSlides = getHeroUnsplashImages();
 
 function BrandLogo({ priority = false }: { priority?: boolean }) {
   return (
@@ -95,23 +83,39 @@ function FooterLink({ href, label }: { href: string; label: string }) {
 
 function HeroBackgroundSlideshow() {
   return (
-    <div className="absolute inset-0 -z-30" aria-label="Rotating full hero background images for ocean freight and air cargo logistics">
-      {heroBackgroundSlides.map((slide, index) => (
-        <Image
-          key={slide.src}
-          src={slide.src}
-          alt={slide.alt}
-          fill
-          priority={index === 0}
-          sizes="100vw"
-          className="ks-hero-bg-slide object-cover"
-          style={{ '--ks-slide-index': index } as CSSProperties}
-        />
-      ))}
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,17,18,.95)_0%,rgba(0,17,18,.82)_36%,rgba(0,17,18,.18)_62%,rgba(0,17,18,.16)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_46%,rgba(0,17,18,.08),rgba(0,17,18,.30)_56%,rgba(0,17,18,.44)_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#001112] to-transparent" />
-    </div>
+    <>
+      <div className="absolute inset-0 -z-30" aria-label="Rotating full hero background images for ocean freight and air cargo logistics">
+        {heroBackgroundSlides.map((slide, index) => (
+          <Image
+            key={slide.id}
+            src={slide.src}
+            alt={slide.alt}
+            fill
+            priority={index === 0}
+            sizes="100vw"
+            className="ks-hero-bg-slide object-cover"
+            style={{ '--ks-slide-index': index } as CSSProperties}
+          />
+        ))}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,17,18,.95)_0%,rgba(0,17,18,.82)_36%,rgba(0,17,18,.18)_62%,rgba(0,17,18,.16)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_46%,rgba(0,17,18,.08),rgba(0,17,18,.30)_56%,rgba(0,17,18,.44)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#001112] to-transparent" />
+      </div>
+      <div className="pointer-events-auto absolute bottom-7 right-6 z-20 hidden max-w-[280px] text-right text-[11px] font-semibold text-white/52 sm:block lg:right-8">
+        {heroBackgroundSlides.map((slide, index) => (
+          <p key={`${slide.id}-credit`} className="ks-hero-bg-attribution" style={{ '--ks-slide-index': index } as CSSProperties}>
+            Photo:{' '}
+            <a href={slide.photographerUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition hover:text-white hover:underline">
+              {slide.photographer}
+            </a>{' '}
+            /{' '}
+            <a href={slide.unsplashUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition hover:text-white hover:underline">
+              Unsplash
+            </a>
+          </p>
+        ))}
+      </div>
+    </>
   );
 }
 

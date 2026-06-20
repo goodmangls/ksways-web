@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   ALLOWED_UNSPLASH_TOPICS,
   getApprovedUnsplashImages,
+  getHeroUnsplashImages,
   normalizeUnsplashPhoto,
   searchUnsplashImages,
   type UnsplashSearchResponse,
@@ -33,6 +34,22 @@ describe('Unsplash brand image pool policy', () => {
       expect(image.downloadLocation).toContain('api.unsplash.com/photos/');
       expect(image.alt.toLowerCase()).not.toContain('logo');
       expect(image.brandUse).not.toBe('hero-auto');
+    }
+  });
+
+  it('exposes only approved hero candidate images for the homepage hero carousel', () => {
+    const heroImages = getHeroUnsplashImages();
+
+    expect(heroImages.length).toBeGreaterThanOrEqual(3);
+    expect(heroImages.map((image) => image.topic)).toEqual(['ocean', 'air', 'global']);
+
+    for (const image of heroImages) {
+      expect(image.brandUse).toBe('approved-hero-candidate');
+      expect(image.src).toContain('images.unsplash.com');
+      expect(image.alt.toLowerCase()).toMatch(/logistics|freight|cargo|trade|partner/);
+      expect(image.photographerUrl).toContain('utm_source=ksways');
+      expect(image.unsplashUrl).toContain('utm_source=ksways');
+      expect(image.downloadLocation).toContain('api.unsplash.com/photos/');
     }
   });
 
