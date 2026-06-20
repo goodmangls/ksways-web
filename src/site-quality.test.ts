@@ -4,6 +4,14 @@ import { describe, expect, it } from 'vitest';
 import nextConfig from '../next.config';
 
 describe('site quality hardening', () => {
+  it('allows Next/Image to render approved Unsplash CDN images without exposing API keys', () => {
+    expect(nextConfig.images?.remotePatterns).toContainEqual({
+      protocol: 'https',
+      hostname: 'images.unsplash.com',
+    });
+    expect(JSON.stringify(nextConfig)).not.toContain('UNSPLASH_ACCESS_KEY');
+  });
+
   it('sets baseline production security headers for every route', async () => {
     expect(typeof nextConfig.headers).toBe('function');
     const headers = await nextConfig.headers?.();
