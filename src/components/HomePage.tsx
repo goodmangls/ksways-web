@@ -99,6 +99,7 @@ function HeroBackgroundSlideshow() {
         ))}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,17,18,.95)_0%,rgba(0,17,18,.82)_36%,rgba(0,17,18,.18)_62%,rgba(0,17,18,.16)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_46%,rgba(0,17,18,.08),rgba(0,17,18,.30)_56%,rgba(0,17,18,.44)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(33,212,194,.18),transparent_26%),linear-gradient(90deg,transparent_0,transparent_48%,rgba(255,255,255,.13)_49%,transparent_50%)] bg-[length:auto,72px_72px] opacity-70" />
         <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#001112] to-transparent" />
       </div>
       <div className="pointer-events-auto absolute bottom-7 right-6 z-20 hidden max-w-[280px] text-right text-[11px] font-semibold text-white/52 sm:block lg:right-8">
