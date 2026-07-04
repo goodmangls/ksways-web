@@ -63,6 +63,7 @@ type HomeCopy = {
   footer: {
     tagline: string;
     companyName: string;
+    address: string;
     email: string;
     phone: string;
     fax: string;
@@ -148,11 +149,12 @@ export const homeContent: Record<Locale, HomeCopy> = {
     footer: {
       tagline: 'A trusted global ocean and air logistics / global forwarding company for global freight forwarders working across Northeast Asia: Korea’s strategic gateway, China and Japan connectivity, WCA-backed partner cooperation, and 30+ years of airline, shipping line, and global forwarding experience.',
       companyName: 'KS WAYS CO., LTD.',
+      address: 'Rm 909, Gangseo IT Valley, 82, Hwagok-ro 68 gil, Gangseo-gu, Seoul 07566, Korea',
       email: 'info@ksways.co',
       phone: 'Tel. +82 2 6961 5778',
       fax: 'Fax +82 2 6961 5765',
       credentials: [
-        { label: 'WCA Member', value: 'Global agent cooperation' },
+        { label: 'WCA Member', value: 'ID: 96376 · Global agent cooperation' },
         { label: 'Ocean strength', value: 'FCL · LCL execution' },
         { label: 'Industry Experience', value: 'Airline cargo · Express logistics · Shipping lines' },
       ],
@@ -261,11 +263,12 @@ export const homeContent: Record<Locale, HomeCopy> = {
     footer: {
       tagline: 'KS WAYS는 작은 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 지역적 강점, WCA 기반 파트너 협력, 30년 이상 항공사·해운사·글로벌 포워딩 경험을 갖춘 글로벌 해상·항공 물류회사입니다.',
       companyName: 'KS WAYS CO., LTD.',
+      address: 'Rm 909, Gangseo IT Valley, 82, Hwagok-ro 68 gil, Gangseo-gu, Seoul 07566, Korea',
       email: 'info@ksways.co',
       phone: 'Tel. +82 2 6961 5778',
       fax: 'Fax +82 2 6961 5765',
       credentials: [
-        { label: 'WCA 회원사', value: '글로벌 에이전트 협력' },
+        { label: 'WCA 회원사', value: 'ID: 96376 · 글로벌 에이전트 협력' },
         { label: '해운 강점', value: 'FCL · LCL 실행' },
         { label: 'Industry Experience', value: '항공화물 · 특송 물류 · 해운사 운영' },
       ],
