@@ -124,6 +124,19 @@ describe('site quality hardening', () => {
     expect(layout).toContain('https://widget.intercom.io/widget/');
   });
 
+  it('sets Korean SSR document language for /kr before hydration', () => {
+    const layout = readFileSync(join(process.cwd(), 'src/app/layout.tsx'), 'utf8');
+    const proxy = readFileSync(join(process.cwd(), 'src/proxy.ts'), 'utf8');
+    const htmlLangSync = readFileSync(join(process.cwd(), 'src/components/HtmlLangSync.tsx'), 'utf8');
+
+    expect(proxy).toContain('x-ksways-pathname');
+    expect(proxy).toContain('request.nextUrl.pathname');
+    expect(layout).toContain("import { headers } from 'next/headers';");
+    expect(layout).toContain("pathname?.startsWith('/kr') ? 'ko-KR' : 'en'");
+    expect(layout).toContain('<html lang={documentLang}>');
+    expect(htmlLangSync).toContain("locale === 'kr' ? 'ko-KR' : 'en'");
+  });
+
   it('keeps sitemap entries prioritized with service/network routes and no stale static-only policy', () => {
     const sitemap = readFileSync(join(process.cwd(), 'src/app/sitemap.ts'), 'utf8');
 

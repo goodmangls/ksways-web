@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import Script from 'next/script';
 import './globals.css';
 
@@ -25,11 +26,18 @@ export const metadata: Metadata = {
 
 const KS_WAYS_INTERCOM_APP_ID = 'k5z51xs2';
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+function getDocumentLang(pathname: string | null) {
+  return pathname?.startsWith('/kr') ? 'ko-KR' : 'en';
+}
+
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const intercomAppId = process.env.NEXT_PUBLIC_INTERCOM_APP_ID?.trim() || KS_WAYS_INTERCOM_APP_ID;
+  const requestHeaders = await headers();
+  const pathname = requestHeaders.get('x-ksways-pathname');
+  const documentLang = getDocumentLang(pathname);
 
   return (
-    <html lang="en">
+    <html lang={documentLang}>
       <body>
         {children}
         {intercomAppId ? (
