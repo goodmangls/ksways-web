@@ -5,7 +5,7 @@ import type { Locale } from '@/lib/i18n';
 
 export function HtmlLangSync({ locale }: { locale: Locale }) {
   useEffect(() => {
-    document.documentElement.lang = locale === 'kr' ? 'ko' : 'en';
+    document.documentElement.lang = locale === 'kr' ? 'ko-KR' : 'en';
   }, [locale]);
 
   return null;
