@@ -1,5 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import { buildQuoteMailto, fclContainerOptions, getQuoteInitialValues, quoteFormFields, transportModeOptions } from './quote-form';
+import {
+  buildQuoteMailto,
+  fclContainerOptions,
+  getMissingRequiredQuoteFields,
+  getQuoteInitialValues,
+  getShipmentTypeForTransportMode,
+  getVisibleQuoteSections,
+  isDgCargo,
+  quoteFormFields,
+  requiredQuoteFieldNames,
+  transportModeOptions,
+} from './quote-form';
 
 function decodeMailto(href: string) {
   const url = new URL(href);
@@ -81,6 +92,48 @@ describe('quote form mailto builder', () => {
       'TANK CONTAINER // 20TK',
       'TANK CONTAINER // 40TK',
     ]));
+  });
+
+  it('maps transport modes to practical default shipment types', () => {
+    expect(getShipmentTypeForTransportMode('Ocean')).toBe('FCL');
+    expect(getShipmentTypeForTransportMode('Air')).toBe('Air cargo');
+    expect(getShipmentTypeForTransportMode('Express')).toBe('Express');
+    expect(getShipmentTypeForTransportMode('Multimodal')).toBe('Multimodal');
+    expect(getShipmentTypeForTransportMode('Not sure')).toBe('Not sure');
+  });
+
+  it('identifies required quote fields before opening the email draft', () => {
+    expect(requiredQuoteFieldNames).toEqual(['companyName', 'contactName', 'emailOrPhone', 'origin', 'destination', 'commodity']);
+
+    expect(getMissingRequiredQuoteFields({ transportMode: 'Ocean' })).toEqual([
+      'Company name',
+      'Contact person / title',
+      'Email / phone',
+      'Origin city / port / airport',
+      'Destination city / port / airport',
+      'Commodity',
+    ]);
+
+    expect(getMissingRequiredQuoteFields({
+      companyName: 'Acme Trading',
+      contactName: 'Jane Lee',
+      emailOrPhone: 'jane@example.com',
+      origin: 'Busan',
+      destination: 'Los Angeles',
+      commodity: 'Auto parts',
+    })).toEqual([]);
+  });
+
+  it('returns mode-driven visible sections so non-ocean users are not overwhelmed by ocean equipment', () => {
+    expect(getVisibleQuoteSections({ transportMode: 'Ocean' })).toEqual(['company', 'route', 'cargo', 'ocean', 'handling']);
+    expect(getVisibleQuoteSections({ transportMode: 'Air' })).toEqual(['company', 'route', 'cargo', 'handling']);
+    expect(getVisibleQuoteSections({ transportMode: 'Express' })).toEqual(['company', 'route', 'cargo', 'handling']);
+    expect(getVisibleQuoteSections({ transportMode: 'Not sure' })).toEqual(['company', 'route', 'cargo', 'ocean', 'handling']);
+  });
+
+  it('detects DG cargo so the UI can elevate UN No. and DG class fields', () => {
+    expect(isDgCargo({ cargoNature: 'DG cargo' })).toBe(true);
+    expect(isDgCargo({ cargoNature: 'General cargo' })).toBe(false);
   });
 
   it('turns filled quote form values into a structured info@ksways.co mailto', () => {
