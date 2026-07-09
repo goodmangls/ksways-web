@@ -15,9 +15,9 @@ const sectionLabels = {
 const sectionDescriptions = {
   company: 'Who should our team contact for the quotation?',
   route: 'Make the transport mode visible first, then capture origin, destination, and Incoterms.',
-  cargo: 'Weight, volume, and cargo facts needed for air, LCL, and FCL pricing.',
-  ocean: 'FCL/LCL equipment details such as 20FT, 40FT, reefer, flat rack, or open top.',
-  handling: 'Operational constraints that affect feasibility, cost, and routing quality.',
+  cargo: 'Weight, volume, and cargo facts needed for air, LCL, FCL, general cargo, and DG cargo pricing.',
+  ocean: 'FCL equipment details aligned with carrier booking screens: DRY, RF, FR, OT, TK, quantity, and OOG gauge status.',
+  handling: 'Operational constraints that affect feasibility, DG acceptance, cost, and routing quality.',
 } as const;
 
 const sections = ['company', 'route', 'cargo', 'ocean', 'handling'] as const;
@@ -105,6 +105,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                             className={commonClass}
                           />
                         )}
+                        {field.helper ? <span className="mt-2 block text-xs font-semibold leading-relaxed text-[#001112]/48">{field.helper}</span> : null}
                       </label>
                     );
                   })}
