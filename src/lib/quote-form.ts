@@ -130,12 +130,47 @@ export const quoteFormFields: QuoteFormField[] = [
   { name: 'additionalNotes', label: 'Additional notes', placeholder: 'Carrier preference, free time, customs, insurance, warehouse needs, attachments...', section: 'handling', type: 'textarea' },
 ];
 
+type QuoteSection = 'company' | 'route' | 'cargo' | 'ocean' | 'handling';
+
+export const requiredQuoteFieldNames = ['companyName', 'contactName', 'emailOrPhone', 'origin', 'destination', 'commodity'] as const satisfies readonly (keyof QuoteFormValues)[];
+
+export function getShipmentTypeForTransportMode(mode?: string) {
+  switch (mode) {
+    case 'Ocean':
+      return 'FCL';
+    case 'Air':
+      return 'Air cargo';
+    case 'Express':
+      return 'Express';
+    case 'Multimodal':
+      return 'Multimodal';
+    default:
+      return 'Not sure';
+  }
+}
+
+export function getVisibleQuoteSections(values: QuoteFormValues = {}): QuoteSection[] {
+  if (values.transportMode === 'Air' || values.transportMode === 'Express') {
+    return ['company', 'route', 'cargo', 'handling'];
+  }
+
+  return ['company', 'route', 'cargo', 'ocean', 'handling'];
+}
+
+export function isDgCargo(values: QuoteFormValues = {}) {
+  return values.cargoNature === 'DG cargo';
+}
+
+export function getMissingRequiredQuoteFields(values: QuoteFormValues = {}) {
+  return requiredQuoteFieldNames
+    .filter((name) => !value(values, name))
+    .map((name) => quoteFormFields.find((field) => field.name === name)?.label ?? name);
+}
+
 const value = (values: QuoteFormValues, key: keyof QuoteFormValues) => values[key]?.trim() ?? '';
 
-export function buildQuoteMailto(values: QuoteFormValues = {}) {
-  const company = value(values, 'companyName') || 'Website enquiry';
-  const subject = `KS WAYS website quote request — ${company}`;
-  const body = [
+export function buildQuoteEmailText(values: QuoteFormValues = {}) {
+  return [
     'Dear KS WAYS team,',
     '',
     'Please review the website quote request below.',
@@ -181,6 +216,12 @@ export function buildQuoteMailto(values: QuoteFormValues = {}) {
     `- Additional notes: ${value(values, 'additionalNotes')}`,
     '',
   ].join('\n');
+}
+
+export function buildQuoteMailto(values: QuoteFormValues = {}) {
+  const company = value(values, 'companyName') || 'Website enquiry';
+  const subject = `KS WAYS website quote request — ${company}`;
+  const body = buildQuoteEmailText(values);
 
   return `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }

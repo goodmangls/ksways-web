@@ -56,11 +56,11 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
             </Link>
           </header>
 
-          <div className="max-w-5xl py-16 lg:py-24">
+          <div className="max-w-5xl py-10 lg:py-14">
             <p className="text-sm font-black uppercase tracking-[.16em] text-[#6fffe7]">Freight Quote Request</p>
-            <h1 className="mt-5 text-[clamp(46px,8vw,102px)] font-black leading-[.92] tracking-[-.075em] text-balance">Prepare a quote-ready shipment request.</h1>
-            <p className="mt-7 max-w-3xl text-[clamp(17px,1.35vw,22px)] leading-relaxed text-white/70">
-              Share the cargo facts KS WAYS needs for ocean, air, express, multimodal, or special cargo review. The form opens a prepared email to {contactEmail}; nothing is sent automatically.
+            <h1 className="mt-5 text-[clamp(42px,6vw,82px)] font-black leading-[.92] tracking-[-.075em] text-balance">Get a quote for ocean, air, and special cargo.</h1>
+            <p className="mt-6 max-w-3xl text-[clamp(16px,1.2vw,20px)] leading-relaxed text-white/70">
+              Start with the transport mode, complete the key cargo facts, then review a prepared email to {contactEmail}. Nothing is sent automatically.
             </p>
           </div>
         </div>
