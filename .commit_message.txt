@@ -1,1 +1,1 @@
-🧹 chore(lint): eslint에 coverage/ ignore 추가 — 로컬 커버리지 산출물 경고 3건 제거, lint 완전 무경고화
+📐 docs(pdca): component-render-tests Design — 미결 3건 스모크 실측 확정(jsdom·image mock·navigate 주입), grep 12항목 매핑표, 테스트 인프라 선구축(57/57), .bkit-memory phase=design
