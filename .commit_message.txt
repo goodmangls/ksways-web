@@ -1,0 +1,1 @@
+📁 chore(pdca): node24-build-fix archive — PDCA 4문서 docs/archive/2026-07/ 이관, _INDEX.md 생성, 가설 반증(Exit-A) 종결, .bkit-memory phase=archived

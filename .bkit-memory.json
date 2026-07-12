@@ -1,0 +1,15 @@
+{
+  "activeFeature": null,
+  "phase": "archived",
+  "features": {
+    "node24-build-fix": {
+      "phase": "archived",
+      "matchRate": 100,
+      "outcome": "hypothesis-refuted (Exit-A, failed-upstream-blocked)",
+      "archivedTo": "docs/archive/2026-07/node24-build-fix/",
+      "archivedAt": "2026-07-12",
+      "createdAt": "2026-07-12",
+      "notes": "가설 반증: Node 22·24 동일 실패(digest 2216620448). 빌드 게이트=Vercel preview 대체. 후속 후보: goodman-gls-masking-removal(High), linux-build-verification(Medium), Next 16.3 stable 추적"
+    }
+  }
+}
