@@ -1,12 +1,14 @@
 {
-  "activeFeature": "mailto-optimization",
-  "phase": "completed",
+  "activeFeature": null,
+  "phase": "archived",
   "features": {
     "mailto-optimization": {
-      "phase": "completed",
+      "phase": "archived",
       "matchRate": 100,
       "createdAt": "2026-07-12",
-      "notes": "Design 확정(미결 3건): 섹션 골격 유지+빈 라인 생략(사용자 확인 2026-07-12)·경고+진행 허용 가드(사용자 확인)·임계치 1800(최소 클라이언트 한도 2083−여유). 스펙: quoteEmailSections 데이터 주도 직렬화·isQuoteMailtoOverLimit·양쪽 CTA role=status 배너. Do 1단계=quote-form.ts/test·QuoteForm.tsx 재읽기(드리프트 학습). 검증: 필수만 입력 href<1000자 테스트 고정"
+      "archivedTo": "docs/archive/2026-07/mailto-optimization/",
+      "archivedAt": "2026-07-12",
+      "notes": "PR #19 squash 828b3c2 (merge 1회 GitHub 레이스 'Base branch was modified'→재시도 성공). 빈 라인 생략+골격 유지(사용자 확정)·1800자 경고 가드(진행 허용)·필수만 href<1000자. 78 tests. 당일 코드 분석 발원 이슈(HIGH 2·MEDIUM 2) 전체 소진 — 당일 3사이클 Match 100·95·100. 잔여(Low): footer/mobile grep 정리·branch protection·코드분석 LOW 5건"
     },
     "component-render-tests": {
       "phase": "archived",

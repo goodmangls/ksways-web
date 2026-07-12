@@ -1,1 +1,1 @@
-📋 docs(pdca): mailto-optimization 완료 보고서 — Match 100% 첫 시도, 코드 분석 발원 이슈 전체 소진, .bkit-memory phase=completed
+📁 chore(pdca): mailto-optimization archive — PDCA 4문서 이관·_INDEX 갱신, 당일 3사이클(코드 분석 발원 이슈 전체) 종결, .bkit-memory phase=archived
