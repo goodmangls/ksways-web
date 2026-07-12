@@ -20,12 +20,11 @@ jobs:
       - run: npm run type-check
       - run: npm run test:run
 
-  # linux 환경 next build 검증 실험 — 실패해도 PR을 막지 않는다.
-  # 로컬 macOS build 실패(/_global-error prerender)는 Node 22·24 동일 확인됨 (docs/archive/2026-07/node24-build-fix).
-  # 이 job이 통과하면 잔여 변수(darwin/linux)가 해소되어 차기 사이클에서 필수 게이트 승격 후보.
-  build-experiment:
+  # linux 환경 next build — 필수 게이트 (실험 job 3연속 PASS 후 승격, 2026-07-12).
+  # 로컬 macOS build 실패(/_global-error prerender)는 이 게이트와 무관한 darwin 한정 framework debt
+  # (docs/archive/2026-07/node24-build-fix, ksways-ci-hardening 참조).
+  build:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
