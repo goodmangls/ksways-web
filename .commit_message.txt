@@ -1,1 +1,1 @@
-📁 chore(pdca): component-render-tests archive — PDCA 4문서 docs/archive/2026-07/ 이관, _INDEX 갱신, .bkit-memory phase=archived
+🚦 ci: build job 필수 게이트 승격 — build-experiment 3연속 PASS 근거, continue-on-error 제거
