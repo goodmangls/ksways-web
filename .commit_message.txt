@@ -1,1 +1,1 @@
-📋 docs(pdca): ksways-ci-hardening 완료 보고서 — Match 100%·iterate 0회, 학습 4건 기록, PR #14 merge 대기 명기, .bkit-memory phase=completed
+📁 chore(pdca): ksways-ci-hardening archive — PDCA 4문서 docs/archive/2026-07/ 이관, _INDEX 갱신, prod 검증 GREEN(CSP·Intercom) 반영, .bkit-memory phase=archived

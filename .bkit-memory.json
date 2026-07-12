@@ -1,12 +1,14 @@
 {
-  "activeFeature": "ksways-ci-hardening",
-  "phase": "completed",
+  "activeFeature": null,
+  "phase": "archived",
   "features": {
     "ksways-ci-hardening": {
-      "phase": "completed",
+      "phase": "archived",
       "matchRate": 100,
       "createdAt": "2026-07-12",
-      "notes": "PR #14. CI 첫 실행 GREEN(quality 33s)+build-experiment PASS(linux 변수 해소!). 발견: ①preview는 Vercel Auth 보호로 headless 검증 불가→로컬 dev+prod 기준선으로 대체 ②dev CSP에 unsafe-eval 필요(react-refresh)→buildContentSecurityPolicy(isDev) 분기, vitest NODE_ENV=development라 순수함수 테스트로 결정화 ③Intercom dev 미부팅은 CSP 무관 사전존재(헤더 스트립 대조실험) ④prod origin 감사 notAllowed 0. 잔여: 2차 커밋 CI GREEN 확인, merge 후 prod CSP 스팟체크"
+      "archivedTo": "docs/archive/2026-07/ksways-ci-hardening/",
+      "archivedAt": "2026-07-12",
+      "notes": "PR #14 squash 8a378c3. CI quality+build-experiment 2연속 GREEN(linux 변수 해소, 로컬 build 실패=macOS 한정 확정). prod 검증 5라우트: CSP 서빙·violation 0·Intercom 부팅·히어로 이미지 전부 정상. 학습: preview=Vercel Auth 보호(콘텐츠 지문 판별 필수)·dev CSP unsafe-eval 분기·vitest NODE_ENV 상속·헤더 스트립 대조실험. 후속: build 필수 승격(Medium)·branch protection quality required(수동)·실브라우저 Intercom 런처 시각확인(Low)"
     },
     "node24-build-fix": {
       "phase": "archived",
