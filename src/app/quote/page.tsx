@@ -2,7 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { QuoteForm } from '@/components/QuoteForm';
+import { SiteFooter } from '@/components/SiteFooter';
 import { getQuoteInitialValues } from '@/lib/quote-form';
+import { homeContent } from '@/lib/content';
 import { brandName, contactEmail, shareImage, siteUrl } from '@/lib/seo';
 
 export const metadata: Metadata = {
@@ -67,6 +69,7 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
       </section>
 
       <QuoteForm initialValues={initialValues} />
+      <SiteFooter footer={homeContent.en.footer} />
     </main>
   );
 }

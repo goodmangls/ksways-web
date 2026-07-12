@@ -6,7 +6,7 @@ type Service = {
   href?: string;
 };
 
-type HomeCopy = {
+export type HomeCopy = {
   nav: {
     company: string;
     services: string;
@@ -72,6 +72,8 @@ type HomeCopy = {
     legal: string;
   };
 };
+
+export type FooterCopy = HomeCopy['footer'];
 
 export const homeContent: Record<Locale, HomeCopy> = {
   en: {
