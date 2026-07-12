@@ -1,1 +1,1 @@
-📐 docs(pdca): component-render-tests Design — 미결 3건 스모크 실측 확정(jsdom·image mock·navigate 주입), grep 12항목 매핑표, 테스트 인프라 선구축(57/57), .bkit-memory phase=design
+🧪 test(components): 렌더/인터랙션 테스트 도입 — QuoteForm 6시나리오(navigate 주입)·페이지 3종·HomePage 확장, site-quality grep→렌더/데이터 검증 대체, coverage components 96.6%(전체 80.3%), 57→71 tests
