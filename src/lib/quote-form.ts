@@ -169,53 +169,81 @@ export function getMissingRequiredQuoteFields(values: QuoteFormValues = {}) {
 
 const value = (values: QuoteFormValues, key: keyof QuoteFormValues) => values[key]?.trim() ?? '';
 
+// 섹션 헤더는 값 유무와 무관하게 항상 유지한다 — 수신 팀이 익숙한 골격 보존 (2026-07-12 확정).
+const quoteEmailSections: Array<{ title: string; fields: Array<[keyof QuoteFormValues, string]> }> = [
+  {
+    title: '[Company / Contact]',
+    fields: [
+      ['enquiryContext', 'Enquiry context'],
+      ['companyName', 'Company name'],
+      ['contactName', 'Contact person / title'],
+      ['emailOrPhone', 'Email / phone'],
+    ],
+  },
+  {
+    title: '[Mode / Route]',
+    fields: [
+      ['transportMode', 'Transport mode'],
+      ['shipmentType', 'Shipment type'],
+      ['origin', 'Origin'],
+      ['destination', 'Destination'],
+      ['incoterms', 'Incoterms'],
+      ['pickupDeliveryScope', 'Pickup / delivery scope'],
+      ['pickupDate', 'Pickup date'],
+      ['pickupPlace', 'Pickup place'],
+      ['pickupContact', 'Pickup contact'],
+    ],
+  },
+  {
+    title: '[Cargo]',
+    fields: [
+      ['commodity', 'Commodity'],
+      ['hsCode', 'HS code'],
+      ['cargoNature', 'Cargo type'],
+      ['packageCount', 'Package count'],
+      ['grossWeight', 'Gross weight'],
+      ['dimensions', 'Dimensions'],
+      ['cbm', 'CBM / volume'],
+      ['cargoReadyDate', 'Cargo ready date'],
+    ],
+  },
+  {
+    title: '[Ocean / Equipment]',
+    fields: [
+      ['containerType', 'FCL container / equipment'],
+      ['containerQuantity', 'Container quantity'],
+    ],
+  },
+  {
+    title: '[DG / Special Handling]',
+    fields: [
+      ['temperatureRange', 'Temperature range'],
+      ['unNumber', 'UN No.'],
+      ['dgClass', 'DG class'],
+      ['targetSchedule', 'Target schedule / deadline'],
+      ['targetRate', 'Target rate / budget'],
+      ['specialHandling', 'Special cargo notes'],
+      ['additionalNotes', 'Additional notes'],
+    ],
+  },
+];
+
 export function buildQuoteEmailText(values: QuoteFormValues = {}) {
-  return [
-    'Dear KS WAYS team,',
-    '',
-    'Please review the website quote request below.',
-    '',
-    '[Company / Contact]',
-    `- Enquiry context: ${value(values, 'enquiryContext')}`,
-    `- Company name: ${value(values, 'companyName')}`,
-    `- Contact person / title: ${value(values, 'contactName')}`,
-    `- Email / phone: ${value(values, 'emailOrPhone')}`,
-    '',
-    '[Mode / Route]',
-    `- Transport mode: ${value(values, 'transportMode')}`,
-    `- Shipment type: ${value(values, 'shipmentType')}`,
-    `- Origin: ${value(values, 'origin')}`,
-    `- Destination: ${value(values, 'destination')}`,
-    `- Incoterms: ${value(values, 'incoterms')}`,
-    `- Pickup / delivery scope: ${value(values, 'pickupDeliveryScope')}`,
-    `- Pickup date: ${value(values, 'pickupDate')}`,
-    `- Pickup place: ${value(values, 'pickupPlace')}`,
-    `- Pickup contact: ${value(values, 'pickupContact')}`,
-    '',
-    '[Cargo]',
-    `- Commodity: ${value(values, 'commodity')}`,
-    `- HS code: ${value(values, 'hsCode')}`,
-    `- Cargo type: ${value(values, 'cargoNature')}`,
-    `- Package count: ${value(values, 'packageCount')}`,
-    `- Gross weight: ${value(values, 'grossWeight')}`,
-    `- Dimensions: ${value(values, 'dimensions')}`,
-    `- CBM / volume: ${value(values, 'cbm')}`,
-    `- Cargo ready date: ${value(values, 'cargoReadyDate')}`,
-    '',
-    '[Ocean / Equipment]',
-    `- FCL container / equipment: ${value(values, 'containerType')}`,
-    `- Container quantity: ${value(values, 'containerQuantity')}`,
-    '',
-    '[DG / Special Handling]',
-    `- Temperature range: ${value(values, 'temperatureRange')}`,
-    `- UN No.: ${value(values, 'unNumber')}`,
-    `- DG class: ${value(values, 'dgClass')}`,
-    `- Target schedule / deadline: ${value(values, 'targetSchedule')}`,
-    `- Target rate / budget: ${value(values, 'targetRate')}`,
-    `- Special cargo notes: ${value(values, 'specialHandling')}`,
-    `- Additional notes: ${value(values, 'additionalNotes')}`,
-    '',
-  ].join('\n');
+  const body = quoteEmailSections.flatMap(({ title, fields }) => {
+    const lines = fields
+      .filter(([key]) => value(values, key))
+      .map(([key, label]) => `- ${label}: ${value(values, key)}`);
+    return [title, ...lines, ''];
+  });
+
+  return ['Dear KS WAYS team,', '', 'Please review the website quote request below.', '', ...body].join('\n');
+}
+
+// 레거시 Outlook/IE 계열의 문서화된 URL 한도 2083자에서 안전 여유를 둔 값.
+export const QUOTE_MAILTO_LENGTH_LIMIT = 1800;
+
+export function isQuoteMailtoOverLimit(values: QuoteFormValues = {}) {
+  return buildQuoteMailto(values).length > QUOTE_MAILTO_LENGTH_LIMIT;
 }
 
 export function buildQuoteMailto(values: QuoteFormValues = {}) {
