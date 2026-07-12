@@ -372,6 +372,7 @@ export function HomePage({ locale, copy }: Props) {
             <div>
               <p className="font-black text-white/72">{copy.footer.companyName}</p>
               <p className="mt-1">{copy.footer.legal}</p>
+              <p className="mt-2 max-w-xl leading-relaxed text-white/56">{copy.footer.address}</p>
             </div>
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
               <a href={`mailto:${copy.footer.email}`} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#6fffe7]">{copy.footer.email}</a>
