@@ -1,12 +1,14 @@
 {
-  "activeFeature": "component-render-tests",
-  "phase": "completed",
+  "activeFeature": null,
+  "phase": "archived",
   "features": {
     "component-render-tests": {
-      "phase": "completed",
+      "phase": "archived",
       "matchRate": 95,
       "createdAt": "2026-07-12",
-      "notes": "Design 확정(스모크 실측): jsdom(React19+RTL16 무설정 OK)·next/image alias mock(실컴포넌트 throw)·clipboard stubGlobal·location=navigate prop 주입(QuoteForm 유일한 프로덕션 변경). 인프라 선구축 완료: vitest include .tsx 확장(기존엔 .tsx 조용히 무시!)·setupFiles·mock·HomePage 스모크 2개, 57/57 GREEN. grep 12항목 매핑표: 유지6·렌더대체(6,8일부)·max-w descope(7)·데이터검증화(9,12). 중복텍스트 함정→role 스코프 쿼리. Do: QuoteForm 6시나리오→페이지 3종→매핑 적용→coverage 80%"
+      "archivedTo": "docs/archive/2026-07/component-render-tests/",
+      "archivedAt": "2026-07-12",
+      "notes": "PR #17 squash 9445224. 렌더 커버리지 0→96.63%, 57→71 tests ×3회 결정적. jsdom+RTL(파일별 env)·next/image alias mock·navigate prop 주입. vitest include .tsx 잠복버그 수정. 학습: 병행작업 스냅샷 드리프트(Do 직전 재읽기)·user-event 자체 clipboard(spyOn)·scrollIntoView 폴리필·Next Metadata 유니언=toMatchObject. 후속: build 필수 승격(3연속 PASS)·mailto 최적화(Task #4)·footer/mobile grep 테스트 2파일 정리(Low)"
     },
     "ksways-ci-hardening": {
       "phase": "archived",

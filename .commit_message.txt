@@ -1,1 +1,1 @@
-📋 docs(pdca): component-render-tests 완료 보고서 — Match 95%·71 tests·coverage 96.6%, 학습 5건, PR #17 merge 대기, .bkit-memory phase=completed
+📁 chore(pdca): component-render-tests archive — PDCA 4문서 docs/archive/2026-07/ 이관, _INDEX 갱신, .bkit-memory phase=archived
