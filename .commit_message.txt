@@ -1,1 +1,1 @@
-🧪 test(components): 렌더/인터랙션 테스트 도입 — QuoteForm 6시나리오(navigate 주입)·페이지 3종·HomePage 확장, site-quality grep→렌더/데이터 검증 대체, coverage components 96.6%(전체 80.3%), 57→71 tests
+🔍 docs(pdca): component-render-tests Gap 분석 — Match 95%, Gap 4건(Low·문서동기화) Design 즉시 갱신으로 잔여 0, .bkit-memory phase=check
