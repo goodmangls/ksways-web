@@ -25,6 +25,23 @@ describe('site quality hardening', () => {
     expect(headerMap.get('x-frame-options')).toBe('DENY');
   });
 
+  it('enforces a Content-Security-Policy limited to approved third parties', async () => {
+    const headers = await nextConfig.headers?.();
+    const globalHeaders = headers?.find((entry) => entry.source === '/(.*)')?.headers ?? [];
+    const headerMap = new Map(globalHeaders.map((header) => [header.key.toLowerCase(), header.value]));
+    const csp = headerMap.get('content-security-policy') ?? '';
+
+    expect(csp).toContain("default-src 'self'");
+    expect(csp).toContain('https://images.unsplash.com');
+    expect(csp).toContain('https://widget.intercom.io');
+    expect(csp).toContain('https://js.intercomcdn.com');
+    expect(csp).toContain('wss://nexus-websocket-a.intercom.io');
+    expect(csp).toContain("object-src 'none'");
+    expect(csp).toContain("base-uri 'self'");
+    expect(csp).toContain("frame-ancestors 'none'");
+    expect(csp).not.toContain('unsafe-eval');
+  });
+
   it('keeps README aligned with the public KS WAYS brand and current route set', () => {
     const readme = readFileSync(join(process.cwd(), 'README.md'), 'utf8');
 

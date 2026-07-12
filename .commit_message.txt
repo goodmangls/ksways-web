@@ -1,1 +1,1 @@
-📁 chore(pdca): node24-build-fix archive — PDCA 4문서 docs/archive/2026-07/ 이관, _INDEX.md 생성, 가설 반증(Exit-A) 종결, .bkit-memory phase=archived
+🔒 feat(ci/security): CI 게이트 신설(lint·tsc·vitest, Node 24)+CSP 헤더 도입 — build-experiment non-blocking(linux 검증), site-quality CSP 회귀 테스트, PDCA plan/design 포함
