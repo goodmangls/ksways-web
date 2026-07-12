@@ -1,1 +1,1 @@
-🔒 feat(ci/security): CI 게이트 신설(lint·tsc·vitest, Node 24)+CSP 헤더 도입 — build-experiment non-blocking(linux 검증), site-quality CSP 회귀 테스트, PDCA plan/design 포함
+🔧 fix(csp): dev 전용 unsafe-eval·ws: 완화 분기 — react-refresh eval로 dev hydration 깨짐 해소, buildContentSecurityPolicy(isDev) 순수함수 추출로 prod/dev 정책 테스트 결정화
