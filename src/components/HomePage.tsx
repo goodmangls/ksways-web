@@ -368,17 +368,17 @@ export function HomePage({ locale, copy }: Props) {
             </nav>
           </div>
 
-          <div className="flex flex-col gap-5 pt-8 text-sm text-white/48 lg:flex-row lg:items-center lg:justify-between">
-            <div>
+          <div className="grid gap-6 pb-32 pt-8 text-sm text-white/48 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start lg:justify-between lg:pb-28">
+            <div className="max-w-2xl">
               <p className="font-black text-white/72">{copy.footer.companyName}</p>
               <p className="mt-1">{copy.footer.legal}</p>
               <p className="mt-2 max-w-xl leading-relaxed text-white/56">{copy.footer.address}</p>
             </div>
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-              <a href={`mailto:${copy.footer.email}`} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#6fffe7]">{copy.footer.email}</a>
-              <a href={phoneHref} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#6fffe7]">{copy.footer.phone}</a>
-              <span className="inline-flex min-h-11 items-center font-bold text-white/64">{copy.footer.fax}</span>
-              <span>© {new Date().getFullYear()} KS WAYS. All rights reserved.</span>
+            <div className="flex max-w-xl flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-1 lg:justify-end lg:text-right">
+              <a href={`mailto:${copy.footer.email}`} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#6fffe7] lg:justify-end">{copy.footer.email}</a>
+              <a href={phoneHref} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#6fffe7] lg:justify-end">{copy.footer.phone}</a>
+              <span className="inline-flex min-h-11 items-center font-bold text-white/64 lg:justify-end">{copy.footer.fax}</span>
+              <span className="basis-full text-white/42">© {new Date().getFullYear()} KS WAYS. All rights reserved.</span>
             </div>
           </div>
         </div>

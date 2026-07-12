@@ -20,4 +20,11 @@ describe('HomePage global logistics footer', () => {
     expect(source).toContain('min-h-11');
     expect(source).toContain('grid gap-10');
   });
+
+  it('keeps the legal/contact strip above floating messenger overlays', () => {
+    expect(source).toContain('pb-32');
+    expect(source).toContain('lg:pb-28');
+    expect(source).toContain('lg:grid-cols-[minmax(0,1fr)_auto]');
+    expect(source).toContain('basis-full text-white/42');
+  });
 });
