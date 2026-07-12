@@ -1,1 +1,1 @@
-📁 chore(pdca): ksways-ci-hardening archive — PDCA 4문서 docs/archive/2026-07/ 이관, _INDEX 갱신, prod 검증 GREEN(CSP·Intercom) 반영, .bkit-memory phase=archived
+🧹 chore(lint): eslint에 coverage/ ignore 추가 — 로컬 커버리지 산출물 경고 3건 제거, lint 완전 무경고화

@@ -1,3 +1,5 @@
 import nextVitals from 'eslint-config-next/core-web-vitals';
 
-export default nextVitals;
+const eslintConfig = [{ ignores: ['coverage/'] }, ...nextVitals];
+
+export default eslintConfig;
