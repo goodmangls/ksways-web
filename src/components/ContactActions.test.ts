@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { buildMailto } from './ContactActions';
+
+const source = readFileSync(join(process.cwd(), 'src/components/ContactActions.tsx'), 'utf8');
 
 function decodeMailto(href: string) {
   const url = new URL(href);
@@ -47,5 +51,10 @@ describe('structured KS WAYS mailto templates', () => {
     expect(mailto.body).toContain('HS Code');
     expect(mailto.body).toContain('화물 준비일');
     expect(mailto.body).toContain('특수 핸들링');
+  });
+
+  it('routes the visible quote CTA to the structured quote page instead of opening a raw mailto draft', () => {
+    expect(source).toContain("const quoteHref = '/quote';");
+    expect(source).toContain('{ href: quoteHref, label: quoteLabel');
   });
 });

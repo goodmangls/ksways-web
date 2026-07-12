@@ -19,6 +19,7 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.en.footer.tagline).toContain('global ocean and air logistics');
     expect(homeContent.en.footer.credentials.map((item) => item.label)).toEqual(['WCA Member', 'Ocean strength', 'Industry Experience']);
     expect(homeContent.en.footer.companyName).toBe('KS WAYS CO., LTD.');
+    expect(homeContent.en.footer.address).toBe('RM 909, Gangseo IT Valley, 82, Hwagok-ro 68-gil, Gangseo-gu, Seoul 07566, Republic of Korea');
     expect(homeContent.en.footer.email).toBe('info@ksways.co');
     expect(homeContent.en.footer.phone).toBe('Tel. +82 2 6961 5778');
     expect(homeContent.en.footer.fax).toBe('Fax +82 2 6961 5765');
@@ -27,6 +28,9 @@ describe('KS WAYS bilingual homepage content', () => {
     const englishContactColumn = homeContent.en.footer.columns.find((column) => column.title === 'Contact');
     expect(englishServicesColumn?.links.map((link) => link.label)).toContain('BridgeLogis');
     expect(englishContactColumn?.links.map((link) => link.label)).not.toContain('BridgeLogis');
+    expect(englishContactColumn?.links).toContainEqual({ label: 'Request a quote', href: '/quote' });
+    expect(englishContactColumn?.links).toContainEqual({ label: 'info@ksways.co', href: 'mailto:info@ksways.co' });
+    expect(englishContactColumn?.links.map((link) => link.label)).not.toContain('Email info@ksways.co');
   });
 
   it('emphasizes Korea-centered Northeast Asia reach and 30+ years of industry experience without naming benchmark companies', () => {
@@ -113,6 +117,7 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.kr.footer.tagline).toContain('글로벌 해상·항공 물류회사');
     expect(homeContent.kr.footer.credentials.map((item) => item.label)).toEqual(['WCA 회원사', '해운 강점', 'Industry Experience']);
     expect(homeContent.kr.footer.companyName).toBe('KS WAYS CO., LTD.');
+    expect(homeContent.kr.footer.address).toBe('RM 909, Gangseo IT Valley, 82, Hwagok-ro 68-gil, Gangseo-gu, Seoul 07566, Republic of Korea');
     expect(homeContent.kr.footer.email).toBe('info@ksways.co');
     expect(homeContent.kr.footer.phone).toBe('Tel. +82 2 6961 5778');
     expect(homeContent.kr.footer.fax).toBe('Fax +82 2 6961 5765');
@@ -121,5 +126,8 @@ describe('KS WAYS bilingual homepage content', () => {
     const koreanContactColumn = homeContent.kr.footer.columns.find((column) => column.title === '문의');
     expect(koreanServicesColumn?.links.map((link) => link.label)).toContain('BridgeLogis');
     expect(koreanContactColumn?.links.map((link) => link.label)).not.toContain('BridgeLogis');
+    expect(koreanContactColumn?.links).toContainEqual({ label: '견적 문의', href: '/quote' });
+    expect(koreanContactColumn?.links).toContainEqual({ label: 'info@ksways.co', href: 'mailto:info@ksways.co' });
+    expect(koreanContactColumn?.links.map((link) => link.label)).not.toContain('info@ksways.co 이메일');
   });
 });

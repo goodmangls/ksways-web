@@ -58,7 +58,7 @@ export function buildMailto(email: string, locale: Props['locale'], intent: Cont
 }
 
 export function ContactActions({ quoteLabel, partnerLabel, scheduleLabel, email, locale, scheduleUrl }: Props) {
-  const quoteHref = buildMailto(email, locale, 'quote');
+  const quoteHref = '/quote';
   const partnerHref = buildMailto(email, locale, 'partner');
   const scheduleHref = scheduleUrl?.trim() || buildMailto(email, locale, 'schedule');
   const scheduleIsExternal = Boolean(scheduleUrl?.trim());
