@@ -90,6 +90,27 @@ describe('QuoteForm interactions', () => {
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
 
+  it('warns when the draft exceeds the mailto length limit but still allows opening', async () => {
+    const user = userEvent.setup();
+    const navigate = vi.fn();
+    render(<QuoteForm navigate={navigate} initialValues={{ additionalNotes: 'x'.repeat(2200) }} />);
+
+    // 경고 배너는 데스크톱 aside와 모바일 review 박스 양쪽에 뜬다
+    expect(screen.getAllByRole('status')).toHaveLength(2);
+    expect(screen.getAllByRole('status')[0]).toHaveTextContent(/Copy request summary/);
+
+    await fillRequiredFields(user);
+    await user.click(getDesktopSubmitButton());
+
+    expect(navigate).toHaveBeenCalledTimes(1);
+  });
+
+  it('shows no length warning for a short draft', () => {
+    render(<QuoteForm />);
+
+    expect(screen.queryByRole('status')).not.toBeInTheDocument();
+  });
+
   it('copies the request summary to the clipboard', async () => {
     // userEvent.setup()이 jsdom에 동작하는 clipboard 스텁을 설치한다 — 그 위에 spy를 얹는다.
     const user = userEvent.setup();

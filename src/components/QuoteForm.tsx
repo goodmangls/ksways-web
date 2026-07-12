@@ -8,6 +8,7 @@ import {
   getShipmentTypeForTransportMode,
   getVisibleQuoteSections,
   isDgCargo,
+  QUOTE_MAILTO_LENGTH_LIMIT,
   quoteFormFields,
   transportModeOptions,
   type QuoteFormValues,
@@ -46,6 +47,8 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
   const dgSelected = isDgCargo(values);
   const missingRequiredFields = getMissingRequiredQuoteFields(values);
   const canOpenEmail = missingRequiredFields.length === 0;
+  const mailtoOverLimit = href.length > QUOTE_MAILTO_LENGTH_LIMIT;
+  const lengthWarning = 'This request is long — some email apps may truncate the prepared draft. We recommend “Copy request summary” and pasting the full details into your email instead.';
 
   function update(name: keyof QuoteFormValues, value: string) {
     setValidationMessage('');
@@ -193,6 +196,11 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
               {canOpenEmail ? 'All required fields are ready.' : `${missingRequiredFields.length} required fields left before opening a clean email draft.`}
             </p>
             {validationMessage ? <p className="mt-3 text-sm font-black text-[#a15c00]">{validationMessage}</p> : null}
+            {mailtoOverLimit ? (
+              <p role="status" className="mt-3 rounded-2xl border border-[#a15c00]/25 bg-[#a15c00]/8 p-4 text-sm font-bold leading-relaxed text-[#a15c00]">
+                {lengthWarning}
+              </p>
+            ) : null}
             <button
               type="button"
               onClick={handleOpenEmailDraft}
@@ -218,6 +226,11 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
               <span className="font-black text-white">Required status:</span> {canOpenEmail ? 'Ready to prepare email draft.' : `${missingRequiredFields.length} required fields left.`}
             </div>
           )}
+          {mailtoOverLimit ? (
+            <p role="status" className="mt-4 rounded-2xl border border-[#ffb84d]/40 bg-[#ffb84d]/12 p-4 text-sm font-bold leading-relaxed text-[#ffe8bd]">
+              {lengthWarning}
+            </p>
+          ) : null}
           <button
             type="button"
             onClick={handleOpenEmailDraft}

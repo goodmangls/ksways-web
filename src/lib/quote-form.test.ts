@@ -7,6 +7,8 @@ import {
   getShipmentTypeForTransportMode,
   getVisibleQuoteSections,
   isDgCargo,
+  isQuoteMailtoOverLimit,
+  QUOTE_MAILTO_LENGTH_LIMIT,
   quoteFormFields,
   requiredQuoteFieldNames,
   transportModeOptions,
@@ -192,14 +194,42 @@ describe('quote form mailto builder', () => {
     expect(mailto.body).toContain('- Special cargo notes: Temperature control, fragile handling');
   });
 
-  it('keeps empty optional values as visible blank prompts for operators', () => {
+  it('omits empty optional lines while keeping the section skeleton', () => {
     const mailto = decodeMailto(buildQuoteMailto({ companyName: 'Minimal Co.' }));
 
     expect(mailto.subject).toBe('KS WAYS website quote request — Minimal Co.');
-    expect(mailto.body).toContain('- Contact person / title:');
-    expect(mailto.body).toContain('- Origin:');
-    expect(mailto.body).toContain('- FCL container / equipment:');
-    expect(mailto.body).toContain('- Additional notes:');
+    expect(mailto.body).toContain('- Company name: Minimal Co.');
+    expect(mailto.body).not.toContain('- Contact person / title:');
+    expect(mailto.body).not.toContain('- Origin:');
+    expect(mailto.body).not.toContain('- FCL container / equipment:');
+    expect(mailto.body).not.toContain('- Additional notes:');
+  });
+
+  it('always keeps the five section headers so operators can scan a familiar structure', () => {
+    const { body } = decodeMailto(buildQuoteMailto({}));
+
+    for (const header of ['[Company / Contact]', '[Mode / Route]', '[Cargo]', '[Ocean / Equipment]', '[DG / Special Handling]']) {
+      expect(body).toContain(header);
+    }
+  });
+
+  it('keeps a required-only request comfortably under mail client URL limits', () => {
+    const href = buildQuoteMailto({
+      companyName: 'Acme Trading Co.',
+      contactName: 'Jane Lee / Logistics Manager',
+      emailOrPhone: 'jane@example.com / +82-10-0000-0000',
+      origin: 'Busan, Korea / KRPUS',
+      destination: 'Los Angeles, USA / USLAX',
+      commodity: 'Temperature-sensitive cosmetics',
+    });
+
+    expect(href.length).toBeLessThan(1000);
+    expect(href.length).toBeLessThanOrEqual(QUOTE_MAILTO_LENGTH_LIMIT);
+  });
+
+  it('flags drafts that exceed the documented mail client URL limit', () => {
+    expect(isQuoteMailtoOverLimit({ companyName: 'Acme Trading' })).toBe(false);
+    expect(isQuoteMailtoOverLimit({ companyName: 'Acme Trading', additionalNotes: 'x'.repeat(2000) })).toBe(true);
   });
 
   it('prefills special cargo quote context from the service query source', () => {
