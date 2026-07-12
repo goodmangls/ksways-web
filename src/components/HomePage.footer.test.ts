@@ -2,29 +2,38 @@ import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const source = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 'utf8');
+const footerSource = readFileSync(join(process.cwd(), 'src/components/SiteFooter.tsx'), 'utf8');
+const homePageSource = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 'utf8');
+const servicePageSource = readFileSync(join(process.cwd(), 'src/components/ServiceLandingPage.tsx'), 'utf8');
+const quotePageSource = readFileSync(join(process.cwd(), 'src/app/quote/page.tsx'), 'utf8');
 
-describe('HomePage global logistics footer', () => {
-  it('renders a dedicated footer landmark with global logistics trust sections', () => {
-    expect(source).toContain('<footer');
-    expect(source).toContain('aria-label="KS WAYS global logistics footer"');
-    expect(source).toContain('copy.footer.credentials.map');
-    expect(source).toContain('copy.footer.email');
-    expect(source).toContain('copy.footer.phone');
-    expect(source).toContain('copy.footer.fax');
-    expect(source).toContain('copy.footer.address');
-    expect(source).toContain('tel:${copy.footer.phone.replace');
+describe('KS WAYS global logistics footer', () => {
+  it('renders a dedicated reusable footer landmark with global logistics trust sections', () => {
+    expect(footerSource).toContain('<footer');
+    expect(footerSource).toContain('aria-label="KS WAYS global logistics footer"');
+    expect(footerSource).toContain('footer.credentials.map');
+    expect(footerSource).toContain('footer.email');
+    expect(footerSource).toContain('footer.phone');
+    expect(footerSource).toContain('footer.fax');
+    expect(footerSource).toContain('footer.address');
+    expect(footerSource).toContain('tel:${footer.phone.replace');
   });
 
   it('keeps footer links usable on mobile', () => {
-    expect(source).toContain('min-h-11');
-    expect(source).toContain('grid gap-10');
+    expect(footerSource).toContain('min-h-11');
+    expect(footerSource).toContain('grid gap-10');
   });
 
   it('keeps the legal/contact strip above floating messenger overlays', () => {
-    expect(source).toContain('pb-32');
-    expect(source).toContain('lg:pb-28');
-    expect(source).toContain('lg:grid-cols-[minmax(0,1fr)_auto]');
-    expect(source).toContain('basis-full text-white/42');
+    expect(footerSource).toContain('pb-32');
+    expect(footerSource).toContain('lg:pb-28');
+    expect(footerSource).toContain('lg:grid-cols-[minmax(0,1fr)_auto]');
+    expect(footerSource).toContain('basis-full text-white/42');
+  });
+
+  it('mounts the shared footer on home, service/network, and quote pages', () => {
+    expect(homePageSource).toContain('<SiteFooter footer={copy.footer} />');
+    expect(servicePageSource).toContain('<SiteFooter footer={homeContent.en.footer} />');
+    expect(quotePageSource).toContain('<SiteFooter footer={homeContent.en.footer} />');
   });
 });

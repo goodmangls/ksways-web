@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { ServicePage } from '@/lib/service-pages';
+import { homeContent } from '@/lib/content';
 import { faqJsonLd, serviceJsonLd, siteUrl } from '@/lib/seo';
+import { SiteFooter } from './SiteFooter';
 
 export function ServiceLandingPage({ page, basePath }: { page: ServicePage; basePath: 'services' | 'network' }) {
   const quoteHref = page.quoteServiceKey ? `/quote?service=${page.quoteServiceKey}` : '/quote';
@@ -119,6 +121,8 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
           </div>
         </div>
       </section>
+
+      <SiteFooter footer={homeContent.en.footer} />
     </main>
   );
 }
