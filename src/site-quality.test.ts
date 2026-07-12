@@ -2,6 +2,9 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import nextConfig, { buildContentSecurityPolicy } from '../next.config';
+import sitemap from '@/app/sitemap';
+import { homeSeo, shareImage } from '@/lib/seo';
+import { servicePages } from '@/lib/service-pages';
 
 describe('site quality hardening', () => {
   it('allows Next/Image to render approved Unsplash CDN images without exposing API keys', () => {
@@ -80,61 +83,25 @@ describe('site quality hardening', () => {
     expect(css).toContain('animation-duration: 0.01ms');
   });
 
-  it('adds FAQ visual affordance and mobile-safe CTA layout on landing pages', () => {
-    const homePage = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 'utf8');
-    const servicePage = readFileSync(join(process.cwd(), 'src/components/ServiceLandingPage.tsx'), 'utf8');
-
-    expect(homePage).toContain('aria-hidden="true"');
-    expect(homePage).toContain('group-open:rotate-45');
-    expect(servicePage).toContain('aria-hidden="true"');
-    expect(servicePage).toContain('group-open:rotate-45');
-    expect(servicePage).toContain('flex-col items-stretch');
-    expect(servicePage).toContain('w-full justify-center');
-    expect(servicePage).toContain('sm:w-auto');
-    expect(servicePage).toContain('trustCards');
-    expect(servicePage).toContain('Partner confidence');
-  });
-
-  it('keeps desktop marketing layouts centered in a corporate max-width container', () => {
-    const homePage = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 'utf8');
-    const servicePage = readFileSync(join(process.cwd(), 'src/components/ServiceLandingPage.tsx'), 'utf8');
-
-    expect(homePage).toContain('max-w-[1280px]');
-    expect(homePage).toContain('mx-auto max-w-[1280px]');
-    expect(homePage).toContain('min-h-[calc(100vh-78px)] w-full max-w-[1280px]');
-    expect(servicePage).toContain('max-w-[1180px]');
-    expect(servicePage).toContain('mx-auto max-w-[1180px]');
-    expect(servicePage).not.toContain('lg:px-14');
-  });
-
-  it('uses approved Unsplash logistics images as the rotating full-bleed hero background', () => {
-    const homePage = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 'utf8');
+  // FAQ affordance·CTA·trustCards·히어로 슬라이드 마크업 검증은 소스-grep에서 렌더 테스트로 이관됨:
+  // HomePage.render.test.tsx / ServiceLandingPage.render.test.tsx 참조.
+  // max-w 컨테이너 클래스 검증은 시각 회귀 영역으로 descope (component-render-tests design §3.3).
+  it('keeps the rotating hero background animation defined in global CSS', () => {
     const css = readFileSync(join(process.cwd(), 'src/app/globals.css'), 'utf8');
 
-    expect(homePage).toContain("import { getHeroUnsplashImages } from '@/lib/unsplash';");
-    expect(homePage).toContain('const heroBackgroundSlides = getHeroUnsplashImages();');
-    expect(homePage).toContain('HeroBackgroundSlideshow');
-    expect(homePage).toContain('ks-hero-bg-slide object-cover');
-    expect(homePage).toContain('ks-hero-bg-attribution');
-    expect(homePage).toContain('Photo:');
-    expect(homePage).toContain('Unsplash');
-    expect(homePage).not.toContain('ksways-hero-bg-ocean-port.svg');
-    expect(homePage).not.toContain('HeroLogisticsVisual');
-    expect(homePage).not.toContain('LIVE FLOW');
     expect(css).toContain('@keyframes ks-hero-bg-cycle');
     expect(css).toContain('animation-delay: calc(var(--ks-slide-index) * 7s)');
   });
 
   it('sets share-card images and Twitter metadata for home and service pages', () => {
-    const seo = readFileSync(join(process.cwd(), 'src/lib/seo.ts'), 'utf8');
-    const servicePages = readFileSync(join(process.cwd(), 'src/lib/service-pages.ts'), 'utf8');
+    for (const locale of ['en', 'kr'] as const) {
+      expect(homeSeo[locale].twitter).toMatchObject({ card: 'summary_large_image', images: [shareImage] });
+      expect(homeSeo[locale].openGraph?.images).toEqual([shareImage]);
+    }
 
-    expect(seo).toContain('shareImage');
-    expect(seo).toContain('twitter');
-    expect(seo).toContain('card: \'summary_large_image\'');
-    expect(seo).toContain('images: [shareImage]');
-    expect(servicePages).toContain('twitter');
-    expect(servicePages).toContain('images: [shareImage]');
+    for (const page of servicePages) {
+      expect(page.meta.twitter, `${page.slug} twitter metadata`).toMatchObject({ card: 'summary_large_image', images: [shareImage] });
+    }
   });
 
   it('keeps the Intercom messenger installed in the root layout', () => {
@@ -161,11 +128,21 @@ describe('site quality hardening', () => {
   });
 
   it('keeps sitemap entries prioritized with service/network routes and no stale static-only policy', () => {
-    const sitemap = readFileSync(join(process.cwd(), 'src/app/sitemap.ts'), 'utf8');
+    const entries = sitemap();
+    const urls = entries.map((entry) => entry.url);
 
-    expect(sitemap).toContain('servicePages.map');
-    expect(sitemap).toContain('/network/${page.slug}');
-    expect(sitemap).toContain("changeFrequency: route === '/' || route === '/kr' ? 'weekly' : 'monthly'");
-    expect(sitemap).toContain("priority: route === '/' ? 1 : route === '/kr' ? 0.9 : 0.8");
+    expect(urls).toContain('https://ksways.co');
+    expect(urls).toContain('https://ksways.co/kr');
+    expect(urls).toContain('https://ksways.co/quote');
+    expect(urls).toContain('https://ksways.co/network/korea-agent-network');
+    expect(urls.some((url) => url.includes('/services/'))).toBe(true);
+    expect(entries.length).toBe(3 + servicePages.length);
+
+    const home = entries.find((entry) => entry.url === 'https://ksways.co');
+    expect(home?.priority).toBe(1);
+    expect(home?.changeFrequency).toBe('weekly');
+    const service = entries.find((entry) => entry.url.includes('/services/'));
+    expect(service?.priority).toBe(0.8);
+    expect(service?.changeFrequency).toBe('monthly');
   });
 });

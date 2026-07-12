@@ -30,7 +30,12 @@ const sectionDescriptions = {
   handling: 'Operational constraints that affect feasibility, DG acceptance, cost, and routing quality.',
 } as const;
 
-export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmentType: 'Not sure' } }: { initialValues?: QuoteFormValues }) {
+type QuoteFormProps = {
+  initialValues?: QuoteFormValues;
+  navigate?: (href: string) => void;
+};
+
+export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmentType: 'Not sure' }, navigate }: QuoteFormProps) {
   const [values, setValues] = useState<QuoteFormValues>(initialValues);
   const [validationMessage, setValidationMessage] = useState('');
   const [copyStatus, setCopyStatus] = useState('');
@@ -77,7 +82,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
       return;
     }
 
-    window.location.href = href;
+    (navigate ?? ((target: string) => { window.location.href = target; }))(href);
   }
 
   async function handleCopySummary() {

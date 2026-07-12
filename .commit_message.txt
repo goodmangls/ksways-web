@@ -1,1 +1,1 @@
-🧹 chore(lint): eslint에 coverage/ ignore 추가 — 로컬 커버리지 산출물 경고 3건 제거, lint 완전 무경고화
+📋 docs(pdca): component-render-tests 완료 보고서 — Match 95%·71 tests·coverage 96.6%, 학습 5건, PR #17 merge 대기, .bkit-memory phase=completed

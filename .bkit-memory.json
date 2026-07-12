@@ -1,7 +1,13 @@
 {
-  "activeFeature": null,
-  "phase": "archived",
+  "activeFeature": "component-render-tests",
+  "phase": "completed",
   "features": {
+    "component-render-tests": {
+      "phase": "completed",
+      "matchRate": 95,
+      "createdAt": "2026-07-12",
+      "notes": "Design 확정(스모크 실측): jsdom(React19+RTL16 무설정 OK)·next/image alias mock(실컴포넌트 throw)·clipboard stubGlobal·location=navigate prop 주입(QuoteForm 유일한 프로덕션 변경). 인프라 선구축 완료: vitest include .tsx 확장(기존엔 .tsx 조용히 무시!)·setupFiles·mock·HomePage 스모크 2개, 57/57 GREEN. grep 12항목 매핑표: 유지6·렌더대체(6,8일부)·max-w descope(7)·데이터검증화(9,12). 중복텍스트 함정→role 스코프 쿼리. Do: QuoteForm 6시나리오→페이지 3종→매핑 적용→coverage 80%"
+    },
     "ksways-ci-hardening": {
       "phase": "archived",
       "matchRate": 100,
