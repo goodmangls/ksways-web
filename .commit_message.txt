@@ -1,1 +1,1 @@
-🚦 ci: build job 필수 게이트 승격 — build-experiment 3연속 PASS 근거, continue-on-error 제거
+📋 docs(pdca): mailto-optimization Plan 작성 — 빈 필드 생략+길이 가드 계획, .bkit-memory phase=plan (build 게이트 승격 PR #18 merge 직후)
