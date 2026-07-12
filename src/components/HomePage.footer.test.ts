@@ -24,6 +24,13 @@ describe('KS WAYS global logistics footer', () => {
     expect(footerSource).toContain('grid gap-10');
   });
 
+  it('uses the official reverse logo instead of a text-only footer brand mark', () => {
+    expect(footerSource).toContain('function FooterBrandLogo');
+    expect(footerSource).toContain('src="/assets/ksways-logo-reverse.png"');
+    expect(footerSource).toContain('aria-label="KS WAYS home"');
+    expect(footerSource).not.toContain('tracking-[.18em] text-[#6fffe7]">KS WAYS</p>');
+  });
+
   it('keeps the legal/contact strip above floating messenger overlays', () => {
     expect(footerSource).toContain('pb-32');
     expect(footerSource).toContain('lg:pb-28');
