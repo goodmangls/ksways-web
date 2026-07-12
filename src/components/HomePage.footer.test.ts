@@ -31,6 +31,12 @@ describe('KS WAYS global logistics footer', () => {
     expect(footerSource).toContain('basis-full text-white/42');
   });
 
+  it('breaks the Korea country line out from the street address', () => {
+    expect(footerSource).toContain("const countryLine = 'Seoul 07566, Republic of Korea'");
+    expect(footerSource).toContain('address.replace(`, ${countryLine}`, \'\')');
+    expect(footerSource).toContain('<span className="block">{countryLine}</span>');
+  });
+
   it('mounts the shared footer on home, service/network, and quote pages', () => {
     expect(homePageSource).toContain('<SiteFooter footer={copy.footer} />');
     expect(servicePageSource).toContain('<SiteFooter footer={homeContent.en.footer} />');

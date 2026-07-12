@@ -29,6 +29,18 @@ function FooterLink({ href, label }: { href: string; label: string }) {
   );
 }
 
+function FooterAddress({ address }: { address: string }) {
+  const countryLine = 'Seoul 07566, Republic of Korea';
+  const streetLine = address.replace(`, ${countryLine}`, '');
+
+  return (
+    <p className="mt-2 max-w-xl leading-relaxed text-white/56">
+      <span className="block">{streetLine}</span>
+      <span className="block">{countryLine}</span>
+    </p>
+  );
+}
+
 export function SiteFooter({ footer }: { footer: FooterCopy }) {
   const phoneHref = `tel:${footer.phone.replace(/[^+\d]/g, '')}`;
 
@@ -70,7 +82,7 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
           <div className="max-w-2xl">
             <p className="font-black text-white/72">{footer.companyName}</p>
             <p className="mt-1">{footer.legal}</p>
-            <p className="mt-2 max-w-xl leading-relaxed text-white/56">{footer.address}</p>
+            <FooterAddress address={footer.address} />
           </div>
           <div className="flex max-w-xl flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-1 lg:justify-end lg:text-right">
             <a href={`mailto:${footer.email}`} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#6fffe7] lg:justify-end">{footer.email}</a>
