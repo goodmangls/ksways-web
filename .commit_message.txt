@@ -1,1 +1,1 @@
-📁 chore(pdca): node24-build-fix archive — PDCA 4문서 docs/archive/2026-07/ 이관, _INDEX.md 생성, 가설 반증(Exit-A) 종결, .bkit-memory phase=archived
+📋 docs(pdca): ksways-ci-hardening 완료 보고서 — Match 100%·iterate 0회, 학습 4건 기록, PR #14 merge 대기 명기, .bkit-memory phase=completed

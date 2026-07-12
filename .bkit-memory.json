@@ -1,7 +1,13 @@
 {
-  "activeFeature": null,
-  "phase": "archived",
+  "activeFeature": "ksways-ci-hardening",
+  "phase": "completed",
   "features": {
+    "ksways-ci-hardening": {
+      "phase": "completed",
+      "matchRate": 100,
+      "createdAt": "2026-07-12",
+      "notes": "PR #14. CI 첫 실행 GREEN(quality 33s)+build-experiment PASS(linux 변수 해소!). 발견: ①preview는 Vercel Auth 보호로 headless 검증 불가→로컬 dev+prod 기준선으로 대체 ②dev CSP에 unsafe-eval 필요(react-refresh)→buildContentSecurityPolicy(isDev) 분기, vitest NODE_ENV=development라 순수함수 테스트로 결정화 ③Intercom dev 미부팅은 CSP 무관 사전존재(헤더 스트립 대조실험) ④prod origin 감사 notAllowed 0. 잔여: 2차 커밋 CI GREEN 확인, merge 후 prod CSP 스팟체크"
+    },
     "node24-build-fix": {
       "phase": "archived",
       "matchRate": 100,

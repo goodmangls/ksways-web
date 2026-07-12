@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import nextConfig from '../next.config';
+import nextConfig, { buildContentSecurityPolicy } from '../next.config';
 
 describe('site quality hardening', () => {
   it('allows Next/Image to render approved Unsplash CDN images without exposing API keys', () => {
@@ -23,6 +23,29 @@ describe('site quality hardening', () => {
     expect(headerMap.get('referrer-policy')).toBe('strict-origin-when-cross-origin');
     expect(headerMap.get('permissions-policy')).toContain('camera=()');
     expect(headerMap.get('x-frame-options')).toBe('DENY');
+  });
+
+  it('enforces a Content-Security-Policy limited to approved third parties', async () => {
+    const headers = await nextConfig.headers?.();
+    const globalHeaders = headers?.find((entry) => entry.source === '/(.*)')?.headers ?? [];
+    const headerMap = new Map(globalHeaders.map((header) => [header.key.toLowerCase(), header.value]));
+
+    expect(headerMap.get('content-security-policy')).toBeTruthy();
+
+    const prodCsp = buildContentSecurityPolicy(false);
+    expect(prodCsp).toContain("default-src 'self'");
+    expect(prodCsp).toContain('https://images.unsplash.com');
+    expect(prodCsp).toContain('https://widget.intercom.io');
+    expect(prodCsp).toContain('https://js.intercomcdn.com');
+    expect(prodCsp).toContain('wss://nexus-websocket-a.intercom.io');
+    expect(prodCsp).toContain("object-src 'none'");
+    expect(prodCsp).toContain("base-uri 'self'");
+    expect(prodCsp).toContain("frame-ancestors 'none'");
+    expect(prodCsp).not.toContain('unsafe-eval');
+    expect(prodCsp).not.toContain(' ws: ');
+
+    const devCsp = buildContentSecurityPolicy(true);
+    expect(devCsp).toContain("'unsafe-eval'");
   });
 
   it('keeps README aligned with the public KS WAYS brand and current route set', () => {
