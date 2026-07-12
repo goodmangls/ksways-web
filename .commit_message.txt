@@ -1,1 +1,1 @@
-📋 docs(pdca): mailto-optimization Plan 작성 — 빈 필드 생략+길이 가드 계획, .bkit-memory phase=plan (build 게이트 승격 PR #18 merge 직후)
+📐 docs(pdca): mailto-optimization Design — 형식(섹션 골격 유지)·가드(경고+진행)·임계치(1800) 확정, 데이터 주도 직렬화 스펙, .bkit-memory phase=design

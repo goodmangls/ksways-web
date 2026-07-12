@@ -1,11 +1,11 @@
 {
   "activeFeature": "mailto-optimization",
-  "phase": "plan",
+  "phase": "design",
   "features": {
     "mailto-optimization": {
-      "phase": "plan",
+      "phase": "design",
       "createdAt": "2026-07-12",
-      "notes": "코드 분석 M2(Task #4): buildQuoteEmailText 빈 필드 생략 + mailto 길이 가드(임계치 1800 기본). Design 결정 대기: 섹션 골격 vs 완전 생략(수신측 파싱 관행 — 사용자 확인 1회 필요), 경고 vs 자동 전환, 임계치 근거. 주의: quote-form.test.ts 218줄이 전체 직렬화 가정. 기반: navigate prop(렌더 테스트 가능)·CI 4게이트(build 승격 완료 PR #18)"
+      "notes": "Design 확정(미결 3건): 섹션 골격 유지+빈 라인 생략(사용자 확인 2026-07-12)·경고+진행 허용 가드(사용자 확인)·임계치 1800(최소 클라이언트 한도 2083−여유). 스펙: quoteEmailSections 데이터 주도 직렬화·isQuoteMailtoOverLimit·양쪽 CTA role=status 배너. Do 1단계=quote-form.ts/test·QuoteForm.tsx 재읽기(드리프트 학습). 검증: 필수만 입력 href<1000자 테스트 고정"
     },
     "component-render-tests": {
       "phase": "archived",
