@@ -1,1 +1,1 @@
-✉️ feat(quote): mailto 본문 최적화 — 빈 필드 라인 생략(섹션 골격 유지)+길이 가드(1800자 경고, 진행 허용), 데이터 주도 직렬화, 테스트 78개
+🔍 docs(pdca): mailto-optimization Gap 분석 — Match 100%·Gap 0, 사용자 확정 3건 반영 검증, .bkit-memory phase=check
