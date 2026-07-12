@@ -1,11 +1,12 @@
 {
   "activeFeature": "ksways-ci-hardening",
-  "phase": "design",
+  "phase": "completed",
   "features": {
     "ksways-ci-hardening": {
-      "phase": "design",
+      "phase": "completed",
+      "matchRate": 100,
       "createdAt": "2026-07-12",
-      "notes": "코드 분석(8.2/10) HIGH 2건: CI 게이트(lint·tsc·vitest, Node 24) + CSP 헤더. Design 확정: script-src='self'+'unsafe-inline'+Intercom 3호스트(nonce는 SSG 상실로 기각), 즉시 enforce+preview qa-capture 검증. Intercom US 도메인 2026-07-12 공식문서 확인. 변경 4파일: ci.yml(신규)·package.json(type-check)·next.config.ts(CSP)·site-quality.test.ts"
+      "notes": "PR #14. CI 첫 실행 GREEN(quality 33s)+build-experiment PASS(linux 변수 해소!). 발견: ①preview는 Vercel Auth 보호로 headless 검증 불가→로컬 dev+prod 기준선으로 대체 ②dev CSP에 unsafe-eval 필요(react-refresh)→buildContentSecurityPolicy(isDev) 분기, vitest NODE_ENV=development라 순수함수 테스트로 결정화 ③Intercom dev 미부팅은 CSP 무관 사전존재(헤더 스트립 대조실험) ④prod origin 감사 notAllowed 0. 잔여: 2차 커밋 CI GREEN 확인, merge 후 prod CSP 스팟체크"
     },
     "node24-build-fix": {
       "phase": "archived",

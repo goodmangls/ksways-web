@@ -1,1 +1,1 @@
-🔧 fix(csp): dev 전용 unsafe-eval·ws: 완화 분기 — react-refresh eval로 dev hydration 깨짐 해소, buildContentSecurityPolicy(isDev) 순수함수 추출로 prod/dev 정책 테스트 결정화
+📋 docs(pdca): ksways-ci-hardening 완료 보고서 — Match 100%·iterate 0회, 학습 4건 기록, PR #14 merge 대기 명기, .bkit-memory phase=completed
