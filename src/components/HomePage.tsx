@@ -4,7 +4,7 @@ import type { CSSProperties } from 'react';
 import type { Locale } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/i18n';
 import type { homeContent } from '@/lib/content';
-import { faqJsonLd, homeFaqs, organizationJsonLd } from '@/lib/seo';
+import { contactPointJsonLd, faqJsonLd, homeFaqs, organizationJsonLd, websiteJsonLd } from '@/lib/seo';
 import { getHeroUnsplashImages } from '@/lib/unsplash';
 import { ContactActions } from './ContactActions';
 import { HtmlLangSync } from './HtmlLangSync';
@@ -114,6 +114,16 @@ export function HomePage({ locale, copy }: Props) {
         id={`faq-jsonld-${locale}`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }}
+      />
+      <script
+        id={`website-jsonld-${locale}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd(locale)) }}
+      />
+      <script
+        id={`contact-point-jsonld-${locale}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPointJsonLd(locale)) }}
       />
       <section className="relative isolate min-h-screen overflow-hidden bg-[#001112] text-white">
         <HeroBackgroundSlideshow />

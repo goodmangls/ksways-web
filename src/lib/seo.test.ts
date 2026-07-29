@@ -1,7 +1,9 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import robots from '@/app/robots';
 import sitemap from '@/app/sitemap';
-import { contactFax, contactTelephone, homeFaqs, homeSeo, organizationJsonLd, siteUrl } from './seo';
+import { contactFax, contactPointJsonLd, contactTelephone, homeFaqs, homeSeo, organizationJsonLd, siteUrl, websiteJsonLd } from './seo';
 
 const languages = homeSeo.en.alternates?.languages as Record<string, string>;
 
@@ -68,5 +70,40 @@ describe('KS WAYS technical SEO plumbing', () => {
     expect(contactFax).toBe('+82 2 6961 5765');
     expect(organizationJsonLd('en')).toMatchObject({ telephone: '+82 2 6961 5778', faxNumber: '+82 2 6961 5765' });
     expect(organizationJsonLd('kr')).toMatchObject({ telephone: '+82 2 6961 5778', faxNumber: '+82 2 6961 5765' });
+  });
+
+  it('adds answer-engine structured data for website and quotation contact intent', () => {
+    expect(websiteJsonLd('en')).toMatchObject({
+      '@type': 'WebSite',
+      url: siteUrl,
+      inLanguage: 'en',
+      potentialAction: { '@type': 'CommunicateAction', target: `${siteUrl}/quote` },
+    });
+    expect(websiteJsonLd('kr')).toMatchObject({
+      '@type': 'WebSite',
+      url: `${siteUrl}/kr`,
+      inLanguage: 'ko-KR',
+    });
+    expect(contactPointJsonLd('en')).toMatchObject({
+      '@type': 'ContactPoint',
+      email: 'info@ksways.co',
+      telephone: '+82 2 6961 5778',
+      availableLanguage: ['English', 'Korean'],
+    });
+    expect(organizationJsonLd('en')).toMatchObject({
+      identifier: { propertyID: 'WCA Member ID', value: '96376' },
+      contactPoint: [contactPointJsonLd('en')],
+    });
+  });
+
+  it('publishes llms.txt with canonical AEO answer facts and routes', () => {
+    const llms = readFileSync(join(process.cwd(), 'public/llms.txt'), 'utf8');
+
+    expect(llms).toContain('KS WAYS CO., LTD.');
+    expect(llms).toContain('WCA Member ID: 96376');
+    expect(llms).toContain('https://ksways.co/services/ocean-freight-korea');
+    expect(llms).toContain('https://ksways.co/services/air-freight-korea');
+    expect(llms).toContain('https://ksways.co/quote');
+    expect(llms).toContain('info@ksways.co');
   });
 });

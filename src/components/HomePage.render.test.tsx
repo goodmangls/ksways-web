@@ -11,7 +11,7 @@ describe('HomePage render smoke', () => {
     const { container } = render(<HomePage locale="en" copy={homeContent.en} />);
 
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(homeContent.en.hero.headline.trim().slice(0, 12));
-    expect(container.querySelectorAll('script[type="application/ld+json"]')).toHaveLength(2);
+    expect(container.querySelectorAll('script[type="application/ld+json"]')).toHaveLength(4);
     expect(container.querySelectorAll('img[src*="images.unsplash.com"], img[srcset*="images.unsplash.com"]').length).toBeGreaterThan(0);
   });
 
