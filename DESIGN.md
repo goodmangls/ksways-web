@@ -241,6 +241,34 @@ Depth should feel like premium SaaS/logistics instrumentation, not decorative gl
 - Bronze glow may be used behind highlighted words, badges, or route lines, but keep it restrained and operational. The header/footer logos carry no glow — the official asset stands on its own.
 - Avoid harsh drop shadows, neon-heavy effects, or consumer-gaming glow.
 
+## Focus
+
+Keyboard focus uses a **two-tone ring**, defined once in `globals.css` and inherited everywhere. Measured outward from the element edge:
+
+| Layer | Token | Geometry |
+|---|---|---|
+| Inner | `primary` `#001112` | `box-shadow` spread `2px` |
+| Outer | `accent-soft` `#E7C99A` | `outline` `3px`, `outline-offset: 2px` |
+
+The bronze family is a mid-tone, so **no single ring color clears 3:1 on every surface**:
+
+| Single-color candidate | dark | paper | white |
+|---|---|---|---|
+| `#E7C99A` | 12.14 ✅ | 1.47 ❌ | 1.59 ❌ |
+| `#B88A5A` | 6.26 ✅ | 2.89 ❌ | 3.08 ⚠️ |
+| `#805D3B` | 3.26 ⚠️ | 5.55 ✅ | 5.92 ✅ |
+
+The two-tone ring solves it by complementarity — gold carries dark surfaces, navy carries light ones. Whichever surface the ring lands on, the better of the two layers measures at least **12.14:1**.
+
+The `2px` offset is deliberate: it exactly matches the inner spread so no page background shows between the layers. A wider offset would make the indicator's contrast depend on whatever happens to sit behind it.
+
+### Don't
+
+- **Never** use `outline-none` without an equally visible replacement. Removing the indicator is a WCAG 2.4.7 (Level A) failure, not a styling choice.
+- **Never** use Tailwind `ring-*` utilities on a focusable element. They compile to `box-shadow` and silently overwrite the inner layer — including static emphasis states, not just `focus:ring-*`.
+- **Never** express focus as a single bronze ring, and never tune these values by eye. `src/focus-visible.test.ts` computes them.
+- Border-color or background shifts on focus are supporting affordance only. They never carry the contrast requirement.
+
 ## Shapes
 
 Shapes are rounded and confident, with pills reserved for actions and badges.

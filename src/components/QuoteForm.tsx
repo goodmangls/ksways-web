@@ -97,7 +97,12 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
     }
   }
 
-  const commonClass = 'mt-2 min-h-12 w-full rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-4 py-3 text-base font-semibold text-[#001112] outline-none transition placeholder:text-[#001112]/35 focus:border-[#b88a5a] focus:bg-white focus:ring-4 focus:ring-[#b88a5a]/14';
+  // The global two-tone focus ring in globals.css owns the focus indicator here;
+  // nothing in this class may suppress the outline or add a shadow ring — see
+  // DESIGN.md "Focus" for the exact prohibitions, enforced by
+  // src/focus-visible.test.ts. The border/background shifts below are supporting
+  // affordance, not the indicator.
+  const commonClass = 'mt-2 min-h-12 w-full rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-4 py-3 text-base font-semibold text-[#001112] transition placeholder:text-[#001112]/35 focus:border-[#b88a5a] focus:bg-white';
 
   return (
     <section className="px-6 pb-20 sm:px-10 lg:px-14">
@@ -145,7 +150,9 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                     const isWide = field.type === 'textarea';
                     const isDgReviewField = field.name === 'unNumber' || field.name === 'dgClass';
                     const labelClass = isDgReviewField && dgSelected ? 'md:col-span-1 rounded-3xl border border-[#805d3b]/30 bg-[#faf4ec] p-3' : isWide ? 'md:col-span-2' : undefined;
-                    const inputClass = `${commonClass} ${isDgReviewField && dgSelected ? 'border-[#805d3b]/35 bg-white ring-4 ring-[#b88a5a]/12' : ''}`;
+                    // Emphasis via border weight, not a ring: Tailwind rings compile to
+                    // box-shadow and would overwrite the focus ring's inner layer.
+                    const inputClass = `${commonClass} ${isDgReviewField && dgSelected ? 'border-[#805d3b]/60 bg-white' : ''}`;
 
                     return (
                       <label key={field.name} className={labelClass}>

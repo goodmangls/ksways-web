@@ -27,8 +27,18 @@ body {
 a { color: inherit; }
 
 :focus-visible {
+  /* Two-tone focus ring. Geometry outward from the element edge:
+       0–2px  navy  (box-shadow spread, fills the outline-offset gap)
+       2–5px  gold  (outline)
+     Neither color clears 3:1 on every surface alone — bronze is a mid-tone — but
+     together one of them always does: gold carries dark surfaces (12.14:1), navy
+     carries light ones (17.89:1 on paper, 19.29:1 on white). Lowest margin 12.14:1.
+     Offset is 2px, not 4px: a wider gap exposes the page surface between the rings
+     and makes the indicator's contrast depend on whatever is behind it.
+     Asserted in src/focus-visible.test.ts — do not tune these by eye. */
   outline: 3px solid var(--ks-accent-soft);
-  outline-offset: 4px;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--ks-navy);
 }
 
 ::selection {
