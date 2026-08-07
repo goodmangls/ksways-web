@@ -109,9 +109,17 @@ A·B 는 자동 판정 가능하고, C 는 시각 판단이라 스크린샷만 �
 
 프로브 페이지는 `ksways-hero-attribution-a11y` §0 의 기법을 그대로 이식한다 — 엔진 무관하게 유효함이 확인된 방법이다.
 
-### 2.2 Safari 검증 절차 (수동, 문서화)
+### 2.2 Safari 검증 (v0.3 — 수동 → **safaridriver 자동화**)
 
-자동화하지 않는다. 절차를 `docs` 에 남겨 다음 사람이 재설계하지 않게 한다.
+> ⚠️ 초안(v0.1)은 "자동화하지 않는다" 였다. Do 단계에서 **`safaridriver` 가 Safari 18.4 에 동봉**돼 있고 W3C WebDriver **HTTP 서버**라는 점을 확인해, `fetch` 만으로 **의존성 0** 으로 실제 Safari 를 구동할 수 있음이 드러났다. Playwright WebKit 대리 검증보다 정확하고 수동 절차보다 재현 가능하므로 자동화로 전환한다.
+
+`scripts/verify-safari.mjs` — `safaridriver` 를 spawn 하고 WebDriver 엔드포인트를 직접 호출한다. npm 의존성을 추가하지 않는다(선택 이유는 D-4 와 동일).
+
+**전제 (GUI 토글 — 스크립트가 켤 수 없음)**: Safari → 설정 → 개발자용 → **원격 자동화 허용**. 미설정 시 `exit 2` 와 안내 메시지로 종료해 "미설정" 과 "실패" 를 구분한다.
+
+**Tab 하이라이트 설정 의존성 제거**: 이 설정은 `<a>` 가 Tab 순서에 들어가는지만 좌우하고 **폼 컨트롤은 설정과 무관하게 항상 Tab 대상**이다. 따라서 프로브의 각 컨테이너에 `<input>` 을 함께 넣어 **설정 없이도 B 판정이 성립**하게 했다. 검증하려는 엔진 질문(`visibility: hidden` 이 순차 포커스에서 요소를 빼는가)이 사용자 설정에 좌우되어서는 안 된다.
+
+수동으로 할 경우의 절차도 함께 남긴다.
 
 1. `npm run dev`
 2. Safari 로 `http://localhost:3000/quote` → `Tab` 으로 입력 필드 순회 → 포커스 링이 **둥근 모서리를 따르는지** 육안 확인
@@ -136,7 +144,9 @@ A·B 는 자동 판정 가능하고, C 는 시각 판단이라 스크린샷만 �
 
 | 파일 | 변경 |
 |---|---|
+| `scripts/lib/css-engine-probe.mjs` | 신규 (v0.3 — 공유 프로브. 실제 globals.css 인라인, 두 러너가 동일 마크업 사용) |
 | `scripts/verify-css-engines.mjs` | 신규 (Playwright Firefox 검증) |
+| `scripts/verify-safari.mjs` | 신규 (v0.3 — safaridriver/WebDriver, 의존성 0) |
 | `src/browser-target.test.ts` | 신규 (가드 1건) |
 | `DESIGN.md` | `## Browser Support` 신설 |
 | `docs` (analysis) | Safari 수동 검증 결과 기록 |
@@ -180,4 +190,5 @@ A·B 는 자동 판정 가능하고, C 는 시각 판단이라 스크린샷만 �
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
 | 0.1 | 2026-08-07 | Initial draft — 선행 조사로 타깃이 미문서화였음을 확인(Next 실효값), Tailwind v4 무관 반증, 비용 실측(firefox 102MB·webkit 77MB) 후 WebKit 제외 하이브리드 채택 | jhlim725 |
+| 0.3 | 2026-08-07 | **전환** — Safari 를 수동에서 `safaridriver` 자동화로. 프로브에 `<input>` 추가로 Tab 하이라이트 설정 의존성 제거. 공유 프로브 모듈 분리 | jhlim725 |
 | 0.2 | 2026-08-07 | **정정** — D-4 실행 방식. `npx playwright` 로는 스크립트의 `import('playwright')` 가 해석되지 않아 `--no-save` + `SKIP_BROWSER_DOWNLOAD` 조합으로 교체. `.gitignore` `tmp/` 추가 | jhlim725 |

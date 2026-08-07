@@ -46,11 +46,9 @@
  *      credits, only the currently visible pair should be reachable.
  */
 
-import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
-import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { PROBES, ROOT, buildProbePage } from './lib/css-engine-probe.mjs';
 
 function arg(name, fallback) {
   const i = process.argv.indexOf(`--${name}`);
@@ -59,45 +57,6 @@ function arg(name, fallback) {
 
 const BROWSER = arg('browser', 'firefox');
 const OUT_DIR = arg('out', join(ROOT, 'tmp', 'css-engine-verification'));
-
-/** Frozen points on the 21s cycle, chosen to straddle every keyframe segment. */
-const PROBES = [
-  { id: 'p0', delay: '0s', progress: '0% — 완전 가시', expect: 'visible' },
-  { id: 'p1', delay: '-6.3s', progress: '30% — 페이드 중', expect: 'visible' },
-  { id: 'p2', delay: '-6.72s', progress: '32% — 페이드 중', expect: 'visible' },
-  { id: 'p3', delay: '-10s', progress: '47.6% — 완전 비가시', expect: 'hidden' },
-  { id: 'p4', delay: '-19.95s', progress: '95% — 페이드 인 시작', expect: 'visible' },
-];
-
-function buildProbePage() {
-  const css = readFileSync(join(ROOT, 'src/app/globals.css'), 'utf8').replace(
-    /^@import\s+["']tailwindcss["'];?\s*$/m,
-    '',
-  );
-
-  const credits = PROBES.map(
-    (p) => `
-    <p class="ks-hero-bg-attribution" id="${p.id}"
-       style="animation-delay:${p.delay};animation-play-state:paused">
-      ${p.id} <a href="#" id="${p.id}-a">link-${p.id}-a</a> /
-      <a href="#" id="${p.id}-b">link-${p.id}-b</a>
-    </p>`,
-  ).join('');
-
-  return `<!doctype html><html><head><meta charset="utf-8"><style>
-${css}
-body { background: #001112; color: #fff; font: 14px system-ui; padding: 24px; }
-.probe-input {
-  display: block; margin-top: 32px; padding: 12px 16px; font-size: 16px;
-  border-radius: 16px; border: 1px solid rgba(255,255,255,.3);
-  background: #fff; color: #001112; width: 320px;
-}
-</style></head><body>
-  <div id="credits">${credits}</div>
-  <input class="probe-input" id="rounded" placeholder="rounded — focus ring shape probe" />
-  <a href="#" id="sentinel">sentinel</a>
-</body></html>`;
-}
 
 async function main() {
   const { [BROWSER]: engine } = await import('playwright');
@@ -143,7 +102,7 @@ async function main() {
 
   console.log(`\n[${BROWSER}] B. Tab 순서`);
   for (const p of PROBES) {
-    const hit = reached.has(`${p.id}-a`) || reached.has(`${p.id}-b`);
+    const hit = reached.has(`${p.id}-link`) || reached.has(`${p.id}-input`);
     const shouldReach = p.expect === 'visible';
     const ok = hit === shouldReach;
     if (!ok) {

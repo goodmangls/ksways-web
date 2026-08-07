@@ -1,1 +1,1 @@
-🌐 크로스브라우저 검증 도입 — 지원 타깃 문서화·고정(가드 3건) + Firefox 엔진 검증 스크립트, Firefox 153 통과
+🧭 Safari 검증을 safaridriver 자동화로 전환 — 의존성 0, Tab 하이라이트 설정 의존성도 제거(input 프로브)
