@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  --ks-ink: #f7fbfb;
   --ks-navy: #001112;
   --ks-navy-2: #031d20;
   --ks-paper: #f6f8f8;
@@ -19,7 +18,12 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  color: var(--ks-ink);
+  /* `--ks-navy` is the ink. There used to be a `--ks-ink: #f7fbfb` here, which
+     is near-white — 1.02:1 against `--ks-paper`, i.e. invisible body text — and it
+     also contradicted DESIGN.md, where `ink` is #001112. Nothing else referenced
+     it, so every page happened to mask it by setting its own text color on
+     <main>. Asserted in src/brand-palette.test.ts. */
+  color: var(--ks-navy);
   background: var(--ks-paper);
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
