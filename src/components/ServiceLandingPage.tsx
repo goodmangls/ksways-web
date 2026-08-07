@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import type { ServicePage } from '@/lib/service-pages';
 import { homeContent } from '@/lib/content';
 import { faqJsonLd, serviceJsonLd, siteUrl } from '@/lib/seo';
+import { BrandLogo } from './BrandLogo';
 import { SiteFooter } from './SiteFooter';
 
 export function ServiceLandingPage({ page, basePath }: { page: ServicePage; basePath: 'services' | 'network' }) {
@@ -28,16 +28,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(184,138,90,.26),transparent_30%),linear-gradient(120deg,rgba(0,17,18,.98),rgba(2,31,34,.88))]" />
         <div className="relative z-10 mx-auto max-w-[1180px]">
           <header className="flex items-center justify-between gap-6">
-            <Link href="/" className="group flex items-center" aria-label="KS WAYS home">
-              <Image
-                src="/assets/ksways-logo-reverse.png"
-                alt="KS WAYS"
-                width={935}
-                height={337}
-                priority
-                className="h-8 w-auto object-contain transition-transform group-hover:scale-[1.03] sm:h-9"
-              />
-            </Link>
+            <BrandLogo priority />
             <a href={quoteHref} className="inline-flex min-h-11 items-center rounded-full bg-[#b88a5a] px-5 text-sm font-black text-[#001112]">
               Get a quote
             </a>

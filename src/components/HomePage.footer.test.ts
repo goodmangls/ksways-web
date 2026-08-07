@@ -25,10 +25,15 @@ describe('KS WAYS global logistics footer', () => {
   });
 
   it('uses the official reverse logo instead of a text-only footer brand mark', () => {
-    expect(footerSource).toContain('function FooterBrandLogo');
-    expect(footerSource).toContain('src="/assets/ksways-logo-reverse.png"');
-    expect(footerSource).toContain('aria-label="KS WAYS home"');
+    // The markup moved into the shared BrandLogo component; the footer now
+    // renders it rather than carrying its own copy.
+    expect(footerSource).toContain('<BrandLogo');
+    expect(footerSource).toContain("from './BrandLogo'");
     expect(footerSource).not.toContain('tracking-[.18em] text-[#e7c99a]">KS WAYS</p>');
+
+    const brandLogoSource = readFileSync(join(process.cwd(), 'src/components/BrandLogo.tsx'), 'utf8');
+    expect(brandLogoSource).toContain('src="/assets/ksways-logo-reverse.png"');
+    expect(brandLogoSource).toContain('aria-label="KS WAYS home"');
   });
 
   it('keeps the legal/contact strip above floating messenger overlays', () => {

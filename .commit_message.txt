@@ -1,1 +1,1 @@
-🐛 body 기본 텍스트색 오류 수정 — --ks-ink(#f7fbfb, 1.02:1) 제거하고 --ks-navy 로 통일, 대비 가드 추가
+♻️ 로고 구현 4벌을 BrandLogo 공유 컴포넌트로 통합(터치 타깃 결함 1건·죽은 group 클래스 해소) + 고아 스크립트 qa-screenshots.js 삭제

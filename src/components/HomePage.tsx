@@ -6,6 +6,7 @@ import { getLocalizedPath } from '@/lib/i18n';
 import type { homeContent } from '@/lib/content';
 import { faqJsonLd, homeFaqs, organizationJsonLd } from '@/lib/seo';
 import { getHeroUnsplashImages } from '@/lib/unsplash';
+import { BrandLogo } from './BrandLogo';
 import { ContactActions } from './ContactActions';
 import { HtmlLangSync } from './HtmlLangSync';
 import { SiteFooter } from './SiteFooter';
@@ -18,19 +19,6 @@ type Props = {
 };
 
 const heroBackgroundSlides = getHeroUnsplashImages();
-
-function BrandLogo({ priority = false }: { priority?: boolean }) {
-  return (
-    <Image
-      src="/assets/ksways-logo-reverse.png"
-      alt="KS WAYS"
-      width={935}
-      height={337}
-      priority={priority}
-      className="h-8 w-auto object-contain sm:h-9"
-    />
-  );
-}
 
 function HighlightedHeadline({ headline }: { headline: string }) {
   const english = headline.split(' global ');
@@ -120,9 +108,7 @@ export function HomePage({ locale, copy }: Props) {
         <div className="absolute inset-0 -z-20 bg-[#001112]/35" />
 
         <header className="relative z-10 mx-auto flex h-[78px] w-full max-w-[1280px] items-center justify-between px-6 sm:px-10 lg:px-8">
-          <Link href={locale === 'en' ? '/' : '/kr'} className="group flex min-h-11 items-center" aria-label="KS WAYS home">
-            <BrandLogo priority />
-          </Link>
+          <BrandLogo href={locale === 'en' ? '/' : '/kr'} priority />
           <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-sm font-bold text-white/72 lg:flex">
             <a href="#company" className="transition hover:text-white">{copy.nav.company}</a>
             <a href="#services" className="transition hover:text-white">{copy.nav.services}</a>
