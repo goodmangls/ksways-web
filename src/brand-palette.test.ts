@@ -12,6 +12,12 @@ import { describe, expect, it } from 'vitest';
  * (`var(--ks-cyan)`) rather than the values behind them.
  *
  * These tests assert the values, site-wide, and keep DESIGN.md honest.
+ *
+ * Scope is deliberately `src/**` plus DESIGN.md — everything that renders.
+ * `public/assets/*.svg` is NOT scanned: those six files still carry the retired
+ * neon palette (102 occurrences) but are orphaned — nothing in the repo
+ * references them, and the hero renders Unsplash photography instead. If any of
+ * them is ever wired back up, recolor it first and widen this scan.
  */
 
 const SRC = join(process.cwd(), 'src');
