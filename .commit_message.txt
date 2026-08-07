@@ -1,1 +1,1 @@
-📄 docs(pdca): ksways-hero-attribution-a11y 완료 보고서 — Match 84%(90% 미만 예외 근거 명시), 학습 5건
+📁 chore(pdca): ksways-hero-attribution-a11y archive — 4문서를 docs/archive/2026-08/ 로 이관, _INDEX 학습 5건 추가
