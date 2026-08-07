@@ -32,3 +32,4 @@ pnpm-debug.log*
 # local QA artifacts
 playwright-report/
 test-results/
+tmp/
