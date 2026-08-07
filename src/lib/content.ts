@@ -27,25 +27,21 @@ export type HomeCopy = {
     controlCenter: string;
   };
   company: {
-    kicker: string;
     headline: string;
     body: string;
     pillars: Service[];
   };
   operating: {
-    kicker: string;
     headline: string;
     body: string;
     services: Service[];
   };
   network: {
-    kicker: string;
     headline: string;
     body: string;
     points: string[];
   };
   solutions: {
-    kicker: string;
     headline: string;
     body: string;
     steps: Service[];
@@ -101,7 +97,6 @@ export const homeContent: Record<Locale, HomeCopy> = {
       controlCenter: 'KS WAYS',
     },
     company: {
-      kicker: 'Company',
       headline: 'A global logistics company built for ocean and air freight execution.',
       body: 'KS WAYS CO., LTD. combines 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding with partner access across Korea, China, Japan, and wider trade lanes.',
       pillars: [
@@ -111,7 +106,6 @@ export const homeContent: Record<Locale, HomeCopy> = {
       ],
     },
     operating: {
-      kicker: 'Services',
       headline: 'Ocean-led freight solutions with fast air cargo support.',
       body: 'KS WAYS supports ocean freight, air freight, special cargo review, and cross-border flows with a clean operating rhythm: understand the shipment, select the route, coordinate the handoff, and keep partners informed.',
       services: [
@@ -123,13 +117,11 @@ export const homeContent: Record<Locale, HomeCopy> = {
       ],
     },
     network: {
-      kicker: 'Partner network',
       headline: 'WCA-backed cooperation for global cargo movement.',
       body: 'As a WCA member, KS WAYS works from Korea’s Northeast Asia position with China and Japan in reach, giving global freight forwarders practical routing, responsive updates, and partner-safe handoff control.',
       points: ['WCA member network', 'Northeast Asia: Korea · China · Japan', 'Ocean · Air cargo coordination', 'Partner-safe handoff control'],
     },
     solutions: {
-      kicker: 'How we work',
       headline: 'A clearer path for every enquiry.',
       body: 'From the first request to final delivery, KS WAYS keeps the process focused on the facts that matter: cargo readiness, route feasibility, cost, risk, timing, and handoff responsibility.',
       steps: [
@@ -215,7 +207,6 @@ export const homeContent: Record<Locale, HomeCopy> = {
       controlCenter: 'KS WAYS',
     },
     company: {
-      kicker: '회사 소개',
       headline: '해상과 항공 운송 실행력을 갖춘 글로벌 물류회사.',
       body: 'KS WAYS CO., LTD.는 항공화물, 특송 물류, 해운사 운영, 글로벌 포워딩 전반에서 축적한 30년 이상 Industry Experience와 한국·중국·일본을 잇는 동북아 파트너 접근성을 결합합니다.',
       pillars: [
@@ -225,7 +216,6 @@ export const homeContent: Record<Locale, HomeCopy> = {
       ],
     },
     operating: {
-      kicker: '서비스',
       headline: '해상을 중심으로 긴급 항공까지 연결하는 운송 솔루션.',
       body: 'KS WAYS는 해상 운송, 항공 운송, 특수화물 검토, 크로스보더 화물 흐름을 지원하며, 화물 이해·라우트 선정·핸드오프 조율·파트너 커뮤니케이션을 일관된 리듬으로 관리합니다.',
       services: [
@@ -237,13 +227,11 @@ export const homeContent: Record<Locale, HomeCopy> = {
       ],
     },
     network: {
-      kicker: '파트너 네트워크',
       headline: '글로벌 화물 이동을 위한 WCA 기반 에이전트 협력.',
       body: 'KS WAYS는 WCA 회원사로서 한국을 동북아 전략 거점으로 삼아 중국·일본과 연결되는 지역적 강점을 활용하고, 실질적인 라우팅, 빠른 커뮤니케이션, 책임 있는 핸드오프를 중심으로 글로벌 에이전트 협력을 운영합니다.',
       points: ['WCA 회원 네트워크', '동북아: 한국 · 중국·일본', '30년 이상 항공·해운·포워딩 경험', '글로벌 파트너 커버리지'],
     },
     solutions: {
-      kicker: '업무 방식',
       headline: '모든 문의에 더 명확한 다음 경로를 제시합니다.',
       body: '첫 문의부터 최종 배송까지, KS WAYS는 화물 준비 상태, 라우트 가능성, 비용, 리스크, 일정, 핸드오프 책임이라는 핵심 사실에 집중합니다.',
       steps: [
