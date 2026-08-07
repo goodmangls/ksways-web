@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { contrastRatio } from './test-utils/contrast';
 
 /**
  * Guards the bronze brand palette introduced in the 2026-08 pivot.
@@ -58,26 +59,6 @@ function collectRenderableFiles(dir: string): string[] {
     if (SKIP_FILES.has(entry)) return [];
     return /\.(ts|tsx|css|svg|json)$/.test(entry) ? [join(dir, entry)] : [];
   });
-}
-
-function relativeLuminance(hex: string): number {
-  const value = parseInt(hex.slice(1), 16);
-  const channel = (raw: number) => {
-    const c = raw / 255;
-    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
-  };
-  return (
-    0.2126 * channel((value >> 16) & 255) +
-    0.7152 * channel((value >> 8) & 255) +
-    0.0722 * channel(value & 255)
-  );
-}
-
-function contrastRatio(foreground: string, background: string): number {
-  const a = relativeLuminance(foreground);
-  const b = relativeLuminance(background);
-  const [lighter, darker] = a > b ? [a, b] : [b, a];
-  return (lighter + 0.05) / (darker + 0.05);
 }
 
 const sourceFiles = collectRenderableFiles(ROOT);
