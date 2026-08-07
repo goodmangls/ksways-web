@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import type { FooterCopy } from '@/lib/content';
+import { BrandLogo } from './BrandLogo';
 
 function FooterLink({ href, label }: { href: string; label: string }) {
   const isExternal = href.startsWith('http');
@@ -42,20 +42,6 @@ function FooterAddress({ address }: { address: string }) {
   );
 }
 
-function FooterBrandLogo() {
-  return (
-    <Link href="/" aria-label="KS WAYS home" className="group inline-flex min-h-11 items-center">
-      <Image
-        src="/assets/ksways-logo-reverse.png"
-        alt="KS WAYS"
-        width={935}
-        height={337}
-        className="h-8 w-auto object-contain transition-transform group-hover:scale-[1.03] sm:h-9"
-      />
-    </Link>
-  );
-}
-
 export function SiteFooter({ footer }: { footer: FooterCopy }) {
   const phoneHref = `tel:${footer.phone.replace(/[^+\d]/g, '')}`;
 
@@ -65,7 +51,7 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
       <div className="relative z-10 mx-auto max-w-[1180px]">
         <div className="grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1.12fr_.88fr] lg:items-start">
           <div>
-            <FooterBrandLogo />
+            <BrandLogo />
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/66">{footer.tagline}</p>
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {footer.credentials.map((item) => (

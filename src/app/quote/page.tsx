@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { BrandLogo } from '@/components/BrandLogo';
 import { QuoteForm } from '@/components/QuoteForm';
 import { SiteFooter } from '@/components/SiteFooter';
 import { getQuoteInitialValues } from '@/lib/quote-form';
@@ -43,16 +43,7 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(184,138,90,.26),transparent_30%),linear-gradient(120deg,rgba(0,17,18,.98),rgba(2,31,34,.88))]" />
         <div className="relative z-10">
           <header className="flex items-center justify-between gap-6">
-            <Link href="/" className="group flex min-h-11 items-center" aria-label="KS WAYS home">
-              <Image
-                src="/assets/ksways-logo-reverse.png"
-                alt="KS WAYS"
-                width={935}
-                height={337}
-                priority
-                className="h-8 w-auto object-contain transition-transform group-hover:scale-[1.03] sm:h-9"
-              />
-            </Link>
+            <BrandLogo priority />
             <Link href="/#services" className="inline-flex min-h-11 items-center rounded-full border border-white/40 px-5 text-sm font-black text-white transition hover:border-white">
               Services
             </Link>
