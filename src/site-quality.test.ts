@@ -77,7 +77,7 @@ describe('site quality hardening', () => {
     const css = readFileSync(join(process.cwd(), 'src/app/globals.css'), 'utf8');
 
     expect(css).toContain(':focus-visible');
-    expect(css).toContain('outline: 3px solid var(--ks-cyan)');
+    expect(css).toContain('outline: 3px solid var(--ks-accent-soft)');
     expect(css).toContain('@media (prefers-reduced-motion: reduce)');
     expect(css).toContain('scroll-behavior: auto');
     expect(css).toContain('animation-duration: 0.01ms');

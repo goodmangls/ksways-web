@@ -7,8 +7,8 @@ const source = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 
 describe('HomePage mobile optimization classes', () => {
   it('relaxes mobile display heading line-height while preserving tighter desktop display rhythm', () => {
     expect(source).toContain('leading-[1.04]');
-    expect(source).toContain('sm:leading-[.9]');
-    expect(source).toContain('sm:leading-[.96]');
+    expect(source).toContain('sm:leading-[.92]');
+    expect(source).toContain('sm:leading-[.98]');
   });
 
   it('stacks hero CTAs as full-width touch targets on mobile and restores inline CTAs on larger screens', () => {

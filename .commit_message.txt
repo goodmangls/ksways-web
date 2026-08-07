@@ -1,1 +1,1 @@
-📁 chore(pdca): mailto-optimization archive — PDCA 4문서 이관·_INDEX 갱신, 당일 3사이클(코드 분석 발원 이슈 전체) 종결, .bkit-memory phase=archived
+🧹 고아 SVG 6개 삭제 후 팔레트 가드를 저장소 전역으로 확대 (구 팔레트 102건 소멸)

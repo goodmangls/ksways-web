@@ -5,7 +5,7 @@ import type { FooterCopy } from '@/lib/content';
 function FooterLink({ href, label }: { href: string; label: string }) {
   const isExternal = href.startsWith('http');
   const isInternalRoute = href.startsWith('/');
-  const className = 'inline-flex min-h-11 items-center text-sm font-bold text-white/62 transition hover:text-[#6fffe7]';
+  const className = 'inline-flex min-h-11 items-center text-sm font-bold text-white/62 transition hover:text-[#e7c99a]';
 
   if (isExternal) {
     return (
@@ -50,7 +50,7 @@ function FooterBrandLogo() {
         alt="KS WAYS"
         width={935}
         height={337}
-        className="h-8 w-auto object-contain drop-shadow-[0_0_18px_rgba(33,212,194,.18)] transition-transform group-hover:scale-[1.03] sm:h-9"
+        className="h-8 w-auto object-contain transition-transform group-hover:scale-[1.03] sm:h-9"
       />
     </Link>
   );
@@ -61,7 +61,7 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
 
   return (
     <footer aria-label="KS WAYS global logistics footer" className="relative overflow-hidden bg-[#001112] px-6 pb-8 pt-16 text-white sm:px-10 lg:px-8">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_0%,rgba(33,212,194,.16),transparent_28%),linear-gradient(145deg,rgba(255,255,255,.05),transparent_38%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_0%,rgba(184,138,90,.16),transparent_28%),linear-gradient(145deg,rgba(255,255,255,.05),transparent_38%)]" />
       <div className="relative z-10 mx-auto max-w-[1180px]">
         <div className="grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1.12fr_.88fr] lg:items-start">
           <div>
@@ -100,8 +100,8 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
             <FooterAddress address={footer.address} />
           </div>
           <div className="flex max-w-xl flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-1 lg:justify-end lg:text-right">
-            <a href={`mailto:${footer.email}`} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#6fffe7] lg:justify-end">{footer.email}</a>
-            <a href={phoneHref} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#6fffe7] lg:justify-end">{footer.phone}</a>
+            <a href={`mailto:${footer.email}`} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#e7c99a] lg:justify-end">{footer.email}</a>
+            <a href={phoneHref} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#e7c99a] lg:justify-end">{footer.phone}</a>
             <span className="inline-flex min-h-11 items-center font-bold text-white/64 lg:justify-end">{footer.fax}</span>
             <span className="basis-full text-white/42">© {new Date().getFullYear()} KS WAYS. All rights reserved.</span>
           </div>

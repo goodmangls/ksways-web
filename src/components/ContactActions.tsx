@@ -85,8 +85,8 @@ export function ContactActions({ quoteLabel, partnerLabel, scheduleLabel, email,
           rel={action.external ? 'noopener noreferrer' : undefined}
           className={
             action.primary
-              ? 'group rounded-[24px] bg-gradient-to-br from-[#21d4c2] to-[#6fffe7] p-[1px] text-[#001112] shadow-[0_18px_46px_rgba(33,212,194,.22)] transition hover:scale-[1.015]'
-              : 'group rounded-[24px] border border-white/16 bg-white/[.06] p-[1px] text-white transition hover:border-[#6fffe7]/60 hover:bg-white/[.09]'
+              ? 'group rounded-[24px] bg-[#b88a5a] p-[1px] text-[#001112] shadow-[0_18px_46px_rgba(184,138,90,.22)] transition hover:scale-[1.015]'
+              : 'group rounded-[24px] border border-white/16 bg-white/[.06] p-[1px] text-white transition hover:border-[#e7c99a]/60 hover:bg-white/[.09]'
           }
         >
           <span className={action.primary ? 'block rounded-[23px] px-6 py-4' : 'block rounded-[23px] px-6 py-4'}>

@@ -1,60 +1,64 @@
 ---
 version: alpha
 name: KS WAYS Global Logistics
-description: Premium ocean-led global logistics identity for KS WAYS CO., LTD.; dark control-tower confidence, teal route intelligence, and crisp B2B execution.
+description: Premium ocean-led global logistics identity for KS WAYS CO., LTD.; dark control-tower confidence, warm bronze route intelligence, and crisp B2B execution.
 colors:
   primary: "#001112"
   secondary: "#031D20"
-  tertiary: "#21D4C2"
+  tertiary: "#B88A5A"
+  tertiary-hover: "#A5794D"
   neutral: "#F4F7F6"
   ink: "#001112"
   paper: "#F4F7F6"
   white: "#FFFFFF"
-  cyan: "#6FFFE7"
-  blue: "#2D8CFF"
+  accent-soft: "#E7C99A"
+  accent-ink: "#805D3B"
+  accent-tint: "#FAF4EC"
+  steel: "#5F6F78"
   muted: "#7D888A"
-  success: "#007F74"
+  warning: "#A15C00"
+  warning-bright: "#FFB84D"
   border-dark: "#1F3436"
   border-light: "#D9E2E0"
 typography:
   display-hero-mobile:
-    fontFamily: Arial, Helvetica, sans-serif
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
     fontSize: 3.5rem
     fontWeight: 900
     lineHeight: 1.04
-    letterSpacing: "-0.062em"
+    letterSpacing: "-0.028em"
   display-hero-desktop:
-    fontFamily: Arial, Helvetica, sans-serif
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
     fontSize: 7.25rem
     fontWeight: 900
-    lineHeight: 0.9
-    letterSpacing: "-0.075em"
+    lineHeight: 0.92
+    letterSpacing: "-0.035em"
   display-section:
-    fontFamily: Arial, Helvetica, sans-serif
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
     fontSize: 4.75rem
     fontWeight: 900
-    lineHeight: 0.96
-    letterSpacing: "-0.07em"
+    lineHeight: 0.98
+    letterSpacing: "-0.035em"
   heading-card:
-    fontFamily: Arial, Helvetica, sans-serif
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
     fontSize: 1.5rem
     fontWeight: 900
     lineHeight: 1.12
-    letterSpacing: "-0.04em"
+    letterSpacing: "-0.02em"
   body-lg:
-    fontFamily: Arial, Helvetica, sans-serif
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
     fontSize: 1.125rem
     fontWeight: 400
     lineHeight: 1.65
     letterSpacing: "-0.018em"
   body-md:
-    fontFamily: Arial, Helvetica, sans-serif
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
     fontSize: 1rem
     fontWeight: 400
     lineHeight: 1.6
     letterSpacing: "-0.01em"
   label-caps:
-    fontFamily: Arial, Helvetica, sans-serif
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
     fontSize: 0.6875rem
     fontWeight: 900
     lineHeight: 1.1
@@ -101,7 +105,7 @@ components:
     padding: 14px
     height: "{spacing.cta-height}"
   button-primary-hover:
-    backgroundColor: "{colors.cyan}"
+    backgroundColor: "{colors.tertiary-hover}"
     textColor: "{colors.ink}"
     rounded: "{rounded.pill}"
   button-secondary-dark:
@@ -117,7 +121,7 @@ components:
     typography: "{typography.body-md}"
     height: "{spacing.touch-min}"
   badge-network:
-    backgroundColor: "{colors.cyan}"
+    backgroundColor: "{colors.accent-soft}"
     textColor: "{colors.ink}"
     typography: "{typography.label-caps}"
     rounded: "{rounded.pill}"
@@ -126,18 +130,19 @@ components:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
     padding: "{spacing.section-mobile}"
-  kicker-muted:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    typography: "{typography.label-caps}"
   service-link-label:
     backgroundColor: "{colors.white}"
-    textColor: "{colors.success}"
+    textColor: "{colors.accent-ink}"
     typography: "{typography.label-caps}"
   route-accent-line:
-    backgroundColor: "{colors.blue}"
+    backgroundColor: "{colors.tertiary}"
     textColor: "{colors.ink}"
     height: 4px
+  form-review-panel:
+    backgroundColor: "{colors.accent-tint}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.lg}"
+    padding: 20px
   dark-muted-label:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.muted}"
@@ -156,7 +161,7 @@ components:
 
 KS WAYS is presented as a premium global logistics company: ocean-led, air-capable, WCA-networked, and operationally accountable. The visual system should feel like a route control tower for international freight rather than a generic local forwarder.
 
-The core impression is **dark control-tower confidence + luminous teal route intelligence + high-whitespace B2B clarity**. Use the identity to communicate global coverage, sea-freight strength, practical execution, and responsive partner cooperation. Avoid visual clichés that make the brand look small, domestic-only, or commodity freight.
+The core impression is **dark control-tower confidence + warm bronze route intelligence + high-whitespace B2B clarity**. Use the identity to communicate global coverage, sea-freight strength, practical execution, and responsive partner cooperation. Avoid visual clichés that make the brand look small, domestic-only, or commodity freight.
 
 Public naming must stay exact:
 
@@ -169,27 +174,46 @@ Public naming must stay exact:
 
 The palette is intentionally narrow. It should create a premium logistics control-room feel while keeping CTAs and network proof points highly visible.
 
-- **Primary / Navy Black (`#001112`)**: The core brand surface. Use for hero, network sections, footer, primary text on bright teal buttons, and high-authority panels.
+- **Primary / Navy Black (`#001112`)**: The core brand surface. Use for hero, network sections, footer, primary text on bronze buttons, and high-authority panels.
 - **Secondary / Deep Route Navy (`#031D20`)**: Secondary dark surface for gradients, route-map panels, and glass cards.
-- **Tertiary / Route Teal (`#21D4C2`)**: Primary interaction and brand energy. Use for main CTA gradients, active accents, selection highlights, proof dividers, and route lines.
-- **Cyan (`#6FFFE7`)**: Luminous highlight. Use sparingly for the word “global,” network labels, footer credential headings, and hover emphasis.
-- **Blue (`#2D8CFF`)**: Supporting technology/network blue. Use as a secondary gradient stop, never as the main brand color.
+- **Tertiary / Route Bronze (`#B88A5A`)**: Primary interaction and brand energy. Use for flat CTA fills, active accents, selection highlights, proof dividers, and route lines. Pair it with `ink` text, never white — see the contrast rule below.
+- **Tertiary Hover (`#A5794D`)**: Darkened bronze for CTA hover. Also pairs with `ink` text only.
+- **Accent Soft / Warm Gold (`#E7C99A`)**: Luminous highlight **for dark surfaces only**. Use sparingly for the word “global,” network labels, footer credential headings, and hover emphasis.
+- **Accent Ink / Deep Bronze (`#805D3B`)**: The accent's light-surface counterpart. Use for service-card link labels, form section labels, and any accent text on white or paper.
+- **Accent Tint (`#FAF4EC`)**: Very pale bronze wash for form review panels and highlighted field groups on light backgrounds.
+- **Steel (`#5F6F78`)**: Supporting neutral. Use as a low-emphasis structural tone, never as the main brand color.
 - **Paper (`#F4F7F6`)**: Main light-page background. It should feel cooler and more operational than pure white.
 - **White (`#FFFFFF`)**: Cards, text on dark surfaces, and contrast anchor.
-- **Muted (`#7D888A`)**: Section kickers and low-emphasis labels on light backgrounds.
-- **Success / Link Green (`#007F74`)**: Low-volume service-card link label color on white cards.
+- **Muted (`#7D888A`)**: Low-emphasis labels on light backgrounds.
+- **Warning (`#A15C00`) / Warning Bright (`#FFB84D`)**: Reserved for form validation and dangerous-goods notices. These are **semantic, not brand** — do not repurpose them as accents, and keep them visually separable from the bronze accent family.
 
-Use opacity overlays rather than adding new colors: white at 4–18% on dark surfaces, navy at 10–12% for light borders, and teal/cyan glows at low opacity for depth.
+Use opacity overlays rather than adding new colors: white at 4–18% on dark surfaces, navy at 10–12% for light borders, and bronze glows at low opacity for depth.
+
+### Contrast rule (non-negotiable)
+
+The bronze accent is a mid-tone, so text pairing is not interchangeable:
+
+| Surface | Text | Ratio | Verdict |
+|---|---|---|---|
+| `tertiary` `#B88A5A` | `ink` `#001112` | 6.26:1 | ✅ AA |
+| `tertiary` `#B88A5A` | `white` | 3.08:1 | ❌ fails AA |
+| `tertiary-hover` `#A5794D` | `ink` `#001112` | 5.00:1 | ✅ AA |
+| `accent-soft` `#E7C99A` | on `primary` `#001112` | 12.14:1 | ✅ AA |
+| `accent-ink` `#805D3B` | on `white` | 5.92:1 | ✅ AA |
+
+White text on bronze is the one pairing that looks acceptable and is not. Never ship it.
 
 ## Typography
 
-The current site uses a system sans-serif stack: `Arial, Helvetica, sans-serif`. The tone is intentionally direct, compressed, and executive. The type should feel like modern logistics software and a premium freight partner—not decorative editorial branding.
+The current site uses the platform UI sans stack: `ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`. The tone is intentionally direct, compressed, and executive. The type should feel like modern logistics software and a premium freight partner—not decorative editorial branding.
 
-- **Hero display**: Very heavy (`900`), tight letter spacing, and aggressive scale. Desktop line-height may be tight (`0.9`) for impact, but mobile must relax to `1.04` or higher to prevent CJK/Latin overlap.
+Tracking is deliberately moderate (`-0.02em` to `-0.035em`). Earlier revisions used aggressive negative tracking (`-0.062em` to `-0.075em`); that crushed Korean glyphs and is no longer the house style.
+
+- **Hero display**: Very heavy (`900`), moderate negative letter spacing, and aggressive scale. Desktop line-height may be tight (`0.92`) for impact, but mobile must relax to `1.04` or higher to prevent CJK/Latin overlap.
 - **Section display**: Heavy and condensed in rhythm, with negative tracking. Keep section headlines short and decisive.
 - **Card headings**: Heavy (`900`) and compact, usually 20–24px.
 - **Body copy**: 16–18px with relaxed line-height (`1.6–1.65`). Body tone should be practical, specific, and operational.
-- **Kickers and badges**: All-caps, very small, bold labels with wide tracking (`0.14em–0.18em`). They should signal systems, routes, network, and proof.
+- **Kickers and badges**: All-caps, very small, bold labels with wide tracking (`0.10em–0.18em`). They should signal systems, routes, network, and proof. The homepage no longer carries per-section kicker eyebrows — headlines stand alone there. Service landing pages keep a single eyebrow above the H1.
 
 For Korean copy, keep line-height more forgiving than English. Avoid long unbroken English labels on mobile unless the element can wrap without harming touch targets.
 
@@ -214,7 +238,7 @@ Depth should feel like premium SaaS/logistics instrumentation, not decorative gl
 - Use soft, large shadows for cards: examples include `0 18px 70px rgba(0,17,18,.06)` and `0 24px 90px rgba(0,17,18,.06)`.
 - Use stronger dark-surface shadows for hero visual panels: examples include `0 34px 110px rgba(0,0,0,.44)`.
 - Use inset white highlights at 4–8% opacity on dark glass panels to create depth.
-- Teal/cyan glow may be used behind highlighted words, logo, badges, or route lines, but keep it restrained and operational.
+- Bronze glow may be used behind highlighted words, badges, or route lines, but keep it restrained and operational. The header/footer logos carry no glow — the official asset stands on its own.
 - Avoid harsh drop shadows, neon-heavy effects, or consumer-gaming glow.
 
 ## Shapes
@@ -240,8 +264,8 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 
 ### Hero
 
-- Hero headline should center the global logistics promise and highlight “global” / “글로벌” in cyan.
-- Primary CTA: quote/contact action with teal-to-cyan gradient, navy text, bold weight.
+- Hero headline should center the global logistics promise and highlight “global” / “글로벌” in warm gold (`accent-soft`).
+- Primary CTA: quote/contact action with a flat bronze fill (`tertiary`), navy `ink` text, bold weight. Do not reintroduce a gradient fill, and do not use white text.
 - Secondary CTA: partner/network exploration, outlined on dark surfaces.
 - Proof strip: WCA, Ocean/Air, FCL/LCL. Keep proof labels compact and values bold.
 - Route-control visual should suggest global network, technology, ocean/air/data coordination.
@@ -280,7 +304,7 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 - Do use the official KS WAYS logo assets instead of text placeholders.
 - Do keep CTAs clear: quote, partner enquiry, schedule consultation.
 - Do verify mobile typography, CTA stacking, footer links, and proof cards at `390px` width.
-- Do preserve high contrast between dark surfaces and white/cyan text.
+- Do preserve high contrast between dark surfaces and white/gold text, and verify any accent pairing against the contrast table in **Colors** before shipping.
 - Do use `KS WAYS` with a space in public-facing brand copy.
 - Do keep the public tone polished, concise, and partner-ready.
 
@@ -288,7 +312,9 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 
 - Do not describe KS WAYS primarily as a Korea-based local company.
 - Do not spell the visible brand as `KSWAYS` or `KSWays`.
-- Do not add arbitrary colors outside the navy/teal/cyan/blue/paper palette.
+- Do not add arbitrary colors outside the navy/bronze/gold/steel/paper palette.
+- Do not place white text on the bronze accent (`#B88A5A`); it measures 3.08:1 and fails WCAG AA.
+- Do not change a palette value in one component only — the palette is asserted site-wide by `src/brand-palette.test.ts`.
 - Do not distort, recolor, or replace official logo assets with text-only placeholders.
 - Do not create mobile CTAs that are narrow, cramped, or under `44px` high.
 - Do not leak internal pricing, margin, or private operational assumptions into public copy.

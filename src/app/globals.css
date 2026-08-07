@@ -6,9 +6,13 @@
   --ks-navy-2: #031d20;
   --ks-paper: #f6f8f8;
   --ks-line: rgba(255, 255, 255, 0.16);
-  --ks-teal: #21d4c2;
-  --ks-cyan: #6fffe7;
-  --ks-blue: #2d8cff;
+  /* Brand accent family (bronze). Names are role-based so a future palette
+     shift changes values here only — see DESIGN.md "Colors". */
+  --ks-accent: #b88a5a;
+  --ks-accent-strong: #a5794d;
+  --ks-accent-soft: #e7c99a;
+  --ks-accent-ink: #805d3b;
+  --ks-steel: #5f6f78;
 }
 
 * { box-sizing: border-box; }
@@ -17,18 +21,18 @@ body {
   margin: 0;
   color: var(--ks-ink);
   background: var(--ks-paper);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 a { color: inherit; }
 
 :focus-visible {
-  outline: 3px solid var(--ks-cyan);
+  outline: 3px solid var(--ks-accent-soft);
   outline-offset: 4px;
 }
 
 ::selection {
-  background: var(--ks-teal);
+  background: var(--ks-accent);
   color: var(--ks-navy);
 }
 
