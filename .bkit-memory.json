@@ -1,12 +1,14 @@
 {
-  "activeFeature": "ksways-focus-ring-contrast",
-  "phase": "completed",
+  "activeFeature": null,
+  "phase": "archived",
   "features": {
     "ksways-focus-ring-contrast": {
-      "phase": "completed",
+      "phase": "archived",
       "matchRate": 100,
       "createdAt": "2026-08-07",
-      "notes": "brand-pivot-bronze(PR #20, e7de26c) 후속 ①. 포커스 시스템이 2개이고 둘 다 밝은 표면에서 비가시: (A) 전역 :focus-visible outline #e7c99a — dark 12.14:1 PASS / paper 1.47:1 · white 1.59:1 FAIL, outline-offset 4px라 링이 주변 표면 위에 놓임. (B) QuoteForm.tsx:100 commonClass — outline-none + ring-[#b88a5a]/14 = 1.14:1, 기본 표시를 끄고 대체가 무가시라 WCAG 2.4.7 Level A 사안(28 필드 정의, 유일한 전환 경로). 회귀 아님(구 시안 1.15:1로 더 나빴음). 핵심 쟁점: 브론즈는 중간톤이라 단일 값으로 양 표면 동시 만족 불가(#b88a5a white 3.08 간신히·paper 2.89 실패 / #805d3b dark 3.26 간신히) → Design에서 이중 링 기본안 검토. 수정 지점 2곳(globals.css:29, QuoteForm commonClass), 컴포넌트별 오버라이드 금지(그게 B의 원인). 검증=계산 가드+실브라우저 스팟체크 2단(preview는 Vercel Auth로 불가)"
+      "notes": "PR #21 squash b40275b. 이중 링(navy 2px box-shadow 내곽 + gold 3px outline 외곽, offset 2px) — 브론즈가 중간톤이라 단일 색으로 밝은·어두운 표면 동시 만족 불가함을 후보 4종 실측으로 확인, 상호 보완 구조 채택(최저 12.14:1, 변경 전 paper 1.47 / white 1.59). 견적 폼 28필드 outline-none+14% ring(1.14:1) 제거로 WCAG 2.4.7 Level A 해소 — 실브라우저 Tab 순회 육안 확정. 가드 src/focus-visible.test.ts 9건, 결함 주입 3종 재현. 85→94 tests. 학습: :focus-visible 은 실제 Tab 키만 주면 헤드리스 검증 가능(초기 '불가' 판단 오류)·금지 패턴 가드는 자기 주석을 위반으로 신고·CSS 값 가드는 런타임 상속 사각지대·Tailwind 는 주석까지 스캔·next dev 가 next-env.d.ts 수정. 신규 발견 이관: 히어로 Unsplash 출처 링크 6개 중 4개가 매 순간 opacity 0 인 채 Tab 순서 잔존(Level A) → ksways-hero-attribution-a11y",
+      "archivedTo": "docs/archive/2026-08/ksways-focus-ring-contrast/",
+      "archivedAt": "2026-08-07"
     },
     "brand-pivot-bronze": {
       "phase": "merged-outside-pdca",
