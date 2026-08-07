@@ -13,15 +13,20 @@ import { describe, expect, it } from 'vitest';
  *
  * These tests assert the values, site-wide, and keep DESIGN.md honest.
  *
- * Scope is deliberately `src/**` plus DESIGN.md — everything that renders.
- * `public/assets/*.svg` is NOT scanned: those six files still carry the retired
- * neon palette (102 occurrences) but are orphaned — nothing in the repo
- * references them, and the hero renders Unsplash photography instead. If any of
- * them is ever wired back up, recolor it first and widen this scan.
+ * The sweep walks the whole repo, not just `src/` — the first pass of this
+ * pivot was scoped to `src/` and missed six `public/assets/*.svg` files holding
+ * 102 retired-palette occurrences. Those were orphaned (superseded by Unsplash
+ * photography in fb91a87) and have since been deleted, so a repo-wide sweep is
+ * clean and stays that way.
+ *
+ * `.md` is deliberately excluded so that documentation *about* the pivot may
+ * name the retired colors; DESIGN.md is asserted separately below instead.
  */
 
-const SRC = join(process.cwd(), 'src');
+const ROOT = process.cwd();
 const SELF = 'brand-palette.test.ts';
+const SKIP_DIRS = new Set(['node_modules', '.next', '.git', 'docs']);
+const SKIP_FILES = new Set([SELF, 'package-lock.json', 'tsconfig.tsbuildinfo']);
 
 const PALETTE = {
   accent: '#b88a5a',
@@ -31,7 +36,7 @@ const PALETTE = {
   steel: '#5f6f78',
 } as const;
 
-/** Colors from the retired neon-teal identity. None may survive anywhere in src/. */
+/** Colors from the retired neon-teal identity. None may survive anywhere in the repo. */
 const RETIRED = [
   '#21d4c2', // route teal
   '#6fffe7', // cyan highlight
@@ -44,12 +49,14 @@ const RETIRED = [
   '45,140,255',
 ] as const;
 
-function collectSourceFiles(dir: string): string[] {
+/** Every file type that can put a color in front of a user: code, styles, vector art, manifests. */
+function collectRenderableFiles(dir: string): string[] {
   return readdirSync(dir).flatMap((entry) => {
-    const full = join(dir, entry);
-    if (statSync(full).isDirectory()) return collectSourceFiles(full);
-    if (entry === SELF) return [];
-    return /\.(ts|tsx|css)$/.test(entry) ? [full] : [];
+    if (statSync(join(dir, entry)).isDirectory()) {
+      return SKIP_DIRS.has(entry) ? [] : collectRenderableFiles(join(dir, entry));
+    }
+    if (SKIP_FILES.has(entry)) return [];
+    return /\.(ts|tsx|css|svg|json)$/.test(entry) ? [join(dir, entry)] : [];
   });
 }
 
@@ -73,9 +80,9 @@ function contrastRatio(foreground: string, background: string): number {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-const sourceFiles = collectSourceFiles(SRC);
-const globalsCss = readFileSync(join(SRC, 'app/globals.css'), 'utf8');
-const designMd = readFileSync(join(process.cwd(), 'DESIGN.md'), 'utf8');
+const sourceFiles = collectRenderableFiles(ROOT);
+const globalsCss = readFileSync(join(ROOT, 'src/app/globals.css'), 'utf8');
+const designMd = readFileSync(join(ROOT, 'DESIGN.md'), 'utf8');
 
 describe('brand palette', () => {
   it('defines the bronze accent family as role-named custom properties', () => {
@@ -91,11 +98,11 @@ describe('brand palette', () => {
     expect(globalsCss).toContain('outline: 3px solid var(--ks-accent-soft);');
   });
 
-  it('carries no retired neon-teal color anywhere in src/', () => {
+  it('carries no retired neon-teal color anywhere in the repo', () => {
     const offenders = sourceFiles.flatMap((file) => {
       const contents = readFileSync(file, 'utf8').toLowerCase();
       return RETIRED.filter((color) => contents.includes(color)).map(
-        (color) => `${file.replace(`${process.cwd()}/`, '')} → ${color}`,
+        (color) => `${file.replace(`${ROOT}/`, '')} → ${color}`,
       );
     });
 
@@ -114,7 +121,7 @@ describe('brand palette', () => {
             (line.includes(`bg-[${PALETTE.accent}]`) || line.includes(`bg-[${PALETTE.accentStrong}]`)) &&
             /\btext-white\b/.test(line),
         )
-        .map(({ index }) => `${file.replace(`${process.cwd()}/`, '')}:${index + 1}`),
+        .map(({ index }) => `${file.replace(`${ROOT}/`, '')}:${index + 1}`),
     );
 
     expect(offenders).toEqual([]);
@@ -143,7 +150,7 @@ describe('brand palette', () => {
   });
 
   it('leaves no orphaned kicker copy behind the removed section eyebrows', () => {
-    const content = readFileSync(join(SRC, 'lib/content.ts'), 'utf8');
+    const content = readFileSync(join(ROOT, 'src/lib/content.ts'), 'utf8');
     expect(content).not.toContain('kicker');
   });
 });
