@@ -8,6 +8,8 @@ describe('quote page route integration', () => {
 
     expect(page).toContain('metadata');
     expect(page).toContain('Freight Quote Request');
+    expect(page).toContain('quotePageJsonLd');
+    expect(page).toContain('quote-page-jsonld');
     expect(page).toContain('<QuoteForm');
   });
 

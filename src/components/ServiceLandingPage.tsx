@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { ServicePage } from '@/lib/service-pages';
 import { homeContent } from '@/lib/content';
+import { conversionDataAttributes, conversionEventNames } from '@/lib/conversion';
 import { faqJsonLd, serviceJsonLd, siteUrl } from '@/lib/seo';
 import { SiteFooter } from './SiteFooter';
 
@@ -35,10 +36,10 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
                 width={935}
                 height={337}
                 priority
-                className="h-8 w-auto object-contain transition-transform group-hover:scale-[1.03] sm:h-9"
+                className="h-8 w-auto object-contain sm:h-9"
               />
             </Link>
-            <a href={quoteHref} className="inline-flex min-h-11 items-center rounded-full bg-[#b88a5a] px-5 text-sm font-black text-[#001112]">
+            <a href={quoteHref} {...conversionDataAttributes(conversionEventNames.quoteCta, { location: `${basePath}_${page.slug}_nav`, href: quoteHref })} className="inline-flex min-h-11 items-center rounded-full bg-[#b88a5a] px-5 text-sm font-black text-[#001112]">
               Get a quote
             </a>
           </header>
@@ -48,7 +49,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
             <h1 className="mt-5 text-[clamp(44px,6.4vw,92px)] font-black leading-[.94] tracking-[-.07em] text-balance">{page.title}</h1>
             <p className="mt-7 max-w-3xl text-[clamp(17px,1.35vw,22px)] leading-relaxed text-white/70">{page.lead}</p>
             <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <a href={quoteHref} className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full bg-[#b88a5a] px-7 font-black text-[#001112] sm:w-auto">
+              <a href={quoteHref} {...conversionDataAttributes(conversionEventNames.quoteCta, { location: `${basePath}_${page.slug}_hero`, href: quoteHref })} className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full bg-[#b88a5a] px-7 font-black text-[#001112] sm:w-auto">
                 Send shipment details
               </a>
               <Link href="/#services" className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-white/40 px-7 font-black text-white sm:w-auto">

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { FooterCopy } from '@/lib/content';
+import { conversionDataAttributes, conversionEventNames } from '@/lib/conversion';
 
 function FooterLink({ href, label }: { href: string; label: string }) {
   const isExternal = href.startsWith('http');
@@ -50,7 +51,7 @@ function FooterBrandLogo() {
         alt="KS WAYS"
         width={935}
         height={337}
-        className="h-8 w-auto object-contain transition-transform group-hover:scale-[1.03] sm:h-9"
+        className="h-8 w-auto object-contain sm:h-9"
       />
     </Link>
   );
@@ -100,7 +101,7 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
             <FooterAddress address={footer.address} />
           </div>
           <div className="flex max-w-xl flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-1 lg:justify-end lg:text-right">
-            <a href={`mailto:${footer.email}`} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#e7c99a] lg:justify-end">{footer.email}</a>
+            <a href={`mailto:${footer.email}`} {...conversionDataAttributes(conversionEventNames.mailto, { location: 'footer_contact', href: `mailto:${footer.email}` })} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#e7c99a] lg:justify-end">{footer.email}</a>
             <a href={phoneHref} className="inline-flex min-h-11 items-center font-bold text-white/64 transition hover:text-[#e7c99a] lg:justify-end">{footer.phone}</a>
             <span className="inline-flex min-h-11 items-center font-bold text-white/64 lg:justify-end">{footer.fax}</span>
             <span className="basis-full text-white/42">© {new Date().getFullYear()} KS WAYS. All rights reserved.</span>

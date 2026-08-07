@@ -89,7 +89,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       primaryCta: 'Get a Quote',
       secondaryCta: 'Explore Partner Network',
       proof: [
-        { label: 'Global network', value: 'WCA Member' },
+        { label: 'Global network', value: 'WCA Member ID 96376' },
         { label: 'Core services', value: 'Ocean · Air' },
         { label: 'Industry Experience', value: '30+ years' },
       ],
@@ -199,7 +199,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       primaryCta: '견적 문의',
       secondaryCta: '파트너 네트워크 보기',
       proof: [
-        { label: '글로벌 네트워크', value: 'WCA 회원사' },
+        { label: '글로벌 네트워크', value: 'WCA Member ID 96376' },
         { label: '핵심 서비스', value: '해상 · 항공' },
         { label: '경력 기반', value: '30년 이상' },
       ],

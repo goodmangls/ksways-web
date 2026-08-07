@@ -18,9 +18,11 @@ describe('ContactActions render', () => {
     render(<ContactActions {...baseProps} />);
 
     expect(screen.getByRole('link', { name: /Request a quote/ })).toHaveAttribute('href', '/quote');
+    expect(screen.getByRole('link', { name: /Request a quote/ })).toHaveAttribute('data-conversion-event', 'ksways_quote_cta_click');
 
     const partner = screen.getByRole('link', { name: /Partner with us/ });
     expect(partner.getAttribute('href')).toContain('mailto:info@ksways.co?subject=');
+    expect(partner).toHaveAttribute('data-conversion-event', 'ksways_mailto_click');
     expect(partner.getAttribute('href')).toContain(encodeURIComponent('KS WAYS partnership enquiry'));
 
     const schedule = screen.getByRole('link', { name: /Schedule a call/ });

@@ -13,6 +13,7 @@ import {
   transportModeOptions,
   type QuoteFormValues,
 } from '@/lib/quote-form';
+import { conversionDataAttributes, conversionEventNames } from '@/lib/conversion';
 import { contactEmail } from '@/lib/seo';
 
 const sectionLabels = {
@@ -197,7 +198,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             </div>
           ) : null}
 
-          <div className="rounded-[28px] border border-[#001112]/10 bg-[#f4f7f6] p-5 lg:hidden">
+          <div className="sticky bottom-3 z-20 rounded-[28px] border border-[#001112]/10 bg-[#f4f7f6]/95 p-5 shadow-[0_18px_60px_rgba(0,17,18,.12)] backdrop-blur lg:hidden">
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#805d3b]">Review</p>
             <p className="mt-2 text-sm leading-relaxed text-[#001112]/60">
               {canOpenEmail ? 'All required fields are ready.' : `${missingRequiredFields.length} required fields left before opening a clean email draft.`}
@@ -211,6 +212,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             <button
               type="button"
               onClick={handleOpenEmailDraft}
+              {...conversionDataAttributes(conversionEventNames.mailto, { location: 'quote_form_mobile_review', href })}
               className="mt-4 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-[#001112] px-6 text-center font-black text-white transition hover:bg-[#805d3b]"
             >
               Open email draft to KS WAYS
@@ -241,7 +243,8 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
           <button
             type="button"
             onClick={handleOpenEmailDraft}
-            className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-[#b88a5a] px-6 text-center font-black text-[#001112] shadow-[0_18px_46px_rgba(184,138,90,.24)] transition hover:scale-[1.015]"
+            {...conversionDataAttributes(conversionEventNames.mailto, { location: 'quote_form_sidebar', href })}
+            className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-[#b88a5a] px-6 text-center font-black text-[#001112] shadow-[0_18px_46px_rgba(184,138,90,.24)] transition hover:brightness-105"
           >
             Open email draft to KS WAYS
           </button>

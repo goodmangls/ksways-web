@@ -185,3 +185,39 @@ export function serviceJsonLd({ name, description, url }: { name: string; descri
     serviceType: name,
   };
 }
+
+
+export function quotePageJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Freight Quote Request — KS WAYS',
+    description: 'Structured quote request form for ocean freight, air freight, express, multimodal, and special cargo review by KS WAYS.',
+    url: `${siteUrl}/quote`,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: brandName,
+      url: siteUrl,
+    },
+    about: {
+      '@type': 'Service',
+      name: 'Freight quote request review',
+      serviceType: ['Ocean freight', 'Air freight', 'Express logistics', 'Multimodal freight', 'Special cargo review'],
+      provider: {
+        '@type': 'Organization',
+        name: companyName,
+        alternateName: brandName,
+        url: siteUrl,
+        email: contactEmail,
+        telephone: contactTelephone,
+        faxNumber: contactFax,
+      },
+      areaServed: 'Worldwide',
+    },
+    potentialAction: {
+      '@type': 'CommunicateAction',
+      name: 'Request a freight quote',
+      target: `mailto:${contactEmail}`,
+    },
+  };
+}

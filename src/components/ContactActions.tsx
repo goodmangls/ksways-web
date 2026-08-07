@@ -1,3 +1,5 @@
+import { conversionDataAttributes, conversionEventNames, type ConversionEventName } from '@/lib/conversion';
+
 type Props = {
   quoteLabel: string;
   partnerLabel: string;
@@ -69,10 +71,10 @@ export function ContactActions({ quoteLabel, partnerLabel, scheduleLabel, email,
     schedule: locale === 'kr' ? 'Zoom / Calendly 상담 일정 요청' : 'Request a Zoom / Calendly consultation slot',
   };
 
-  const actions = [
-    { href: quoteHref, label: quoteLabel, helper: helperText.quote, primary: true },
-    { href: partnerHref, label: partnerLabel, helper: helperText.partner, primary: false },
-    { href: scheduleHref, label: scheduleLabel, helper: helperText.schedule, primary: false, external: scheduleIsExternal },
+  const actions: Array<{ href: string; label: string; helper: string; primary: boolean; external?: boolean; event: ConversionEventName; location: string }> = [
+    { href: quoteHref, label: quoteLabel, helper: helperText.quote, primary: true, event: conversionEventNames.quoteCta, location: 'contact_actions_quote' },
+    { href: partnerHref, label: partnerLabel, helper: helperText.partner, primary: false, event: conversionEventNames.mailto, location: 'contact_actions_partner' },
+    { href: scheduleHref, label: scheduleLabel, helper: helperText.schedule, primary: false, external: scheduleIsExternal, event: conversionEventNames.mailto, location: scheduleIsExternal ? 'contact_actions_schedule_external' : 'contact_actions_schedule_mailto' },
   ];
 
   return (
@@ -83,9 +85,10 @@ export function ContactActions({ quoteLabel, partnerLabel, scheduleLabel, email,
           href={action.href}
           target={action.external ? '_blank' : undefined}
           rel={action.external ? 'noopener noreferrer' : undefined}
+          {...conversionDataAttributes(action.event, { location: action.location, locale, href: action.href })}
           className={
             action.primary
-              ? 'group rounded-[24px] bg-[#b88a5a] p-[1px] text-[#001112] shadow-[0_18px_46px_rgba(184,138,90,.22)] transition hover:scale-[1.015]'
+              ? 'group rounded-[24px] bg-[#b88a5a] p-[1px] text-[#001112] shadow-[0_18px_46px_rgba(184,138,90,.22)] transition hover:brightness-105'
               : 'group rounded-[24px] border border-white/16 bg-white/[.06] p-[1px] text-white transition hover:border-[#e7c99a]/60 hover:bg-white/[.09]'
           }
         >

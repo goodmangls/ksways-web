@@ -4,6 +4,7 @@ import type { CSSProperties } from 'react';
 import type { Locale } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/i18n';
 import type { homeContent } from '@/lib/content';
+import { conversionDataAttributes, conversionEventNames } from '@/lib/conversion';
 import { faqJsonLd, homeFaqs, organizationJsonLd } from '@/lib/seo';
 import { getHeroUnsplashImages } from '@/lib/unsplash';
 import { ContactActions } from './ContactActions';
@@ -134,7 +135,7 @@ export function HomePage({ locale, copy }: Props) {
               {copy.nav.langToggle}
             </Link>
             <a href="#contact" className="hidden min-h-11 items-center rounded-full border border-white/45 px-5 text-sm font-extrabold text-white transition hover:border-white sm:inline-flex">{copy.nav.contact}</a>
-            <a href={quoteHref} className="inline-flex min-h-11 items-center rounded-full bg-[#b88a5a] px-5 text-sm font-black text-[#001112] transition hover:bg-[#a5794d]">{copy.nav.quote}</a>
+            <a href={quoteHref} {...conversionDataAttributes(conversionEventNames.quoteCta, { location: 'homepage_nav', locale, href: quoteHref })} className="inline-flex min-h-11 items-center rounded-full bg-[#b88a5a] px-5 text-sm font-black text-[#001112] transition hover:bg-[#a5794d]">{copy.nav.quote}</a>
           </div>
         </header>
 
@@ -146,7 +147,7 @@ export function HomePage({ locale, copy }: Props) {
             </h1>
             <p className="mt-7 max-w-2xl text-[clamp(17px,1.3vw,21px)] leading-relaxed tracking-[-.018em] text-white/70">{copy.hero.lead}</p>
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <a href={quoteHref} className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full bg-[#b88a5a] px-7 font-black text-[#001112] transition hover:bg-[#a5794d] sm:w-auto">{copy.hero.primaryCta}</a>
+              <a href={quoteHref} {...conversionDataAttributes(conversionEventNames.quoteCta, { location: 'homepage_hero', locale, href: quoteHref })} className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full bg-[#b88a5a] px-7 font-black text-[#001112] transition hover:bg-[#a5794d] sm:w-auto">{copy.hero.primaryCta}</a>
               <a href="#network" className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full border border-white/45 px-7 font-black text-white transition hover:border-white sm:w-auto">{copy.hero.secondaryCta}</a>
             </div>
             <dl className="mt-10 grid max-w-3xl overflow-hidden rounded-[28px] border border-white/10 bg-[#001112]/56 shadow-[0_30px_90px_rgba(0,0,0,.24)] backdrop-blur-xl sm:grid-cols-3" aria-label="Key proof points">
@@ -204,11 +205,11 @@ export function HomePage({ locale, copy }: Props) {
               }
 
               return service.href.startsWith('http') ? (
-                <a key={service.title} href={service.href} target="_blank" rel="noopener noreferrer" className={cardClassName} aria-label={`${service.title} opens in a new tab`}>
+                <a key={service.title} href={service.href} target="_blank" rel="noopener noreferrer" {...conversionDataAttributes(conversionEventNames.serviceClick, { location: `homepage_services_${service.title}`, locale, href: service.href })} className={cardClassName} aria-label={`${service.title} opens in a new tab`}>
                   {cardContent}
                 </a>
               ) : (
-                <Link key={service.title} href={service.href} className={cardClassName}>
+                <Link key={service.title} href={service.href} {...conversionDataAttributes(conversionEventNames.serviceClick, { location: `homepage_services_${service.title}`, locale, href: service.href })} className={cardClassName}>
                   {cardContent}
                 </Link>
               );
@@ -285,7 +286,7 @@ export function HomePage({ locale, copy }: Props) {
             <h2 className="max-w-3xl text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.028em] sm:text-[clamp(40px,5vw,76px)] sm:leading-[.98] sm:tracking-[-.035em]">{copy.contact.headline}</h2>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/68">{copy.contact.body}</p>
             <div className="mt-5 flex flex-col gap-2 text-sm font-bold text-white/72 sm:flex-row sm:items-center sm:gap-5">
-              <a href={`mailto:${copy.contact.email}`} className="inline-flex min-h-11 items-center transition hover:text-[#e7c99a]">{copy.contact.email}</a>
+              <a href={`mailto:${copy.contact.email}`} {...conversionDataAttributes(conversionEventNames.mailto, { location: 'homepage_contact', locale, href: `mailto:${copy.contact.email}` })} className="inline-flex min-h-11 items-center transition hover:text-[#e7c99a]">{copy.contact.email}</a>
               <a href={contactPhoneHref} className="inline-flex min-h-11 items-center transition hover:text-[#e7c99a]">{copy.contact.phone}</a>
               <span className="inline-flex min-h-11 items-center">{copy.contact.fax}</span>
             </div>

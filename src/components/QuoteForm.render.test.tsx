@@ -27,6 +27,10 @@ function getDesktopSubmitButton() {
   return within(aside).getByRole('button', { name: /Open email draft/i });
 }
 
+function getMobileReviewCard() {
+  return screen.getByText('Review').closest('div') as HTMLElement;
+}
+
 describe('QuoteForm interactions', () => {
   afterEach(cleanup);
 
@@ -88,6 +92,13 @@ describe('QuoteForm interactions', () => {
     expect(href.startsWith(`mailto:${contactEmail}?subject=`)).toBe(true);
     expect(href).toContain(encodeURIComponent('Acme Trading'));
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
+
+  it('keeps the mobile review action sticky and marks quote CTAs for conversion measurement', () => {
+    const { container } = render(<QuoteForm />);
+
+    expect(getMobileReviewCard().className).toContain('sticky');
+    expect(container.querySelectorAll('[data-conversion-event="ksways_mailto_click"]').length).toBeGreaterThanOrEqual(2);
   });
 
   it('warns when the draft exceeds the mailto length limit but still allows opening', async () => {

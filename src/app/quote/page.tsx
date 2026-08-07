@@ -5,7 +5,7 @@ import { QuoteForm } from '@/components/QuoteForm';
 import { SiteFooter } from '@/components/SiteFooter';
 import { getQuoteInitialValues } from '@/lib/quote-form';
 import { homeContent } from '@/lib/content';
-import { brandName, contactEmail, shareImage, siteUrl } from '@/lib/seo';
+import { brandName, contactEmail, quotePageJsonLd, shareImage, siteUrl } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Freight Quote Request — KS WAYS',
@@ -39,6 +39,11 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
 
   return (
     <main className="min-h-screen bg-[#f4f7f6] text-[#001112]">
+      <script
+        id="quote-page-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(quotePageJsonLd()) }}
+      />
       <section className="relative overflow-hidden bg-[#001112] px-6 py-8 text-white sm:px-10 lg:px-14">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(184,138,90,.26),transparent_30%),linear-gradient(120deg,rgba(0,17,18,.98),rgba(2,31,34,.88))]" />
         <div className="relative z-10">
@@ -50,7 +55,7 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
                 width={935}
                 height={337}
                 priority
-                className="h-8 w-auto object-contain transition-transform group-hover:scale-[1.03] sm:h-9"
+                className="h-8 w-auto object-contain sm:h-9"
               />
             </Link>
             <Link href="/#services" className="inline-flex min-h-11 items-center rounded-full border border-white/40 px-5 text-sm font-black text-white transition hover:border-white">

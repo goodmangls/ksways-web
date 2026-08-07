@@ -13,6 +13,8 @@ describe('HomePage render smoke', () => {
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(homeContent.en.hero.headline.trim().slice(0, 12));
     expect(container.querySelectorAll('script[type="application/ld+json"]')).toHaveLength(2);
     expect(container.querySelectorAll('img[src*="images.unsplash.com"], img[srcset*="images.unsplash.com"]').length).toBeGreaterThan(0);
+    expect(screen.getByText('WCA Member ID 96376')).toBeInTheDocument();
+    expect(container.querySelectorAll('[data-conversion-event="ksways_quote_cta_click"]').length).toBeGreaterThanOrEqual(2);
   });
 
   it('renders Korean copy on the kr locale', () => {
