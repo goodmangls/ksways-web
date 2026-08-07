@@ -130,6 +130,39 @@ describe('brand palette', () => {
     expect(designMd).toContain(`steel: "${PALETTE.steel.toUpperCase()}"`);
   });
 
+  it('keeps semantic warning colors off the brand hue', () => {
+    // Warning used to be amber, 1-3° from the bronze accents. Saturation was the
+    // only thing telling "brand" apart from "something went wrong" — and on the
+    // quote form's dark aside the gold label and the warning box sat in the same
+    // panel 2° apart. Hue distance is the property that actually carries the
+    // distinction, so it is the property asserted.
+    const hue = (hex: string) => {
+      const n = parseInt(hex.slice(1), 16);
+      const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((c) => c / 255);
+      const max = Math.max(r, g, b);
+      const delta = max - Math.min(r, g, b);
+      if (!delta) return 0;
+      const raw = max === r ? ((g - b) / delta) % 6 : max === g ? (b - r) / delta + 2 : (r - g) / delta + 4;
+      const deg = raw * 60;
+      return deg < 0 ? deg + 360 : deg;
+    };
+    const separation = (a: string, b: string) => {
+      const d = Math.abs(hue(a) - hue(b));
+      return Math.min(d, 360 - d);
+    };
+
+    const accents = [PALETTE.accent, PALETTE.accentStrong, PALETTE.accentSoft, PALETTE.accentInk];
+    const warnings = ['#b3261e', '#ff8a80', '#ffb4ab'];
+
+    const tooClose = warnings.flatMap((w) =>
+      accents
+        .filter((a) => separation(w, a) < 20)
+        .map((a) => `${w} vs ${a}: ${separation(w, a).toFixed(1)}°`),
+    );
+
+    expect(tooClose).toEqual([]);
+  });
+
   it('keeps default body text readable on the default background', () => {
     // The `body` rule is the last line of defense: anything rendered inside the
     // layout but outside a <main> that sets its own text color inherits it. It

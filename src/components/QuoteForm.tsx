@@ -202,9 +202,9 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             <p className="mt-2 text-sm leading-relaxed text-[#001112]/60">
               {canOpenEmail ? 'All required fields are ready.' : `${missingRequiredFields.length} required fields left before opening a clean email draft.`}
             </p>
-            {validationMessage ? <p className="mt-3 text-sm font-black text-[#a15c00]">{validationMessage}</p> : null}
+            {validationMessage ? <p className="mt-3 text-sm font-black text-[#b3261e]">{validationMessage}</p> : null}
             {mailtoOverLimit ? (
-              <p role="status" className="mt-3 rounded-2xl border border-[#a15c00]/25 bg-[#a15c00]/8 p-4 text-sm font-bold leading-relaxed text-[#a15c00]">
+              <p role="status" className="mt-3 rounded-2xl border border-[#b3261e]/25 bg-[#b3261e]/8 p-4 text-sm font-bold leading-relaxed text-[#b3261e]">
                 {lengthWarning}
               </p>
             ) : null}
@@ -225,7 +225,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             Complete the required basics, then open a prepared email to {contactEmail}. Attach packing list, invoice, MSDS, photos, or equipment drawings in your email client if needed.
           </p>
           {validationMessage ? (
-            <div className="mt-5 rounded-2xl border border-[#ffb84d]/40 bg-[#ffb84d]/12 p-4 text-sm font-bold leading-relaxed text-[#ffe8bd]" role="alert">
+            <div className="mt-5 rounded-2xl border border-[#ff8a80]/40 bg-[#ff8a80]/12 p-4 text-sm font-bold leading-relaxed text-[#ffb4ab]" role="alert">
               {validationMessage}
             </div>
           ) : (
@@ -234,7 +234,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             </div>
           )}
           {mailtoOverLimit ? (
-            <p role="status" className="mt-4 rounded-2xl border border-[#ffb84d]/40 bg-[#ffb84d]/12 p-4 text-sm font-bold leading-relaxed text-[#ffe8bd]">
+            <p role="status" className="mt-4 rounded-2xl border border-[#ff8a80]/40 bg-[#ff8a80]/12 p-4 text-sm font-bold leading-relaxed text-[#ffb4ab]">
               {lengthWarning}
             </p>
           ) : null}

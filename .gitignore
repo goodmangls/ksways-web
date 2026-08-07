@@ -33,3 +33,4 @@ pnpm-debug.log*
 playwright-report/
 test-results/
 tmp/
+.gstack/
