@@ -128,6 +128,40 @@ la0, la0b, la1, la1b, la2, la2b, lb0, lb3, sentinel, BODY, (순환)
 
 **FR-02 해소**: 이 경로에서는 4개 링크가 *영구* 비가시였다.
 
+### 2.2b `src/app/globals.css` — 기본 규칙 (v0.2 추가, Do 단계에서 누락 발견)
+
+> ⚠️ **이 절은 초안(v0.1)에 없었다.** Do 단계 실브라우저 검증에서 발견해 추가한 것으로, 이 사이클의 Gap 이자 핵심 학습이다. 상세는 analysis §2 참조.
+
+```diff
+ .ks-hero-bg-slide {
+   opacity: 0;
++  visibility: hidden;
+   animation: ks-hero-bg-cycle 21s infinite;
+   animation-delay: calc(var(--ks-slide-index) * 7s);
+ }
+
+ .ks-hero-bg-attribution {
+   opacity: 0;
++  visibility: hidden;
+   animation: ks-hero-bg-cycle 21s infinite;
+   animation-delay: calc(var(--ks-slide-index) * 7s);
+ }
+
+ .ks-hero-bg-slide:first-child {
+   opacity: 1;
++  visibility: visible;
+ }
+
+ .ks-hero-bg-attribution:first-child {
+   opacity: 1;
++  visibility: visible;
+ }
+```
+
+**왜 필요한가**: `animation-delay` 가 **양수**(`index * 7s` → 0s·7s·14s)이고 `animation-fill-mode` 가 없다. 애니메이션이 시작되기 전 딜레이 구간에는 **키프레임이 적용되지 않고 기본 규칙이 적용된다.** 기본 규칙에는 `opacity: 0` 만 있고 `visibility` 가 없어, §2.1·§2.2 만 구현한 상태에서는 **로드 후 14초간 FR-01 이 그대로 미충족**이었다.
+
+초안이 "`opacity` 가 선언된 모든 곳"이 아니라 "애니메이션이 정의된 곳"을 대상으로 잡은 것이 원인이다.
+
 ### 2.3 `src/components/HomePage.tsx`
 
 **변경 없음.** 마크업·Unsplash 링크·`withReferralParams` 그대로 → FR-04 자동 충족.
@@ -142,6 +176,7 @@ la0, la0b, la1, la1b, la2, la2b, lb0, lb3, sentinel, BODY, (순환)
 | 2 | 같은 키프레임의 `opacity: 1` 구간에 `visibility: visible` 이 함께 있을 것 | 가시 구간이 Tab 에서 사라짐(더 나쁜 회귀) |
 | 3 | reduced-motion 블록의 `opacity: 0 !important` 선언에 `visibility: hidden !important` 동반 | 영구 비가시 링크 부활 |
 | 4 | reduced-motion 블록의 `opacity: 1 !important` 선언에 `visibility: visible !important` 동반 | 유일하게 보이는 출처가 Tab 에서 제외됨 |
+| 5 | (v0.2) `.ks-hero-bg-*` **기본 규칙**의 `opacity` 도 `visibility` 와 짝일 것 | 딜레이 구간(로드 후 14초)에 결함 부활 — 초안 가드가 이 사각지대로 GREEN 이었다 |
 
 주석에 §0 실험 결과와 "정적 단언이 대리인 이유"를 명시한다.
 
@@ -157,8 +192,8 @@ la0, la0b, la1, la1b, la2, la2b, lb0, lb3, sentinel, BODY, (순환)
 
 | 파일 | 변경 |
 |---|---|
-| `src/app/globals.css` | 키프레임 3구간 + reduced-motion 4선언에 `visibility` |
-| `src/focus-visible.test.ts` | 가드 4건 추가 |
+| `src/app/globals.css` | 키프레임 3구간 + reduced-motion 4선언 + **기본 규칙 4선언**(v0.2)에 `visibility` |
+| `src/focus-visible.test.ts` | 가드 **5건** 추가 (v0.2: 기본 규칙 검사 1건) |
 | `DESIGN.md` | `## Focus` 에 opacity-숨김 금지 항목 |
 
 `HomePage.tsx` 무변경.
@@ -200,3 +235,4 @@ la0, la0b, la1, la1b, la2, la2b, lb0, lb3, sentinel, BODY, (순환)
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
 | 0.1 | 2026-08-07 | Initial draft — 선행 실험으로 Plan 최대 리스크 반증, 후보 ① 확정. 모바일 표기 분리, 가드는 정적+근거 문서화 | jhlim725 |
+| 0.2 | 2026-08-07 | **정정** — §2.2b 기본 규칙 추가. 초안이 `opacity` 선언 위치 3곳 중 2곳만 다뤄 FR-01 이 로드 후 14초간 미충족이었고, 초안 가드(4건)도 같은 사각지대라 GREEN 이었다. Do 단계 실브라우저 Tab 순회로 발견 | jhlim725 |
