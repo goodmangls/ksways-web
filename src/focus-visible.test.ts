@@ -108,3 +108,102 @@ describe('focus indicator', () => {
     expect(filesMatching(/\bfocus:ring-|\bring-\d/)).toEqual([]);
   });
 });
+
+/**
+ * Reachability, as distinct from visibility of the ring itself.
+ *
+ * The hero photo credits fade in and out with the background slideshow. They were
+ * hidden with `opacity` alone, which does NOT remove an element from the tab
+ * order: four of the six Unsplash links sat in the tab sequence while completely
+ * invisible, and under `prefers-reduced-motion` they did so permanently. That is
+ * WCAG 2.4.7 Focus Visible (Level A) — the best focus ring in the world does not
+ * help on an element nobody can see.
+ *
+ * These assertions are static, and that is a deliberate choice rather than a
+ * repeat of the mistake this suite was written to catch. The earlier failure
+ * asserted a *token reference* while the breakage lived in a property nobody
+ * checked. Here the assertions cover the exact property that governs the
+ * behavior, in both places it must appear. The declaration-to-behavior link was
+ * established empirically in Chromium by freezing the animation at fixed
+ * progress: `visibility` stays `visible` through the fade (opacity .78, .20) and
+ * flips to `hidden` only at opacity 0, and a real tab sweep confirmed the hidden
+ * element's links drop out of the sequence while a no-`visibility` control kept
+ * them. Automating that in CI is not available here — `prefers-reduced-motion`
+ * emulation needs a CDP method the browser tool denies by default, and this repo
+ * has no Playwright.
+ */
+describe('hidden hero credits stay out of the tab order', () => {
+  /** Extracts a brace-balanced block starting at `marker`. */
+  function blockAt(css: string, marker: string): string {
+    const start = css.indexOf(marker);
+    if (start === -1) return '';
+    let depth = 0;
+    for (let i = css.indexOf('{', start); i < css.length; i += 1) {
+      if (css[i] === '{') depth += 1;
+      else if (css[i] === '}') {
+        depth -= 1;
+        if (depth === 0) return css.slice(start, i + 1);
+      }
+    }
+    return '';
+  }
+
+  /** Every `{ ... }` rule body inside a block, innermost only. */
+  function ruleBodies(block: string): string[] {
+    return [...block.matchAll(/\{([^{}]*)\}/g)].map((m) => m[1]);
+  }
+
+  const keyframes = blockAt(globalsCss, '@keyframes ks-hero-bg-cycle');
+  const reducedMotion = blockAt(globalsCss, '@media (prefers-reduced-motion: reduce)');
+
+  it.each([
+    ['keyframes', () => keyframes, ''],
+    ['reduced-motion overrides', () => reducedMotion, ' !important'],
+  ])('pairs every opacity:0 with visibility:hidden in the %s', (_label, getBlock, bang) => {
+    const block = getBlock();
+    expect(block).not.toBe('');
+
+    const unpaired = ruleBodies(block)
+      .filter((body) => new RegExp(`opacity:\\s*0${bang};`).test(body))
+      .filter((body) => !new RegExp(`visibility:\\s*hidden${bang};`).test(body));
+
+    expect(unpaired).toEqual([]);
+  });
+
+  it.each([
+    ['keyframes', () => keyframes, ''],
+    ['reduced-motion overrides', () => reducedMotion, ' !important'],
+  ])('pairs every opacity:1 with visibility:visible in the %s', (_label, getBlock, bang) => {
+    // The inverse guard: hiding too eagerly would drop the *visible* credit out
+    // of the tab order, which is a worse regression than the one being fixed.
+    const block = getBlock();
+    expect(block).not.toBe('');
+
+    const unpaired = ruleBodies(block)
+      .filter((body) => new RegExp(`opacity:\\s*1${bang};`).test(body))
+      .filter((body) => !new RegExp(`visibility:\\s*visible${bang};`).test(body));
+
+    expect(unpaired).toEqual([]);
+  });
+
+  it('pairs opacity with visibility in the base .ks-hero-bg-* rules too', () => {
+    // Checking only the keyframes is not enough, and this test exists because
+    // that gap shipped: `animation-delay` is positive (7s, 14s), and with no
+    // `animation-fill-mode` the keyframes do not apply during the delay. What
+    // applies is the base rule — where `opacity: 0` without `visibility` left the
+    // credits tab-reachable for the first 14 seconds after load. A real tab sweep
+    // caught it while these assertions were green.
+    const heroRules = [...globalsCss.matchAll(/(\.ks-hero-bg-[\w-]*(?::[\w-]+)?[^{}]*)\{([^{}]*)\}/g)];
+    expect(heroRules.length).toBeGreaterThan(0);
+
+    const unpaired = heroRules
+      .filter(([, , body]) => /opacity:\s*[01]\s*(?:!important)?;/.test(body))
+      .filter(([, , body]) => {
+        const wantsHidden = /opacity:\s*0\s*(?:!important)?;/.test(body);
+        return !new RegExp(`visibility:\\s*${wantsHidden ? 'hidden' : 'visible'}\\s*(?:!important)?;`).test(body);
+      })
+      .map(([, selector]) => selector.trim());
+
+    expect(unpaired).toEqual([]);
+  });
+});

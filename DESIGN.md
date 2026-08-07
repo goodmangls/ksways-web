@@ -267,6 +267,7 @@ The `2px` offset is deliberate: it exactly matches the inner spread so no page b
 - **Never** use `outline-none` without an equally visible replacement. Removing the indicator is a WCAG 2.4.7 (Level A) failure, not a styling choice.
 - **Never** use Tailwind `ring-*` utilities on a focusable element. They compile to `box-shadow` and silently overwrite the inner layer — including static emphasis states, not just `focus:ring-*`.
 - **Never** express focus as a single bronze ring, and never tune these values by eye. `src/focus-visible.test.ts` computes them.
+- **Never hide a focusable element with `opacity` alone.** `opacity: 0` leaves the element in the tab order, so keyboard users land on something they cannot see — WCAG 2.4.7 again, and the focus ring fades with it because opacity is inherited by the whole subtree. Pair `opacity` with `visibility: hidden` (animatable, and it stays `visible` through a fade) or use `display: none`. The hero photo credits shipped this bug: four of six Unsplash links were tab-reachable while invisible, permanently so under `prefers-reduced-motion`.
 - Border-color or background shifts on focus are supporting affordance only. They never carry the contrast requirement.
 
 ## Shapes

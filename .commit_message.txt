@@ -1,1 +1,1 @@
-📁 chore(pdca): ksways-focus-ring-contrast archive — 4문서를 docs/archive/2026-08/ 로 이관, _INDEX.md 생성, phase=archived
+♿ 히어로 출처 링크의 비가시 상태를 Tab 순서에서 제외 — opacity 에 visibility 동반(키프레임·reduced-motion·기본 규칙 3곳)

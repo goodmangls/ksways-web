@@ -56,60 +56,88 @@ a { color: inherit; }
     transition-duration: 0.01ms !important;
   }
 
+  /* Same pairing as the keyframes, and it matters more here: with the animation
+     off, the non-first credits are hidden *permanently*, so their links sat in
+     the tab order forever rather than for part of a cycle. */
   .ks-hero-bg-slide {
     animation: none !important;
     opacity: 0 !important;
+    visibility: hidden !important;
   }
 
   .ks-hero-bg-slide:first-child {
     opacity: 1 !important;
+    visibility: visible !important;
   }
 
   .ks-hero-bg-attribution {
     animation: none !important;
     opacity: 0 !important;
+    visibility: hidden !important;
   }
 
   .ks-hero-bg-attribution:first-child {
     opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 
+/* These base values are what actually applies during the positive
+   `animation-delay` window — slide 2 waits 7s and slide 3 waits 14s before their
+   animation starts, and with no `animation-fill-mode` the keyframes do not
+   apply yet. So `visibility` has to be paired here too, not only in the
+   keyframes: without it the credits sat at `opacity: 0` with the default
+   `visibility: visible` and stayed tab-reachable for the first 14 seconds. */
 .ks-hero-bg-slide {
   opacity: 0;
+  visibility: hidden;
   animation: ks-hero-bg-cycle 21s infinite;
   animation-delay: calc(var(--ks-slide-index) * 7s);
 }
 
 .ks-hero-bg-attribution {
   opacity: 0;
+  visibility: hidden;
   animation: ks-hero-bg-cycle 21s infinite;
   animation-delay: calc(var(--ks-slide-index) * 7s);
 }
 
 .ks-hero-bg-slide:first-child {
   opacity: 1;
+  visibility: visible;
 }
 
 .ks-hero-bg-attribution:first-child {
   opacity: 1;
+  visibility: visible;
 }
 
+/* `visibility` tracks `opacity` here on purpose. Opacity alone leaves an element
+   in the tab order, so the faded-out photo credits kept their links keyboard
+   -reachable while completely invisible — WCAG 2.4.7 Focus Visible (Level A).
+   Verified in Chromium by freezing this animation at fixed progress points:
+   visibility stays `visible` right through the fade (opacity .78, .20) and only
+   flips to `hidden` where opacity is truly 0, so the crossfade is unchanged and
+   only the invisible links leave the tab order.
+   Asserted in src/focus-visible.test.ts. */
 @keyframes ks-hero-bg-cycle {
   0%,
   29% {
     opacity: 1;
+    visibility: visible;
     transform: scale(1.01);
   }
 
   35%,
   94% {
     opacity: 0;
+    visibility: hidden;
     transform: scale(1.01);
   }
 
   100% {
     opacity: 1;
+    visibility: visible;
     transform: scale(1.01);
   }
 }
