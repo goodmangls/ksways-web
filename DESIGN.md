@@ -270,6 +270,19 @@ The `2px` offset is deliberate: it exactly matches the inner spread so no page b
 - **Never hide a focusable element with `opacity` alone.** `opacity: 0` leaves the element in the tab order, so keyboard users land on something they cannot see — WCAG 2.4.7 again, and the focus ring fades with it because opacity is inherited by the whole subtree. Pair `opacity` with `visibility: hidden` (animatable, and it stays `visible` through a fade) or use `display: none`. The hero photo credits shipped this bug: four of six Unsplash links were tab-reachable while invisible, permanently so under `prefers-reduced-motion`.
 - Border-color or background shifts on focus are supporting affordance only. They never carry the contrast requirement.
 
+## Browser Support
+
+The target is Next.js's `MODERN_BROWSERSLIST_TARGET`: **`chrome 111`, `edge 111`, `firefox 111`, `safari 16.4`**. Next already enforces this at build time — it is the effective target whether or not anyone writes it down.
+
+There is deliberately **no `browserslist` config** in this project:
+
+- Tailwind v4 never reads one. It drives lightningcss with its own targets, so a config would not change a byte of the CSS.
+- Next.js does read one, and copying its default into `package.json` would pin us behind whenever Next raises that default — a silent downgrade with no upside.
+
+`src/browser-target.test.ts` pins the value instead. If a Next upgrade moves the target, that test fails and this section has to be updated in the same commit.
+
+Verify CSS behavior against the target rather than against whatever Chromium happens to do — two accessibility fixes shipped Chromium-only before this was written down. `scripts/verify-css-engines.mjs` covers Firefox; Safari is checked by hand (see the script header). Note the gap: local Safari is well above the 16.4 floor, so passing there does not prove the floor.
+
 ## Shapes
 
 Shapes are rounded and confident, with pills reserved for actions and badges.
