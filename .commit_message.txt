@@ -1,1 +1,1 @@
-📋 docs(pdca): ksways-unsplash-attribution Plan·Design — 작가 정보 10/10 플레이스홀더, 선행 조건(Unsplash 키) 대기로 파킹
+🐛 body 기본 텍스트색 오류 수정 — --ks-ink(#f7fbfb, 1.02:1) 제거하고 --ks-navy 로 통일, 대비 가드 추가

@@ -130,6 +130,30 @@ describe('brand palette', () => {
     expect(designMd).toContain(`steel: "${PALETTE.steel.toUpperCase()}"`);
   });
 
+  it('keeps default body text readable on the default background', () => {
+    // The `body` rule is the last line of defense: anything rendered inside the
+    // layout but outside a <main> that sets its own text color inherits it. It
+    // shipped as near-white on near-white (1.02:1) and nobody noticed, because
+    // all three pages happened to override the color on <main>.
+    const rule = globalsCss.slice(globalsCss.indexOf('body {'));
+    const body = rule.slice(0, rule.indexOf('}'));
+
+    const varName = (prop: string) => body.match(new RegExp(`${prop}:\\s*var\\((--[\\w-]+)\\)`))?.[1];
+    const value = (name: string) => globalsCss.match(new RegExp(`${name}:\\s*(#[0-9a-fA-F]{6})`))?.[1];
+
+    const fg = varName('color');
+    const bg = varName('background');
+    expect(fg).toBeDefined();
+    expect(bg).toBeDefined();
+
+    const fgHex = value(fg!);
+    const bgHex = value(bg!);
+    expect(fgHex).toBeDefined();
+    expect(bgHex).toBeDefined();
+
+    expect(contrastRatio(fgHex!, bgHex!)).toBeGreaterThanOrEqual(4.5);
+  });
+
   it('leaves no orphaned kicker copy behind the removed section eyebrows', () => {
     const content = readFileSync(join(ROOT, 'src/lib/content.ts'), 'utf8');
     expect(content).not.toContain('kicker');
