@@ -1,9 +1,10 @@
 {
   "activeFeature": "ksways-focus-ring-contrast",
-  "phase": "do",
+  "phase": "completed",
   "features": {
     "ksways-focus-ring-contrast": {
-      "phase": "do",
+      "phase": "completed",
+      "matchRate": 100,
       "createdAt": "2026-08-07",
       "notes": "brand-pivot-bronze(PR #20, e7de26c) 후속 ①. 포커스 시스템이 2개이고 둘 다 밝은 표면에서 비가시: (A) 전역 :focus-visible outline #e7c99a — dark 12.14:1 PASS / paper 1.47:1 · white 1.59:1 FAIL, outline-offset 4px라 링이 주변 표면 위에 놓임. (B) QuoteForm.tsx:100 commonClass — outline-none + ring-[#b88a5a]/14 = 1.14:1, 기본 표시를 끄고 대체가 무가시라 WCAG 2.4.7 Level A 사안(28 필드 정의, 유일한 전환 경로). 회귀 아님(구 시안 1.15:1로 더 나빴음). 핵심 쟁점: 브론즈는 중간톤이라 단일 값으로 양 표면 동시 만족 불가(#b88a5a white 3.08 간신히·paper 2.89 실패 / #805d3b dark 3.26 간신히) → Design에서 이중 링 기본안 검토. 수정 지점 2곳(globals.css:29, QuoteForm commonClass), 컴포넌트별 오버라이드 금지(그게 B의 원인). 검증=계산 가드+실브라우저 스팟체크 2단(preview는 Vercel Auth로 불가)"
     },
