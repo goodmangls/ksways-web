@@ -1,1 +1,1 @@
-📁 chore(pdca): ksways-cross-browser-verification archive — 4문서 이관, _INDEX 학습 5건 추가, Safari 실행은 후속 이관
+📋 docs(pdca): ksways-unsplash-attribution Plan·Design — 작가 정보 10/10 플레이스홀더, 선행 조건(Unsplash 키) 대기로 파킹
