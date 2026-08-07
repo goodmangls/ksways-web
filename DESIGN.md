@@ -16,8 +16,8 @@ colors:
   accent-tint: "#FAF4EC"
   steel: "#5F6F78"
   muted: "#7D888A"
-  warning: "#A15C00"
-  warning-bright: "#FFB84D"
+  warning: "#B3261E"
+  warning-bright: "#FF8A80"
   border-dark: "#1F3436"
   border-light: "#D9E2E0"
 typography:
@@ -185,7 +185,15 @@ The palette is intentionally narrow. It should create a premium logistics contro
 - **Paper (`#F4F7F6`)**: Main light-page background. It should feel cooler and more operational than pure white.
 - **White (`#FFFFFF`)**: Cards, text on dark surfaces, and contrast anchor.
 - **Muted (`#7D888A`)**: Low-emphasis labels on light backgrounds.
-- **Warning (`#A15C00`) / Warning Bright (`#FFB84D`)**: Reserved for form validation and dangerous-goods notices. These are **semantic, not brand** — do not repurpose them as accents, and keep them visually separable from the bronze accent family.
+- **Warning (`#B3261E`) / Warning Bright (`#FF8A80`) / Warning Text (`#FFB4AB`)**: Reserved for form validation errors and the mailto length notice. `Warning` is for light surfaces; the other two pair together on dark ones. These are **semantic, not brand** — never repurpose them as accents.
+
+### Semantic colors must not share the brand's hue
+
+The warning family used to be amber (`#A15C00` / `#FFB84D` / `#FFE8BD`). Measured against the bronze accents, every one of those sat within **1–3° of hue** — the palette's only separator was saturation, which is a weak signal and close to useless for anyone with reduced color discrimination. On the quote form's dark aside it was worse: the brand gold label (`#E7C99A`, H37) and the warning box (`#FFE8BD`, H39) sat in the same panel, 2° apart.
+
+Red moves the family to **H 3–6°, roughly 24–27° from the accents**, and matches the ordinary convention that a failed form field is an error rather than a caution. It also repaired an accessibility defect on the way: the old light-surface warning text measured **4.35:1** on its own tint, under AA.
+
+Keep at least ~20° of hue between any semantic color and the accent family. `src/brand-palette.test.ts` computes it.
 
 Use opacity overlays rather than adding new colors: white at 4–18% on dark surfaces, navy at 10–12% for light borders, and bronze glows at low opacity for depth.
 
