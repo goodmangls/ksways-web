@@ -1,12 +1,14 @@
 {
-  "activeFeature": "ksways-cross-browser-verification",
-  "phase": "completed",
+  "activeFeature": null,
+  "phase": "archived",
   "features": {
     "ksways-cross-browser-verification": {
-      "phase": "completed",
+      "phase": "archived",
       "createdAt": "2026-08-07",
       "notes": "a11y 두 사이클 연속으로 핵심 CSS 를 Chromium 에서만 검증하고 잔여로 남긴 것이 누적. 미검증 2건: ①outline 이 border-radius 를 따르는가(focus-ring 사이클) ②@keyframes 내 visibility 보간(hero-attribution 사이클). ②가 더 무거움 — 보간이 다르면 **보이는 링크가 Tab 에서 사라지는**, 고치려던 것보다 나쁜 회귀 가능. ⚠️조사 결과 **지원 브라우저 타깃 자체가 미정의**: package.json browserslist 없음·.browserslistrc 없음 → 검증 범위를 정할 근거가 없어 타깃 정의가 선행 과제. Playwright/Puppeteer 등 브라우저 자동화 의존성 전무(devDeps 14개 확인), /browse(gstack)는 Chromium 전용. Vercel Web Analytics 로 실제 방문자 브라우저 분포를 잡으려 했으나 **MCP 가 goodman-ksways 스코프 미인증 403** → 트래픽 기반 범위 설정 불가. 주요 리스크: browserslist 추가가 Next/Tailwind v4 의 자체 타깃 처리와 겹쳐 **빌드 산출물을 바꿀 수 있음**(도입 전후 대조 필요, 안 되면 문서로만 정의). 검증 수단 3안(1회성 수동 / Playwright 로컬전용 / CI 자동화)을 실측 비용과 비교해 Design 에서 결정. 재사용 가능 기법: hero-attribution §0 의 진행률 고정(animation-play-state:paused + 음수 delay)은 엔진 무관 | DESIGN 확정: **타깃은 미정의가 아니라 미문서화**였음 — next/dist/build/get-supported-browsers.js 가 browserslist 없으면 MODERN_BROWSERSLIST_TARGET(chrome/edge/firefox 111, safari 16.4)을 반환, 이미 빌드에 강제 중. D-1 이 실효값을 그대로 채택·문서화. D-2 browserslist 설정파일 **미도입** — Tailwind v4 는 browserslist 참조 0건(lightningcss 자체 타깃)이라 CSS 영향 없음이 반증됐고, Next 는 읽지만 기본값 복제는 Next 가 기본을 올릴 때 우리 값만 뒤처지는 위험만 남김. 대신 src/browser-target.test.ts 가 실제 값 고정. D-3 하이브리드: Firefox=Playwright(102MB 실측), **Safari=로컬 실기 18.4**(WebKit≠Safari 이고 실기가 이미 있어 webkit 77MB 불필요). D-4 playwright devDep 미추가 — postinstall 이 브라우저를 받아 CI npm ci 마다 수백MB. D-5 CI 미포함 — 엔진 동작은 우리 커밋이 아니라 브라우저 업데이트로 바뀌고, 선언 회귀는 정적 가드 14건이 이미 커버. ⚠️발견: scripts/qa-capture.js·qa-screenshots.js 가 require(playwright) 하나 의존성 없어 MODULE_NOT_FOUND + /opt/data 경로(리눅스) → 고아. 후속 후보. ⚠️한계: 로컬 Safari 18.4 vs 타깃 하한 16.4 — 하한 검증 수단 없음 | DO: 타깃 가드 3건(값·문서표기·browserslist 부재) + 결함주입 3종 확인. scripts/verify-css-engines.mjs 신규 — 실제 globals.css 를 읽어 인라인(프로브 드리프트 방지), A=visibility 보간·B=Tab 순서 자동판정(exit code), C=스크린샷 육안. **Firefox 153 결과: A 5/5 · B 5/5 통과, C 아웃라인이 16px 라운드 정확히 추종(스크린샷 확인)**. Chromium 은 캐시 버전 불일치(1208 vs 요구 1234)로 스킵 — 추가 190MB 불필요, 이전 사이클서 근거 확보됨. Design v0.2 정정: D-4 의 npx 실행안 불성립(스크립트가 import 하므로 프로젝트 해석 필요) → PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install --no-save + npx playwright install firefox 로 교체. package.json·lock 무오염 확인. .gitignore 에 tmp/ 추가. 99→102 tests. ⚠️**6단계 Safari 수동 검증은 GUI 필요라 사용자 대기** | CHECK: Match 75% (FR 3/4) — 산출물은 전부 완성, **Safari 검증만 외부 차단으로 미충족**. G-1: safaridriver 는 존재(18.4 동봉)하나 AllowRemoteAutomation 미설정 + WebKitTabToLinksPreferenceKey 꺼짐 — 후자는 켜지 않으면 Safari Tab 이 링크를 건너뛰어 FR-03 검증 자체가 무효. 둘 다 사용자 앱 설정이라 임의 변경 안 함. Design 항목 기준으로는 91%(16중 충족13+부분3)이나 FR 기준 75% 를 헤드라인 채택. iterate 해당없음(고칠 코드 없음) → 경로A(사용자 확인 후 재산출) 또는 경로B(ksways-safari-verification 분리) 결정 대기. 확장: 프로브가 실제 globals.css 인라인(복사 드리프트 방지)·지점 5개(95% 페이드인 방향 신규)·.gitignore tmp/. G-3: Chromium 캐시 버전 불일치로 대조 스킵(영향 없음, #21·#22서 확보) | REPORT: **경로 B 확정** — Safari 실행만 ksways-safari-verification 으로 이관, 75% 최종. 경로A 시도 전부 실패: safaridriver 기동 OK(ready:true) / 세션생성 거부 / --enable 은 not-a-tty 로 암호 거부 / Terminal.app(TTY) 재시도도 2분 폴링 미반영. **인증(--enable)과 권한(Safari 원격자동화 허용)은 별개** — 오류가 일관되게 후자를 지목했는데 초기에 --enable 을 단독 해결책으로 안내한 것은 오판. IncludeDevelopMenu=0 이라 GUI 도 2단계 필요. 도구는 완비돼 재개 비용 ~1분. 학습 6건 기록",
-      "matchRate": 75
+      "matchRate": 75,
+      "archivedTo": "docs/archive/2026-08/ksways-cross-browser-verification/",
+      "archivedAt": "2026-08-07"
     },
     "ksways-hero-attribution-a11y": {
       "phase": "archived",

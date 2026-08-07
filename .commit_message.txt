@@ -1,1 +1,1 @@
-📄 docs(pdca): ksways-cross-browser-verification 완료 보고서 — Match 75%, 경로 B(Safari 실행 분리 이관), 학습 6건
+📁 chore(pdca): ksways-cross-browser-verification archive — 4문서 이관, _INDEX 학습 5건 추가, Safari 실행은 후속 이관
