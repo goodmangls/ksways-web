@@ -5,6 +5,34 @@ import nextConfig, { buildContentSecurityPolicy } from '../next.config';
 import sitemap from '@/app/sitemap';
 import { homeSeo, shareImage } from '@/lib/seo';
 import { servicePages } from '@/lib/service-pages';
+import { homeContent } from '@/lib/content';
+
+/** Brand spellings that must never appear in copy. `KS WAYS` is the only correct form. */
+const COLLAPSED_BRAND_SPELLINGS = ['KSWAYS', 'KSWays', 'KS Ways'] as const;
+
+/** Positioning DESIGN.md explicitly rules out of public copy. */
+const FORBIDDEN_COPY = [
+  'MLM',
+  'network-marketing',
+  'Network Marketing',
+  'Goodman GLS family',
+  'Korea-based local company',
+] as const;
+
+/** Every user-visible string in the copy data, with a path for readable failures. */
+function copyStrings(): { path: string; value: string }[] {
+  const out: { path: string; value: string }[] = [];
+  const walk = (node: unknown, path: string) => {
+    if (typeof node === 'string') out.push({ path, value: node });
+    else if (Array.isArray(node)) node.forEach((v, i) => walk(v, `${path}[${i}]`));
+    else if (node && typeof node === 'object') {
+      for (const [k, v] of Object.entries(node)) walk(v, `${path}.${k}`);
+    }
+  };
+  walk(homeContent, 'homeContent');
+  walk(servicePages, 'servicePages');
+  return out;
+}
 
 describe('site quality hardening', () => {
   it('allows Next/Image to render approved Unsplash CDN images without exposing API keys', () => {
@@ -63,14 +91,31 @@ describe('site quality hardening', () => {
     expect(readme).toContain('DESIGN.md');
   });
 
-  it('makes QA capture fail CI on quality regressions and checks collapsed brand spelling', () => {
-    const source = readFileSync(join(process.cwd(), 'scripts/qa-capture.js'), 'utf8');
+  it('never collapses the brand spelling in user-visible copy', () => {
+    // There used to be a `scripts/qa-capture.js` (now deleted) that checked this
+    // against a live server, and an assertion here that read its source to
+    // confirm it still *mentioned* the rule. That was a proxy for a proxy: the
+    // script needed Playwright and a running server, so it never ran in CI, and
+    // grepping its text proved nothing about the copy.
+    //
+    // Walking the exported copy data tests the actual strings, and it sidesteps
+    // identifier noise — `NEXT_PUBLIC_KSWAYS_CALENDLY_URL` and `utm_source=ksways`
+    // are code, not copy, and would trip a raw file scan.
+    const offenders = copyStrings().filter(({ value }) =>
+      COLLAPSED_BRAND_SPELLINGS.some((term) => value.includes(term)),
+    );
 
-    expect(source).toContain('noBrandCollapse');
-    expect(source).toContain('process.exitCode = 1');
-    expect(source).toContain('KSWays');
-    expect(source).toContain('KS Ways');
-    expect(source).toContain('Korea-based local company');
+    expect(offenders).toEqual([]);
+  });
+
+  it('never leaks the positioning DESIGN.md rules out', () => {
+    // DESIGN.md "Don't": the brand is not a Korea-based local company, and
+    // internal or unrelated-business language must not surface in public copy.
+    const offenders = copyStrings().filter(({ value }) =>
+      FORBIDDEN_COPY.some((term) => value.toLowerCase().includes(term.toLowerCase())),
+    );
+
+    expect(offenders).toEqual([]);
   });
 
   it('defines visible keyboard focus and reduced-motion safeguards globally', () => {
