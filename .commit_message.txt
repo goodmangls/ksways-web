@@ -1,1 +1,1 @@
-🧹 qa-capture.js 단언을 카피 데이터 직접 검증으로 이관하고 스크립트 삭제 — 프록시의 프록시 제거
+🤖 chore(agents): AGENTS.md + docs/agents 스캐폴딩 — mattpocock 엔지니어링 스킬 규약 설정
