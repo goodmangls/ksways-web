@@ -1,1 +1,1 @@
-📋 docs(agents): AGENTS.md 에 워크플로우 규약 추가 — 경량형 조합(gstack+mattpocock), /diagnose 6-Phase, git 가드레일
+🔓 가드레일 제거 반영 — 차단형 훅이 문서 본문 문자열까지 막아 같은 날 철회, AGENTS.md 정정
