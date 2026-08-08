@@ -4,6 +4,17 @@ KS WAYS 이중언어 Next.js 랜딩 페이지. 영어 기본 + `/kr` 라우트. 
 
 이 파일은 에이전트 중립 규약이다. Claude Code · Codex · Cursor · Gemini CLI · opencode 가 모두 읽는다.
 
+## 워크플로우
+
+경량형 조합 — **gstack + mattpocock/skills**. bkit 은 사용하지 않는다(`docs/archive/*` 의 PDCA 이력은 보존).
+
+- **스프린트 케이던스**: gstack 규칙 준수
+- **요구사항 정렬**: 작업 시작 전 `/grill-me` 로 의도·범위 확정
+- **디버깅**: `/diagnose` **6-Phase** 준수 — feedback loop → reproduce → hypothesise → instrument → fix + regression test → cleanup
+- **Git 안전장치**: 차단형 가드레일은 쓰지 않는다. 알림 훅만 있다.
+  - `/git-guardrails-claude-code` 를 2026-08-08 에 설치했다가 **같은 날 제거**했다. 훅이 명령 문자열 전체를 정규식으로 훑기 때문에, 차단 대상 문자열이 **문서 본문에 들어 있기만 해도** 무관한 작업이 막힌다 — 가드레일을 설명하는 이 문서를 작성하는 것조차 차단됐다.
+  - 에이전트가 브랜치·커밋·원격 반영까지 수행한다. 다만 되돌리기 계열(`reset --hard` · `clean -f` · `branch -D`)은 실행 전에 사용자 확인을 받는다.
+
 ## Agent skills
 
 ### Issue tracker

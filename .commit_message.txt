@@ -1,1 +1,1 @@
-🤖 chore(agents): AGENTS.md + docs/agents 스캐폴딩 — mattpocock 엔지니어링 스킬 규약 설정
+🔓 가드레일 제거 반영 — 차단형 훅이 문서 본문 문자열까지 막아 같은 날 철회, AGENTS.md 정정
