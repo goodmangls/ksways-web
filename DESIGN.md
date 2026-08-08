@@ -361,7 +361,7 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 ### Don't
 
 - Do not describe KS WAYS primarily as a Korea-based local company.
-- Do not spell the visible brand as `KSWAYS` or `KSWays`.
+- Do not spell the visible brand as `KSWAYS`, `KSWays`, or `KS Ways` — `KS WAYS` is the only correct form. Enforced by `src/site-quality.test.ts`, which walks the exported copy data rather than grepping files, so identifiers like `NEXT_PUBLIC_KSWAYS_CALENDLY_URL` do not false-positive.
 - Do not add arbitrary colors outside the navy/bronze/gold/steel/paper palette.
 - Do not place white text on the bronze accent (`#B88A5A`); it measures 3.08:1 and fails WCAG AA.
 - Do not change a palette value in one component only — the palette is asserted site-wide by `src/brand-palette.test.ts`.
