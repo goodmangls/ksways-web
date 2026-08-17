@@ -24,7 +24,7 @@ async function fillRequiredFields(user: ReturnType<typeof userEvent.setup>) {
 
 function getDesktopSubmitButton() {
   const aside = screen.getByText('Email handoff').closest('aside') as HTMLElement;
-  return within(aside).getByRole('button', { name: /Open email draft/i });
+  return within(aside).getByRole('button', { name: /Choose email app/i });
 }
 
 describe('QuoteForm interactions', () => {
@@ -75,7 +75,7 @@ describe('QuoteForm interactions', () => {
     expect(screen.getByText(/DG cargo selected/)).toBeInTheDocument();
   });
 
-  it('opens a mailto draft via navigate once required fields are complete', async () => {
+  it('opens email options and keeps the default draft addressed to info@ksways.co', async () => {
     const user = userEvent.setup();
     const navigate = vi.fn();
     render(<QuoteForm navigate={navigate} />);
@@ -83,10 +83,20 @@ describe('QuoteForm interactions', () => {
     await fillRequiredFields(user);
     await user.click(getDesktopSubmitButton());
 
-    expect(navigate).toHaveBeenCalledTimes(1);
-    const href = navigate.mock.calls[0][0] as string;
+    const dialog = screen.getByRole('dialog', { name: /Choose where to open the draft/i });
+    expect(dialog).toHaveFocus();
+    expect(within(dialog).getByText(`To: ${contactEmail}`)).toBeInTheDocument();
+
+    const defaultEmailLink = within(dialog).getByRole('link', { name: /Default email app/i });
+    const href = defaultEmailLink.getAttribute('href') ?? '';
     expect(href.startsWith(`mailto:${contactEmail}?subject=`)).toBe(true);
     expect(href).toContain(encodeURIComponent('Acme Trading'));
+    expect(within(dialog).getByRole('link', { name: 'Gmail' })).toHaveAttribute('href', expect.stringContaining(`to=${encodeURIComponent(contactEmail)}`));
+    expect(within(dialog).getByRole('link', { name: /Outlook Web/i })).toHaveAttribute('href', expect.stringContaining(`to=${encodeURIComponent(contactEmail)}`));
+
+    await user.click(defaultEmailLink);
+
+    expect(navigate).toHaveBeenCalledWith(href);
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
 
@@ -102,7 +112,23 @@ describe('QuoteForm interactions', () => {
     await fillRequiredFields(user);
     await user.click(getDesktopSubmitButton());
 
-    expect(navigate).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole('dialog', { name: /Choose where to open the draft/i })).toBeInTheDocument();
+    expect(navigate).not.toHaveBeenCalled();
+  });
+
+  it('closes email options with Escape and restores focus to the trigger', async () => {
+    const user = userEvent.setup();
+    render(<QuoteForm />);
+
+    await fillRequiredFields(user);
+    const trigger = getDesktopSubmitButton();
+    await user.click(trigger);
+    expect(screen.getByRole('dialog')).toHaveFocus();
+
+    await user.keyboard('{Escape}');
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(trigger).toHaveFocus();
   });
 
   it('shows no length warning for a short draft', () => {

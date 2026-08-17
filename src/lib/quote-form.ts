@@ -246,10 +246,29 @@ export function isQuoteMailtoOverLimit(values: QuoteFormValues = {}) {
   return buildQuoteMailto(values).length > QUOTE_MAILTO_LENGTH_LIMIT;
 }
 
-export function buildQuoteMailto(values: QuoteFormValues = {}) {
+function buildQuoteEmailDraft(values: QuoteFormValues) {
   const company = value(values, 'companyName') || 'Website enquiry';
-  const subject = `KS WAYS website quote request — ${company}`;
-  const body = buildQuoteEmailText(values);
+
+  return {
+    subject: `KS WAYS website quote request — ${company}`,
+    body: buildQuoteEmailText(values),
+  };
+}
+
+export function buildQuoteMailto(values: QuoteFormValues = {}) {
+  const { subject, body } = buildQuoteEmailDraft(values);
 
   return `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+export function buildQuoteGmailComposeUrl(values: QuoteFormValues = {}) {
+  const { subject, body } = buildQuoteEmailDraft(values);
+
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contactEmail)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+export function buildQuoteOutlookComposeUrl(values: QuoteFormValues = {}) {
+  const { subject, body } = buildQuoteEmailDraft(values);
+
+  return `https://outlook.office.com/mail/deeplink/compose?to=${encodeURIComponent(contactEmail)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }

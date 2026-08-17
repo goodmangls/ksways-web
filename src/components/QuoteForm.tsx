@@ -1,9 +1,12 @@
 'use client';
 
-import { useMemo, useRef, useState } from 'react';
+import { Copy, ExternalLink, Mail, X } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type MouseEvent } from 'react';
 import {
   buildQuoteEmailText,
+  buildQuoteGmailComposeUrl,
   buildQuoteMailto,
+  buildQuoteOutlookComposeUrl,
   getMissingRequiredQuoteFields,
   getShipmentTypeForTransportMode,
   getVisibleQuoteSections,
@@ -40,8 +43,13 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
   const [values, setValues] = useState<QuoteFormValues>(initialValues);
   const [validationMessage, setValidationMessage] = useState('');
   const [copyStatus, setCopyStatus] = useState('');
+  const [emailOptionsOpen, setEmailOptionsOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const emailOptionsRef = useRef<HTMLDivElement>(null);
+  const emailOptionsTriggerRef = useRef<HTMLButtonElement>(null);
   const href = useMemo(() => buildQuoteMailto(values), [values]);
+  const gmailHref = useMemo(() => buildQuoteGmailComposeUrl(values), [values]);
+  const outlookHref = useMemo(() => buildQuoteOutlookComposeUrl(values), [values]);
   const emailText = useMemo(() => buildQuoteEmailText(values), [values]);
   const visibleSections = useMemo(() => getVisibleQuoteSections(values), [values]);
   const dgSelected = isDgCargo(values);
@@ -49,6 +57,21 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
   const canOpenEmail = missingRequiredFields.length === 0;
   const mailtoOverLimit = href.length > QUOTE_MAILTO_LENGTH_LIMIT;
   const lengthWarning = 'This request is long — some email apps may truncate the prepared draft. We recommend “Copy request summary” and pasting the full details into your email instead.';
+
+  useEffect(() => {
+    if (!emailOptionsOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    emailOptionsRef.current?.focus();
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      emailOptionsTriggerRef.current?.focus();
+    };
+  }, [emailOptionsOpen]);
 
   function update(name: keyof QuoteFormValues, value: string) {
     setValidationMessage('');
@@ -76,7 +99,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
     field?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  function handleOpenEmailDraft() {
+  function handleChooseEmailApp(event: MouseEvent<HTMLButtonElement>) {
     const missing = getMissingRequiredQuoteFields(values);
 
     if (missing.length > 0) {
@@ -85,7 +108,54 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
       return;
     }
 
-    (navigate ?? ((target: string) => { window.location.href = target; }))(href);
+    setCopyStatus('');
+    emailOptionsTriggerRef.current = event.currentTarget;
+    setEmailOptionsOpen(true);
+  }
+
+  function closeEmailOptions() {
+    setEmailOptionsOpen(false);
+  }
+
+  function handleEmailOptionsKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeEmailOptions();
+      return;
+    }
+
+    if (event.key !== 'Tab') {
+      return;
+    }
+
+    const dialog = emailOptionsRef.current;
+    const focusableElements = dialog
+      ? Array.from(dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'))
+      : [];
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements.at(-1);
+
+    if (!firstElement || !lastElement) {
+      event.preventDefault();
+      return;
+    }
+
+    if (event.shiftKey && (document.activeElement === firstElement || document.activeElement === dialog)) {
+      event.preventDefault();
+      lastElement.focus();
+    } else if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
+    }
+  }
+
+  function handleDefaultEmailClick(event: MouseEvent<HTMLAnchorElement>) {
+    if (!navigate) {
+      return;
+    }
+
+    event.preventDefault();
+    navigate(href);
   }
 
   async function handleCopySummary() {
@@ -210,17 +280,17 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             ) : null}
             <button
               type="button"
-              onClick={handleOpenEmailDraft}
+              onClick={handleChooseEmailApp}
               className="mt-4 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-[#001112] px-6 text-center font-black text-white transition hover:bg-[#805d3b]"
             >
-              Open email draft to KS WAYS
+              Choose email app
             </button>
           </div>
         </form>
 
         <aside className="self-start rounded-[30px] bg-[#001112] p-6 text-white shadow-[0_24px_80px_rgba(0,17,18,.22)] sm:p-7 lg:sticky lg:top-8">
           <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#e7c99a]/78">Email handoff</p>
-          <h3 className="mt-4 text-3xl font-black tracking-[-.05em]">Review the draft, then send from your inbox.</h3>
+          <h3 className="mt-4 text-3xl font-black tracking-[-.05em]">Review the draft, then choose your inbox.</h3>
           <p className="mt-4 leading-relaxed text-white/64">
             Complete the required basics, then open a prepared email to {contactEmail}. Attach packing list, invoice, MSDS, photos, or equipment drawings in your email client if needed.
           </p>
@@ -240,10 +310,10 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
           ) : null}
           <button
             type="button"
-            onClick={handleOpenEmailDraft}
+            onClick={handleChooseEmailApp}
             className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-[#b88a5a] px-6 text-center font-black text-[#001112] shadow-[0_18px_46px_rgba(184,138,90,.24)] transition hover:scale-[1.015]"
           >
-            Open email draft to KS WAYS
+            Choose email app
           </button>
           <button
             type="button"
@@ -254,7 +324,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
           </button>
           {copyStatus ? <p className="mt-3 text-sm font-bold text-[#e7c99a]">{copyStatus}</p> : null}
           <p className="mt-4 text-xs font-semibold leading-relaxed text-white/44">
-            If your email app does not open, copy the request summary and email {contactEmail} directly. Nothing is submitted to a server from this page.
+            The prepared draft is addressed to {contactEmail}. Nothing is submitted to a server from this page.
           </p>
           <div className="mt-6 rounded-2xl border border-white/12 bg-white/[.06] p-4 text-sm leading-relaxed text-white/66">
             <p className="font-black text-white">Recommended attachments</p>
@@ -267,6 +337,94 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
           </div>
         </aside>
       </div>
+
+      {emailOptionsOpen ? (
+        <div
+          className="fixed inset-0 z-[80] grid place-items-center bg-[#001112]/72 p-4 backdrop-blur-sm"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              closeEmailOptions();
+            }
+          }}
+        >
+          <div
+            ref={emailOptionsRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="email-options-title"
+            tabIndex={-1}
+            onKeyDown={handleEmailOptionsKeyDown}
+            className="relative max-h-[calc(100dvh-2rem)] w-full max-w-2xl overflow-y-auto rounded-[30px] bg-white p-6 text-[#001112] shadow-[0_32px_120px_rgba(0,17,18,.38)] sm:p-8"
+          >
+            <button
+              type="button"
+              aria-label="Close email options"
+              title="Close"
+              onClick={closeEmailOptions}
+              className="absolute right-5 top-5 inline-flex size-11 items-center justify-center rounded-full border border-[#001112]/12 bg-[#f4f7f6] transition hover:border-[#b88a5a] hover:bg-white"
+            >
+              <X aria-hidden="true" className="size-5" />
+            </button>
+
+            <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#805d3b]">Email handoff</p>
+            <h2 id="email-options-title" className="mt-3 pr-12 text-3xl font-black leading-tight">
+              Choose where to open the draft.
+            </h2>
+            <p className="mt-3 text-sm font-bold text-[#001112]/60">To: {contactEmail}</p>
+
+            {mailtoOverLimit ? (
+              <p role="status" className="mt-5 rounded-2xl border border-[#b3261e]/25 bg-[#b3261e]/8 p-4 text-sm font-bold leading-relaxed text-[#b3261e]">
+                {lengthWarning}
+              </p>
+            ) : null}
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <a
+                href={href}
+                onClick={handleDefaultEmailClick}
+                className="flex min-h-[76px] items-center gap-4 rounded-2xl border border-[#001112]/12 bg-[#001112] px-5 py-4 text-white transition hover:bg-[#805d3b]"
+              >
+                <Mail aria-hidden="true" className="size-6 shrink-0 text-white" />
+                <span>
+                  <span className="block font-black text-white">Default email app</span>
+                  <span className="mt-1 block text-xs font-semibold text-white/64">Uses the app configured on this device.</span>
+                </span>
+              </a>
+              <a
+                href={gmailHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-[76px] items-center justify-between gap-4 rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-5 py-4 transition hover:border-[#b88a5a] hover:bg-white"
+              >
+                <span className="font-black">Gmail</span>
+                <ExternalLink aria-hidden="true" className="size-5 shrink-0" />
+              </a>
+              <a
+                href={outlookHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-[76px] items-center justify-between gap-4 rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-5 py-4 transition hover:border-[#b88a5a] hover:bg-white"
+              >
+                <span className="font-black">Outlook Web</span>
+                <ExternalLink aria-hidden="true" className="size-5 shrink-0" />
+              </a>
+              <button
+                type="button"
+                onClick={handleCopySummary}
+                className="flex min-h-[76px] items-center justify-between gap-4 rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-5 py-4 text-left transition hover:border-[#b88a5a] hover:bg-white"
+              >
+                <span className="font-black">Copy request summary</span>
+                <Copy aria-hidden="true" className="size-5 shrink-0" />
+              </button>
+            </div>
+
+            {copyStatus ? <p role="status" className="mt-4 text-sm font-black text-[#805d3b]">{copyStatus}</p> : null}
+            <p className="mt-5 text-xs font-semibold leading-relaxed text-[#001112]/52">
+              If the default app does not open, use Gmail, Outlook Web, or copy the request into another email service.
+            </p>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }
