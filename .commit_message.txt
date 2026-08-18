@@ -1,1 +1,1 @@
-🎭 test(e2e): Playwright 도입 — 견적 이메일 핸드오프 플로우 5케이스 + 8페이지 스모크, CI 실험 잡(3연속 PASS 후 승격)
+📋 chore: next 16.3.1이 주입하는 AGENTS.md vendor 블록 커밋 — 로컬 dev/E2E 실행마다 생기던 dirty tree 해소
