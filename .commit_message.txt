@@ -1,1 +1,1 @@
-🧹 chore: framer-motion 죽은 의존성 제거 + 커버리지 회귀 floor 게이트 추가 (CI가 test:coverage 실행, fail-injection 검증)
+🧪 test: QuoteForm 전환 플로우 심층화 — 클립보드 실패 폴백·textarea 초안 반영·백드롭 닫기 + 이메일 URL 파라미터 디코드 전수 단언(결함주입 검증)
