@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, render, screen, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { contactEmail } from '@/lib/seo';
@@ -23,12 +23,21 @@ async function fillRequiredFields(user: ReturnType<typeof userEvent.setup>) {
 }
 
 function getDesktopSubmitButton() {
-  const aside = screen.getByText('Email handoff').closest('aside') as HTMLElement;
+  // 카피 텍스트가 아니라 landmark role 로 찾는다 — 문구 변경에 테스트가 깨지지 않도록.
+  const aside = screen.getByRole('complementary');
   return within(aside).getByRole('button', { name: /Choose email app/i });
 }
 
+/** mailto:/https 컴포즈 URL 에서 쿼리 파라미터를 디코드해 돌려준다. */
+function getUrlParam(href: string, key: string): string | null {
+  return new URL(href).searchParams.get(key);
+}
+
 describe('QuoteForm interactions', () => {
-  afterEach(cleanup);
+  afterEach(() => {
+    cleanup();
+    vi.restoreAllMocks();
+  });
 
   it('blocks the email draft and lists missing required fields', async () => {
     const user = userEvent.setup();
@@ -90,9 +99,27 @@ describe('QuoteForm interactions', () => {
     const defaultEmailLink = within(dialog).getByRole('link', { name: /Default email app/i });
     const href = defaultEmailLink.getAttribute('href') ?? '';
     expect(href.startsWith(`mailto:${contactEmail}?subject=`)).toBe(true);
-    expect(href).toContain(encodeURIComponent('Acme Trading'));
-    expect(within(dialog).getByRole('link', { name: 'Gmail' })).toHaveAttribute('href', expect.stringContaining(`to=${encodeURIComponent(contactEmail)}`));
-    expect(within(dialog).getByRole('link', { name: /Outlook Web/i })).toHaveAttribute('href', expect.stringContaining(`to=${encodeURIComponent(contactEmail)}`));
+
+    // "contains 조각" 단언은 body= 파라미터가 통째로 빠져도 통과한다 —
+    // 파라미터를 디코드해 subject 는 값 전체를, body 는 필수 필드 값 전수를 단언한다.
+    const subject = getUrlParam(href, 'subject');
+    const body = getUrlParam(href, 'body');
+    expect(subject).toBe('KS WAYS website quote request — Acme Trading');
+    expect(body).toContain('Dear KS WAYS team,');
+    for (const value of Object.values(REQUIRED_VALUES)) {
+      expect(body, `mailto body should carry "${value}"`).toContain(value);
+    }
+
+    // Gmail/Outlook 컴포즈 링크는 mailto 와 같은 초안(수신자·제목·본문)을 실어야 한다.
+    const gmailHref = within(dialog).getByRole('link', { name: 'Gmail' }).getAttribute('href') ?? '';
+    expect(getUrlParam(gmailHref, 'to')).toBe(contactEmail);
+    expect(getUrlParam(gmailHref, 'su')).toBe(subject);
+    expect(getUrlParam(gmailHref, 'body')).toBe(body);
+
+    const outlookHref = within(dialog).getByRole('link', { name: /Outlook Web/i }).getAttribute('href') ?? '';
+    expect(getUrlParam(outlookHref, 'to')).toBe(contactEmail);
+    expect(getUrlParam(outlookHref, 'subject')).toBe(subject);
+    expect(getUrlParam(outlookHref, 'body')).toBe(body);
 
     await user.click(defaultEmailLink);
 
@@ -148,5 +175,53 @@ describe('QuoteForm interactions', () => {
     expect(writeText).toHaveBeenCalledTimes(1);
     expect(writeText.mock.calls[0][0]).toContain('Dear KS WAYS team,');
     expect(await screen.findByText('Request summary copied.')).toBeInTheDocument();
+  });
+
+  it('surfaces the direct-email fallback when the clipboard write fails', async () => {
+    const user = userEvent.setup();
+    const writeText = vi.spyOn(navigator.clipboard, 'writeText').mockRejectedValueOnce(new Error('clipboard denied'));
+    render(<QuoteForm />);
+
+    await user.click(screen.getByRole('button', { name: /Copy request summary/i }));
+
+    expect(writeText).toHaveBeenCalledTimes(1);
+    expect(await screen.findByText(`Copy failed. Please email ${contactEmail} directly.`)).toBeInTheDocument();
+    expect(screen.queryByText('Request summary copied.')).not.toBeInTheDocument();
+  });
+
+  it('stores typed special-instruction notes and carries them into the email draft', async () => {
+    const user = userEvent.setup();
+    render(<QuoteForm />);
+
+    const notes = document.querySelector<HTMLTextAreaElement>('[name="additionalNotes"]');
+    expect(notes, 'additionalNotes textarea should render').not.toBeNull();
+    await user.type(notes as HTMLTextAreaElement, 'Fragile cargo, tilt sensors attached');
+    expect((notes as HTMLTextAreaElement).value).toBe('Fragile cargo, tilt sensors attached');
+
+    await fillRequiredFields(user);
+    await user.click(getDesktopSubmitButton());
+
+    const dialog = screen.getByRole('dialog', { name: /Choose where to open the draft/i });
+    const href = within(dialog).getByRole('link', { name: /Default email app/i }).getAttribute('href') ?? '';
+    expect(getUrlParam(href, 'body')).toContain('Fragile cargo, tilt sensors attached');
+  });
+
+  it('closes the dialog on backdrop pointer-down but not on presses inside it', async () => {
+    const user = userEvent.setup();
+    render(<QuoteForm />);
+
+    await fillRequiredFields(user);
+    await user.click(getDesktopSubmitButton());
+
+    const dialog = screen.getByRole('dialog', { name: /Choose where to open the draft/i });
+    const backdrop = dialog.parentElement as HTMLElement;
+
+    // 다이얼로그 내부 press 는 닫지 않는다 (event.target !== currentTarget)
+    fireEvent.mouseDown(dialog);
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+    // 백드롭 자체 press 는 닫는다
+    fireEvent.mouseDown(backdrop);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });
