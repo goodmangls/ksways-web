@@ -1,4 +1,7 @@
 export const UNSPLASH_APP_NAME = 'ksways';
+
+/** /api/unsplash live 모드의 클라이언트(IP)당 분당 요청 상한. */
+export const UNSPLASH_LIVE_MODE_MAX_REQUESTS = 10;
 export const UNSPLASH_CACHE_REVALIDATE_SECONDS = 60 * 60 * 24;
 
 export const ALLOWED_UNSPLASH_TOPICS = {
