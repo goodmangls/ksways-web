@@ -1,1 +1,1 @@
-🔒 deps: High 취약점 7패키지 타깃 패치 — next 16.3.1·sharp 0.35.3·postcss 8.5.26 외, npm audit 0 (일괄 audit fix 미사용, 락 diff 검증)
+🧹 chore: framer-motion 죽은 의존성 제거 + 커버리지 회귀 floor 게이트 추가 (CI가 test:coverage 실행, fail-injection 검증)
