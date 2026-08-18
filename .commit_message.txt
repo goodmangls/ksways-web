@@ -1,1 +1,1 @@
-📋 chore: next 16.3.1이 주입하는 AGENTS.md vendor 블록 커밋 — 로컬 dev/E2E 실행마다 생기던 dirty tree 해소
+⬆️ ci: e2e 잡 필수 게이트 승격 — 3연속 PASS(2026-08-18) 충족, retries 0은 무flake 근거 결정값으로 확정

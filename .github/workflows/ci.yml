@@ -35,10 +35,10 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-  # e2e — 실험 잡 (2026-08-18 도입): Playwright 견적 플로우 + 8페이지 스모크.
-  # build 잡 전례대로 3연속 PASS 후 필수 게이트로 승격 예정 — 승격 전까지는
-  # 머지 차단 관례에서 제외. retries 0 은 실험 기간 flake 실태 관찰용 의도값.
-  # needs: 체인 금지 — 선행 잡 실패 시 SKIPPED 로 부채가 숨는 패턴 방지.
+  # e2e — 필수 게이트 (2026-08-18 실험 잡 도입, 3연속 PASS 후 2026-08-19 승격):
+  # Playwright 견적 플로우 + 8페이지 스모크. quality·build 와 같은 머지 차단 관례.
+  # retries 0 은 승격 시점 결정값 — 실험 3회 무flake 였으므로 재시도 없이 시작,
+  # 실제 flake 관측 시 재검토. needs: 체인 금지 — SKIPPED 부채 은폐 방지.
   e2e:
     runs-on: ubuntu-latest
     timeout-minutes: 10
