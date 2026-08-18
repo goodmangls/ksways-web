@@ -1,1 +1,1 @@
-⚡ (en)/(kr) route group 루트 레이아웃으로 SSG 복원 — headers()·proxy·HtmlLangSync 제거, /quote searchParams 를 Suspense 클라이언트 래퍼로 이관
+🔒 deps: High 취약점 7패키지 타깃 패치 — next 16.3.1·sharp 0.35.3·postcss 8.5.26 외, npm audit 0 (일괄 audit fix 미사용, 락 diff 검증)
