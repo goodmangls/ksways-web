@@ -18,7 +18,8 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run type-check
-      - run: npm run test:run
+      # coverage thresholds(vitest.config.ts)가 회귀 floor 게이트로 동작한다
+      - run: npm run test:coverage
 
   # linux 환경 next build — 필수 게이트 (실험 job 3연속 PASS 후 승격, 2026-07-12).
   # 로컬 macOS build 실패(/_global-error prerender)는 이 게이트와 무관한 darwin 한정 framework debt
