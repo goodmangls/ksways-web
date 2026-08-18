@@ -89,3 +89,13 @@ CI 에는 넣지 않는다 — 엔진 동작은 우리 커밋이 아니라 브�
 - `main` 직접 커밋 대신 브랜치 → PR. CI 게이트는 `quality`(lint·tsc·test)와 `build` 두 개가 필수다.
 - 병행 작업자 이력이 있으므로 push 전 `git fetch`.
 - `npm run dev` 는 `next-env.d.ts` 를 `.next/dev/types` 로 바꿔놓는다. 스테이징에 섞이면 CI 빌드와 어긋나니 검증 후 `git status` 를 확인할 것.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
