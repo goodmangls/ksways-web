@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import nextConfig, { buildContentSecurityPolicy } from '../next.config';
@@ -149,27 +149,33 @@ describe('site quality hardening', () => {
     }
   });
 
-  it('keeps the Intercom messenger installed in the root layout', () => {
-    const layout = readFileSync(join(process.cwd(), 'src/app/layout.tsx'), 'utf8');
+  it('keeps the Intercom messenger installed in the shared root document', () => {
+    const rootDocument = readFileSync(join(process.cwd(), 'src/components/RootDocument.tsx'), 'utf8');
 
-    expect(layout).toContain("import Script from 'next/script';");
-    expect(layout).toContain('NEXT_PUBLIC_INTERCOM_APP_ID');
-    expect(layout).toContain('KS_WAYS_INTERCOM_APP_ID');
-    expect(layout).toContain('window.intercomSettings');
-    expect(layout).toContain('https://widget.intercom.io/widget/');
+    expect(rootDocument).toContain("import Script from 'next/script';");
+    expect(rootDocument).toContain('NEXT_PUBLIC_INTERCOM_APP_ID');
+    expect(rootDocument).toContain('KS_WAYS_INTERCOM_APP_ID');
+    expect(rootDocument).toContain('window.intercomSettings');
+    expect(rootDocument).toContain('https://widget.intercom.io/widget/');
   });
 
-  it('sets Korean SSR document language for /kr before hydration', () => {
-    const layout = readFileSync(join(process.cwd(), 'src/app/layout.tsx'), 'utf8');
-    const proxy = readFileSync(join(process.cwd(), 'src/proxy.ts'), 'utf8');
-    const htmlLangSync = readFileSync(join(process.cwd(), 'src/components/HtmlLangSync.tsx'), 'utf8');
+  it('sets SSR document language per locale root layout without dynamic APIs', () => {
+    // 정적 렌더링(SSG) 보존 가드: 과거엔 proxy 가 x-ksways-pathname 헤더를 주입하고
+    // 루트 레이아웃이 headers() 로 읽어 lang 을 정했는데, headers() 는 동적 API 라서
+    // 전 라우트를 요청별 렌더링으로 강제했다. 지금은 (en)/(kr) route group 이 각자
+    // 루트 레이아웃에서 lang 을 정적으로 지정한다 — 동적 API 재유입을 여기서 막는다.
+    const enLayout = readFileSync(join(process.cwd(), 'src/app/(en)/layout.tsx'), 'utf8');
+    const krLayout = readFileSync(join(process.cwd(), 'src/app/(kr)/layout.tsx'), 'utf8');
+    const rootDocument = readFileSync(join(process.cwd(), 'src/components/RootDocument.tsx'), 'utf8');
 
-    expect(proxy).toContain('x-ksways-pathname');
-    expect(proxy).toContain('request.nextUrl.pathname');
-    expect(layout).toContain("import { headers } from 'next/headers';");
-    expect(layout).toContain("pathname?.startsWith('/kr') ? 'ko-KR' : 'en'");
-    expect(layout).toContain('<html lang={documentLang}>');
-    expect(htmlLangSync).toContain("locale === 'kr' ? 'ko-KR' : 'en'");
+    expect(enLayout).toContain('lang="en"');
+    expect(krLayout).toContain('lang="ko-KR"');
+    expect(rootDocument).toContain('<html lang={lang}>');
+    for (const source of [enLayout, krLayout, rootDocument]) {
+      expect(source).not.toContain('next/headers');
+    }
+    expect(existsSync(join(process.cwd(), 'src/proxy.ts'))).toBe(false);
+    expect(existsSync(join(process.cwd(), 'src/components/HtmlLangSync.tsx'))).toBe(false);
   });
 
   it('keeps sitemap entries prioritized with service/network routes and no stale static-only policy', () => {

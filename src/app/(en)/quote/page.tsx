@@ -1,9 +1,9 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { BrandLogo } from '@/components/BrandLogo';
-import { QuoteForm } from '@/components/QuoteForm';
+import { QuoteFormFromSearch } from '@/components/QuoteFormFromSearch';
 import { SiteFooter } from '@/components/SiteFooter';
-import { getQuoteInitialValues } from '@/lib/quote-form';
 import { homeContent } from '@/lib/content';
 import { brandName, contactEmail, shareImage, siteUrl } from '@/lib/seo';
 
@@ -29,14 +29,7 @@ export const metadata: Metadata = {
   },
 };
 
-type QuotePageProps = {
-  searchParams?: Promise<{ service?: string | string[] }>;
-};
-
-export default async function QuotePage({ searchParams }: QuotePageProps) {
-  const params = await searchParams;
-  const initialValues = getQuoteInitialValues(params?.service);
-
+export default function QuotePage() {
   return (
     <main className="min-h-screen bg-[#f4f7f6] text-[#001112]">
       <section className="relative overflow-hidden bg-[#001112] px-6 py-8 text-white sm:px-10 lg:px-14">
@@ -59,7 +52,9 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
         </div>
       </section>
 
-      <QuoteForm initialValues={initialValues} />
+      <Suspense fallback={null}>
+        <QuoteFormFromSearch />
+      </Suspense>
       <SiteFooter footer={homeContent.en.footer} />
     </main>
   );

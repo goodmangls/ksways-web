@@ -5,7 +5,7 @@ import { join } from 'node:path';
 const footerSource = readFileSync(join(process.cwd(), 'src/components/SiteFooter.tsx'), 'utf8');
 const homePageSource = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 'utf8');
 const servicePageSource = readFileSync(join(process.cwd(), 'src/components/ServiceLandingPage.tsx'), 'utf8');
-const quotePageSource = readFileSync(join(process.cwd(), 'src/app/quote/page.tsx'), 'utf8');
+const quotePageSource = readFileSync(join(process.cwd(), 'src/app/(en)/quote/page.tsx'), 'utf8');
 
 describe('KS WAYS global logistics footer', () => {
   it('renders a dedicated reusable footer landmark with global logistics trust sections', () => {

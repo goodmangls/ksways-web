@@ -14,6 +14,29 @@ export const shareImage = {
   alt: 'KS WAYS global ocean and air logistics',
 };
 
+// (en)/(kr) 루트 레이아웃이 공유하는 기본 메타데이터. 페이지별 metadata 가 덮어쓴다.
+export const rootMetadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: 'KS WAYS — The Smart Way to Global Logistics',
+  description:
+    'KS WAYS is a global ocean and air logistics company with sea freight strength and WCA member network cooperation.',
+  alternates: {
+    canonical: '/',
+    languages: {
+      en: '/',
+      'ko-KR': '/kr',
+      'x-default': '/',
+    },
+  },
+  openGraph: {
+    title: 'KS WAYS — The Smart Way to Global Logistics',
+    description: 'Global ocean and air logistics with sea freight strength and WCA member network cooperation.',
+    url: siteUrl,
+    siteName: brandName,
+    type: 'website',
+  },
+};
+
 export const homeSeo: Record<Locale, Metadata> = {
   en: {
     title: 'KS WAYS — Global Ocean & Air Logistics Company',
