@@ -34,3 +34,9 @@ playwright-report/
 test-results/
 tmp/
 .gstack/
+
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

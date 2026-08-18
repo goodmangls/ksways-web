@@ -1,1 +1,1 @@
-🛡️ feat: /api/unsplash live 모드 IP당 분당 10회 레이트리밋(429+Retry-After) + mode 파라미터 화이트리스트 400 — TDD 11테스트
+🎭 test(e2e): Playwright 도입 — 견적 이메일 핸드오프 플로우 5케이스 + 8페이지 스모크, CI 실험 잡(3연속 PASS 후 승격)
