@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
+  buildQuoteGmailComposeUrl,
   buildQuoteMailto,
+  buildQuoteOutlookComposeUrl,
   fclContainerOptions,
   getMissingRequiredQuoteFields,
   getQuoteInitialValues,
@@ -192,6 +194,29 @@ describe('quote form mailto builder', () => {
     expect(mailto.body).toContain('- UN No.: UN3481');
     expect(mailto.body).toContain('- DG class: Class 9');
     expect(mailto.body).toContain('- Special cargo notes: Temperature control, fragile handling');
+  });
+
+  it('builds Gmail and Outlook Web drafts addressed to info@ksways.co', () => {
+    const values = {
+      companyName: 'Acme Trading',
+      contactName: 'Jane Lee',
+      emailOrPhone: 'jane@example.com',
+      origin: 'Busan',
+      destination: 'Los Angeles',
+      commodity: 'Cosmetics',
+    };
+    const gmail = new URL(buildQuoteGmailComposeUrl(values));
+    const outlook = new URL(buildQuoteOutlookComposeUrl(values));
+
+    expect(gmail.origin).toBe('https://mail.google.com');
+    expect(gmail.searchParams.get('to')).toBe('info@ksways.co');
+    expect(gmail.searchParams.get('su')).toBe('KS WAYS website quote request — Acme Trading');
+    expect(gmail.searchParams.get('body')).toContain('- Commodity: Cosmetics');
+
+    expect(outlook.origin).toBe('https://outlook.office.com');
+    expect(outlook.searchParams.get('to')).toBe('info@ksways.co');
+    expect(outlook.searchParams.get('subject')).toBe('KS WAYS website quote request — Acme Trading');
+    expect(outlook.searchParams.get('body')).toContain('- Commodity: Cosmetics');
   });
 
   it('omits empty optional lines while keeping the section skeleton', () => {
