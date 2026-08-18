@@ -1,1 +1,1 @@
-✉️ 견적 이메일 앱 선택창과 info@ksways.co 초안 경로 추가
+⚡ (en)/(kr) route group 루트 레이아웃으로 SSG 복원 — headers()·proxy·HtmlLangSync 제거, /quote searchParams 를 Suspense 클라이언트 래퍼로 이관

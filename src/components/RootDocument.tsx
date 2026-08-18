@@ -1,43 +1,20 @@
-import type { Metadata } from 'next';
-import { headers } from 'next/headers';
 import Script from 'next/script';
-import './globals.css';
-
-export const metadata: Metadata = {
-  metadataBase: new URL('https://ksways.co'),
-  title: 'KS WAYS — The Smart Way to Global Logistics',
-  description: 'KS WAYS is a global ocean and air logistics company with sea freight strength and WCA member network cooperation.',
-  alternates: {
-    canonical: '/',
-    languages: {
-      en: '/',
-      'ko-KR': '/kr',
-      'x-default': '/',
-    },
-  },
-  openGraph: {
-    title: 'KS WAYS — The Smart Way to Global Logistics',
-    description: 'Global ocean and air logistics with sea freight strength and WCA member network cooperation.',
-    url: 'https://ksways.co',
-    siteName: 'KS WAYS',
-    type: 'website',
-  },
-};
+import '@/app/globals.css';
 
 const KS_WAYS_INTERCOM_APP_ID = 'k5z51xs2';
 
-function getDocumentLang(pathname: string | null) {
-  return pathname?.startsWith('/kr') ? 'ko-KR' : 'en';
-}
+type RootDocumentProps = {
+  lang: 'en' | 'ko-KR';
+  children: React.ReactNode;
+};
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+// (en)/(kr) 루트 레이아웃이 공유하는 문서 셸. lang 은 route group 레이아웃이 정적으로
+// 지정한다 — headers() 같은 동적 API 를 쓰면 전 라우트가 SSG 를 잃으므로 금지.
+export function RootDocument({ lang, children }: RootDocumentProps) {
   const intercomAppId = process.env.NEXT_PUBLIC_INTERCOM_APP_ID?.trim() || KS_WAYS_INTERCOM_APP_ID;
-  const requestHeaders = await headers();
-  const pathname = requestHeaders.get('x-ksways-pathname');
-  const documentLang = getDocumentLang(pathname);
 
   return (
-    <html lang={documentLang}>
+    <html lang={lang}>
       <body>
         {children}
         {intercomAppId ? (

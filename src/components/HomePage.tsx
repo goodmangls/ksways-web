@@ -8,7 +8,6 @@ import { faqJsonLd, homeFaqs, organizationJsonLd } from '@/lib/seo';
 import { getHeroUnsplashImages } from '@/lib/unsplash';
 import { BrandLogo } from './BrandLogo';
 import { ContactActions } from './ContactActions';
-import { HtmlLangSync } from './HtmlLangSync';
 import { SiteFooter } from './SiteFooter';
 
 type HomeCopy = (typeof homeContent)[Locale];
@@ -92,7 +91,6 @@ export function HomePage({ locale, copy }: Props) {
 
   return (
     <main className="min-h-screen bg-[#f4f7f6] text-[#001112]">
-      <HtmlLangSync locale={locale} />
       <script
         id={`organization-jsonld-${locale}`}
         type="application/ld+json"
