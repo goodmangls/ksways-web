@@ -1,1 +1,1 @@
-⬆️ ci: e2e 잡 필수 게이트 승격 — 3연속 PASS(2026-08-18) 충족, retries 0은 무flake 근거 결정값으로 확정
+📱 fix(nav): 1024px 미만 내비 공백 해소 — MobileNav 아일랜드(섹션 4링크+Contact, aria-expanded·Escape·닫힘) 신설, 헤더 z-30 승격(hero 가림 클릭차단 해소), 모바일 e2e 가드 추가

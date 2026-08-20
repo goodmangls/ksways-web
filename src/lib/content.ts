@@ -15,6 +15,7 @@ export type HomeCopy = {
     contact: string;
     quote: string;
     langToggle: string;
+    menuLabel: string;
   };
   hero: {
     eyebrow: string;
@@ -81,6 +82,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       contact: 'Contact sales',
       quote: 'Get a quote',
       langToggle: 'KR',
+      menuLabel: 'Menu',
     },
     hero: {
       eyebrow: 'Global ocean and air logistics. WCA network member.',
@@ -191,6 +193,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       contact: '상담 문의',
       quote: '견적 문의',
       langToggle: 'EN',
+      menuLabel: '메뉴',
     },
     hero: {
       eyebrow: '글로벌 해상·항공 물류. WCA 네트워크 회원사.',

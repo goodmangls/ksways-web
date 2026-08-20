@@ -8,6 +8,7 @@ import { faqJsonLd, homeFaqs, organizationJsonLd } from '@/lib/seo';
 import { getHeroUnsplashImages } from '@/lib/unsplash';
 import { BrandLogo } from './BrandLogo';
 import { ContactActions } from './ContactActions';
+import { MobileNav } from './MobileNav';
 import { SiteFooter } from './SiteFooter';
 
 type HomeCopy = (typeof homeContent)[Locale];
@@ -105,7 +106,8 @@ export function HomePage({ locale, copy }: Props) {
         <HeroBackgroundSlideshow />
         <div className="absolute inset-0 -z-20 bg-[#001112]/35" />
 
-        <header className="relative z-10 mx-auto flex h-[78px] w-full max-w-[1280px] items-center justify-between px-6 sm:px-10 lg:px-8">
+        {/* z-30: 히어로 콘텐츠(z-10)·사진 크레딧(z-20)보다 위 — MobileNav 패널이 가려지면 링크 클릭이 차단된다 (e2e mobile-nav 가드) */}
+        <header className="relative z-30 mx-auto flex h-[78px] w-full max-w-[1280px] items-center justify-between px-6 sm:px-10 lg:px-8">
           <BrandLogo href={locale === 'en' ? '/' : '/kr'} priority />
           <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-sm font-bold text-white/72 lg:flex">
             <a href="#company" className="transition hover:text-white">{copy.nav.company}</a>
@@ -119,6 +121,7 @@ export function HomePage({ locale, copy }: Props) {
             </Link>
             <a href="#contact" className="hidden min-h-11 items-center rounded-full border border-white/45 px-5 text-sm font-extrabold text-white transition hover:border-white sm:inline-flex">{copy.nav.contact}</a>
             <a href={quoteHref} className="inline-flex min-h-11 items-center rounded-full bg-[#b88a5a] px-5 text-sm font-black text-[#001112] transition hover:bg-[#a5794d]">{copy.nav.quote}</a>
+            <MobileNav nav={copy.nav} />
           </div>
         </header>
 
