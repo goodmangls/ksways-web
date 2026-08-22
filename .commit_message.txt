@@ -1,1 +1,1 @@
-📱 fix(nav): 1024px 미만 내비 공백 해소 — MobileNav 아일랜드(섹션 4링크+Contact, aria-expanded·Escape·닫힘) 신설, 헤더 z-30 승격(hero 가림 클릭차단 해소), 모바일 e2e 가드 추가
+🧹 chore: 에이전트 도구 사본(.agents/·skills-lock.json)을 gitignore + eslint 제외 — .gstack/ 선례 준수, 린트 대상 62→61

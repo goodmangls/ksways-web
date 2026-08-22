@@ -35,6 +35,10 @@ test-results/
 tmp/
 .gstack/
 
+# agent tooling (skills.sh 가 재생성하는 외부 스킬 사본 — .gstack/ 과 같은 부류)
+.agents/
+skills-lock.json
+
 # playwright
 /test-results/
 /playwright-report/
