@@ -42,6 +42,18 @@ describe('MobileNav', () => {
     expect(menu).toBeInTheDocument();
   });
 
+  it('marks the contact entry as sm-and-up hidden so the visible header CTA is not repeated', async () => {
+    // jsdom 에는 CSS 가 없으므로 이 단언은 "클래스가 붙어 있다"까지만 증명한다.
+    // 실제 노출 여부(375px 보임 / 768px 숨김)는 e2e/mobile-nav.spec.ts 가 가드한다.
+    const user = userEvent.setup();
+    render(<MobileNav nav={NAV} />);
+
+    await user.click(screen.getByRole('button', { name: NAV.menuLabel }));
+
+    const contactItem = screen.getByRole('link', { name: NAV.contact }).closest('li');
+    expect(contactItem?.className).toContain('sm:hidden');
+  });
+
   it('closes when a section link is chosen', async () => {
     const user = userEvent.setup();
     render(<MobileNav nav={NAV} />);

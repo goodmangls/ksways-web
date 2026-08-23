@@ -14,12 +14,14 @@ export function MobileNav({ nav }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
-  const links: Array<{ label: string; href: string }> = [
+  // Contact 는 헤더에서 sm(640px) 이상일 때 이미 보인다 — 그 구간에서 메뉴가 메워야 할
+  // 공백은 섹션 링크뿐이라, 같은 CTA 를 두 번 노출하지 않도록 sm 부터 감춘다.
+  const links: Array<{ label: string; href: string; className?: string }> = [
     { label: nav.company, href: '#company' },
     { label: nav.services, href: '#services' },
     { label: nav.network, href: '#network' },
     { label: nav.solutions, href: '#solutions' },
-    { label: nav.contact, href: '#contact' },
+    { label: nav.contact, href: '#contact', className: 'sm:hidden' },
   ];
 
   function close() {
@@ -67,7 +69,7 @@ export function MobileNav({ nav }: MobileNavProps) {
         >
           <ul className="grid gap-1">
             {links.map((link) => (
-              <li key={link.href}>
+              <li key={link.href} className={link.className}>
                 <a
                   href={link.href}
                   onClick={close}
