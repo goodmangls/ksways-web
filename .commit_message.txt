@@ -1,1 +1,1 @@
-🧹 chore: 에이전트 도구 사본(.agents/·skills-lock.json)을 gitignore + eslint 제외 — .gstack/ 선례 준수, 린트 대상 62→61
+📱 fix(nav): 태블릿(640~1023px) Contact 중복 노출 제거 — 메뉴 항목에 sm:hidden, 768px e2e 가드 신설(결함주입 양방향 증명)
