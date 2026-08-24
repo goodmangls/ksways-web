@@ -65,3 +65,30 @@ jobs:
             test-results/
             playwright-report/
           retention-days: 7
+
+  # visual — 실험 잡 (2026-08-24 도입). 픽셀 기준선은 가장 flaky 한 테스트 부류라
+  # 필수 게이트(e2e)에 섞지 않는다: 이 저장소는 retries 0 + 병행 작업자라
+  # 렌더 한 번 밀리면 남의 머지까지 막힌다. build 잡 전례대로 3연속 PASS 후 승격 판단.
+  # 기준선은 이 잡과 같은 렌더링 스택(playwright 공식 Linux 이미지)에서 생성해야 한다:
+  #   npm run test:visual:update:docker
+  visual:
+    runs-on: ubuntu-latest
+    # 기준선과 **같은 컨테이너**에서 돌려야 한다. 맨 ubuntu-latest 로 돌렸다가
+    # 16건 전부 실패했다(2026-08-24) — 폰트 스택이 달라 텍스트 렌더가 어긋난다.
+    # 로컬 생성(`npm run test:visual:update:docker`)과 이 잡이 동일 이미지를 쓰는 것이
+    # 이 테스트가 성립하는 전제다. 버전을 올릴 땐 양쪽을 함께 바꾼다.
+    container: mcr.microsoft.com/playwright:v1.62.1-noble
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm run test:visual
+      - name: Upload diff artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-diff
+          path: |
+            test-results/
+            playwright-report/
+          retention-days: 7
