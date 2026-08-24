@@ -15,7 +15,9 @@
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
-    "test:e2e:prod": "playwright test --config playwright.prod.config.ts"
+    "test:e2e:prod": "playwright test --config playwright.prod.config.ts",
+    "test:visual": "playwright test --config playwright.visual.config.ts",
+    "test:visual:update:docker": "docker run --rm --network host -e CI=1 -v \"$PWD\":/w -v /w/node_modules -w /w mcr.microsoft.com/playwright:v1.62.1-noble bash -c \"npm ci --silent && npx playwright test --config playwright.visual.config.ts --update-snapshots\""
   },
   "dependencies": {
     "@next/env": "^16.2.4",
