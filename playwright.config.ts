@@ -20,6 +20,8 @@ export default defineConfig({
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
+  // permissions 는 프로젝트별로 둔다 — WebKit 은 clipboard-read/write 를 모르는
+  // 권한으로 취급해 컨텍스트 생성 자체가 실패한다(공용 use 블록에 두면 전 스펙이 죽는다).
   projects: [
     {
       name: 'chromium',
@@ -27,6 +29,10 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         permissions: ['clipboard-read', 'clipboard-write'],
       },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
     },
   ],
   webServer: {
