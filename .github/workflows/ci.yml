@@ -73,20 +73,15 @@ jobs:
   #   npm run test:visual:update:docker
   visual:
     runs-on: ubuntu-latest
+    # 기준선과 **같은 컨테이너**에서 돌려야 한다. 맨 ubuntu-latest 로 돌렸다가
+    # 16건 전부 실패했다(2026-08-24) — 폰트 스택이 달라 텍스트 렌더가 어긋난다.
+    # 로컬 생성(`npm run test:visual:update:docker`)과 이 잡이 동일 이미지를 쓰는 것이
+    # 이 테스트가 성립하는 전제다. 버전을 올릴 땐 양쪽을 함께 바꾼다.
+    container: mcr.microsoft.com/playwright:v1.62.1-noble
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
       - run: npm ci
-      - name: Cache Playwright browsers
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-      - run: npx playwright install --with-deps chromium
       - run: npm run test:visual
       - name: Upload diff artifacts
         if: failure()
