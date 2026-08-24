@@ -9,6 +9,9 @@ const isCI = !!process.env.CI;
 // 시작한다. 재시도는 flake 를 가리므로, 실제 flake 가 관측될 때 재검토한다.
 export default defineConfig({
   testDir: './e2e',
+  // prod-smoke 는 실제 배포본을 치는 카나리라 hermetic 게이트에서 제외한다
+  // (playwright.prod.config.ts 로만 실행).
+  testIgnore: /prod-smoke\.spec\.ts/,
   timeout: 30_000,
   retries: 0,
   reporter: isCI ? [['list'], ['html', { open: 'never' }]] : [['list']],

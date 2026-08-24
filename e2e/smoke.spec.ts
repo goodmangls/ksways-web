@@ -1,21 +1,11 @@
 import { expect, test } from '@playwright/test';
+import { SMOKE_PAGES } from './pages';
 
 // 전 페이지 스모크 (2026-08-18 grill 합의 범위):
 // 로드 성공 + SSR lang + h1/landmark 존재 + 콘솔 에러 0.
 // lang 검증은 SSG 복원(PR #31) 회귀 가드 — 과거 proxy 헤더 방식이 깨질 때
 // 이 계열이 조용히 무너졌다.
-const PAGES: Array<{ path: string; lang: string }> = [
-  { path: '/', lang: 'en' },
-  { path: '/kr', lang: 'ko-KR' },
-  { path: '/quote', lang: 'en' },
-  { path: '/network/korea-agent-network', lang: 'en' },
-  { path: '/services/air-freight-korea', lang: 'en' },
-  { path: '/services/ocean-freight-korea', lang: 'en' },
-  { path: '/services/special-cargo-korea', lang: 'en' },
-  { path: '/services/exw-pickup-korea', lang: 'en' },
-];
-
-for (const { path, lang } of PAGES) {
+for (const { path, lang } of SMOKE_PAGES) {
   test(`${path} renders with lang="${lang}", a heading, and no console errors`, async ({ page }) => {
     const consoleErrors: string[] = [];
     page.on('console', (message) => {
