@@ -1,1 +1,1 @@
-👁️ test(visual): 시각 회귀 도입 — 4페이지×4브레이크포인트 풀페이지 기준선(Docker Linux 생성), 별도 visual 실험 잡(필수 게이트 미포함)
+🧹 chore(lint): Playwright 산출물 eslint 제외 — playwright-report/ 트레이스 번들이 로컬 린트에 186건 오탐(.agents/ 와 같은 부류, flat config 는 .gitignore 미참조)
