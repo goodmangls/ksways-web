@@ -74,9 +74,13 @@ describe('site quality hardening', () => {
     expect(prodCsp).toContain("frame-ancestors 'none'");
     expect(prodCsp).not.toContain('unsafe-eval');
     expect(prodCsp).not.toContain(' ws: ');
+    // Vercel Analytics 는 프로덕션에서 동일 출처 /_vercel/insights/* 만 쓴다.
+    // 개발용 디버그 스크립트 출처가 프로덕션 정책에 새어 들어가면 안 된다.
+    expect(prodCsp).not.toContain('va.vercel-scripts.com');
 
     const devCsp = buildContentSecurityPolicy(true);
     expect(devCsp).toContain("'unsafe-eval'");
+    expect(devCsp).toContain('https://va.vercel-scripts.com');
   });
 
   it('keeps README aligned with the public KS WAYS brand and current route set', () => {

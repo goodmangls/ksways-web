@@ -1,1 +1,1 @@
-🧹 chore(lint): Playwright 산출물 eslint 제외 — playwright-report/ 트레이스 번들이 로컬 린트에 186건 오탐(.agents/ 와 같은 부류, flat config 는 .gitignore 미참조)
+📊 feat(analytics): Vercel Analytics 도입 — RootDocument 한 곳으로 en·kr 양쪽 커버, 개발 전용 va.vercel-scripts.com 만 CSP 완화(프로덕션은 동일 출처라 불필요) + 유출 방지 회귀 가드

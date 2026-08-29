@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import Script from 'next/script';
 import '@/app/globals.css';
 
@@ -27,6 +28,10 @@ export function RootDocument({ lang, children }: RootDocumentProps) {
             </Script>
           </>
         ) : null}
+        {/* Vercel Analytics. 프로덕션 비콘은 /_vercel/insights/{script.js,event} 동일 출처라
+            CSP 의 script-src·connect-src 'self' 로 통과한다. 개발 모드만 외부
+            va.vercel-scripts.com 을 쓰므로 next.config.ts 가 isDev 에서만 그 출처를 연다. */}
+        <Analytics />
       </body>
     </html>
   );
