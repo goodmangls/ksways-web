@@ -13,6 +13,7 @@ type RootDocumentProps = {
 // 지정한다 — headers() 같은 동적 API 를 쓰면 전 라우트가 SSG 를 잃으므로 금지.
 export function RootDocument({ lang, children }: RootDocumentProps) {
   const intercomAppId = process.env.NEXT_PUBLIC_INTERCOM_APP_ID?.trim() || KS_WAYS_INTERCOM_APP_ID;
+  const isVercel = process.env.VERCEL === '1';
 
   return (
     <html lang={lang}>
@@ -28,10 +29,11 @@ export function RootDocument({ lang, children }: RootDocumentProps) {
             </Script>
           </>
         ) : null}
-        {/* Vercel Analytics. 프로덕션 비콘은 /_vercel/insights/{script.js,event} 동일 출처라
-            CSP 의 script-src·connect-src 'self' 로 통과한다. 개발 모드만 외부
-            va.vercel-scripts.com 을 쓰므로 next.config.ts 가 isDev 에서만 그 출처를 연다. */}
-        <Analytics />
+        {/* Vercel Analytics 는 Vercel 위에서만 주입한다. /_vercel/insights/* 는 Vercel
+            플랫폼이 제공하는 라우트라, 평범한 `next start`(CI e2e·자체 호스팅)에서는
+            404 + MIME 거부가 콘솔 에러로 남는다 — smoke 스펙의 "no console errors" 가
+            실제로 이걸 잡았다. 프로덕션 비콘은 동일 출처라 CSP 는 'self' 로 충분하다. */}
+        {isVercel ? <Analytics /> : null}
       </body>
     </html>
   );

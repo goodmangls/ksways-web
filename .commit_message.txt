@@ -1,1 +1,1 @@
-📊 feat(analytics): Vercel Analytics 도입 — RootDocument 한 곳으로 en·kr 양쪽 커버, 개발 전용 va.vercel-scripts.com 만 CSP 완화(프로덕션은 동일 출처라 불필요) + 유출 방지 회귀 가드
+🐛 fix(analytics): Vercel 위에서만 Analytics 주입 — /_vercel/insights/* 는 Vercel 전용 라우트라 평범한 next start(CI e2e·자체 호스팅)에서 404+MIME 거부로 콘솔 에러 8건 발생

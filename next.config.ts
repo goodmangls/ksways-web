@@ -7,7 +7,9 @@ import type { NextConfig } from 'next';
 // isDev 완화(unsafe-eval, ws:)는 react-refresh/HMR 요구사항 — 프로덕션 정책에는 절대 포함 금지.
 // va.vercel-scripts.com 도 isDev 전용이다: Vercel Analytics 는 프로덕션에서 동일 출처
 // /_vercel/insights/script.js 를 쓰므로 'self' 로 충분하고, 개발 모드에서만 외부 디버그
-// 스크립트를 불러온다. 프로덕션 정책에 넣으면 필요 없는 출처를 여는 것이다.
+// 스크립트를 불러온다. RootDocument 가 VERCEL=1 에서만 주입하므로 이 완화가 실제로
+// 쓰이는 경우는 `vercel dev`(VERCEL=1 + development) 뿐이다 — 그때 막히지 않도록 남긴다.
+// 프로덕션 정책에 넣으면 필요 없는 출처를 여는 것이다.
 // 순수 함수로 분리해 site-quality.test.ts가 prod/dev 정책을 환경 무관하게 검증한다.
 export function buildContentSecurityPolicy(isDev: boolean): string {
   return [
