@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import Script from 'next/script';
 import '@/app/globals.css';
 
@@ -12,6 +13,7 @@ type RootDocumentProps = {
 // 지정한다 — headers() 같은 동적 API 를 쓰면 전 라우트가 SSG 를 잃으므로 금지.
 export function RootDocument({ lang, children }: RootDocumentProps) {
   const intercomAppId = process.env.NEXT_PUBLIC_INTERCOM_APP_ID?.trim() || KS_WAYS_INTERCOM_APP_ID;
+  const isVercel = process.env.VERCEL === '1';
 
   return (
     <html lang={lang}>
@@ -27,6 +29,11 @@ export function RootDocument({ lang, children }: RootDocumentProps) {
             </Script>
           </>
         ) : null}
+        {/* Vercel Analytics 는 Vercel 위에서만 주입한다. /_vercel/insights/* 는 Vercel
+            플랫폼이 제공하는 라우트라, 평범한 `next start`(CI e2e·자체 호스팅)에서는
+            404 + MIME 거부가 콘솔 에러로 남는다 — smoke 스펙의 "no console errors" 가
+            실제로 이걸 잡았다. 프로덕션 비콘은 동일 출처라 CSP 는 'self' 로 충분하다. */}
+        {isVercel ? <Analytics /> : null}
       </body>
     </html>
   );
