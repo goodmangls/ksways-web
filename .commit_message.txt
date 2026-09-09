@@ -1,1 +1,1 @@
-♿ style(a11y): main(#53·#54) 병합 — 겹치는 구현은 main의 Typography·ks-type-* 훅 방식으로 통일, 이 PR에는 paper #f4f7f6 정정·--ks-muted/--ks-muted-on-dark/--ks-border-control 토큰과 가드 테스트만 남김
+COPY.md 포지셔닝 락: 한국발 전세계 해상·항공 + WCA 파트너 네트워킹 중심으로 전환
