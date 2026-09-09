@@ -1,1 +1,1 @@
-🐛 fix(analytics): Vercel 위에서만 Analytics 주입 — /_vercel/insights/* 는 Vercel 전용 라우트라 평범한 next start(CI e2e·자체 호스팅)에서 404+MIME 거부로 콘솔 에러 8건 발생
+COPY.md 포지셔닝 락: 한국발 전세계 해상·항공 + WCA 파트너 네트워킹 중심으로 전환
