@@ -36,6 +36,10 @@ describe('KS WAYS service and network page content', () => {
     expect(page).toBeDefined();
 
     const visibleCopy = [
+      // meta/OG description 이 빠져 있었다 — 결함 주입으로 발견(2026-09-17).
+      // 검색·AI 답변 엔진이 그대로 인용하는 표면이라 본문보다 오히려 더 위험하다.
+      page?.meta.description,
+      page?.meta.openGraph?.description,
       page?.title,
       page?.lead,
       ...(page?.sections.map((section) => `${section.title} ${section.body} ${(section.items ?? []).join(' ')}`) ?? []),
@@ -47,8 +51,10 @@ describe('KS WAYS service and network page content', () => {
 
     expect(visibleCopy).toContain('global freight forwarders');
     expect(visibleCopy).toContain('Partner-ready coordination');
-    expect(visibleCopy).toContain('Northeast Asia');
-    expect(visibleCopy).toContain('China and Japan');
+    expect(visibleCopy).toContain('Korea-origin');
+    expect(visibleCopy).not.toContain('Northeast Asia');
+    expect(visibleCopy).not.toContain('China');
+    expect(visibleCopy).not.toContain('Japan');
     expect(visibleCopy).toContain('trusted global forwarding company');
     expect(visibleCopy).toContain('WCA');
     expect(visibleCopy).toContain('30+ years');

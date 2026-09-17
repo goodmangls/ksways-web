@@ -1,1 +1,1 @@
-🐛 fix(analytics): Vercel 위에서만 Analytics 주입 — /_vercel/insights/* 는 Vercel 전용 라우트라 평범한 next start(CI e2e·자체 호스팅)에서 404+MIME 거부로 콘솔 에러 8건 발생
+✏️ fix(copy): 중국·일본 지역 커버리지 주장 제거 — 실제는 한국발 해상·항공이고 copy.md 도 "Korea gateway → global routes" 라 시행 카피가 드리프트했던 것. 가드 3종이 오히려 옛 주장을 고정하고 있어 not 단언으로 교체(결함 주입으로 검증), service-pages 가드의 meta.description 사각지대도 함께 해소
