@@ -276,11 +276,11 @@ export const servicePages: ServicePage[] = [
     slug: 'korea-agent-network',
     meta: {
       title: 'Korea Logistics Agent Network — Partner with KS WAYS',
-      description: 'Partner with KS WAYS for Northeast Asia cargo support across Korea, China, Japan, and wider global lanes through WCA cooperation and 30+ years of airline, shipping line, and forwarding experience.',
+      description: 'Partner with KS WAYS for Korea-origin ocean and air cargo support on global lanes through WCA cooperation and 30+ years of airline, shipping line, and forwarding experience.',
       alternates: { canonical: '/network/korea-agent-network' },
       openGraph: {
         title: 'Korea Logistics Agent Network — Partner with KS WAYS',
-        description: 'Northeast Asia logistics partner for global freight forwarders across Korea, China, Japan, and global lanes.',
+        description: 'Korea-based logistics partner for global freight forwarders, connecting Korea-origin cargo to global lanes.',
         url: 'https://ksways.co/network/korea-agent-network',
         siteName: 'KS WAYS',
         type: 'website',
@@ -289,13 +289,13 @@ export const servicePages: ServicePage[] = [
       twitter: {
         card: 'summary_large_image',
         title: 'Korea Logistics Agent Network — Partner with KS WAYS',
-        description: 'Northeast Asia logistics partner for global freight forwarders across Korea, China, Japan, and global lanes.',
+        description: 'Korea-based logistics partner for global freight forwarders, connecting Korea-origin cargo to global lanes.',
         images: [shareImage],
       },
     },
     eyebrow: 'Korea Agent Network',
-    title: 'Northeast Asia logistics support for global partners',
-    lead: 'KS WAYS gives global freight forwarders a trusted global forwarding company in Korea with China and Japan reach, WCA cooperation, and 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
+    title: 'Korea logistics support for global partners',
+    lead: 'KS WAYS gives global freight forwarders a trusted Korea-based forwarding company for Korea-origin ocean and air cargo, with WCA cooperation and 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding.',
     trustCards: [
       {
         label: 'Global access',
@@ -303,9 +303,9 @@ export const servicePages: ServicePage[] = [
         body: 'Partners can review services, send enquiries, and understand KS WAYS capabilities through clear service information and responsive coordination from the first contact.',
       },
       {
-        label: 'Regional access',
-        value: 'Korea · China · Japan',
-        body: 'A compact Korea base with practical Northeast Asia awareness helps partners coordinate Korea-connected cargo and nearby China/Japan trade lanes.',
+        label: 'Origin access',
+        value: 'Korea · Ocean & Air',
+        body: 'A compact Korea base with hands-on port and airport familiarity helps partners coordinate Korea-origin ocean and air cargo onto global lanes.',
       },
       {
         label: 'Trust base',
@@ -325,11 +325,11 @@ export const servicePages: ServicePage[] = [
       },
     ],
     checklistTitle: 'Information to send for partner enquiries',
-    checklist: ['Company profile', 'Country and main routes', 'Cargo type', 'Expected cooperation scope', 'Current enquiry details if available', 'Preferred communication channel', 'Reporting preference', 'China/Japan lane notes if relevant'],
+    checklist: ['Company profile', 'Country and main routes', 'Cargo type', 'Expected cooperation scope', 'Current enquiry details if available', 'Preferred communication channel', 'Reporting preference', 'Target lane notes if relevant'],
     faqs: [
       {
         question: 'Does KS WAYS work with global freight forwarders?',
-        answer: 'Yes. KS WAYS supports global freight forwarders that need a trusted global forwarding company for Korea-side and Northeast Asia logistics coordination.',
+        answer: 'Yes. KS WAYS supports global freight forwarders that need a trusted global forwarding company for Korea-side logistics coordination.',
       },
       {
         question: 'How can an overseas agent contact KS WAYS?',
