@@ -1,1 +1,1 @@
-✏️ fix(copy): 중국·일본 지역 커버리지 주장 제거 — 실제는 한국발 해상·항공이고 copy.md 도 "Korea gateway → global routes" 라 시행 카피가 드리프트했던 것. 가드 3종이 오히려 옛 주장을 고정하고 있어 not 단언으로 교체(결함 주입으로 검증), service-pages 가드의 meta.description 사각지대도 함께 해소
+👁️ test(visual): 카피 교정에 맞춰 기준선 16장 재생성 — 푸터 태그라인이 전 페이지 공통이라 4페이지 전부 리플로우(18k~346k px, 허용치 100). CI 동일 컨테이너에서 생성 후 --update 없이 16/16 재검증
