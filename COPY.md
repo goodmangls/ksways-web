@@ -4,32 +4,42 @@ This document defines the professional public copy direction for `ksways.co` and
 
 It should be used as the source of truth for homepage copy, service-page expansion, FAQ snippets, structured data, blog topics, and future landing pages.
 
+> **Positioning lock (2026-09-09)**
+>
+> 1. **Main offer**: Ocean and air logistics **from Korea to worldwide destinations** (ocean-led, air as core companion).
+> 2. **Business model**: Global forwarding through **WCA partner networking** — primary audience is overseas freight forwarders / WCA partners who appoint KS WAYS as Korea origin agent.
+> 3. **Do not claim China/Japan or NE Asia regional coverage — anywhere.** The business is Korea-origin ocean and air; regional-coverage language misstates it. Removed from the live site on 2026-09-17, and `content.test.ts` / `seo.test.ts` / `service-pages.test.ts` now fail the build if it returns. Keep Korea geography. Exporters/importers/brands remain secondary audiences.
+
 ---
 
 ## 1. Brand Positioning
 
 ### Core positioning
 
-KS WAYS is a global logistics company responsible for ocean freight and air freight, with particular strength in sea freight and WCA member network cooperation.
+KS WAYS is a Korea-origin ocean and air logistics company that moves cargo from Korea to worldwide destinations, with ocean freight as its core strength. Through WCA partner networking, KS WAYS serves as the Korea origin agent for overseas freight forwarders and WCA partners who need reliable local execution, routing, and shipment coordination out of Korea.
 
 ### One-line positioning
 
-**KS WAYS supports global ocean and air cargo movement through practical freight execution, WCA-backed partner cooperation, and clear shipment coordination.**
+**KS WAYS delivers ocean and air freight from Korea to worldwide destinations through WCA partner networking, serving overseas forwarders as their trusted Korea origin agent.**
 
 ### Short positioning paragraph
 
-KS WAYS is a global logistics company supporting exporters, importers, overseas agents, and growing brands with ocean freight, air freight, cross-border logistics, project cargo coordination, and WCA member network cooperation. We focus on practical routing, clear communication, and accountable execution from enquiry to delivery, with ocean freight as a core strength.
+KS WAYS is a Korea-origin global logistics company providing ocean freight and air freight from Korea to worldwide destinations. Our primary role is Korea origin agent for overseas freight forwarders and WCA partners: we handle local pickup, carrier coordination, documentation, and shipment execution so partners can offer Korea-origin lanes with confidence. Ocean freight is our core strength, air freight is a core companion mode, and EXW pickup, special cargo handling, and cross-border support round out our service capability. WCA partner networking drives our global reach.
 
 ### What KS WAYS should sound like
 
 - Professional, direct, and calm.
-- Global, ocean-strong, and partner-network driven.
+- Korea-origin, ocean-strong, and partner-network driven global forwarding.
 - Practical rather than exaggerated.
-- Reliable partner, not a marketplace or generic rate shop.
+- The Korea-side partner overseas forwarders rely on — not a marketplace or generic rate shop.
 - Clear about capabilities without promising outcomes that depend on carriers, customs, or third parties.
 
 ### Words to prefer
 
+- Korea origin
+- Worldwide destinations
+- WCA partner networking
+- Korea origin agent
 - Ocean freight strength
 - WCA member network
 - Global logistics partner
@@ -63,7 +73,7 @@ KS WAYS is a global logistics company supporting exporters, importers, overseas 
 
 ### SEO goal
 
-Build topical authority around Korea-connected global logistics so KS WAYS can rank for commercial and informational searches from overseas agents, exporters, importers, and logistics partners.
+Build topical authority around Korea-origin ocean and air freight to worldwide destinations so KS WAYS can rank for commercial and informational searches from overseas freight forwarders, WCA partners, and secondarily from exporters, importers, and logistics partners looking for a Korea origin agent.
 
 ### AEO goal
 
@@ -74,14 +84,15 @@ Make KS WAYS easy for answer engines, AI search, and featured snippets to cite w
 - What is the difference between air freight and ocean freight from Korea?
 - How does EXW pickup work in Korea?
 - What should an overseas freight agent confirm before requesting a Korea quotation?
+- How do I appoint a Korea origin agent through WCA partner networking?
 
 ### Primary entity signals
 
 - Company: KS WAYS / KS WAYS CO., LTD.
-- Category: Global logistics company, freight forwarder, Korea logistics partner.
-- Geography: Korea, Seoul, Korea gateway, global routes.
-- Services: Air freight, ocean freight, cross-border logistics, project cargo support, partner network.
-- Audience: Exporters, importers, overseas freight agents, e-commerce brands, manufacturers, buyers.
+- Category: Global logistics company, freight forwarder, Korea origin agent.
+- Geography: Korea origin, worldwide destinations. (Do not name China / Japan / NE Asia as covered regions — see the positioning lock.)
+- Services: Ocean freight, air freight, cross-border logistics, project cargo support, WCA partner networking.
+- Audience: Overseas freight forwarders, WCA partners (primary); exporters, importers, e-commerce brands, manufacturers, buyers (secondary).
 
 ### Recommended site architecture
 
@@ -168,21 +179,28 @@ Long-tail keywords:
 - shipper cannot load container Korea
 - Korea local handling for export cargo
 
-#### Cluster E: Partner and agent cooperation
+#### Cluster E: Korea origin agent and WCA partner cooperation
 
 Primary keywords:
 
-- Korea agent network
-- Korea logistics agent
-- overseas freight agent Korea partner
+- Korea origin agent
+- WCA member Korea agent
+- Korea logistics agent for overseas forwarders
 - freight forwarding partner Korea
+- Korea agent network
 
 Long-tail keywords:
 
-- partner with Korea freight forwarder
-- agent cooperation for Korea shipments
-- Korea destination agent for freight forwarders
+- appoint Korea origin agent for freight forwarding
+- WCA partner networking Korea
+- Korea-side partner for overseas freight forwarders
+- agent cooperation for Korea origin shipments
+- origin agent for Korea ocean and air freight
 - global logistics partner network Korea
+
+#### Optional architecture note
+
+Future pillar page for Korea-origin ocean & air worldwide / WCA partners could live at `/services/korea-origin-forwarding` or `/network/wca-partner-korea` — URL TBD, not yet implemented.
 
 ---
 
@@ -200,35 +218,35 @@ Recommended default:
 
 ### Meta description options
 
-1. `KS WAYS is a global ocean and air logistics company with sea freight strength and WCA member network cooperation.`
-2. `Move global cargo with KS WAYS through ocean freight, air freight, cross-border logistics, local handling, and WCA-backed partner cooperation.`
-3. `KS WAYS helps exporters, importers, and overseas agents coordinate Korea-connected shipments with practical routing, clear communication, and reliable execution.`
+1. `KS WAYS is a Korea-origin ocean and air logistics company moving cargo to worldwide destinations through WCA partner networking.`
+2. `Move global cargo with KS WAYS through ocean freight, air freight, cross-border logistics, local handling, and WCA-backed partner cooperation from Korea.`
+3. `KS WAYS helps overseas forwarders, WCA partners, exporters, and importers coordinate Korea-origin shipments with practical routing, clear communication, and reliable execution.`
 
 Recommended default:
 
-`KS WAYS is a global ocean and air logistics company with sea freight strength and WCA member network cooperation.`
+`KS WAYS is a Korea-origin ocean and air logistics company moving cargo to worldwide destinations through WCA partner networking.`
 
 ### H1 options
 
-1. `The smart way to global logistics`
-2. `Korea-connected logistics for global cargo movement`
-3. `Your Korea gateway for global freight forwarding`
+1. `The smart way to global logistics` *(brand-first, current live H1)*
+2. `Korea ocean and air freight to worldwide destinations` *(SEO-clear, recommended for conversion)*
+3. `Your Korea origin partner for global freight forwarding`
 
 Recommended current H1:
 
 `The smart way to global logistics`
 
-Reason: It preserves the brand concept while service pages can carry more keyword-specific H1s.
+SEO-recommended alternative: `Korea ocean and air freight to worldwide destinations` — clearer positioning for search and partner audiences. Option 1 is stronger for brand recognition; option 2 is stronger for organic discovery and conversion clarity. Consider A/B testing.
 
 ### Hero lead
 
 Recommended:
 
-`KS WAYS supports global ocean and air cargo movement through reliable freight solutions, WCA-backed partner networks, and smarter supply routes for exporters, buyers, overseas agents, and growing brands.`
+`KS WAYS moves ocean and air cargo from Korea to worldwide destinations through WCA partner networking. Overseas forwarders and WCA partners appoint us as their Korea origin agent for reliable local execution, routing, and shipment coordination.`
 
 SEO-expanded alternative:
 
-`KS WAYS is a global logistics company helping exporters, importers, and overseas freight agents coordinate ocean freight, air freight, cross-border logistics, and local handling with sea freight as a core strength.`
+`KS WAYS is a Korea-origin logistics company helping overseas freight forwarders, WCA partners, exporters, and importers coordinate ocean freight, air freight, and cross-border logistics from Korea to worldwide destinations with ocean freight as a core strength.`
 
 ### Primary CTA
 
@@ -262,21 +280,21 @@ Recommended:
 
 #### Headline
 
-`A global ocean and air logistics company built for practical freight execution.`
+`Korea-origin ocean and air logistics built for practical freight execution worldwide.`
 
 #### Body
 
-`We combine hands-on freight operations with a trusted agent network, helping overseas partners and Korean customers coordinate shipments with speed, clarity, and accountability.`
+`We combine hands-on freight operations with WCA partner networking, serving overseas forwarders and Korean customers with reliable origin execution, routing, and shipment coordination from Korea to worldwide destinations.`
 
 #### Pillars
 
-**Korea gateway**
+**Ocean & air from Korea**
 
-`Local coordination for export, import, pickup, customs, and carrier communication.`
+`Korea-origin ocean and air freight coordination — carrier selection, routing, and shipment execution to worldwide destinations.`
 
 **Partner-first**
 
-`Responsive cooperation for agents who need reliable execution in the Korean market.`
+`WCA-backed cooperation for overseas forwarders who need reliable Korea origin execution and responsive communication.`
 
 **Clear ownership**
 
@@ -298,13 +316,13 @@ Recommended:
 
 #### Service cards
 
-**Air Freight**
-
-`Fast planning for urgent, high-value, and time-sensitive cargo.`
-
 **Ocean Freight**
 
-`FCL/LCL routing with practical carrier and partner coordination.`
+`Korea-origin FCL/LCL routing with practical carrier and partner coordination to worldwide destinations.`
+
+**Air Freight**
+
+`Fast planning for urgent, high-value, and time-sensitive cargo from Korea.`
 
 **Cross-border**
 
@@ -322,18 +340,18 @@ Recommended:
 
 #### Headline
 
-`Trusted agent cooperation for Korea-connected cargo.`
+`WCA-backed partner networking for global forwarding from Korea.`
 
 #### Body
 
-`Our network approach is built around practical routing, responsive communication, and responsible handoffs, so each partner knows who owns the next step.`
+`Overseas freight forwarders and WCA partners appoint KS WAYS as their Korea-side origin agent. We handle local execution — pickup, carrier coordination, documentation, and shipment follow-up — so partners can confidently serve Korea-origin lanes worldwide.`
 
 #### Proof points
 
-- `Vetted partner collaboration`
+- `WCA member partner networking`
+- `Korea origin execution for partners' worldwide lanes`
+- `Responsive communication and operational accountability`
 - `Route and lead-sharing opportunities`
-- `Operational accountability`
-- `Korea-connected global coverage`
 
 ### How we work section
 
@@ -406,22 +424,22 @@ Recommended default:
 
 ### Meta description options
 
-1. `KS WAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사로, 해운 강점과 WCA 회원 네트워크 기반 협력을 제공합니다.`
-2. `KS WAYS는 수출입 기업, 해외 포워더, 성장 브랜드의 해상·항공 화물을 실무 중심으로 조율하는 글로벌 물류회사입니다.`
+1. `KS WAYS는 한국발 전세계 해상·항공 물류회사로, WCA 파트너 네트워킹을 통해 해외 포워더의 한국 오리진 에이전트 역할을 수행합니다.`
+2. `KS WAYS는 수출입 기업, 해외 포워더, WCA 파트너의 한국발 해상·항공 화물을 실무 중심으로 조율하는 글로벌 물류회사입니다.`
 
 Recommended default:
 
-`KS WAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사로, 해운 강점과 WCA 회원 네트워크 기반 협력을 제공합니다.`
+`KS WAYS는 한국발 전세계 해상·항공 물류회사로, WCA 파트너 네트워킹을 통해 해외 포워더의 한국 오리진 에이전트 역할을 수행합니다.`
 
 ### Korean positioning paragraph
 
-`KS WAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사로서 수출입 기업, 해외 포워더, 이커머스 및 성장 브랜드의 화물을 주요 시장으로 연결합니다. 해상, 항공, 크로스보더, EXW 픽업, 프로젝트 화물 지원까지 실무 중심의 라우팅과 명확한 커뮤니케이션으로 운송 과정을 조율합니다.`
+`KS WAYS는 한국발 전세계 해상·항공 물류를 책임지는 글로벌 물류회사입니다. WCA 파트너 네트워킹을 기반으로 해외 포워더 및 WCA 파트너의 한국 오리진 에이전트로서, 현지 픽업·선사 조율·서류·선적 실행을 담당합니다. 해상물류가 핵심 강점이며, 항공물류·크로스보더·EXW 픽업·프로젝트 화물 지원까지 실무 중심의 라우팅과 명확한 커뮤니케이션으로 운송 과정을 조율합니다.`
 
 ### Korean FAQ style answer
 
 **Q. KS WAYS는 어떤 회사인가요?**
 
-`KS WAYS는 해상물류와 항공물류를 책임지는 글로벌 물류회사입니다. 특히 해운에 강점을 두고 WCA 회원 네트워크 기반의 파트너 협력을 제공합니다.`
+`KS WAYS는 한국발 전세계 해상·항공 물류를 책임지는 글로벌 물류회사입니다. WCA 파트너 네트워킹을 통해 해외 포워더의 한국 오리진 에이전트로서, 해운 강점을 기반으로 실무 중심의 파트너 협력을 제공합니다.`
 
 ---
 
@@ -431,11 +449,11 @@ These questions should be used for future FAQ sections, structured data, and ans
 
 ### Q1. What does KS WAYS do?
 
-KS WAYS is a global logistics company responsible for ocean freight and air freight, with particular strength in sea freight and WCA member network cooperation.
+KS WAYS is a Korea-origin ocean and air logistics company that moves cargo from Korea to worldwide destinations. Through WCA partner networking, KS WAYS serves as the Korea origin agent for overseas freight forwarders and WCA partners, with ocean freight as a core strength.
 
 ### Q2. Is KS WAYS a freight forwarder in Korea?
 
-Yes. KS WAYS is a WCA member logistics company supporting ocean freight, air freight, and practical shipment coordination through global partner cooperation.
+Yes. KS WAYS is a WCA member logistics company providing Korea-origin ocean freight, air freight, and practical shipment coordination to worldwide destinations. Overseas forwarders and WCA partners appoint KS WAYS as their Korea origin agent.
 
 ### Q3. Can KS WAYS support shipments from Korea to Europe?
 
@@ -455,7 +473,7 @@ Yes. KS WAYS supports air freight for urgent or high-value cargo and ocean freig
 
 ### Q7. Does KS WAYS work with overseas logistics agents?
 
-Yes. KS WAYS works with overseas logistics agents and partner networks for Korea-connected cargo, focusing on responsive communication, practical routing, and clear operational handoffs.
+Yes. KS WAYS serves as a Korea origin agent for overseas freight forwarders and WCA partners through WCA partner networking. We handle Korea-side origin execution — pickup, carrier coordination, documentation, and shipment follow-up — with responsive communication and clear operational handoffs.
 
 ### Q8. Can KS WAYS support special loading or container stuffing?
 
@@ -463,7 +481,7 @@ KS WAYS can review special loading, pickup, and container stuffing requirements 
 
 ### Q9. What makes KS WAYS different?
 
-KS WAYS focuses on practical execution in Korea, clear partner communication, and accountable shipment coordination rather than generic rate forwarding. The company is positioned as a Korea gateway for global logistics cooperation.
+KS WAYS focuses on Korea-origin ocean and air freight to worldwide destinations, clear partner communication, and accountable shipment coordination rather than generic rate forwarding. Through WCA partner networking, overseas forwarders appoint KS WAYS as their trusted Korea origin agent for reliable local execution and responsive cooperation.
 
 ### Q10. How can I contact KS WAYS?
 
@@ -485,15 +503,15 @@ For quotation, partnership, or consultation enquiries, contact KS WAYS through t
 
 #### Meta description
 
-`KS WAYS supports Korea-connected air freight for urgent, high-value, and time-sensitive cargo with practical routing, partner coordination, and clear shipment follow-up.`
+`KS WAYS supports Korea-origin air freight to worldwide destinations for urgent, high-value, and time-sensitive cargo with practical routing, partner coordination, and clear shipment follow-up.`
 
 #### H1
 
-`Air freight solutions for Korea-connected cargo`
+`Air freight from Korea to worldwide destinations`
 
 #### Intro
 
-`When timing matters, air freight needs fast review, accurate cargo information, and clear coordination between shipper, carrier, airport, and destination partner. KS WAYS helps exporters, importers, and overseas agents review Korea-connected air cargo and select practical routing options.`
+`When timing matters, air freight needs fast review, accurate cargo information, and clear coordination between shipper, carrier, airport, and destination partner. KS WAYS helps overseas forwarders, WCA partners, exporters, and importers move Korea-origin air cargo to worldwide destinations with practical routing and responsive coordination.`
 
 #### Key sections
 
@@ -514,15 +532,15 @@ For quotation, partnership, or consultation enquiries, contact KS WAYS through t
 
 #### Meta description
 
-`KS WAYS supports Korea-connected ocean freight, including FCL, LCL, container loading review, carrier coordination, and overseas partner handoff.`
+`KS WAYS supports Korea-origin ocean freight to worldwide destinations, including FCL, LCL, container loading review, carrier coordination, and overseas partner handoff.`
 
 #### H1
 
-`Ocean freight forwarding for global FCL and LCL cargo`
+`Korea-origin ocean freight forwarding for worldwide FCL and LCL cargo`
 
 #### Intro
 
-`Ocean freight is often the right choice for larger, heavier, or less time-sensitive cargo. KS WAYS supports FCL and LCL shipment coordination from Korea with attention to cargo dimensions, container suitability, loading requirements, destination needs, and schedule constraints.`
+`Ocean freight is often the right choice for larger, heavier, or less time-sensitive cargo from Korea. KS WAYS supports FCL and LCL shipment coordination from Korea to worldwide destinations, with attention to cargo dimensions, container suitability, loading requirements, destination needs, and schedule constraints. Overseas forwarders and WCA partners rely on us for Korea-side origin execution.`
 
 #### Key sections
 
@@ -572,15 +590,15 @@ For quotation, partnership, or consultation enquiries, contact KS WAYS through t
 
 #### Meta description
 
-`Partner with KS WAYS for Korea-connected cargo. We support overseas freight agents with practical routing, local coordination, and clear shipment handoffs.`
+`Appoint KS WAYS as your Korea origin agent through WCA partner networking. We support overseas freight forwarders with Korea-origin ocean and air freight execution to worldwide destinations.`
 
 #### H1
 
-`A reliable Korea logistics partner for overseas agents`
+`WCA partner networking — your Korea origin agent for worldwide freight`
 
 #### Intro
 
-`Overseas freight agents need a Korea partner who can respond quickly, understand local execution, and communicate clearly from enquiry to delivery. KS WAYS supports partner cooperation for Korea-connected air freight, ocean freight, cross-border shipments, and special handling cases.`
+`Overseas freight forwarders and WCA partners need a Korea-side origin agent who can respond quickly, handle local execution, and communicate clearly from enquiry to delivery. KS WAYS serves as your Korea origin agent through WCA partner networking, supporting ocean freight, air freight, cross-border shipments, and special handling from Korea to worldwide destinations.`
 
 #### Key sections
 
@@ -670,7 +688,7 @@ Recommended fields:
 - `alternateName`: `KS WAYS`
 - `url`: `https://ksways.co`
 - `email`: `info@ksways.co`
-- `description`: `KS WAYS is a global ocean and air logistics company with sea freight strength and WCA member network cooperation.`
+- `description`: `KS WAYS is a Korea-origin ocean and air logistics company moving cargo to worldwide destinations through WCA partner networking.`
 - `areaServed`: `Worldwide`
 - `knowsAbout`: `Freight forwarding, air freight, ocean freight, cross-border logistics, EXW pickup, Korea logistics, partner network`
 
@@ -779,4 +797,4 @@ KS WAYS should not compete by sounding like every freight forwarder.
 
 The site should consistently communicate this message:
 
-**KS WAYS is the practical Korea gateway for global cargo movement, combining freight execution, clear communication, and trusted partner cooperation.**
+**KS WAYS is the Korea origin partner for worldwide ocean and air cargo, combining freight execution from Korea, WCA partner networking, clear communication, and trusted cooperation for overseas forwarders.**
