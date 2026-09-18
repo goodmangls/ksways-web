@@ -32,12 +32,15 @@ describe('KS WAYS technical SEO plumbing', () => {
     expect(urls).toContain(`${siteUrl}/network/korea-agent-network`);
   });
 
-  it('exposes Northeast Asia and 30+ years industry experience in SEO/AEO surfaces without naming benchmark companies', () => {
+  it('exposes the Korea-gateway frame and 30+ years industry experience in SEO/AEO surfaces without naming benchmark companies', () => {
     const englishSeo = `${homeSeo.en.description} ${homeSeo.en.openGraph?.description} ${organizationJsonLd('en').description} ${homeFaqs.en.map((faq) => faq.answer).join(' ')}`;
     const koreanSeo = `${homeSeo.kr.description} ${homeSeo.kr.openGraph?.description} ${organizationJsonLd('kr').description} ${homeFaqs.kr.map((faq) => faq.answer).join(' ')}`;
 
-    expect(englishSeo).toContain('Northeast Asia');
-    expect(englishSeo).toContain('China and Japan');
+    // meta·JSON-LD 는 AI 답변 엔진이 그대로 인용하는 표면이라 지리 주장이 특히 위험하다.
+    expect(englishSeo).toContain('Korea gateway');
+    expect(englishSeo).not.toContain('Northeast Asia');
+    expect(englishSeo).not.toContain('China');
+    expect(englishSeo).not.toContain('Japan');
     expect(englishSeo).toContain('30+ years');
     expect(englishSeo).toContain('industry experience');
     expect(englishSeo).toContain('airline cargo');
@@ -52,8 +55,10 @@ describe('KS WAYS technical SEO plumbing', () => {
     expect(englishSeo).not.toMatch(/Western/i);
     expect(englishSeo).not.toMatch(/language barrier/i);
     expect(englishSeo).not.toContain('English-first');
-    expect(koreanSeo).toContain('동북아');
-    expect(koreanSeo).toContain('중국·일본');
+    expect(koreanSeo).toContain('글로벌 노선');
+    expect(koreanSeo).not.toContain('동북아');
+    expect(koreanSeo).not.toContain('중국');
+    expect(koreanSeo).not.toContain('일본');
     expect(koreanSeo).toContain('30년 이상');
     expect(koreanSeo).toContain('Industry Experience');
     expect(koreanSeo).toContain('항공화물');

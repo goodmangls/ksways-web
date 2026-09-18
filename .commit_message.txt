@@ -1,1 +1,1 @@
-🐛 fix(analytics): Vercel 위에서만 Analytics 주입 — /_vercel/insights/* 는 Vercel 전용 라우트라 평범한 next start(CI e2e·자체 호스팅)에서 404+MIME 거부로 콘솔 에러 8건 발생
+👁️ test(visual): 카피 교정에 맞춰 기준선 16장 재생성 — 푸터 태그라인이 전 페이지 공통이라 4페이지 전부 리플로우(18k~346k px, 허용치 100). CI 동일 컨테이너에서 생성 후 --update 없이 16/16 재검증

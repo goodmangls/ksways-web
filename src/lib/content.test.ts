@@ -33,7 +33,7 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(englishContactColumn?.links.map((link) => link.label)).not.toContain('Email info@ksways.co');
   });
 
-  it('emphasizes Korea-centered Northeast Asia reach and 30+ years of industry experience without naming benchmark companies', () => {
+  it('positions Korea as the origin gateway to global routes, without claiming China/Japan regional coverage', () => {
     const englishCopy = [
       homeContent.en.hero.lead,
       homeContent.en.company.body,
@@ -53,8 +53,14 @@ describe('KS WAYS bilingual homepage content', () => {
       ...homeContent.kr.footer.credentials.map((item) => `${item.label} ${item.value}`),
     ].join(' ');
 
-    expect(englishCopy).toContain('Northeast Asia');
-    expect(englishCopy).toContain('China and Japan');
+    // 실제 취급 물량은 한국발 해상·항공이다. copy.md 가 정의한 포지셔닝도
+    // "Korea gateway → global routes" 이지 중국·일본 지역 커버리지가 아니다.
+    // 아래 not 단언이 그 드리프트의 재발을 막는다(2026-09-17 교정).
+    expect(englishCopy).toContain('in Korea');
+    expect(englishCopy).toContain('global routes');
+    expect(englishCopy).not.toContain('Northeast Asia');
+    expect(englishCopy).not.toContain('China');
+    expect(englishCopy).not.toContain('Japan');
     expect(englishCopy).toContain('30+ years');
     expect(englishCopy).toContain('Industry Experience');
     expect(englishCopy).toContain('airline cargo');
@@ -65,8 +71,11 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(englishCopy).not.toContain('Asiana Airlines');
     expect(englishCopy).not.toContain('FedEx');
 
-    expect(koreanCopy).toContain('동북아');
-    expect(koreanCopy).toContain('중국·일본');
+    expect(koreanCopy).toContain('한국을 거점으로');
+    expect(koreanCopy).toContain('글로벌 노선');
+    expect(koreanCopy).not.toContain('동북아');
+    expect(koreanCopy).not.toContain('중국');
+    expect(koreanCopy).not.toContain('일본');
     expect(koreanCopy).toContain('30년 이상');
     expect(koreanCopy).toContain('Industry Experience');
     expect(koreanCopy).toContain('항공화물');
