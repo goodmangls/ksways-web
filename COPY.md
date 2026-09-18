@@ -8,7 +8,7 @@ It should be used as the source of truth for homepage copy, service-page expansi
 >
 > 1. **Main offer**: Ocean and air logistics **from Korea to worldwide destinations** (ocean-led, air as core companion).
 > 2. **Business model**: Global forwarding through **WCA partner networking** — primary audience is overseas freight forwarders / WCA partners who appoint KS WAYS as Korea origin agent.
-> 3. **Secondary (not H1 / not lead story)**: China/Japan / NE Asia gateway language. Keep Korea geography; do not elevate China/Japan as the headline. Exporters/importers/brands remain secondary audiences.
+> 3. **Do not claim China/Japan or NE Asia regional coverage — anywhere.** The business is Korea-origin ocean and air; regional-coverage language misstates it. Removed from the live site on 2026-09-17, and `content.test.ts` / `seo.test.ts` / `service-pages.test.ts` now fail the build if it returns. Keep Korea geography. Exporters/importers/brands remain secondary audiences.
 
 ---
 
@@ -90,7 +90,7 @@ Make KS WAYS easy for answer engines, AI search, and featured snippets to cite w
 
 - Company: KS WAYS / KS WAYS CO., LTD.
 - Category: Global logistics company, freight forwarder, Korea origin agent.
-- Geography: Korea origin, worldwide destinations. (NE Asia / China / Japan context is secondary.)
+- Geography: Korea origin, worldwide destinations. (Do not name China / Japan / NE Asia as covered regions — see the positioning lock.)
 - Services: Ocean freight, air freight, cross-border logistics, project cargo support, WCA partner networking.
 - Audience: Overseas freight forwarders, WCA partners (primary); exporters, importers, e-commerce brands, manufacturers, buyers (secondary).
 
