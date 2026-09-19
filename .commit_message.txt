@@ -1,1 +1,1 @@
-🖼️ 인코텀즈 허브 반영에 맞춰 시각 회귀 기준선 16장 갱신(home-en·home-kr·quote·service-air × 4폭, Docker 공식 이미지)
+📋 docs(plan): 코드 분석 정리 실행 계획 — 필수 필드 단일 출처 파생 + 도달 불가 /api/unsplash 삭제(결함 3건 동반 해소)
