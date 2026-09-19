@@ -1,7 +1,5 @@
 export const UNSPLASH_APP_NAME = 'ksways';
 
-export const UNSPLASH_CACHE_REVALIDATE_SECONDS = 60 * 60 * 24;
-
 export const ALLOWED_UNSPLASH_TOPICS = {
   ocean: 'ocean freight container ship port terminal',
   air: 'air cargo freight aircraft logistics',
@@ -34,10 +32,6 @@ export type UnsplashApiPhoto = {
       html: string;
     };
   };
-};
-
-export type UnsplashSearchResponse = {
-  results: UnsplashApiPhoto[];
 };
 
 export type NormalizedUnsplashImage = {

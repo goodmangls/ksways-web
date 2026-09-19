@@ -1,5 +1,30 @@
 import { describe, expect, it } from 'vitest';
-import { ALLOWED_UNSPLASH_TOPICS, getHeroUnsplashImages, normalizeUnsplashPhoto } from './unsplash';
+import { ALLOWED_UNSPLASH_TOPICS, getHeroUnsplashImages, normalizeUnsplashPhoto, type UnsplashApiPhoto } from './unsplash';
+
+function makePhoto(overrides: Partial<Pick<UnsplashApiPhoto, 'alt_description' | 'description'>>): UnsplashApiPhoto {
+  return {
+    id: 'fallback-check',
+    alt_description: null,
+    description: null,
+    ...overrides,
+    urls: {
+      regular: 'https://images.unsplash.com/photo-fallback?auto=format&fit=crop&w=1080&q=80',
+      small: 'https://images.unsplash.com/photo-fallback?auto=format&fit=crop&w=640&q=80',
+    },
+    width: 1200,
+    height: 800,
+    color: '#123456',
+    blur_hash: null,
+    links: {
+      html: 'https://unsplash.com/photos/fallback-check',
+      download_location: 'https://api.unsplash.com/photos/fallback-check/download',
+    },
+    user: {
+      name: 'Fallback Photographer',
+      links: { html: 'https://unsplash.com/@fallback' },
+    },
+  };
+}
 
 describe('Unsplash brand image pool policy', () => {
   it('uses a fixed logistics topic whitelist instead of arbitrary query passthrough', () => {
@@ -65,5 +90,19 @@ describe('Unsplash brand image pool policy', () => {
       unsplashUrl: 'https://unsplash.com/photos/abc123?utm_source=ksways&utm_medium=referral',
       downloadLocation: 'https://api.unsplash.com/photos/abc123/download',
     });
+  });
+
+  it('falls back through alt_description, then description, then a default alt string', () => {
+    expect(normalizeUnsplashPhoto(makePhoto({ alt_description: 'Primary alt text', description: null })).alt).toBe(
+      'Primary alt text',
+    );
+
+    expect(
+      normalizeUnsplashPhoto(makePhoto({ alt_description: null, description: 'Secondary description text' })).alt,
+    ).toBe('Secondary description text');
+
+    expect(normalizeUnsplashPhoto(makePhoto({ alt_description: null, description: null })).alt).toBe(
+      'KS WAYS logistics image',
+    );
   });
 });
