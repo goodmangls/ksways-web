@@ -1,1 +1,1 @@
-🧹 test(unsplash): alt-fallback 3분기 커버리지 복구 + 잔존 orphan export 2건(UnsplashSearchResponse·UNSPLASH_CACHE_REVALIDATE_SECONDS) 제거
+💬 docs(quote-form.test): required-field 하드코딩된 리터럴이 유일한 drift guard임을 명시

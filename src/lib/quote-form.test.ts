@@ -108,6 +108,9 @@ describe('quote form mailto builder', () => {
   });
 
   it('identifies required quote fields before opening the email draft', () => {
+    // 이 하드코딩된 리터럴이 드리프트를 잡는 유일한 단언이다. 아래 파생 테스트는
+    // 비교하는 양변이 같은 식이라 파생이 유지되는 한 절대 실패하지 않는다 — 중복처럼
+    // 보여도 대체재가 아니므로 지우지 말 것.
     expect(requiredQuoteFieldNames).toEqual(['companyName', 'contactName', 'emailOrPhone', 'origin', 'destination', 'commodity']);
 
     expect(getMissingRequiredQuoteFields({ transportMode: 'Ocean' })).toEqual([
