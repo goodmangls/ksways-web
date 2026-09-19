@@ -1,1 +1,1 @@
-📋 docs(plan): 코드 분석 정리 실행 계획 — 필수 필드 단일 출처 파생 + 도달 불가 /api/unsplash 삭제(결함 3건 동반 해소)
+🔗 fix(quote): 필수 필드 목록 4중 복제 해소 — quoteFormFields 의 required 플래그에서 파생하고 가드 테스트로 고정(결함 주입 검증)

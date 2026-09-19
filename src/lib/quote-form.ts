@@ -134,7 +134,12 @@ export const quoteFormFields: QuoteFormField[] = [
 
 type QuoteSection = 'company' | 'route' | 'cargo' | 'ocean' | 'handling';
 
-export const requiredQuoteFieldNames = ['companyName', 'contactName', 'emailOrPhone', 'origin', 'destination', 'commodity'] as const satisfies readonly (keyof QuoteFormValues)[];
+// Single source: quoteFormFields' required flag.
+// Previously duplicated as parallel literals — if they drifted, the UI would mark required
+// but validation and focus would silently ignore the field. quote-form.test.ts guards this derivation.
+export const requiredQuoteFieldNames: readonly (keyof QuoteFormValues)[] = quoteFormFields
+  .filter((field) => field.required)
+  .map((field) => field.name);
 
 export function getShipmentTypeForTransportMode(mode?: string) {
   switch (mode) {

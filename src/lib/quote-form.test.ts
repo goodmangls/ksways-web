@@ -129,6 +129,15 @@ describe('quote form mailto builder', () => {
     })).toEqual([]);
   });
 
+  it('derives the required-field list from the field definitions, not a parallel literal', () => {
+    // If these three places diverge, the UI shows required but validation and focus ignore the field.
+    // Silent failure, so bind them with assertions.
+    const declaredRequired = quoteFormFields.filter((field) => field.required).map((field) => field.name);
+
+    expect([...requiredQuoteFieldNames]).toEqual(declaredRequired);
+    expect(declaredRequired.length).toBeGreaterThan(0);
+  });
+
   it('returns mode-driven visible sections so non-ocean users are not overwhelmed by ocean equipment', () => {
     expect(getVisibleQuoteSections({ transportMode: 'Ocean' })).toEqual(['company', 'route', 'cargo', 'ocean', 'handling']);
     expect(getVisibleQuoteSections({ transportMode: 'Air' })).toEqual(['company', 'route', 'cargo', 'handling']);
