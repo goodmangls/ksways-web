@@ -6,11 +6,14 @@ import nextVitals from 'eslint-config-next/core-web-vitals';
 //   playwright-report/  로컬 e2e 리포트. 트레이스 뷰어 번들이 미니파이 JS 라
 //                       rules-of-hooks 186 건이 뜬다(CI 는 fresh checkout 이라 안 보임)
 //   test-results/·blob-report/·playwright/.cache/  같은 부류의 Playwright 산출물
+//   .worktrees/         로컬 git 워크트리. 저장소 전체 사본(coverage/ 포함)이라
+//                       중복 린트 + 생성물 오류 458 건이 뜬다
 const eslintConfig = [
   {
     ignores: [
       'coverage/',
       '.agents/',
+      '.worktrees/',
       'playwright-report/',
       'test-results/',
       'blob-report/',
