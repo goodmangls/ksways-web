@@ -97,6 +97,8 @@ type QuoteFormField = {
   type?: 'text' | 'email' | 'date' | 'textarea' | 'select';
   options?: readonly string[];
   helper?: string;
+  /** 입력칸 안쪽에 고정 표시하는 단위. 숫자만 입력하면 이메일 초안에 붙여 보낸다. */
+  unit?: string;
 };
 
 export const quoteFormFields: QuoteFormField[] = [
@@ -115,9 +117,9 @@ export const quoteFormFields: QuoteFormField[] = [
   { name: 'hsCode', label: 'HS code', placeholder: '3304.99', section: 'cargo' },
   { name: 'cargoNature', label: 'Cargo type', placeholder: 'Select cargo type', section: 'cargo', type: 'select', options: ['General cargo', 'DG cargo', 'Special cargo / OOG / temperature controlled', 'Not sure'] },
   { name: 'packageCount', label: 'Package count', placeholder: '12 cartons / 2 pallets', section: 'cargo' },
-  { name: 'grossWeight', label: 'Gross weight', placeholder: '480 kg', section: 'cargo' },
+  { name: 'grossWeight', label: 'Gross weight', placeholder: '480', section: 'cargo', unit: 'kg' },
   { name: 'dimensions', label: 'Dimensions', placeholder: '120 x 80 x 150 cm x 2 pallets / OOG L x W x H', section: 'cargo' },
-  { name: 'cbm', label: 'CBM / volume', placeholder: '2.88 CBM', section: 'cargo' },
+  { name: 'cbm', label: 'CBM / volume', placeholder: '2.88', section: 'cargo', unit: 'CBM' },
   { name: 'cargoReadyDate', label: 'Cargo ready date', placeholder: 'YYYY-MM-DD', section: 'cargo', type: 'date' },
   { name: 'containerType', label: 'FCL container / equipment', placeholder: 'Select exact container type', section: 'ocean', type: 'select', options: fclContainerOptions, helper: 'IG = in-gauge, OH = over-height, OW = over-width, OWH = over-width & over-height.' },
   { name: 'containerQuantity', label: 'Container quantity', placeholder: '1 x 40FT / 2 x 20FR OH / LCL only', section: 'ocean' },
@@ -168,6 +170,43 @@ export function getMissingRequiredQuoteFields(values: QuoteFormValues = {}) {
 }
 
 const value = (values: QuoteFormValues, key: keyof QuoteFormValues) => values[key]?.trim() ?? '';
+
+export type QuoteSectionProgress = {
+  section: QuoteSection;
+  requiredTotal: number;
+  requiredDone: number;
+  /** 사용자가 직접 채운 항목 수. select 는 항상 값이 있어 제외한다. */
+  filledCount: number;
+  complete: boolean;
+};
+
+export function getQuoteSectionProgress(values: QuoteFormValues = {}): QuoteSectionProgress[] {
+  return getVisibleQuoteSections(values).map((section) => {
+    const fields = quoteFormFields.filter((field) => field.section === section);
+    const required = fields.filter((field) => field.required);
+    const requiredDone = required.filter((field) => value(values, field.name)).length;
+
+    return {
+      section,
+      requiredTotal: required.length,
+      requiredDone,
+      filledCount: fields.filter((field) => field.type !== 'select' && value(values, field.name)).length,
+      complete: requiredDone === required.length,
+    };
+  });
+}
+
+// 숫자만 입력된 경우에만 단위를 붙인다. "1,050 lbs" 처럼 사용자가 단위를 직접 적었으면
+// 그 값이 우선이다 — 칸 안의 단위 표시는 기본값 안내일 뿐 강제가 아니다.
+const BARE_NUMBER = /^\d[\d,]*(?:\.\d+)?$/;
+const fieldUnits = new Map(quoteFormFields.filter((field) => field.unit).map((field) => [field.name, field.unit as string]));
+
+export function formatQuoteFieldValue(values: QuoteFormValues, key: keyof QuoteFormValues) {
+  const raw = value(values, key);
+  const unit = fieldUnits.get(key);
+
+  return unit && BARE_NUMBER.test(raw) ? `${raw} ${unit}` : raw;
+}
 
 // 섹션 헤더는 값 유무와 무관하게 항상 유지한다 — 수신 팀이 익숙한 골격 보존 (2026-07-12 확정).
 const quoteEmailSections: Array<{ title: string; fields: Array<[keyof QuoteFormValues, string]> }> = [
@@ -232,7 +271,7 @@ export function buildQuoteEmailText(values: QuoteFormValues = {}) {
   const body = quoteEmailSections.flatMap(({ title, fields }) => {
     const lines = fields
       .filter(([key]) => value(values, key))
-      .map(([key, label]) => `- ${label}: ${value(values, key)}`);
+      .map(([key, label]) => `- ${label}: ${formatQuoteFieldValue(values, key)}`);
     return [title, ...lines, ''];
   });
 

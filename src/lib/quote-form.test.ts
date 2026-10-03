@@ -6,6 +6,7 @@ import {
   fclContainerOptions,
   getMissingRequiredQuoteFields,
   getQuoteInitialValues,
+  getQuoteSectionProgress,
   getShipmentTypeForTransportMode,
   getVisibleQuoteSections,
   isDgCargo,
@@ -255,6 +256,69 @@ describe('quote form mailto builder', () => {
   it('flags drafts that exceed the documented mail client URL limit', () => {
     expect(isQuoteMailtoOverLimit({ companyName: 'Acme Trading' })).toBe(false);
     expect(isQuoteMailtoOverLimit({ companyName: 'Acme Trading', additionalNotes: 'x'.repeat(2000) })).toBe(true);
+  });
+
+  it('declares fixed units only on the weight and volume fields', () => {
+    const units = Object.fromEntries(quoteFormFields.filter((field) => field.unit).map((field) => [field.name, field.unit]));
+
+    // Dimensions stays free text on purpose: freight requests mix piece sizes and OOG cargo.
+    expect(units).toEqual({ grossWeight: 'kg', cbm: 'CBM' });
+  });
+
+  it('appends the field unit to bare numbers in the email draft', () => {
+    const { body } = decodeMailto(buildQuoteMailto({ grossWeight: '480', cbm: '2.88' }));
+
+    expect(body).toContain('- Gross weight: 480 kg');
+    expect(body).toContain('- CBM / volume: 2.88 CBM');
+  });
+
+  it('keeps grouped and decimal numbers intact when appending the unit', () => {
+    const { body } = decodeMailto(buildQuoteMailto({ grossWeight: '1,250.5' }));
+
+    expect(body).toContain('- Gross weight: 1,250.5 kg');
+  });
+
+  it('leaves values that already carry their own unit or wording untouched', () => {
+    const { body } = decodeMailto(buildQuoteMailto({ grossWeight: '1,050 lbs', cbm: 'approx. 3' }));
+
+    expect(body).toContain('- Gross weight: 1,050 lbs');
+    expect(body).not.toContain('lbs kg');
+    expect(body).toContain('- CBM / volume: approx. 3');
+    expect(body).not.toContain('approx. 3 CBM');
+  });
+
+  it('reports required progress per visible section', () => {
+    const progress = getQuoteSectionProgress({
+      transportMode: 'Ocean',
+      companyName: 'Acme Trading',
+      contactName: 'Jane Lee',
+      origin: 'Busan',
+    });
+
+    expect(progress.map((step) => step.section)).toEqual(['company', 'route', 'cargo', 'ocean', 'handling']);
+    expect(progress.find((step) => step.section === 'company')).toMatchObject({ requiredTotal: 3, requiredDone: 2, complete: false });
+    expect(progress.find((step) => step.section === 'route')).toMatchObject({ requiredTotal: 2, requiredDone: 1, complete: false });
+    expect(progress.find((step) => step.section === 'cargo')).toMatchObject({ requiredTotal: 1, requiredDone: 0, complete: false });
+  });
+
+  it('drops the ocean step for air shipments, matching the visible sections', () => {
+    expect(getQuoteSectionProgress({ transportMode: 'Air' }).map((step) => step.section)).toEqual(['company', 'route', 'cargo', 'handling']);
+  });
+
+  it('marks a section complete only when every required field is filled, ignoring whitespace', () => {
+    const progress = getQuoteSectionProgress({ companyName: 'Acme', contactName: 'Jane', emailOrPhone: '   ' });
+
+    expect(progress.find((step) => step.section === 'company')).toMatchObject({ requiredDone: 2, complete: false });
+  });
+
+  it('counts optional entries but not select defaults', () => {
+    // shipmentType / cargoNature always hold a value, so counting them would claim
+    // the user added something they never touched.
+    const progress = getQuoteSectionProgress({ shipmentType: 'FCL', cargoNature: 'General cargo', unNumber: 'UN3481', targetRate: '' });
+
+    expect(progress.find((step) => step.section === 'route')?.filledCount).toBe(0);
+    expect(progress.find((step) => step.section === 'cargo')?.filledCount).toBe(0);
+    expect(progress.find((step) => step.section === 'handling')).toMatchObject({ requiredTotal: 0, filledCount: 1, complete: true });
   });
 
   it('prefills special cargo quote context from the service query source', () => {

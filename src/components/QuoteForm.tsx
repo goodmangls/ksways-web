@@ -1,13 +1,15 @@
 'use client';
 
-import { Copy, ExternalLink, Mail, X } from 'lucide-react';
+import { Check, Copy, ExternalLink, Mail, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type MouseEvent } from 'react';
 import {
   buildQuoteEmailText,
   buildQuoteGmailComposeUrl,
   buildQuoteMailto,
   buildQuoteOutlookComposeUrl,
+  formatQuoteFieldValue,
   getMissingRequiredQuoteFields,
+  getQuoteSectionProgress,
   getShipmentTypeForTransportMode,
   getVisibleQuoteSections,
   isDgCargo,
@@ -15,6 +17,7 @@ import {
   quoteFormFields,
   transportModeOptions,
   type QuoteFormValues,
+  type QuoteSectionProgress,
 } from '@/lib/quote-form';
 import { contactEmail } from '@/lib/seo';
 
@@ -34,6 +37,38 @@ const sectionDescriptions = {
   handling: 'Operational constraints that affect feasibility, DG acceptance, cost, and routing quality.',
 } as const;
 
+const sectionAnchor = (section: keyof typeof sectionLabels) => `quote-section-${section}`;
+
+// 완료 표시는 bronze 위 ink 텍스트(DESIGN.md 대비 규칙). 두 갈래를 한 줄에 두면
+// brand-palette 가드가 한 줄 안의 bronze·white 를 짝으로 오인하므로 줄을 나눈다.
+const stepMarkerClass = 'inline-flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-black';
+const stepMarkerDoneClass = 'bg-[#b88a5a] text-[#001112]';
+const stepMarkerPendingClass = 'border border-white/24 text-white/70';
+
+function getStepStatus({ requiredTotal, requiredDone, filledCount, complete }: QuoteSectionProgress) {
+  if (requiredTotal === 0) {
+    return filledCount > 0 ? `${filledCount} added` : 'Optional';
+  }
+
+  return complete ? 'Done' : `${requiredDone} of ${requiredTotal} required`;
+}
+
+/** 사이드바 요약 — 견적 판단에 쓰이는 핵심 항목만. 비어 있는 행은 내보내지 않는다. */
+function getSummaryRows(values: QuoteFormValues): Array<[string, string]> {
+  const origin = values.origin?.trim();
+  const destination = values.destination?.trim();
+  const mode = values.transportMode && values.transportMode !== 'Not sure' ? values.transportMode : '';
+  const rows: Array<[string, string]> = [
+    ['Mode', mode],
+    ['Route', origin || destination ? `${origin || '—'} → ${destination || '—'}` : ''],
+    ['Commodity', formatQuoteFieldValue(values, 'commodity')],
+    ['Weight', formatQuoteFieldValue(values, 'grossWeight')],
+    ['Volume', formatQuoteFieldValue(values, 'cbm')],
+  ];
+
+  return rows.filter(([, rowValue]) => rowValue);
+}
+
 type QuoteFormProps = {
   initialValues?: QuoteFormValues;
   navigate?: (href: string) => void;
@@ -52,6 +87,8 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
   const outlookHref = useMemo(() => buildQuoteOutlookComposeUrl(values), [values]);
   const emailText = useMemo(() => buildQuoteEmailText(values), [values]);
   const visibleSections = useMemo(() => getVisibleQuoteSections(values), [values]);
+  const sectionProgress = useMemo(() => getQuoteSectionProgress(values), [values]);
+  const summaryRows = useMemo(() => getSummaryRows(values), [values]);
   const dgSelected = isDgCargo(values);
   const missingRequiredFields = getMissingRequiredQuoteFields(values);
   const canOpenEmail = missingRequiredFields.length === 0;
@@ -172,7 +209,8 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
   // DESIGN.md "Focus" for the exact prohibitions, enforced by
   // src/focus-visible.test.ts. The border/background shifts below are supporting
   // affordance, not the indicator.
-  const commonClass = 'mt-2 min-h-12 w-full rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-4 py-3 text-base font-semibold text-[#001112] transition placeholder:text-[#001112]/35 focus:border-[#b88a5a] focus:bg-white';
+  const fieldClass = 'min-h-12 w-full rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-4 py-3 text-base font-semibold text-[#001112] transition placeholder:text-[#001112]/35 focus:border-[#b88a5a] focus:bg-white';
+  const commonClass = `mt-2 ${fieldClass}`;
 
   return (
     <section className="px-6 pb-20 sm:px-10 lg:px-14">
@@ -209,7 +247,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
           </fieldset>
 
           {visibleSections.map((section) => (
-            <fieldset key={section} className="grid gap-4">
+            <fieldset key={section} id={sectionAnchor(section)} className="grid scroll-mt-8 gap-4">
               <legend className="text-lg font-black tracking-[-.03em] text-[#001112]">{sectionLabels[section]}</legend>
               <p className="text-sm leading-relaxed text-[#001112]/54">{sectionDescriptions[section]}</p>
               <div className="grid gap-4 md:grid-cols-2">
@@ -228,6 +266,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                       <label key={field.name} className={labelClass}>
                         <span className="text-sm font-black text-[#001112]/76">
                           {field.label}
+                          {field.unit ? <span className="sr-only"> ({field.unit})</span> : null}
                           {field.required ? <span className="text-[#805d3b]"> *</span> : null}
                         </span>
                         {field.type === 'textarea' ? (
@@ -243,6 +282,24 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                           <select name={field.name} value={fieldValue} onChange={(event) => update(field.name, event.target.value)} className={inputClass}>
                             {field.options?.map((option) => <option key={option}>{option}</option>)}
                           </select>
+                        ) : field.unit ? (
+                          // Etsy-style fixed unit inside the field. Stays type="text" so a typed
+                          // "1,050 lbs" is kept as-is; the unit is only appended to bare numbers.
+                          <span className="relative mt-2 block">
+                            <input
+                              name={field.name}
+                              value={fieldValue}
+                              onChange={(event) => update(field.name, event.target.value)}
+                              placeholder={field.placeholder}
+                              required={field.required}
+                              type="text"
+                              inputMode="decimal"
+                              className={`${fieldClass} pr-16`}
+                            />
+                            <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-sm font-black text-[#001112]/48">
+                              {field.unit}
+                            </span>
+                          </span>
                         ) : (
                           <input
                             name={field.name}
@@ -288,7 +345,10 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
           </div>
         </form>
 
-        <aside className="self-start rounded-[30px] bg-[#001112] p-6 text-white shadow-[0_24px_80px_rgba(0,17,18,.22)] sm:p-7 lg:sticky lg:top-8">
+        {/* 진행 단계·요약이 붙어 패널이 뷰포트보다 길어질 수 있다. sticky 요소가 뷰포트보다 길면
+            아랫부분이 스크롤 끝까지 안 보이므로, 데스크톱에서는 패널 자체가 스크롤되게 한다.
+            CTA 는 그래서 진행 단계보다 위에 둔다 — 768px 노트북에서도 첫 화면에 남도록. */}
+        <aside className="self-start rounded-[30px] bg-[#001112] p-6 text-white shadow-[0_24px_80px_rgba(0,17,18,.22)] sm:p-7 lg:sticky lg:top-8 lg:max-h-[calc(100dvh-4rem)] lg:overflow-y-auto">
           <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#e7c99a]/78">Email handoff</p>
           <h3 className="mt-4 text-3xl font-black tracking-[-.05em]">Review the draft, then choose your inbox.</h3>
           <p className="mt-4 leading-relaxed text-white/64">
@@ -298,11 +358,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             <div className="mt-5 rounded-2xl border border-[#ff8a80]/40 bg-[#ff8a80]/12 p-4 text-sm font-bold leading-relaxed text-[#ffb4ab]" role="alert">
               {validationMessage}
             </div>
-          ) : (
-            <div className="mt-5 rounded-2xl border border-white/12 bg-white/[.06] p-4 text-sm leading-relaxed text-white/66">
-              <span className="font-black text-white">Required status:</span> {canOpenEmail ? 'Ready to prepare email draft.' : `${missingRequiredFields.length} required fields left.`}
-            </div>
-          )}
+          ) : null}
           {mailtoOverLimit ? (
             <p role="status" className="mt-4 rounded-2xl border border-[#ff8a80]/40 bg-[#ff8a80]/12 p-4 text-sm font-bold leading-relaxed text-[#ffb4ab]">
               {lengthWarning}
@@ -326,7 +382,46 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
           <p className="mt-4 text-xs font-semibold leading-relaxed text-white/44">
             The prepared draft is addressed to {contactEmail}. Nothing is submitted to a server from this page.
           </p>
-          <div className="mt-6 rounded-2xl border border-white/12 bg-white/[.06] p-4 text-sm leading-relaxed text-white/66">
+          <nav aria-label="Quote form progress" className="mt-6">
+            <ol className="grid gap-1">
+              {sectionProgress.map((step, index) => {
+                const done = step.requiredTotal > 0 && step.complete;
+
+                return (
+                  <li key={step.section}>
+                    <a
+                      href={`#${sectionAnchor(step.section)}`}
+                      className="flex min-h-11 items-center gap-3 rounded-2xl px-3 py-2 transition hover:bg-white/[.06]"
+                    >
+                      <span aria-hidden="true" className={`${stepMarkerClass} ${done ? stepMarkerDoneClass : stepMarkerPendingClass}`}>
+                        {done ? <Check className="size-4" strokeWidth={3} /> : index + 1}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-sm font-black text-white">{sectionLabels[step.section]}</span>
+                        <span className={`block text-xs font-bold ${done ? 'text-[#e7c99a]' : 'text-white/56'}`}>{getStepStatus(step)}</span>
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+          <div className="mt-4 rounded-2xl border border-white/12 bg-white/[.06] p-4 text-sm leading-relaxed">
+            <p className="font-black text-white">Your request so far</p>
+            {summaryRows.length > 0 ? (
+              <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2">
+                {summaryRows.map(([label, rowValue]) => (
+                  <div key={label} className="contents">
+                    <dt className="text-white/56">{label}</dt>
+                    <dd className="min-w-0 font-bold text-white [overflow-wrap:anywhere]">{rowValue}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <p className="mt-2 text-white/66">Nothing entered yet.</p>
+            )}
+          </div>
+          <div className="mt-4 rounded-2xl border border-white/12 bg-white/[.06] p-4 text-sm leading-relaxed text-white/66">
             <p className="font-black text-white">Recommended attachments</p>
             <ul className="mt-3 grid gap-2">
               <li>• Packing list / commercial invoice</li>

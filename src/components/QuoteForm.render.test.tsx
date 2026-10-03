@@ -65,11 +65,13 @@ describe('QuoteForm interactions', () => {
     const user = userEvent.setup();
     render(<QuoteForm />);
 
-    expect(screen.getByText('Ocean equipment')).toBeInTheDocument();
+    // 사이드바 진행 단계도 같은 섹션명을 쓰므로 폼 안으로 범위를 좁힌다.
+    const form = screen.getByRole('form', { name: /structured freight quote form/i });
+    expect(within(form).getByText('Ocean equipment')).toBeInTheDocument();
 
     await user.click(screen.getByRole('button', { name: /^Air/ }));
 
-    expect(screen.queryByText('Ocean equipment')).not.toBeInTheDocument();
+    expect(within(form).queryByText('Ocean equipment')).not.toBeInTheDocument();
   });
 
   it('highlights DG guidance when DG cargo is selected', async () => {
@@ -204,6 +206,95 @@ describe('QuoteForm interactions', () => {
     const dialog = screen.getByRole('dialog', { name: /Choose where to open the draft/i });
     const href = within(dialog).getByRole('link', { name: /Default email app/i }).getAttribute('href') ?? '';
     expect(getUrlParam(href, 'body')).toContain('Fragile cargo, tilt sensors attached');
+  });
+
+  it('shows the unit inside the weight and volume inputs and keeps it in the accessible name', () => {
+    render(<QuoteForm />);
+
+    // \s* — jsdom 의 이름 계산은 sr-only span 의 선행 공백을 접는다(브라우저는 유지).
+    const weight = screen.getByRole('textbox', { name: /Gross weight\s*\(kg\)/ });
+    const volume = screen.getByRole('textbox', { name: /CBM \/ volume\s*\(CBM\)/ });
+
+    expect(weight).toHaveAttribute('inputmode', 'decimal');
+    expect(volume).toHaveAttribute('inputmode', 'decimal');
+    // 단위는 입력칸 바로 옆에 보여야 한다 — 같은 래퍼 안의 형제 요소.
+    expect(weight.parentElement).toHaveTextContent('kg');
+    expect(volume.parentElement).toHaveTextContent('CBM');
+  });
+
+  it('carries the unit into the email draft when only a number is typed', async () => {
+    const user = userEvent.setup();
+    render(<QuoteForm />);
+
+    await user.type(screen.getByRole('textbox', { name: /Gross weight/ }), '480');
+    await fillRequiredFields(user);
+    await user.click(getDesktopSubmitButton());
+
+    const dialog = screen.getByRole('dialog', { name: /Choose where to open the draft/i });
+    const href = within(dialog).getByRole('link', { name: /Default email app/i }).getAttribute('href') ?? '';
+    expect(getUrlParam(href, 'body')).toContain('- Gross weight: 480 kg');
+  });
+
+  it('lists each visible section as a progress step that links to it', () => {
+    render(<QuoteForm />);
+
+    const progress = within(screen.getByRole('complementary')).getByRole('navigation', { name: /Quote form progress/i });
+    const steps = within(progress).getAllByRole('link');
+
+    expect(steps.map((step) => step.textContent)).toEqual([
+      expect.stringContaining('Company contact'),
+      expect.stringContaining('Mode & route'),
+      expect.stringContaining('Cargo details'),
+      expect.stringContaining('Ocean equipment'),
+      expect.stringContaining('Handling & commercial notes'),
+    ]);
+    for (const step of steps) {
+      const target = (step.getAttribute('href') ?? '').replace(/^#/, '');
+      expect(document.getElementById(target), `step ${step.textContent} should point at a rendered section`).not.toBeNull();
+    }
+    expect(steps[0]).toHaveTextContent('0 of 3 required');
+    expect(steps[4]).toHaveTextContent('Optional');
+  });
+
+  it('marks a step done once its required fields are filled', async () => {
+    const user = userEvent.setup();
+    render(<QuoteForm />);
+
+    const progress = within(screen.getByRole('complementary')).getByRole('navigation', { name: /Quote form progress/i });
+    const companyStep = within(progress).getByRole('link', { name: /Company contact/ });
+
+    await user.type(document.querySelector('[name="companyName"]') as HTMLInputElement, 'Acme Trading');
+    expect(companyStep).toHaveTextContent('1 of 3 required');
+
+    await user.type(document.querySelector('[name="contactName"]') as HTMLInputElement, 'Jane Lee');
+    await user.type(document.querySelector('[name="emailOrPhone"]') as HTMLInputElement, 'jane@acme.test');
+    expect(companyStep).toHaveTextContent('Done');
+  });
+
+  it('drops the ocean step when air is selected', async () => {
+    const user = userEvent.setup();
+    render(<QuoteForm />);
+
+    await user.click(screen.getByRole('button', { name: /^Air/ }));
+
+    const progress = within(screen.getByRole('complementary')).getByRole('navigation', { name: /Quote form progress/i });
+    expect(within(progress).queryByRole('link', { name: /Ocean equipment/ })).not.toBeInTheDocument();
+  });
+
+  it('summarises the key entries in the sidebar as they are typed', async () => {
+    const user = userEvent.setup();
+    render(<QuoteForm />);
+
+    const aside = screen.getByRole('complementary');
+    expect(within(aside).getByText('Nothing entered yet.')).toBeInTheDocument();
+
+    await user.type(document.querySelector('[name="origin"]') as HTMLInputElement, 'Busan');
+    await user.type(document.querySelector('[name="destination"]') as HTMLInputElement, 'Los Angeles');
+    await user.type(screen.getByRole('textbox', { name: /Gross weight/ }), '480');
+
+    expect(within(aside).queryByText('Nothing entered yet.')).not.toBeInTheDocument();
+    expect(within(aside).getByText('Busan → Los Angeles')).toBeInTheDocument();
+    expect(within(aside).getByText('480 kg')).toBeInTheDocument();
   });
 
   it('closes the dialog on backdrop pointer-down but not on presses inside it', async () => {
