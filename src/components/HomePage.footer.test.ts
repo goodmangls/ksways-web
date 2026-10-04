@@ -40,7 +40,7 @@ describe('KS WAYS global logistics footer', () => {
     expect(footerSource).toContain('pb-32');
     expect(footerSource).toContain('lg:pb-28');
     expect(footerSource).toContain('lg:grid-cols-[minmax(0,1fr)_auto]');
-    expect(footerSource).toContain('basis-full text-white/42');
+    expect(footerSource).toContain('basis-full text-white/66');
   });
 
   it('breaks the Korea country line out from the street address', () => {

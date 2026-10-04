@@ -29,16 +29,16 @@ typography:
     letterSpacing: "-0.028em"
   display-hero-desktop:
     fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
-    fontSize: 7.25rem
+    fontSize: 5.5rem
     fontWeight: 900
-    lineHeight: 0.92
-    letterSpacing: "-0.035em"
+    lineHeight: 1
+    letterSpacing: "-0.03em"
   display-section:
     fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
-    fontSize: 4.75rem
-    fontWeight: 900
-    lineHeight: 0.98
-    letterSpacing: "-0.035em"
+    fontSize: 3.25rem
+    fontWeight: 800
+    lineHeight: 1.08
+    letterSpacing: "-0.025em"
   heading-card:
     fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
     fontSize: 1.5rem
@@ -217,10 +217,12 @@ The current site uses the platform UI sans stack: `ui-sans-serif, system-ui, -ap
 
 Tracking is deliberately moderate (`-0.02em` to `-0.035em`). Earlier revisions used aggressive negative tracking (`-0.062em` to `-0.075em`); that crushed Korean glyphs and is no longer the house style.
 
-- **Hero display**: Very heavy (`900`), moderate negative letter spacing, and aggressive scale. Desktop line-height may be tight (`0.92`) for impact, but mobile must relax to `1.04` or higher to prevent CJK/Latin overlap.
-- **Section display**: Heavy and condensed in rhythm, with negative tracking. Keep section headlines short and decisive.
-- **Card headings**: Heavy (`900`) and compact, usually 20–24px.
-- **Body copy**: 16–18px with relaxed line-height (`1.6–1.65`). Body tone should be practical, specific, and operational.
+- **Hero display**: Very heavy (`900`), up to `88px` on desktop. Line-height never drops below `1.0` (the old `0.92` let wrapped Korean lines touch); mobile relaxes to `1.04`.
+- **Section display**: Extra-bold (`800`), capped at `52px` with `1.08` line-height. Section headlines on this site are full sentences — at the old 74–76px they wrapped into four or five lines and read as a poster, not a statement.
+- **Card / row headings**: Extra-bold (`800`), 22–30px.
+- **Body copy**: 16–18px with relaxed line-height (`1.65–1.7`), measure capped at `34em`–`40em`. Body tone should be practical, specific, and operational.
+- **Secondary text is an opacity of the ink, with a floor.** Navy text on paper/white stays at `/60` or above (`/56` measures 4.34:1 on paper — fails AA); white text on navy stays at `/48` or above (`/40` measured 3.79:1). House values are `/76–/78` for body and `/72` for small labels. Asserted in `src/text-contrast.test.ts`.
+- **Korean wrapping**: the `/kr` page sets `word-break: keep-all` (`break-keep`). Without it the browser breaks Hangul between syllables, splitting words like "글 / 로벌" across lines.
 - **Kickers and badges**: All-caps, very small, bold labels with wide tracking (`0.10em–0.18em`). They should signal systems, routes, network, and proof. The homepage no longer carries per-section kicker eyebrows — headlines stand alone there. Service landing pages keep a single eyebrow above the H1.
 
 For Korean copy, keep line-height more forgiving than English. Avoid long unbroken English labels on mobile unless the element can wrap without harming touch targets.
@@ -231,9 +233,10 @@ The layout system is built around large, confident sections and strong responsiv
 
 - **Page frame**: `24px` side padding on mobile, `40px` on small/tablet, `56px` on desktop.
 - **Section rhythm**: `80px` vertical rhythm for major sections. Keep generous whitespace so logistics content feels premium and trustworthy.
-- **Hero**: Full-screen dark surface with a two-column desktop grid: narrative left, route-control visual right. On mobile, stack content and ensure CTAs are full-width.
-- **Cards**: Use rounded white cards on paper backgrounds; use dark glass cards only inside dark hero/network/footer zones.
-- **Grid behavior**: Prefer 1-column mobile, 2–3 columns tablet, and 5-column only when content is short and scan-friendly.
+- **Hero**: Dark surface with a two-column desktop grid: narrative left, rotating Unsplash photo panel right (the photo no longer sits behind the headline). A proof-point stat row with hairline dividers closes the hero above a 4px bronze route line. On mobile, stack content and ensure CTAs are full-width.
+- **Rules before cards**: Sections are separated by hairline rules (`border-light` / `border-dark`) and spacing, not by stacking rounded shadowed cards. Services are numbered full-width rows; pillars and process steps are columns under a top rule. Rounded panels are reserved for the hero photo and the closing contact block.
+- **Grid behavior**: Prefer 1-column mobile, 2–3 columns tablet. Avoid 5-column card grids — at desktop width each column fell to ~230px.
+- **Service pages**: Long leads split into a large first sentence plus a smaller remainder. Content sections are one readable column next to an "On this page" index that stacks above the content on mobile (never sticky).
 - **Touch targets**: Any clickable item must be at least `44px` high. Primary CTAs should be at least `52px` high and full-width on mobile.
 - **Max width**: Footer and broad content containers can extend to `1500px`; text blocks should usually stay within `640–900px`.
 
@@ -322,7 +325,7 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 
 ### Service Cards
 
-- Use white cards on paper backgrounds with subtle borders.
+- Render services as numbered full-width rows (index · title · description · arrow) on a white band. Each row is one link with a hover fill; the arrow becomes a bronze disc on hover and is hidden below `sm` so it never wraps onto its own line.
 - Service cards should communicate operational ownership: air freight, ocean freight, cross-border, project support, and BridgeLogis.
 - For external services, open in a new tab and include accessible labeling.
 - Avoid internal-margin, profit, or operationally sensitive language in public service cards.

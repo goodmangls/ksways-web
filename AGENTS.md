@@ -71,6 +71,8 @@ CI 를 통과시키려면 이것들을 알고 있어야 한다. 모두 "실제�
 | `src/focus-visible.test.ts` | 포커스 링 이중 구조 · 표면별 대비 · `outline-none`/`ring` 유틸 차단 · `opacity`/`visibility` 짝 |
 | `src/browser-target.test.ts` | 지원 브라우저 타깃 고정(Next `MODERN_BROWSERSLIST_TARGET`) · `browserslist` 설정파일 부재 |
 | `src/site-quality.test.ts` | 보안 헤더 · CSP · 브랜드 표기 붕괴 · 금지 포지셔닝 |
+| `src/text-contrast.test.ts` | 반투명 본문 잉크 하한 — 밝은 면 `text-[#001112]/60` 이상 · 어두운 면 `text-white/48` 이상 (하한 자체를 AA 4.5:1 계산으로 증명) |
+| `src/components/HomePage.mobile.test.ts` | 디스플레이 행간 하한 1.0 · 자간 상한 `-0.035em`(홈·서비스 템플릿) · `/kr` 한글 `break-keep` · 모바일 터치 타깃 |
 
 **색·포커스·타깃을 건드리면 이 가드들이 먼저 걸린다.** 눈으로 맞추지 말고 값을 계산할 것.
 

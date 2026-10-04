@@ -6,10 +6,25 @@ const source = readFileSync(join(process.cwd(), 'src/components/HomePage.tsx'), 
 const brandLogoSource = readFileSync(join(process.cwd(), 'src/components/BrandLogo.tsx'), 'utf8');
 
 describe('HomePage mobile optimization classes', () => {
-  it('relaxes mobile display heading line-height while preserving tighter desktop display rhythm', () => {
+  it('relaxes mobile display heading line-height and never sets display lines tighter than 1', () => {
+    // 데스크톱 .92/.98 행간은 문장형 제목이 줄바꿈될 때 윗줄 하강부와 아랫줄 상승부가
+    // 닿았다 (특히 한글). 가독성 개편 이후 하한은 1.0 이다.
     expect(source).toContain('leading-[1.04]');
-    expect(source).toContain('sm:leading-[.92]');
-    expect(source).toContain('sm:leading-[.98]');
+    expect(source).toContain('sm:leading-[1]');
+    expect(source).not.toMatch(/leading-\[\.\d+\]/);
+  });
+
+  it('keeps Korean words intact when lines wrap', () => {
+    // 기본 word-break 는 한글을 음절 단위로 끊어 "위 / 한", "글 / 로벌" 처럼 단어가 갈라졌다.
+    expect(source).toContain("locale === 'kr' ? 'break-keep'");
+  });
+
+  it('keeps display tracking within the DESIGN.md -0.035em cap on every page template', () => {
+    const servicePageSource = readFileSync(join(process.cwd(), 'src/components/ServiceLandingPage.tsx'), 'utf8');
+    const tooTight = [source, servicePageSource].flatMap((text) =>
+      [...text.matchAll(/tracking-\[-\.(\d+)em\]/g)].filter((m) => Number(`0.${m[1]}`) > 0.035).map((m) => m[0]),
+    );
+    expect(tooTight).toEqual([]);
   });
 
   it('stacks hero CTAs as full-width touch targets on mobile and restores inline CTAs on larger screens', () => {

@@ -209,7 +209,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
   // DESIGN.md "Focus" for the exact prohibitions, enforced by
   // src/focus-visible.test.ts. The border/background shifts below are supporting
   // affordance, not the indicator.
-  const fieldClass = 'min-h-12 w-full rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-4 py-3 text-base font-semibold text-[#001112] transition placeholder:text-[#001112]/35 focus:border-[#b88a5a] focus:bg-white';
+  const fieldClass = 'min-h-12 w-full rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-4 py-3 text-base font-semibold text-[#001112] transition placeholder:text-[#001112]/60 focus:border-[#b88a5a] focus:bg-white';
   const commonClass = `mt-2 ${fieldClass}`;
 
   return (
@@ -239,7 +239,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                     className={`rounded-2xl border p-4 text-left transition ${isActive ? 'border-[#805d3b] bg-[#001112] text-white shadow-[0_16px_36px_rgba(0,17,18,.16)]' : 'border-[#001112]/10 bg-white text-[#001112] hover:border-[#b88a5a]'}`}
                   >
                     <span className="block text-lg font-black">{option.label}</span>
-                    <span className={`mt-1 block text-xs font-bold leading-snug ${isActive ? 'text-white/64' : 'text-[#001112]/50'}`}>{option.helper}</span>
+                    <span className={`mt-1 block text-xs font-bold leading-snug ${isActive ? 'text-white/64' : 'text-[#001112]/66'}`}>{option.helper}</span>
                   </button>
                 );
               })}
@@ -249,7 +249,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
           {visibleSections.map((section) => (
             <fieldset key={section} id={sectionAnchor(section)} className="grid scroll-mt-8 gap-4">
               <legend className="text-lg font-black tracking-[-.03em] text-[#001112]">{sectionLabels[section]}</legend>
-              <p className="text-sm leading-relaxed text-[#001112]/54">{sectionDescriptions[section]}</p>
+              <p className="text-sm leading-relaxed text-[#001112]/70">{sectionDescriptions[section]}</p>
               <div className="grid gap-4 md:grid-cols-2">
                 {quoteFormFields
                   .filter((field) => field.section === section)
@@ -296,7 +296,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                               inputMode="decimal"
                               className={`${fieldClass} pr-16`}
                             />
-                            <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-sm font-black text-[#001112]/48">
+                            <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-sm font-black text-[#001112]/66">
                               {field.unit}
                             </span>
                           </span>
@@ -311,7 +311,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                             className={inputClass}
                           />
                         )}
-                        {field.helper ? <span className="mt-2 block text-xs font-semibold leading-relaxed text-[#001112]/48">{field.helper}</span> : null}
+                        {field.helper ? <span className="mt-2 block text-xs font-semibold leading-relaxed text-[#001112]/66">{field.helper}</span> : null}
                       </label>
                     );
                   })}
@@ -379,7 +379,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             Copy request summary
           </button>
           {copyStatus ? <p className="mt-3 text-sm font-bold text-[#e7c99a]">{copyStatus}</p> : null}
-          <p className="mt-4 text-xs font-semibold leading-relaxed text-white/44">
+          <p className="mt-4 text-xs font-semibold leading-relaxed text-white/66">
             The prepared draft is addressed to {contactEmail}. Nothing is submitted to a server from this page.
           </p>
           <nav aria-label="Quote form progress" className="mt-6">
@@ -514,7 +514,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             </div>
 
             {copyStatus ? <p role="status" className="mt-4 text-sm font-black text-[#805d3b]">{copyStatus}</p> : null}
-            <p className="mt-5 text-xs font-semibold leading-relaxed text-[#001112]/52">
+            <p className="mt-5 text-xs font-semibold leading-relaxed text-[#001112]/66">
               If the default app does not open, use Gmail, Outlook Web, or copy the request into another email service.
             </p>
           </div>

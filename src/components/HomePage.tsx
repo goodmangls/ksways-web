@@ -20,6 +20,36 @@ type Props = {
 
 const heroBackgroundSlides = getHeroUnsplashImages();
 
+// 가독성 기준 (DESIGN.md "Typography"): 섹션 제목은 문장형이라 52px 상한, 행간 1.08.
+// 본문은 navy 78% — 56~62% 는 흰 배경 작은 글자에서 AA(4.5:1) 경계 아래로 떨어졌다.
+const sectionHeadingClass =
+  'text-[clamp(32px,8.5vw,40px)] font-extrabold leading-[1.08] tracking-[-.025em] text-balance sm:text-[clamp(36px,3.6vw,52px)]';
+const sectionBodyClass = 'max-w-[34em] text-lg leading-[1.7] text-[#001112]/78';
+const monoLabelClass = 'font-mono text-[13px] font-semibold text-[#805d3b]';
+
+function ArrowIcon({ external = false }: { external?: boolean }) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path
+        d={external ? 'M5 11l6-6M6 5h5v5' : 'M3 8h10M9 4l4 4-4 4'}
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" className="mt-0.5 shrink-0">
+      <circle cx="11" cy="11" r="10" stroke="#b88a5a" strokeWidth="1.5" />
+      <path d="M6.5 11.2l3 3 6-6.4" stroke="#e7c99a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function HighlightedHeadline({ headline }: { headline: string }) {
   const english = headline.split(' global ');
   if (english.length === 2) {
@@ -42,10 +72,11 @@ function HighlightedHeadline({ headline }: { headline: string }) {
   return headline;
 }
 
-function HeroBackgroundSlideshow() {
+/** 히어로 사진 패널. 전면 배경 대신 우측 패널로 옮겨 헤드라인이 사진 위에 얹히지 않게 했다. */
+function HeroPhotoPanel({ caption }: { caption: string }) {
   return (
-    <>
-      <div className="absolute inset-0 -z-30" aria-label="Rotating full hero background images for ocean freight and air cargo logistics">
+    <figure className="relative isolate m-0 aspect-[4/3] overflow-hidden rounded-[28px] border border-[#1f3436] bg-[#031d20] lg:aspect-[4/4.4]">
+      <div className="absolute inset-0 -z-10" aria-label="Rotating hero images for ocean freight and air cargo logistics">
         {heroBackgroundSlides.map((slide, index) => (
           <Image
             key={slide.id}
@@ -53,31 +84,34 @@ function HeroBackgroundSlideshow() {
             alt={slide.alt}
             fill
             priority={index === 0}
-            sizes="100vw"
+            sizes="(min-width: 1024px) 50vw, 100vw"
             className="ks-hero-bg-slide object-cover"
             style={{ '--ks-slide-index': index } as CSSProperties}
           />
         ))}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,17,18,.95)_0%,rgba(0,17,18,.82)_36%,rgba(0,17,18,.18)_62%,rgba(0,17,18,.16)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_46%,rgba(0,17,18,.08),rgba(0,17,18,.30)_56%,rgba(0,17,18,.44)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0,transparent_48%,rgba(255,255,255,.11)_49%,transparent_50%)] bg-[length:72px_72px] opacity-55" />
-        <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-[#001112] to-transparent" />
       </div>
-      <div className="pointer-events-auto absolute bottom-7 right-6 z-20 hidden max-w-[280px] text-right text-[11px] font-semibold text-white/52 sm:block lg:right-8">
-        {heroBackgroundSlides.map((slide, index) => (
-          <p key={`${slide.id}-credit`} className="ks-hero-bg-attribution" style={{ '--ks-slide-index': index } as CSSProperties}>
-            Photo:{' '}
-            <a href={slide.photographerUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition hover:text-white hover:underline">
-              {slide.photographer}
-            </a>{' '}
-            /{' '}
-            <a href={slide.unsplashUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition hover:text-white hover:underline">
-              Unsplash
-            </a>
-          </p>
-        ))}
-      </div>
-    </>
+      <figcaption className="absolute inset-x-3 bottom-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-[18px] border border-white/12 bg-[#001112]/85 px-5 py-3.5 sm:inset-x-5 sm:bottom-5">
+        <span className="text-[15px] font-bold text-white">{caption}</span>
+        <span className="grid text-xs font-semibold text-white/72">
+          {heroBackgroundSlides.map((slide, index) => (
+            <span
+              key={`${slide.id}-credit`}
+              className="ks-hero-bg-attribution col-start-1 row-start-1"
+              style={{ '--ks-slide-index': index } as CSSProperties}
+            >
+              Photo:{' '}
+              <a href={slide.photographerUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition hover:text-white hover:underline">
+                {slide.photographer}
+              </a>{' '}
+              /{' '}
+              <a href={slide.unsplashUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition hover:text-white hover:underline">
+                Unsplash
+              </a>
+            </span>
+          ))}
+        </span>
+      </figcaption>
+    </figure>
   );
 }
 
@@ -91,7 +125,7 @@ export function HomePage({ locale, copy }: Props) {
   const faqs = homeFaqs[locale];
 
   return (
-    <main className="min-h-screen bg-[#f4f7f6] text-[#001112]">
+    <main className={`min-h-screen bg-[#f4f7f6] text-[#001112] ${locale === 'kr' ? 'break-keep' : ''}`}>
       <script
         id={`organization-jsonld-${locale}`}
         type="application/ld+json"
@@ -102,179 +136,202 @@ export function HomePage({ locale, copy }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }}
       />
-      <section className="relative isolate min-h-screen overflow-hidden bg-[#001112] text-white">
-        <HeroBackgroundSlideshow />
-        <div className="absolute inset-0 -z-20 bg-[#001112]/35" />
-
-        {/* z-30: 히어로 콘텐츠(z-10)·사진 크레딧(z-20)보다 위 — MobileNav 패널이 가려지면 링크 클릭이 차단된다 (e2e mobile-nav 가드) */}
-        <header className="relative z-30 mx-auto flex h-[78px] w-full max-w-[1280px] items-center justify-between px-6 sm:px-10 lg:px-8">
+      <section aria-labelledby="hero-heading" className="relative isolate bg-[#001112] text-white">
+        {/* z-30: 히어로 콘텐츠·사진 크레딧보다 위 — MobileNav 패널이 가려지면 링크 클릭이 차단된다 (e2e mobile-nav 가드) */}
+        <header className="relative z-30 mx-auto flex h-[80px] w-full max-w-[1280px] items-center justify-between px-6 sm:px-10 lg:px-14">
           <BrandLogo href={locale === 'en' ? '/' : '/kr'} priority />
-          <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-sm font-bold text-white/72 lg:flex">
+          <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-[15px] font-semibold text-white/78 lg:flex">
             <a href="#company" className="transition hover:text-white">{copy.nav.company}</a>
             <a href="#services" className="transition hover:text-white">{copy.nav.services}</a>
             <a href="#network" className="transition hover:text-white">{copy.nav.network}</a>
             <a href="#solutions" className="transition hover:text-white">{copy.nav.solutions}</a>
           </nav>
-          <div className="flex items-center gap-3">
-            <Link href={toggleHref} className="grid h-11 min-w-11 place-items-center rounded-full border border-white/30 px-4 text-sm font-black text-white transition hover:border-white/70" aria-label="Toggle language">
+          <div className="flex items-center gap-2.5">
+            <Link href={toggleHref} className="grid h-11 min-w-11 place-items-center rounded-full border border-white/30 px-4 text-sm font-bold text-white transition hover:border-white/70" aria-label="Toggle language">
               {copy.nav.langToggle}
             </Link>
-            <a href="#contact" className="hidden min-h-11 items-center rounded-full border border-white/45 px-5 text-sm font-extrabold text-white transition hover:border-white sm:inline-flex">{copy.nav.contact}</a>
-            <a href={quoteHref} className="inline-flex min-h-11 items-center rounded-full bg-[#b88a5a] px-5 text-sm font-black text-[#001112] transition hover:bg-[#a5794d]">{copy.nav.quote}</a>
+            <a href="#contact" className="hidden min-h-11 items-center rounded-full border border-white/45 px-5 text-sm font-bold text-white transition hover:border-white hover:bg-white/[.06] sm:inline-flex">{copy.nav.contact}</a>
+            <a href={quoteHref} className="inline-flex min-h-11 items-center rounded-full bg-[#b88a5a] px-5 text-sm font-extrabold text-[#001112] transition hover:bg-[#a5794d]">{copy.nav.quote}</a>
             <MobileNav nav={copy.nav} />
           </div>
         </header>
 
-        <div className="relative z-10 mx-auto grid min-h-[calc(100vh-78px)] w-full max-w-[1280px] items-end px-6 pb-14 pt-8 sm:px-10 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="mb-5 max-w-2xl text-[clamp(14px,1.2vw,17px)] tracking-[-.01em] text-white/74">{copy.hero.eyebrow}</p>
-            <h1 className="max-w-5xl text-[clamp(44px,12.8vw,56px)] font-black leading-[1.04] tracking-[-.028em] text-balance sm:text-[clamp(52px,7.8vw,116px)] sm:leading-[.92] sm:tracking-[-.035em]">
+        <div className="relative z-10 mx-auto grid w-full max-w-[1280px] items-center gap-12 px-6 pb-16 pt-10 sm:px-10 lg:min-h-[640px] lg:grid-cols-[1.05fr_.95fr] lg:gap-14 lg:px-14 lg:pb-20 lg:pt-14">
+          <div>
+            <p className="font-mono text-[13px] font-semibold uppercase tracking-[.12em] text-[#e7c99a]">{copy.hero.eyebrow}</p>
+            <h1 id="hero-heading" className="mt-6 text-[clamp(40px,11vw,52px)] font-black leading-[1.04] tracking-[-.028em] text-balance sm:text-[clamp(52px,6.2vw,88px)] sm:leading-[1] sm:tracking-[-.03em]">
               <HighlightedHeadline headline={copy.hero.headline} />
             </h1>
-            <p className="mt-7 max-w-2xl text-[clamp(17px,1.3vw,21px)] leading-relaxed tracking-[-.018em] text-white/70">{copy.hero.lead}</p>
+            <p className="mt-7 max-w-[34em] text-[clamp(17px,1.3vw,19px)] leading-[1.65] text-white/80 text-pretty">{copy.hero.lead}</p>
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <a href={quoteHref} className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full bg-[#b88a5a] px-7 font-black text-[#001112] transition hover:bg-[#a5794d] sm:w-auto">{copy.hero.primaryCta}</a>
-              <a href="#network" className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full border border-white/45 px-7 font-black text-white transition hover:border-white sm:w-auto">{copy.hero.secondaryCta}</a>
+              <a href={quoteHref} className="inline-flex min-h-[52px] w-full justify-center items-center gap-2.5 rounded-full bg-[#b88a5a] px-7 font-extrabold text-[#001112] transition hover:bg-[#a5794d] sm:w-auto">
+                {copy.hero.primaryCta}
+                <ArrowIcon />
+              </a>
+              <a href="#network" className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full border border-white/45 px-7 font-bold text-white transition hover:border-white hover:bg-white/[.06] sm:w-auto">{copy.hero.secondaryCta}</a>
             </div>
-            <dl className="mt-10 grid max-w-3xl overflow-hidden rounded-[28px] border border-white/10 bg-[#001112]/56 shadow-[0_30px_90px_rgba(0,0,0,.24)] backdrop-blur-xl sm:grid-cols-3" aria-label="Key proof points">
-              {copy.hero.proof.map((item) => (
-                <div key={item.label} className="border-b border-white/10 p-5 sm:border-b-0 sm:border-r last:border-0">
-                  <dt className="font-mono text-xs uppercase tracking-[.1em] text-white/72">{item.label}</dt>
-                  <dd className="mt-2 text-xl font-black tracking-[-.02em] text-white sm:text-2xl">{item.value}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
+          <HeroPhotoPanel caption={copy.hero.controlTitle} />
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-4 bg-[#b88a5a]" />
+
+        <div className="border-t border-[#1f3436]">
+          <dl className="mx-auto grid max-w-[1280px] px-6 sm:grid-cols-3 sm:px-10 lg:px-14" aria-label="Key proof points">
+            {copy.hero.proof.map((item) => (
+              <div key={item.label} className="flex flex-col-reverse gap-2.5 border-b border-[#1f3436] py-7 last:border-b-0 sm:border-b-0 sm:border-r sm:py-9 sm:pr-8 sm:last:border-r-0 sm:[&:not(:first-child)]:pl-8">
+                <dt className="text-[15px] text-white/76">{item.label}</dt>
+                <dd className="text-[clamp(28px,3vw,40px)] font-black leading-none tracking-[-.025em] text-white">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div className="h-1 bg-[#b88a5a]" />
       </section>
 
-      <section id="company" className="px-6 py-20 sm:px-10 lg:px-8">
-        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[.92fr_1.08fr] lg:items-end">
-          <div>
-            <h2 className="max-w-4xl text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.028em] text-[#001112] sm:text-[clamp(38px,5vw,74px)] sm:leading-[.98] sm:tracking-[-.035em]">{copy.company.headline}</h2>
-          </div>
-          <p className="max-w-3xl text-lg leading-relaxed text-[#001112]/62 lg:pb-2">{copy.company.body}</p>
+      <section id="company" aria-labelledby="company-heading" className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-28">
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-end lg:gap-16">
+          <h2 id="company-heading" className={`max-w-[15em] ${sectionHeadingClass}`}>{copy.company.headline}</h2>
+          <p className={sectionBodyClass}>{copy.company.body}</p>
         </div>
-        <div className="mx-auto mt-10 grid max-w-[1280px] gap-4 md:grid-cols-3">
-          {copy.company.pillars.map((pillar) => (
-            <article key={pillar.title} className="rounded-[28px] border border-[#001112]/10 bg-white p-7 shadow-[0_18px_70px_rgba(0,17,18,.06)]">
-              <div className="mb-8 h-1.5 w-14 rounded-full bg-[#b88a5a]" />
-              <h3 className="text-2xl font-black tracking-[-.02em]">{pillar.title}</h3>
-              <p className="mt-3 leading-relaxed text-[#001112]/58">{pillar.body}</p>
+        <div className="mt-14 grid gap-10 md:grid-cols-3 lg:mt-18">
+          {copy.company.pillars.map((pillar, index) => (
+            <article key={pillar.title} className="border-t-2 border-[#001112] pt-6">
+              <p className={monoLabelClass}>{String(index + 1).padStart(2, '0')}</p>
+              <h3 className="mt-3 text-[22px] font-extrabold tracking-[-.015em]">{pillar.title}</h3>
+              <p className="mt-3 leading-[1.65] text-[#001112]/76">{pillar.body}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="services" className="px-6 pb-20 sm:px-10 lg:px-8">
-        <div className="mx-auto max-w-[1280px] rounded-[36px] border border-[#001112]/10 bg-white p-7 shadow-[0_24px_90px_rgba(0,17,18,.06)] sm:p-10 lg:p-12">
-          <h2 className="max-w-4xl text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.028em] text-[#001112] sm:text-[clamp(40px,5.2vw,76px)] sm:leading-[.98] sm:tracking-[-.035em]">{copy.operating.headline}</h2>
-          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-[#001112]/60">{copy.operating.body}</p>
-          <div className="mt-10 grid overflow-hidden rounded-[28px] border border-[#001112]/12 md:grid-cols-2 lg:grid-cols-5">
-            {copy.operating.services.map((service) => {
-              const cardClassName = 'min-h-40 border-b border-[#001112]/10 p-7 transition hover:bg-[#f4f7f6] md:border-r lg:border-b-0 last:border-0';
-              const cardContent = (
+      <section id="services" aria-labelledby="services-heading" className="border-y border-[#d9e2e0] bg-white">
+        <div className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-26">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+            <h2 id="services-heading" className={`max-w-[15em] ${sectionHeadingClass}`}>{copy.operating.headline}</h2>
+            <p className={sectionBodyClass}>{copy.operating.body}</p>
+          </div>
+          <ul className="mt-12 border-b border-[#d9e2e0] bg-[#f4f7f6] lg:mt-16">
+            {copy.operating.services.map((service, index) => {
+              const isExternal = Boolean(service.href?.startsWith('http'));
+              const rowClassName = 'group flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#d9e2e0] px-5 py-6 transition-colors hover:bg-white sm:px-6 sm:py-7';
+              const rowContent = (
                 <>
-                  <h3 className="text-xl font-black tracking-[-.03em]">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-[#001112]/56">{service.body}</p>
-                  {service.href ? <p className="mt-5 text-xs font-black uppercase tracking-[.08em] text-[#805d3b]">Visit service →</p> : null}
+                  <span className={`w-10 shrink-0 ${monoLabelClass}`}>{String(index + 1).padStart(2, '0')}</span>
+                  <span className="flex-[1_1_200px] text-[22px] font-extrabold tracking-[-.02em] sm:text-[26px]">{service.title}</span>
+                  <span className="flex-[999_1_320px] leading-[1.6] text-[#001112]/76">{service.body}</span>
+                  {service.href ? (
+                    <span aria-hidden="true" className="hidden h-11 w-11 shrink-0 place-items-center rounded-full border border-[#001112]/20 sm:grid transition group-hover:border-[#b88a5a] group-hover:bg-[#b88a5a]">
+                      <ArrowIcon external={isExternal} />
+                    </span>
+                  ) : null}
                 </>
               );
 
               if (!service.href) {
-                return (
-                  <article key={service.title} className={cardClassName}>
-                    {cardContent}
-                  </article>
-                );
+                return <li key={service.title} className={rowClassName}>{rowContent}</li>;
               }
 
-              return service.href.startsWith('http') ? (
-                <a key={service.title} href={service.href} target="_blank" rel="noopener noreferrer" className={cardClassName} aria-label={`${service.title} opens in a new tab`}>
-                  {cardContent}
-                </a>
-              ) : (
-                <Link key={service.title} href={service.href} className={cardClassName}>
-                  {cardContent}
-                </Link>
+              return (
+                <li key={service.title}>
+                  {isExternal ? (
+                    <a href={service.href} target="_blank" rel="noopener noreferrer" className={rowClassName} aria-label={`${service.title} opens in a new tab`}>
+                      {rowContent}
+                    </a>
+                  ) : (
+                    <Link href={service.href} className={rowClassName}>
+                      {rowContent}
+                    </Link>
+                  )}
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
       </section>
 
-      <section id="network" className="bg-[#001112] px-6 py-20 text-white sm:px-10 lg:px-8">
-        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[.88fr_1.12fr]">
+      <section id="network" aria-labelledby="network-heading" className="bg-[#001112] text-white">
+        <div className="mx-auto grid max-w-[1280px] gap-12 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:gap-16 lg:px-14 lg:py-28">
           <div>
-          <h2 className="text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.028em] sm:text-[clamp(38px,5vw,70px)] sm:leading-[.98] sm:tracking-[-.035em]">{copy.network.headline}</h2>
+            <h2 id="network-heading" className={`max-w-[13em] ${sectionHeadingClass}`}>{copy.network.headline}</h2>
+            <p className="mt-6 max-w-[32em] text-lg leading-[1.7] text-white/80">{copy.network.body}</p>
+            <Link href={networkHref} className="mt-8 inline-flex min-h-[52px] items-center gap-2.5 rounded-full border border-[#e7c99a]/60 px-7 font-bold text-[#e7c99a] transition hover:border-[#e7c99a] hover:bg-[#e7c99a]/[.08]">
+              {locale === 'kr' ? '파트너 네트워크 자세히 보기' : 'Explore Korea agent network'}
+              <ArrowIcon />
+            </Link>
           </div>
-          <div>
-          <p className="text-lg leading-relaxed text-white/68">{copy.network.body}</p>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+          <ul className="grid self-center border-t border-[#1f3436] sm:grid-cols-2 sm:gap-x-8">
             {copy.network.points.map((point) => (
-              <li key={point} className="rounded-2xl border border-white/12 bg-white/[.045] p-5 font-bold text-white/86 shadow-[inset_0_1px_0_rgba(255,255,255,.04)]">{point}</li>
+              <li key={point} className="flex items-start gap-4 border-b border-[#1f3436] py-7 text-lg font-bold">
+                <CheckIcon />
+                {point}
+              </li>
             ))}
           </ul>
-          <Link href={networkHref} className="mt-8 inline-flex min-h-[52px] items-center rounded-full border border-[#e7c99a]/65 px-7 font-black text-[#e7c99a] transition hover:border-[#e7c99a] hover:bg-white/10">
-            {locale === 'kr' ? '파트너 네트워크 자세히 보기' : 'Explore Korea agent network'}
-          </Link>
-          </div>
         </div>
       </section>
 
-      <section id="solutions" className="px-6 py-20 sm:px-10 lg:px-8">
-        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[.86fr_1.14fr] lg:items-start">
-          <div className="lg:sticky lg:top-10">
-            <h2 className="text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.028em] sm:text-[clamp(38px,5vw,72px)] sm:leading-[.98] sm:tracking-[-.035em]">{copy.solutions.headline}</h2>
-            <p className="mt-5 text-lg leading-relaxed text-[#001112]/60">{copy.solutions.body}</p>
-          </div>
-          <div className="grid gap-4">
-            {copy.solutions.steps.map((step) => (
-              <article key={step.title} className="rounded-[30px] border border-[#001112]/10 bg-white p-7 shadow-[0_18px_70px_rgba(0,17,18,.055)]">
-                <h3 className="text-2xl font-black tracking-[-.02em] text-[#001112]">{step.title}</h3>
-                <p className="mt-3 leading-relaxed text-[#001112]/60">{step.body}</p>
-              </article>
-            ))}
-          </div>
+      <section id="solutions" aria-labelledby="solutions-heading" className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-28">
+        <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+          <h2 id="solutions-heading" className={sectionHeadingClass}>{copy.solutions.headline}</h2>
+          <p className={sectionBodyClass}>{copy.solutions.body}</p>
         </div>
+        <ol className="mt-14 grid gap-10 md:grid-cols-3 lg:mt-18">
+          {copy.solutions.steps.map((step, index) => {
+            const [number, title] = step.title.split(' · ');
+            const isLast = index === copy.solutions.steps.length - 1;
+            return (
+              <li key={step.title}>
+                <div className="flex items-center gap-3" aria-hidden="true">
+                  <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-full font-mono text-sm font-semibold ${isLast ? 'bg-[#b88a5a] text-[#001112]' : 'bg-[#001112] text-[#e7c99a]'}`}>
+                    {number}
+                  </span>
+                  <span className={`h-0.5 flex-1 ${isLast ? 'bg-[#d9e2e0]' : 'bg-[#b88a5a]'}`} />
+                </div>
+                <h3 className="mt-4 text-2xl font-extrabold tracking-[-.015em]">
+                  <span className="sr-only">{number} · </span>
+                  {title ?? step.title}
+                </h3>
+                <p className="mt-3 leading-[1.65] text-[#001112]/76">{step.body}</p>
+              </li>
+            );
+          })}
+        </ol>
       </section>
 
-      <section id="faq" className="px-6 pb-20 sm:px-10 lg:px-8">
-        <div className="mx-auto grid max-w-[1280px] gap-10 rounded-[36px] border border-[#001112]/10 bg-white p-7 shadow-[0_24px_90px_rgba(0,17,18,.06)] sm:p-10 lg:grid-cols-[.78fr_1.22fr] lg:p-12">
+      <section id="faq" aria-labelledby="faq-heading" className="mx-auto max-w-[1280px] px-6 pb-20 sm:px-10 lg:px-14 lg:pb-28">
+        <div className="grid gap-10 border-t border-[#d9e2e0] pt-20 lg:grid-cols-[.8fr_1.2fr] lg:gap-16 lg:pt-24">
           <div>
-            <h2 className="text-[clamp(32px,9vw,40px)] font-black leading-[1.04] tracking-[-.028em] sm:text-[clamp(34px,4.6vw,66px)] sm:leading-[.98] sm:tracking-[-.035em]">
+            <h2 id="faq-heading" className="text-[clamp(30px,8vw,36px)] font-extrabold leading-[1.1] tracking-[-.025em] text-balance sm:text-[clamp(32px,3.2vw,44px)]">
               {locale === 'kr' ? '자주 묻는 물류 문의' : 'Freight questions, answered clearly.'}
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-[#001112]/60">
+            <p className="mt-5 max-w-[26em] text-lg leading-[1.7] text-[#001112]/78">
               {locale === 'kr'
                 ? '견적과 파트너십 문의 전에 필요한 핵심 정보를 짧고 명확하게 정리했습니다.'
                 : 'Clear answers for ocean freight, air freight, and WCA partner enquiries.'}
             </p>
           </div>
-          <div className="grid gap-3">
+          <div className="border-t border-[#001112]">
             {faqs.map((faq) => (
-              <details key={faq.question} className="group rounded-3xl border border-[#001112]/10 bg-[#f4f7f6] p-6 open:bg-white">
-                <summary className="flex min-h-11 cursor-pointer list-none items-start justify-between gap-5 text-lg font-black tracking-[-.015em] text-[#001112] marker:hidden">
+              <details key={faq.question} className="group border-b border-[#d9e2e0] py-1">
+                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 py-3 text-[19px] font-bold tracking-[-.01em] text-[#001112] marker:hidden">
                   <span>{faq.question}</span>
-                  <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#001112] text-white transition-transform duration-200 group-open:rotate-45">+</span>
+                  <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-[#001112]/25 text-lg transition-transform duration-200 group-open:rotate-45">+</span>
                 </summary>
-                <p className="mt-4 leading-relaxed text-[#001112]/62">{faq.answer}</p>
+                <p className="mb-6 max-w-[40em] leading-[1.7] text-[#001112]/78">{faq.answer}</p>
               </details>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="contact" className="px-6 pb-20 sm:px-10 lg:px-8">
-        <div className="mx-auto max-w-[1280px] overflow-hidden rounded-[34px] bg-[#001112] p-8 text-white shadow-[0_30px_100px_rgba(0,17,18,.16)] sm:p-12 lg:flex lg:items-end lg:justify-between">
+      <section id="contact" aria-labelledby="contact-heading" className="mx-auto max-w-[1280px] px-6 pb-20 sm:px-10 lg:px-14 lg:pb-28">
+        <div className="rounded-[28px] bg-[#001112] p-8 text-white sm:p-12 lg:flex lg:items-end lg:justify-between lg:gap-16 lg:p-16">
           <div>
-            <h2 className="max-w-3xl text-[clamp(34px,10vw,42px)] font-black leading-[1.04] tracking-[-.028em] sm:text-[clamp(40px,5vw,76px)] sm:leading-[.98] sm:tracking-[-.035em]">{copy.contact.headline}</h2>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/68">{copy.contact.body}</p>
-            <div className="mt-5 flex flex-col gap-2 text-sm font-bold text-white/72 sm:flex-row sm:items-center sm:gap-5">
+            <h2 id="contact-heading" className="max-w-3xl text-[clamp(34px,9vw,42px)] font-black leading-[1.04] tracking-[-.028em] sm:text-[clamp(40px,4vw,60px)] sm:leading-[1.02] sm:tracking-[-.03em]">{copy.contact.headline}</h2>
+            <p className="mt-5 max-w-[32em] text-lg leading-[1.7] text-white/80">{copy.contact.body}</p>
+            <div className="mt-5 flex flex-col gap-1 text-[15px] font-semibold text-white/86 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-7">
               <a href={`mailto:${copy.contact.email}`} className="inline-flex min-h-11 items-center transition hover:text-[#e7c99a]">{copy.contact.email}</a>
               <a href={contactPhoneHref} className="inline-flex min-h-11 items-center transition hover:text-[#e7c99a]">{copy.contact.phone}</a>
-              <span className="inline-flex min-h-11 items-center">{copy.contact.fax}</span>
+              <span className="inline-flex min-h-11 items-center text-white/76">{copy.contact.fax}</span>
             </div>
           </div>
           <ContactActions
