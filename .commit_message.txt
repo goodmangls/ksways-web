@@ -1,1 +1,1 @@
-🔒 fix(deps): next 16.3.1→16.3.8·sharp 0.35.3→0.35.5·baseline-browser-mapping 패치로 프로덕션 의존성 취약점 3건(Critical RCE 포함) 해소 — package.json 무변경, lockfile만 갱신
+🧪 test(visual): BridgeLogis 문구 변경으로 높이가 바뀐 홈 시각 회귀 기준선 8장(EN·KR × 320/768/1024/1440)을 CI와 같은 Playwright 컨테이너에서 재생성
