@@ -1,1 +1,1 @@
-✨ feat(brand): WCAworld WQS·PartnerPay 인장 반영 — 홈 네트워크 섹션(64px)·파트너 네트워크 페이지 전용 섹션(96px)+FAQ 2건, 공식 고해상도 원본(1917px·400px)→384px, COPY.md에 WCAworld 원문 리뷰·카피·절감 문구 금지 규칙 추가
+✨ feat(network): WCAworld 윤리강령 기반 파트너 협력 원칙 6개·FAQ 추가, EXW 설명을 Incoterms 2020 기준(적재·수출통관 매수인 부담)으로 보강, COPY.md에 인증서·Incoterms·Benefits 2026 사용 규칙 기록

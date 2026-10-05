@@ -160,6 +160,31 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         </section>
       ) : null}
 
+      {page.principles ? (
+        <section aria-labelledby="principles-heading" className="border-t border-[#d9e2e0]">
+          <div className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-24">
+            <div className="grid gap-6 lg:grid-cols-[.8fr_1.2fr] lg:items-end lg:gap-16">
+              <div>
+                <p className={`${monoLabelClass} text-[#805d3b]`}>{page.principles.heading}</p>
+                <h2 id="principles-heading" className="mt-4 text-[clamp(30px,8vw,36px)] font-extrabold leading-[1.08] tracking-[-.025em] text-balance sm:text-[clamp(32px,3.2vw,44px)]">
+                  {page.principles.title}
+                </h2>
+              </div>
+              <p className="max-w-[34em] text-lg leading-[1.7] text-[#001112]/78">{page.principles.body}</p>
+            </div>
+            <ol className="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+              {page.principles.items.map((item, index) => (
+                <li key={item.title} className="border-t-2 border-[#001112] pt-5">
+                  <p aria-hidden="true" className="font-mono text-[13px] font-semibold text-[#805d3b]">{String(index + 1).padStart(2, '0')}</p>
+                  <h3 className="mt-2.5 text-xl font-extrabold tracking-[-.015em]">{item.title}</h3>
+                  <p className="mt-2.5 leading-[1.65] text-[#001112]/76">{item.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      ) : null}
+
       <section aria-labelledby="checklist-heading" className="bg-[#001112] text-white">
         <div className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-24">
           <div className="flex flex-wrap items-end justify-between gap-x-12 gap-y-6">

@@ -515,7 +515,11 @@ Yes. WCAworld members can send RFQs to KS WAYS through the WCAworld Quotation Sy
 
 Yes. KS WAYS can settle shipments with WCAworld member partners through WCAworld PartnerPay, the network’s company-to-company payment system.
 
-Q11–Q12 are live on `/network/korea-agent-network` and in its FAQ JSON-LD.
+### Q13. Does KS WAYS follow the WCAworld Code of Ethics?
+
+Yes. As a WCA Inter Global member, KS WAYS follows the WCAworld Code of Ethics: prompt and precise quotes, written agreements, settlement in the quoted currency, extra charges at actual cost, no back-selling, lawful cargo only, and WCAworld dispute resolution when needed.
+
+Q11–Q13 are live on `/network/korea-agent-network` and in its FAQ JSON-LD.
 
 ---
 
@@ -608,6 +612,13 @@ Q11–Q12 are live on `/network/korea-agent-network` and in its FAQ JSON-LD.
 - `When container loading needs a separate location`
 - `How to avoid delays in EXW shipments`
 
+#### Incoterms rules (source: WCAworld Incoterms® 2020 chart, Dropbox `KS WAYS/WCA_Incoterms2020.pdf`)
+
+- Cite **Incoterms® 2020** when the site explains a term. The 2010 chart (`WCA_Incoterms.pdf`) is superseded — do not copy from it. In particular, **DAT no longer exists**; 2020 replaced it with **DPU** (Delivered at Place Unloaded). Asserted in `ServiceLandingPage.render.test.tsx`.
+- 2020 has 11 terms. All modes: EXW, FCA, CPT, CIP, DAP, DPU, DDP. Sea and inland waterway only: FAS, FOB, CFR, CIF. Don't offer FOB/CFR/CIF as air-freight terms in examples. Use FCA instead.
+- EXW, as the page states it: the seller only makes the goods available at its premises. The buyer then carries cost and risk from there, including loading onto the collecting vehicle and export clearance, unless the sales contract says otherwise. That is the business reason the EXW page exists: who loads, and whether the site can support it, is open until checked.
+- Explain what a term means for pickup and handoff. Do not give trade or legal advice on which term a customer should choose.
+
 ### 7.4 Partner Network Korea
 
 #### URL
@@ -636,7 +647,48 @@ Q11–Q12 are live on `/network/korea-agent-network` and in its FAQ JSON-LD.
 - `What partners can expect`
 - `How to send an enquiry`
 - `For WCAworld members` — WQS RFQs and PartnerPay settlement (copy: **WCAworld member tools** above)
-- `Partner cooperation principles`
+- `Partner cooperation principles` — live (copy below)
+
+#### Partner cooperation principles
+
+Source: **WCAworld Code of Ethics** (effective 1 February 2024, 17 articles, binding on all WCA / Lognet Global / GAA / EGLN / IFC8 members). The page translates the articles a partner actually feels into KS WAYS's own voice. Articles about KS WAYS's obligations *to WCAworld* (keeping company details current, anti-spam compliance, branch-office liability, no refund on leaving) are not partner-facing and stay off the page.
+
+- Kicker: `Partner cooperation principles`
+- Headline: `How we work with partners`
+- Intro: `As a WCA Inter Global member, KS WAYS follows the WCAworld Code of Ethics. In day-to-day cooperation, that means:`
+
+| # | Title | Body | Code of Ethics |
+|---|---|---|---|
+| 01 | `Prompt, precise quotes` | `We reply within a reasonable time and quote with precise details, so rates can be compared and confirmed without guesswork.` | Art. 10 (also 01, 07) |
+| 02 | `Agreements in writing` | `Rates, scope, and shipping instructions are confirmed by contract or clear email — including anything first discussed on messengers or social media.` | Art. 02, 09 |
+| 03 | `Clean settlement` | `We invoice and pay in the quoted currency within the agreed period, with local bank charges on each side unless agreed otherwise. Unforeseen storage, demurrage, or fines are passed on at actual cost with an official invoice.` | Art. 03, 11, 12 |
+| 04 | `Your customers stay yours` | `We respect partners’ customer bases and confidential business data, and we do not back-sell.` | Art. 06 |
+| 05 | `Lawful cargo only` | `We do not take part in shipments we know, or should have known, to be fraudulent or illegal under the laws of the origin, destination, or transit country.` | Art. 08 |
+| 06 | `Disputes on the record` | `If a disagreement cannot be settled between us, we take part in WCAworld’s dispute-resolution process with documented facts.` | Art. 14, 15 |
+
+Rules:
+
+- Name the source ("follows the WCAworld Code of Ethics") — the principles are network obligations KS WAYS signed up to, not self-awarded virtues. Asserted in `ServiceLandingPage.render.test.tsx`.
+- Do not promise outcomes the Code does not give: no "guaranteed payment", no "Gold Medallion protection" claims on KS WAYS's behalf (Gold Medallion is a WCAworld programme with its own terms, Art. 13), no fixed response-time SLA ("reasonable time" is the Code's wording).
+- When the Code is amended (WCAworld announces changes one month ahead in its daily broadcast), re-check this table against the new text.
+
+#### Certificate of Membership — what the site may and may not use
+
+The WCA certificate confirms KS WAYS has complied with the conditions of membership for **WCA Inter Global** (certificate on file in Dropbox `KS WAYS/Certificate of Membership_WCA.pdf`).
+
+- ✅ Use: `WCA Inter Global member` — the certificate is the evidence behind this claim.
+- ❌ Do not publish the member ID, the validity date (`valid until …`), the signatories, or the certificate image. Same rule as the email-signature logo: an expiry date in public copy silently goes stale, and the ID is for partner verification on request. Asserted in `ServiceLandingPage.render.test.tsx` and `HomePage.render.test.tsx`.
+- ⚠️ The certificate registers the company as **"KSWays Co., Ltd."**, which conflicts with the official form `KS WAYS CO., LTD.` used on the site (see DESIGN.md naming rules). Under Code of Ethics Art. 16 the member is responsible for keeping WCAworld's company details current — request a correction from WCAworld so the directory and the next certificate match. Until then, the site keeps `KS WAYS CO., LTD.`
+- 🗓 Renewal: the current certificate is valid until 2027-07-19. Nothing on the site depends on that date, but the membership claim does — renew before it lapses.
+
+#### WCAworld Benefits 2026 brochure — what the site may use
+
+Source: `KS WAYS/WCABenefits2026.pdf` (16 pages, WCAworld's own marketing). Most of it sells WCAworld membership *to forwarders*. KS WAYS's site talks to shippers and overseas agents, so the brochure is reference only.
+
+- ✅ Already used: the WQS and PartnerPay descriptions match the **WCAworld member tools** copy above. The brochure repeats "save thousands" and "eliminates all cross-border banking fees". That wording stays banned for the reasons given there.
+- ✅ Usable fact if a network description is needed: WCA Inter Global is WCAworld's **general cargo network**, focused on connecting developed and developing economies. If a number is quoted, date it: "5,200+ member offices in 169 countries (WCAworld, 2026)". The same rule applies to WCAworld totals ("13,150+ offices in 197 countries"). These figures change every year, so do not put an undated number on the site.
+- ❌ Gold Medallion (US$3M pool, up to US$100k per same-network claim): do not mention it. It is an enrolment programme with its own terms, and enrolment is not confirmed (see the rule above).
+- ❌ Not relevant to KS WAYS's public site: WCA Pharma, Dangerous Goods, Projects and other specialty networks (KS WAYS is not a member of these), the UPS courier discount (USA/Thailand members only), All World Shipping, World Insurance Services, the Academy, FREIGHTOSCOPE, VOTI, and the networking events. Claiming any of these would imply a membership or service KS WAYS does not hold.
 
 ---
 

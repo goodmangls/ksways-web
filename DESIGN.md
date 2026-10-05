@@ -351,6 +351,7 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
   | `/network/korea-agent-network`, white band before the checklist | `light` | `96px` | one item per row (two columns squeezed the text to ~150px) |
 
   Not on service pages — shippers are not WCAworld members. Sources are the official high-res PNGs from each product's own site (the wcaworld.com benefit pages only carry 150px/200px copies), trimmed to `384px` = 2× the largest display size; `next/image` serves display-size WebP. Seals carry their own edge, so they need no plate on either surface.
+- **Partner cooperation principles** (`/network/korea-agent-network`, paper band after the member tools): numbered items under a 2px navy top rule, `md` 2 columns / `lg` 3 columns. Keep the item count a multiple of the column count (currently 6) so the last row never leaves an orphan — merge related principles rather than adding a seventh. Copy and its Code of Ethics sources: COPY.md §7.4.
 - Copy must position KS WAYS as globally connected, ocean-strong, and accountable—not merely Korea-based.
 
 ### Contact CTA

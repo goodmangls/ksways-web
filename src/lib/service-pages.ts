@@ -26,6 +26,13 @@ export type ServicePage = {
     body: string;
     items: WcaMemberTool[];
   };
+  /** Partner cooperation principles — derived from the WCAworld Code of Ethics. Copy rules: COPY.md §7.4. */
+  principles?: {
+    heading: string;
+    title: string;
+    body: string;
+    items: Array<{ title: string; body: string }>;
+  };
   checklistTitle: string;
   checklist: string[];
   faqs: Array<{
@@ -259,7 +266,7 @@ export const servicePages: ServicePage[] = [
     sections: [
       {
         title: 'What EXW means in practice',
-        body: 'Under EXW, the buyer or buyer-appointed logistics partner usually needs to arrange pickup and export movement from the shipper location. The physical pickup conditions matter as much as the freight route.',
+        body: 'Under Incoterms® 2020 EXW, the seller only makes the goods available at its own premises. From that point the buyer, or the buyer-appointed logistics partner, carries the cost and risk — including loading onto the collecting vehicle and export clearance — unless the sales contract says otherwise. That is why the physical pickup conditions matter as much as the freight route.',
       },
       {
         title: 'How to avoid pickup delays',
@@ -349,6 +356,19 @@ export const servicePages: ServicePage[] = [
         },
       ],
     },
+    principles: {
+      heading: 'Partner cooperation principles',
+      title: 'How we work with partners',
+      body: 'As a WCA Inter Global member, KS WAYS follows the WCAworld Code of Ethics. In day-to-day cooperation, that means:',
+      items: [
+        { title: 'Prompt, precise quotes', body: 'We reply within a reasonable time and quote with precise details, so rates can be compared and confirmed without guesswork.' },
+        { title: 'Agreements in writing', body: 'Rates, scope, and shipping instructions are confirmed by contract or clear email — including anything first discussed on messengers or social media.' },
+        { title: 'Clean settlement', body: 'We invoice and pay in the quoted currency within the agreed period, with local bank charges on each side unless agreed otherwise. Unforeseen storage, demurrage, or fines are passed on at actual cost with an official invoice.' },
+        { title: 'Your customers stay yours', body: 'We respect partners’ customer bases and confidential business data, and we do not back-sell.' },
+        { title: 'Lawful cargo only', body: 'We do not take part in shipments we know, or should have known, to be fraudulent or illegal under the laws of the origin, destination, or transit country.' },
+        { title: 'Disputes on the record', body: 'If a disagreement cannot be settled between us, we take part in WCAworld’s dispute-resolution process with documented facts.' },
+      ],
+    },
     checklistTitle: 'Information to send for partner enquiries',
     checklist: ['Company profile', 'Country and main routes', 'Cargo type', 'Expected cooperation scope', 'Current enquiry details if available', 'Preferred communication channel', 'Reporting preference', 'Target lane notes if relevant'],
     faqs: [
@@ -359,6 +379,10 @@ export const servicePages: ServicePage[] = [
       {
         question: 'Does KS WAYS accept WCAworld PartnerPay?',
         answer: 'Yes. KS WAYS can settle shipments with WCAworld member partners through WCAworld PartnerPay, the network’s company-to-company payment system.',
+      },
+      {
+        question: 'Does KS WAYS follow the WCAworld Code of Ethics?',
+        answer: 'Yes. As a WCA Inter Global member, KS WAYS follows the WCAworld Code of Ethics: prompt and precise quotes, written agreements, settlement in the quoted currency, extra charges at actual cost, no back-selling, lawful cargo only, and WCAworld dispute resolution when needed.',
       },
       {
         question: 'Does KS WAYS work with global freight forwarders?',
