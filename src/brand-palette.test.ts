@@ -35,6 +35,7 @@ const PALETTE = {
   accentSoft: '#e7c99a',
   accentInk: '#805d3b',
   steel: '#5f6f78',
+  paper: '#f4f7f6',
 } as const;
 
 /** Colors from the retired neon-teal identity. None may survive anywhere in the repo. */
@@ -72,6 +73,7 @@ describe('brand palette', () => {
     expect(globalsCss).toContain(`--ks-accent-soft: ${PALETTE.accentSoft};`);
     expect(globalsCss).toContain(`--ks-accent-ink: ${PALETTE.accentInk};`);
     expect(globalsCss).toContain(`--ks-steel: ${PALETTE.steel};`);
+    expect(globalsCss).toContain(`--ks-paper: ${PALETTE.paper};`);
   });
 
   it('drives ::selection and :focus-visible from the accent tokens, not literals', () => {
@@ -128,6 +130,7 @@ describe('brand palette', () => {
     expect(designMd).toContain(`accent-soft: "${PALETTE.accentSoft.toUpperCase()}"`);
     expect(designMd).toContain(`accent-ink: "${PALETTE.accentInk.toUpperCase()}"`);
     expect(designMd).toContain(`steel: "${PALETTE.steel.toUpperCase()}"`);
+    expect(designMd).toContain(`paper: "${PALETTE.paper.toUpperCase()}"`);
   });
 
   it('keeps semantic warning colors off the brand hue', () => {

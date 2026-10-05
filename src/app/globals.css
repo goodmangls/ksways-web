@@ -3,7 +3,10 @@
 :root {
   --ks-navy: #001112;
   --ks-navy-2: #031d20;
-  --ks-paper: #f6f8f8;
+  /* Matches DESIGN.md `paper` and the bg-[#f4f7f6] every <main> already paints.
+     It was #f6f8f8, so the body showed a second, slightly different paper wherever
+     <main> did not cover it. Asserted in src/brand-palette.test.ts. */
+  --ks-paper: #f4f7f6;
   --ks-line: rgba(255, 255, 255, 0.16);
   /* Brand accent family (bronze). Names are role-based so a future palette
      shift changes values here only — see DESIGN.md "Colors". */
