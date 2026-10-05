@@ -41,6 +41,7 @@ export type HomeCopy = {
     headline: string;
     body: string;
     points: string[];
+    membership: { label: string };
   };
   solutions: {
     headline: string;
@@ -122,6 +123,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       headline: 'WCA-backed cooperation for global cargo movement.',
       body: 'As a WCA member, KS WAYS works from its Korea base on global routes, giving global freight forwarders practical routing, responsive updates, and partner-safe handoff control.',
       points: ['WCA member network', 'Korea gateway · Global routes', 'Ocean · Air cargo coordination', 'Partner-safe handoff control'],
+      membership: { label: 'WCA Inter Global member' },
     },
     solutions: {
       headline: 'A clearer path for every enquiry.',
@@ -233,6 +235,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       headline: '글로벌 화물 이동을 위한 WCA 기반 에이전트 협력.',
       body: 'KS WAYS는 WCA 회원사로서 한국을 거점으로 글로벌 노선을 연결하고, 실질적인 라우팅, 빠른 커뮤니케이션, 책임 있는 핸드오프를 중심으로 글로벌 에이전트 협력을 운영합니다.',
       points: ['WCA 회원 네트워크', '한국 거점 · 글로벌 노선', '30년 이상 항공·해운·포워딩 경험', '글로벌 파트너 커버리지'],
+      membership: { label: 'WCA Inter Global 회원사' },
     },
     solutions: {
       headline: '모든 문의에 더 명확한 다음 경로를 제시합니다.',

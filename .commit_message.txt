@@ -1,1 +1,1 @@
-🎨 style(design): 전체 페이지 가독성 개편 — 홈 히어로 분할·통계 행·번호형 서비스 행, 서비스 페이지 리드 분할·목차·단일 칼럼, 제목 52px·행간 ≥1.0·자간 ≤-0.035em, 본문 잉크 대비 하한(밝은 면 /60·어두운 면 /48) 가드 테스트, /kr 한글 break-keep, DESIGN.md·AGENTS.md 갱신
+✨ feat(brand): WCA 공식 마크 반영 — 전 페이지 푸터 WCAworld(52px)·홈 네트워크 섹션 WCA Inter Global(64px) 벡터 SVG, 이메일 서명용 회원 ID·만료일은 사이트 미노출 / 시각 회귀: fold 아래 lazy 이미지 로딩 경주 제거(eager+decode 대기), 기준선 16종 갱신

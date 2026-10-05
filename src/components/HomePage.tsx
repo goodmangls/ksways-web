@@ -10,6 +10,7 @@ import { BrandLogo } from './BrandLogo';
 import { ContactActions } from './ContactActions';
 import { MobileNav } from './MobileNav';
 import { SiteFooter } from './SiteFooter';
+import { WcaBadge } from './WcaBadge';
 
 type HomeCopy = (typeof homeContent)[Locale];
 
@@ -258,14 +259,17 @@ export function HomePage({ locale, copy }: Props) {
               <ArrowIcon />
             </Link>
           </div>
-          <ul className="grid self-center border-t border-[#1f3436] sm:grid-cols-2 sm:gap-x-8">
-            {copy.network.points.map((point) => (
-              <li key={point} className="flex items-start gap-4 border-b border-[#1f3436] py-7 text-lg font-bold">
-                <CheckIcon />
-                {point}
-              </li>
-            ))}
-          </ul>
+          <div className="self-center">
+            <WcaBadge variant="inter-global" label="WCA Inter Global" caption={copy.network.membership.label} height={64} />
+            <ul className="mt-8 grid border-t border-[#1f3436] sm:grid-cols-2 sm:gap-x-8">
+              {copy.network.points.map((point) => (
+                <li key={point} className="flex items-start gap-4 border-b border-[#1f3436] py-7 text-lg font-bold">
+                  <CheckIcon />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

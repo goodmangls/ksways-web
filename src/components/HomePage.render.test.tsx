@@ -33,6 +33,28 @@ describe('HomePage render smoke', () => {
     });
   });
 
+  it('uses WCA Inter Global only in the network section and WCAworld in the site-wide footer', () => {
+    const { container } = render(<HomePage locale="en" copy={homeContent.en} />);
+
+    const network = document.getElementById('network')!;
+    const interGlobal = within(network).getByRole('img', { name: 'WCA Inter Global' });
+    expect(interGlobal.getAttribute('src')).toContain('/assets/wca-inter-global-badge.svg');
+    expect(within(network).getByText(homeContent.en.network.membership.label)).toBeInTheDocument();
+
+    // 푸터는 모든 페이지에 붙으므로 사이트 전역 마크는 인지도가 높은 WCAworld 상위 브랜드다
+    const footer = screen.getByRole('contentinfo');
+    expect(within(footer).getByRole('img', { name: 'WCAworld member' }).getAttribute('src')).toContain('/assets/wcaworld-logo.svg');
+
+    // Inter Global 마크는 네트워크 섹션 한 곳으로 제한한다
+    expect(container.querySelectorAll('img[src*="wca-inter-global-badge"]')).toHaveLength(1);
+  });
+
+  it('keeps email-signature-only membership details off the site', () => {
+    // 회원 ID·만료일이 박힌 WCA JPEG 는 이메일 서명 전용이다 — 사이트 문구로도 노출하지 않는다
+    const { container } = render(<HomePage locale="en" copy={homeContent.en} />);
+    expect(container.textContent).not.toMatch(/96376|Expires/);
+  });
+
   it('renders footer navigation columns with their links', () => {
     render(<HomePage locale="en" copy={homeContent.en} />);
 

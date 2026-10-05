@@ -50,6 +50,16 @@ test.describe('visual regression', () => {
         await page.waitForLoadState('load');
         // 하이드레이션·지연 이미지 안착 (networkidle 은 Intercom ws 때문에 못 씀)
         await page.waitForTimeout(1_000);
+        // fullPage 캡처는 스크롤하지 않으므로 fold 아래 loading="lazy" 이미지가 로딩 경주에 걸린다.
+        // 푸터 WCA 배지가 실행마다 있다/없다를 반복해 2229px 차이로 실패했다 — 시간 대기가 아니라
+        // 전부 eager 로 돌리고 모든 이미지의 decode 완료를 결정론적으로 기다린다.
+        await page.evaluate(async () => {
+          const images = [...document.querySelectorAll('img')];
+          images.forEach((img) => {
+            img.loading = 'eager';
+          });
+          await Promise.all(images.map((img) => (img.complete ? Promise.resolve() : img.decode().catch(() => undefined))));
+        });
 
         await expect(page).toHaveScreenshot(`${name}-${width}.png`, {
           fullPage: true,

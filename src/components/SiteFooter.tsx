@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { FooterCopy } from '@/lib/content';
 import { BrandLogo } from './BrandLogo';
+import { WcaBadge } from './WcaBadge';
 
 function FooterLink({ href, label }: { href: string; label: string }) {
   const isExternal = href.startsWith('http');
@@ -51,7 +52,11 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
       <div className="relative z-10 mx-auto max-w-[1280px]">
         <div className="grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1.12fr_.88fr] lg:items-start">
           <div>
-            <BrandLogo />
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+              <BrandLogo />
+              <span aria-hidden="true" className="h-10 w-px bg-white/16" />
+              <WcaBadge variant="world" label="WCAworld member" height={52} />
+            </div>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/66">{footer.tagline}</p>
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {footer.credentials.map((item) => (

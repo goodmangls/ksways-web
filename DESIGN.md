@@ -334,6 +334,16 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 
 - Use a dark section to create authority and contrast with the service area.
 - WCA/member/partner coverage proof should be explicit and visible.
+- **WCA marks** — vectors converted from WCA's distributed PDFs, rendered by `WcaBadge`:
+
+  | Mark | File | Where | Height |
+  |---|---|---|---|
+  | **WCAworld** (umbrella brand, most recognized) | `public/assets/wcaworld-logo.svg` | Footer, next to the KS WAYS logo — every page | `52px` |
+  | **WCA Inter Global** (the network KS WAYS belongs to) | `public/assets/wca-inter-global-badge.svg` | Home › Network section only, captioned "WCA Inter Global member" | `64px` |
+
+  Both are the "for black & color background" variants: the light plate is part of the mark and is what makes it legible on navy. On a paper/white surface use the matching "for white background" variant from the same package instead. Never recolor, crop, or re-letter a mark. Below `52px` the WCAworld "world" lettering stops being legible.
+- **Email-signature asset stays off the site.** The WCA JPEG with the member ID and expiry date baked in is for email signatures only. Neither the image nor its ID/expiry text appears on the site (asserted in `HomePage.render.test.tsx`) — an expiry date in public copy silently goes stale.
+- **WQS (WCAworld Quotation System) seal is not used.** The only source is a 150px raster (too soft on retina above ~75px), and the seal claims participation in a specific WCA programme. Add it only with a vector source and confirmed participation.
 - Copy must position KS WAYS as globally connected, ocean-strong, and accountable—not merely Korea-based.
 
 ### Contact CTA
