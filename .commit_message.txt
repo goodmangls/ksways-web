@@ -1,1 +1,1 @@
-✨ feat(network): WCAworld Gold Medallion 가입 사실을 파트너 네트워크 페이지 회원 도구 소개·FAQ에 추가(금액·보장 문구 없이 약관 기준 명시, 회귀 테스트 포함)
+✨ feat(home): BridgeLogis 설명을 서류·샘플·소형 화물 특송 서비스로 변경(EN·KR)하고 히어로 회전에 택배 인수인계 사진(Getty Images/Unsplash+) 4번째 슬라이드 추가 — 회전 주기 21s→28s, 슬라이드 수↔주기 회귀 테스트 포함

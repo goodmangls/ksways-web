@@ -5,7 +5,7 @@ import type { Locale } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/i18n';
 import type { homeContent } from '@/lib/content';
 import { faqJsonLd, homeFaqs, organizationJsonLd } from '@/lib/seo';
-import { getHeroUnsplashImages } from '@/lib/unsplash';
+import { getHeroSlides } from '@/lib/hero-slides';
 import { BrandLogo } from './BrandLogo';
 import { ContactActions } from './ContactActions';
 import { MobileNav } from './MobileNav';
@@ -20,7 +20,7 @@ type Props = {
   copy: HomeCopy;
 };
 
-const heroBackgroundSlides = getHeroUnsplashImages();
+const heroBackgroundSlides = getHeroSlides();
 
 // 가독성 기준 (DESIGN.md "Typography"): 섹션 제목은 문장형이라 52px 상한, 행간 1.08.
 // 본문은 navy 78% — 56~62% 는 흰 배경 작은 글자에서 AA(4.5:1) 경계 아래로 떨어졌다.
@@ -78,7 +78,7 @@ function HighlightedHeadline({ headline }: { headline: string }) {
 function HeroPhotoPanel({ caption }: { caption: string }) {
   return (
     <figure className="relative isolate m-0 aspect-[4/3] overflow-hidden rounded-[28px] border border-[#1f3436] bg-[#031d20] lg:aspect-[4/4.4]">
-      <div className="absolute inset-0 -z-10" aria-label="Rotating hero images for ocean freight and air cargo logistics">
+      <div className="absolute inset-0 -z-10" aria-label="Rotating hero images for ocean freight, air cargo, and express courier logistics">
         {heroBackgroundSlides.map((slide, index) => (
           <Image
             key={slide.id}
@@ -102,12 +102,16 @@ function HeroPhotoPanel({ caption }: { caption: string }) {
               style={{ '--ks-slide-index': index } as CSSProperties}
             >
               Photo:{' '}
-              <a href={slide.photographerUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition hover:text-white hover:underline">
-                {slide.photographer}
-              </a>{' '}
+              {slide.creditUrl ? (
+                <a href={slide.creditUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition hover:text-white hover:underline">
+                  {slide.credit}
+                </a>
+              ) : (
+                slide.credit
+              )}{' '}
               /{' '}
-              <a href={slide.unsplashUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition hover:text-white hover:underline">
-                Unsplash
+              <a href={slide.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition hover:text-white hover:underline">
+                {slide.sourceLabel}
               </a>
             </span>
           ))}

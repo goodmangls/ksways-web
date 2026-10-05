@@ -2,6 +2,7 @@
 import { cleanup, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { homeContent } from '@/lib/content';
+import { getHeroSlides } from '@/lib/hero-slides';
 import { HomePage } from './HomePage';
 
 describe('HomePage render smoke', () => {
@@ -83,10 +84,10 @@ describe('HomePage render smoke', () => {
     const { container } = render(<HomePage locale="en" copy={homeContent.en} />);
 
     // globals.css의 ks-hero-bg-cycle keyframes가 실제로 적용될 슬라이드 요소
-    expect(container.querySelectorAll('img.ks-hero-bg-slide').length).toBeGreaterThanOrEqual(3);
+    expect(container.querySelectorAll('img.ks-hero-bg-slide').length).toBe(getHeroSlides().length);
 
-    const credits = screen.getAllByText('Unsplash');
-    expect(credits.length).toBeGreaterThanOrEqual(3);
+    const credits = screen.getAllByText(/^Unsplash\+?$/);
+    expect(credits.length).toBe(getHeroSlides().length);
     credits.forEach((credit) => {
       const link = credit.closest('a');
       expect(link?.getAttribute('href')).toContain('unsplash.com');

@@ -124,7 +124,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
         { title: 'Air Freight', body: 'Urgent, high-value, and time-sensitive cargo routing with clear quote requirements and milestone follow-up.', href: '/services/air-freight-korea' },
         { title: 'Special Cargo', body: 'Case-by-case review for DG, perishables, oversized cargo, high-value goods, and project constraints.', href: '/services/special-cargo-korea' },
         { title: 'EXW & Handling', body: 'Pickup, site access, packing, labeling, stuffing, and local handoff checks before execution.', href: '/services/exw-pickup-korea' },
-        { title: 'BridgeLogis', body: 'Digital logistics access for structured quote intake, faster coordination, and connected operations.', href: 'https://bridgelogis.com' },
+        { title: 'BridgeLogis', body: 'Express courier for documents, samples, and small parcels — booked and coordinated digitally, with clear handoff from pickup to delivery.', href: 'https://bridgelogis.com' },
       ],
     },
     network: {
@@ -243,7 +243,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
         { title: '항공 운송', body: '긴급·고가·시간 민감 화물을 위한 라우팅, 견적 필수정보 확인, 마일스톤 후속관리.', href: '/services/air-freight-korea' },
         { title: '특수 화물', body: 'DG, 신선화물, 오버사이즈, 고가화물, 프로젝트 제약조건을 케이스별로 검토합니다.', href: '/services/special-cargo-korea' },
         { title: 'EXW & 핸들링', body: '픽업, 현장 접근, 포장, 라벨링, 적입, 로컬 핸드오프 조건을 실행 전 확인합니다.', href: '/services/exw-pickup-korea' },
-        { title: 'BridgeLogis', body: '정리된 견적 접수, 빠른 조율, 연결된 운영을 위한 디지털 물류 접근 채널.', href: 'https://bridgelogis.com' },
+        { title: 'BridgeLogis', body: '서류·샘플·소형 화물을 위한 특송 서비스 — 디지털로 접수·조율하고, 픽업부터 배송까지 명확하게 인계합니다.', href: 'https://bridgelogis.com' },
       ],
     },
     network: {

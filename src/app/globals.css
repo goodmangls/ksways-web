@@ -95,14 +95,14 @@ a { color: inherit; }
 .ks-hero-bg-slide {
   opacity: 0;
   visibility: hidden;
-  animation: ks-hero-bg-cycle 21s infinite;
+  animation: ks-hero-bg-cycle 28s infinite;
   animation-delay: calc(var(--ks-slide-index) * 7s);
 }
 
 .ks-hero-bg-attribution {
   opacity: 0;
   visibility: hidden;
-  animation: ks-hero-bg-cycle 21s infinite;
+  animation: ks-hero-bg-cycle 28s infinite;
   animation-delay: calc(var(--ks-slide-index) * 7s);
 }
 
@@ -124,16 +124,19 @@ a { color: inherit; }
    flips to `hidden` where opacity is truly 0, so the crossfade is unchanged and
    only the invisible links leave the tab order.
    Asserted in src/focus-visible.test.ts. */
+/* 4 slides × 7s = 28s. Percentages are fixed seconds, not scaled from the old
+   21s loop: hold to 6.09s, fade out by 7.35s, fade back in over the last 1.26s.
+   The slide count is tied to this duration in src/lib/hero-slides.test.ts. */
 @keyframes ks-hero-bg-cycle {
   0%,
-  29% {
+  21.75% {
     opacity: 1;
     visibility: visible;
     transform: scale(1.01);
   }
 
-  35%,
-  94% {
+  26.25%,
+  95.5% {
     opacity: 0;
     visibility: hidden;
     transform: scale(1.01);
