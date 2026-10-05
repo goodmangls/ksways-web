@@ -1,1 +1,1 @@
-✨ feat(home): BridgeLogis 설명을 서류·샘플·소형 화물 특송 서비스로 변경(EN·KR)하고 히어로 회전에 택배 인수인계 사진(Getty Images/Unsplash+) 4번째 슬라이드 추가 — 회전 주기 21s→28s, 슬라이드 수↔주기 회귀 테스트 포함
+🔒 fix(deps): next 16.3.1→16.3.8·sharp 0.35.3→0.35.5·baseline-browser-mapping 패치로 프로덕션 의존성 취약점 3건(Critical RCE 포함) 해소 — package.json 무변경, lockfile만 갱신
