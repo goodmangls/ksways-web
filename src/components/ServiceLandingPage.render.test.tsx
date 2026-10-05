@@ -51,6 +51,20 @@ describe('ServiceLandingPage render', () => {
     expect(allCopy).not.toMatch(/\bDAT\b|Incoterms(®)? 2010/);
   });
 
+  it('states Gold Medallion enrolment on the network page only, always tied to the programme terms', () => {
+    const network = getServicePage('korea-agent-network')!;
+    const goldCopy = [network.memberTools!.body, ...network.faqs.flatMap((f) => [f.question, f.answer])].filter((t) => /Gold Medallion/.test(t));
+    expect(goldCopy.length).toBeGreaterThan(0);
+    goldCopy.forEach((text) => {
+      // 보장 한도·청구 결과는 WCAworld 약관이 정한다 — KS WAYS 가 금액이나 지급을 약속하지 않는다
+      expect(text).toMatch(/programme’s own terms|Gold Medallion Program\?$/);
+      expect(text).not.toMatch(/guarantee|US\$|\$\d|100,000|3,000,000|fully (covered|protected)/i);
+    });
+
+    const others = servicePages.filter((page) => page.slug !== 'korea-agent-network');
+    expect(JSON.stringify(others)).not.toMatch(/Gold Medallion/);
+  });
+
   it('describes WCAworld tools by what they do, never with savings claims', () => {
     // COPY.md "Words to avoid": guaranteed savings. WCAworld 자체 홍보 문구("saves thousands",
     // "without any fees")는 KS WAYS 가 보증할 수 없는 주장이라 가져오지 않는다.

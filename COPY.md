@@ -669,7 +669,7 @@ Source: **WCAworld Code of Ethics** (effective 1 February 2024, 17 articles, bin
 Rules:
 
 - Name the source ("follows the WCAworld Code of Ethics") — the principles are network obligations KS WAYS signed up to, not self-awarded virtues. Asserted in `ServiceLandingPage.render.test.tsx`.
-- Do not promise outcomes the Code does not give: no "guaranteed payment", no "Gold Medallion protection" claims on KS WAYS's behalf (Gold Medallion is a WCAworld programme with its own terms, Art. 13), no fixed response-time SLA ("reasonable time" is the Code's wording).
+- Do not promise outcomes the Code does not give: no "guaranteed payment", no Gold Medallion claims beyond the approved enrolment wording below (Gold Medallion is a WCAworld programme with its own terms, Art. 13), no fixed response-time SLA ("reasonable time" is the Code's wording).
 - When the Code is amended (WCAworld announces changes one month ahead in its daily broadcast), re-check this table against the new text.
 
 #### Certificate of Membership — what the site may and may not use
@@ -687,7 +687,11 @@ Source: `KS WAYS/WCABenefits2026.pdf` (16 pages, WCAworld's own marketing). Most
 
 - ✅ Already used: the WQS and PartnerPay descriptions match the **WCAworld member tools** copy above. The brochure repeats "save thousands" and "eliminates all cross-border banking fees". That wording stays banned for the reasons given there.
 - ✅ Usable fact if a network description is needed: WCA Inter Global is WCAworld's **general cargo network**, focused on connecting developed and developing economies. If a number is quoted, date it: "5,200+ member offices in 169 countries (WCAworld, 2026)". The same rule applies to WCAworld totals ("13,150+ offices in 197 countries"). These figures change every year, so do not put an undated number on the site.
-- ❌ Gold Medallion (US$3M pool, up to US$100k per same-network claim): do not mention it. It is an enrolment programme with its own terms, and enrolment is not confirmed (see the rule above).
+- ✅ Gold Medallion: KS WAYS **is enrolled**, confirmed by the owner on 2026-10-05. The network page states this once in the member-tools intro and once as a FAQ. Approved wording:
+  - Intro: `KS WAYS is also enrolled in WCAworld’s Gold Medallion Program, which protects transactions between enrolled members under the programme’s own terms.`
+  - FAQ: `Yes. KS WAYS is enrolled in the Gold Medallion Program, WCAworld’s financial protection programme for transactions between enrolled members. Claims are handled by WCAworld’s Gold Medallion team under the programme’s own terms.`
+  - Rules: always tie it to "the programme's own terms". No amounts (the brochure's US$3M pool and US$100k / US$50k caps change by year and are WCAworld's to state). No "guaranteed payment" and no "fully protected". Network page only, because shippers are not party to member-to-member transactions. All asserted in `ServiceLandingPage.render.test.tsx`.
+  - If enrolment lapses, remove both lines in the same change.
 - ❌ Not relevant to KS WAYS's public site: WCA Pharma, Dangerous Goods, Projects and other specialty networks (KS WAYS is not a member of these), the UPS courier discount (USA/Thailand members only), All World Shipping, World Insurance Services, the Academy, FREIGHTOSCOPE, VOTI, and the networking events. Claiming any of these would imply a membership or service KS WAYS does not hold.
 
 ---

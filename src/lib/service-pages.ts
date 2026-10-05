@@ -342,7 +342,7 @@ export const servicePages: ServicePage[] = [
     memberTools: {
       heading: 'For WCAworld members',
       title: 'Quote and settle through WCAworld',
-      body: 'If your company is a WCAworld member, you can work with KS WAYS through the network’s own member tools: RFQs through the WCAworld Quotation System and shipment settlement through WCAworld PartnerPay.',
+      body: 'If your company is a WCAworld member, you can work with KS WAYS through the network’s own member tools: RFQs through the WCAworld Quotation System and shipment settlement through WCAworld PartnerPay. KS WAYS is also enrolled in WCAworld’s Gold Medallion Program, which protects transactions between enrolled members under the programme’s own terms.',
       items: [
         {
           key: 'wqs',
@@ -379,6 +379,10 @@ export const servicePages: ServicePage[] = [
       {
         question: 'Does KS WAYS accept WCAworld PartnerPay?',
         answer: 'Yes. KS WAYS can settle shipments with WCAworld member partners through WCAworld PartnerPay, the network’s company-to-company payment system.',
+      },
+      {
+        question: 'Is KS WAYS enrolled in the WCAworld Gold Medallion Program?',
+        answer: 'Yes. KS WAYS is enrolled in the Gold Medallion Program, WCAworld’s financial protection programme for transactions between enrolled members. Claims are handled by WCAworld’s Gold Medallion team under the programme’s own terms.',
       },
       {
         question: 'Does KS WAYS follow the WCAworld Code of Ethics?',

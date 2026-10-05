@@ -1,1 +1,1 @@
-✨ feat(network): WCAworld 윤리강령 기반 파트너 협력 원칙 6개·FAQ 추가, EXW 설명을 Incoterms 2020 기준(적재·수출통관 매수인 부담)으로 보강, COPY.md에 인증서·Incoterms·Benefits 2026 사용 규칙 기록
+✨ feat(network): WCAworld Gold Medallion 가입 사실을 파트너 네트워크 페이지 회원 도구 소개·FAQ에 추가(금액·보장 문구 없이 약관 기준 명시, 회귀 테스트 포함)
