@@ -88,7 +88,7 @@ export function getQuoteInitialValues(service?: string | string[] | null): Quote
   return { transportMode: 'Not sure', shipmentType: 'Not sure', cargoNature: 'General cargo' };
 }
 
-type QuoteFormField = {
+export type QuoteFormField = {
   name: keyof QuoteFormValues;
   label: string;
   placeholder: string;

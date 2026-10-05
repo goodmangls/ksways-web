@@ -20,6 +20,7 @@ import {
   type QuoteSectionProgress,
 } from '@/lib/quote-form';
 import { contactEmail } from '@/lib/seo';
+import { QuoteField } from './QuoteField';
 
 const sectionLabels = {
   company: 'Company contact',
@@ -204,14 +205,6 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
     }
   }
 
-  // The global two-tone focus ring in globals.css owns the focus indicator here;
-  // nothing in this class may suppress the outline or add a shadow ring — see
-  // DESIGN.md "Focus" for the exact prohibitions, enforced by
-  // src/focus-visible.test.ts. The border/background shifts below are supporting
-  // affordance, not the indicator.
-  const fieldClass = 'min-h-12 w-full rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-4 py-3 text-base font-semibold text-[#001112] transition placeholder:text-[#001112]/60 focus:border-[#b88a5a] focus:bg-white';
-  const commonClass = `mt-2 ${fieldClass}`;
-
   return (
     <section className="px-6 pb-20 sm:px-10 lg:px-14">
       <div className="grid gap-8 rounded-[36px] border border-[#001112]/10 bg-white p-6 shadow-[0_24px_90px_rgba(0,17,18,.08)] sm:p-8 lg:grid-cols-[1.2fr_.8fr] lg:p-10">
@@ -253,68 +246,15 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
               <div className="grid gap-4 md:grid-cols-2">
                 {quoteFormFields
                   .filter((field) => field.section === section)
-                  .map((field) => {
-                    const fieldValue = values[field.name] ?? '';
-                    const isWide = field.type === 'textarea';
-                    const isDgReviewField = field.name === 'unNumber' || field.name === 'dgClass';
-                    const labelClass = isDgReviewField && dgSelected ? 'md:col-span-1 rounded-3xl border border-[#805d3b]/30 bg-[#faf4ec] p-3' : isWide ? 'md:col-span-2' : undefined;
-                    // Emphasis via border weight, not a ring: Tailwind rings compile to
-                    // box-shadow and would overwrite the focus ring's inner layer.
-                    const inputClass = `${commonClass} ${isDgReviewField && dgSelected ? 'border-[#805d3b]/60 bg-white' : ''}`;
-
-                    return (
-                      <label key={field.name} className={labelClass}>
-                        <span className="text-sm font-black text-[#001112]/76">
-                          {field.label}
-                          {field.unit ? <span className="sr-only"> ({field.unit})</span> : null}
-                          {field.required ? <span className="text-[#805d3b]"> *</span> : null}
-                        </span>
-                        {field.type === 'textarea' ? (
-                          <textarea
-                            name={field.name}
-                            value={fieldValue}
-                            onChange={(event) => update(field.name, event.target.value)}
-                            placeholder={field.placeholder}
-                            rows={5}
-                            className={inputClass}
-                          />
-                        ) : field.type === 'select' ? (
-                          <select name={field.name} value={fieldValue} onChange={(event) => update(field.name, event.target.value)} className={inputClass}>
-                            {field.options?.map((option) => <option key={option}>{option}</option>)}
-                          </select>
-                        ) : field.unit ? (
-                          // Etsy-style fixed unit inside the field. Stays type="text" so a typed
-                          // "1,050 lbs" is kept as-is; the unit is only appended to bare numbers.
-                          <span className="relative mt-2 block">
-                            <input
-                              name={field.name}
-                              value={fieldValue}
-                              onChange={(event) => update(field.name, event.target.value)}
-                              placeholder={field.placeholder}
-                              required={field.required}
-                              type="text"
-                              inputMode="decimal"
-                              className={`${fieldClass} pr-16`}
-                            />
-                            <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-sm font-black text-[#001112]/66">
-                              {field.unit}
-                            </span>
-                          </span>
-                        ) : (
-                          <input
-                            name={field.name}
-                            value={fieldValue}
-                            onChange={(event) => update(field.name, event.target.value)}
-                            placeholder={field.placeholder}
-                            required={field.required}
-                            type={field.type === 'date' ? 'date' : 'text'}
-                            className={inputClass}
-                          />
-                        )}
-                        {field.helper ? <span className="mt-2 block text-xs font-semibold leading-relaxed text-[#001112]/66">{field.helper}</span> : null}
-                      </label>
-                    );
-                  })}
+                  .map((field) => (
+                    <QuoteField
+                      key={field.name}
+                      field={field}
+                      value={values[field.name] ?? ''}
+                      highlighted={dgSelected && (field.name === 'unNumber' || field.name === 'dgClass')}
+                      onChange={update}
+                    />
+                  ))}
               </div>
             </fieldset>
           ))}
