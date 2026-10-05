@@ -4,6 +4,7 @@ import { homeContent } from '@/lib/content';
 import { faqJsonLd, serviceJsonLd, siteUrl } from '@/lib/seo';
 import { BrandLogo } from './BrandLogo';
 import { SiteFooter } from './SiteFooter';
+import { WcaMemberTools } from './WcaMemberTools';
 
 const monoLabelClass = 'font-mono text-xs font-semibold uppercase tracking-[.12em]';
 
@@ -144,6 +145,20 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
           ))}
         </div>
       </div>
+
+      {page.memberTools ? (
+        <section aria-labelledby="member-tools-heading" className="border-t border-[#d9e2e0] bg-white">
+          <div className="mx-auto grid max-w-[1280px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-16 lg:px-14 lg:py-24">
+            <div>
+              <h2 id="member-tools-heading" className="text-[clamp(30px,8vw,36px)] font-extrabold leading-[1.08] tracking-[-.025em] text-balance sm:text-[clamp(32px,3.2vw,44px)]">
+                {page.memberTools.title}
+              </h2>
+              <p className="mt-5 max-w-[34em] text-lg leading-[1.7] text-[#001112]/78">{page.memberTools.body}</p>
+            </div>
+            <WcaMemberTools heading={page.memberTools.heading} items={page.memberTools.items} tone="light" />
+          </div>
+        </section>
+      ) : null}
 
       <section aria-labelledby="checklist-heading" className="bg-[#001112] text-white">
         <div className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-24">

@@ -10,6 +10,28 @@ const specialCargo = servicePages.find((page) => page.quoteServiceKey === 'speci
 describe('ServiceLandingPage render', () => {
   afterEach(cleanup);
 
+  it('shows the WCAworld WQS and PartnerPay seals on the partner network page only', () => {
+    const network = getServicePage('korea-agent-network')!;
+    render(<ServiceLandingPage page={network} basePath="network" />);
+
+    expect(screen.getByRole('heading', { name: network.memberTools!.title })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'WCAworld Quotation System seal' }).getAttribute('src')).toContain('wca-wqs-seal.png');
+    expect(screen.getByRole('img', { name: 'WCAworld PartnerPay seal' }).getAttribute('src')).toContain('wca-partnerpay-seal.png');
+    cleanup();
+
+    // 서비스 페이지 고객은 화주라 WCAworld 회원 도구는 해당 없음
+    render(<ServiceLandingPage page={airFreight} basePath="services" />);
+    expect(screen.queryByRole('img', { name: /seal$/ })).toBeNull();
+  });
+
+  it('describes WCAworld tools by what they do, never with savings claims', () => {
+    // COPY.md "Words to avoid": guaranteed savings. WCAworld 자체 홍보 문구("saves thousands",
+    // "without any fees")는 KS WAYS 가 보증할 수 없는 주장이라 가져오지 않는다.
+    const toolCopy = servicePages.flatMap((page) => (page.memberTools ? [page.memberTools.body, ...page.memberTools.items.map((i) => i.body)] : []));
+    expect(toolCopy.length).toBeGreaterThan(0);
+    toolCopy.forEach((text) => expect(text).not.toMatch(/sav(e|es|ing)|fee|free|cheap|guarantee/i));
+  });
+
   it('renders hero, trust cards, checklist, FAQ, and JSON-LD for a service page', () => {
     const { container } = render(<ServiceLandingPage page={airFreight} basePath="services" />);
 

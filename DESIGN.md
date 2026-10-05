@@ -343,7 +343,14 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 
   Both are the "for black & color background" variants: the light plate is part of the mark and is what makes it legible on navy. On a paper/white surface use the matching "for white background" variant from the same package instead. Never recolor, crop, or re-letter a mark. Below `52px` the WCAworld "world" lettering stops being legible.
 - **Email-signature asset stays off the site.** The WCA JPEG with the member ID and expiry date baked in is for email signatures only. Neither the image nor its ID/expiry text appears on the site (asserted in `HomePage.render.test.tsx`) — an expiry date in public copy silently goes stale.
-- **WQS (WCAworld Quotation System) seal is not used.** The only source is a 150px raster (too soft on retina above ~75px), and the seal claims participation in a specific WCA programme. Add it only with a vector source and confirmed participation.
+- **WCAworld benefit seals (WQS · PartnerPay)** — rendered by `WcaMemberTools`, copy in COPY.md "WCAworld member tools":
+
+  | Where | Tone | Seal | Layout |
+  |---|---|---|---|
+  | Home › Network section, under the points | `dark` | `64px` | two columns from `sm`, seal top-aligned with its text |
+  | `/network/korea-agent-network`, white band before the checklist | `light` | `96px` | one item per row (two columns squeezed the text to ~150px) |
+
+  Not on service pages — shippers are not WCAworld members. Sources are the official high-res PNGs from each product's own site (the wcaworld.com benefit pages only carry 150px/200px copies), trimmed to `384px` = 2× the largest display size; `next/image` serves display-size WebP. Seals carry their own edge, so they need no plate on either surface.
 - Copy must position KS WAYS as globally connected, ocean-strong, and accountable—not merely Korea-based.
 
 ### Contact CTA

@@ -1,1 +1,1 @@
-✨ feat(brand): WCA 공식 마크 반영 — 전 페이지 푸터 WCAworld(52px)·홈 네트워크 섹션 WCA Inter Global(64px) 벡터 SVG, 이메일 서명용 회원 ID·만료일은 사이트 미노출 / 시각 회귀: fold 아래 lazy 이미지 로딩 경주 제거(eager+decode 대기), 기준선 16종 갱신
+✨ feat(brand): WCAworld WQS·PartnerPay 인장 반영 — 홈 네트워크 섹션(64px)·파트너 네트워크 페이지 전용 섹션(96px)+FAQ 2건, 공식 고해상도 원본(1917px·400px)→384px, COPY.md에 WCAworld 원문 리뷰·카피·절감 문구 금지 규칙 추가

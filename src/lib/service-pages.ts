@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { WcaMemberTool } from './content';
 import { shareImage } from './seo';
 
 export type ServicePage = {
@@ -18,6 +19,13 @@ export type ServicePage = {
     body: string;
     items?: string[];
   }>;
+  /** WCAworld member tools block — partner-facing pages only. Copy rules: COPY.md "WCAworld member tools". */
+  memberTools?: {
+    heading: string;
+    title: string;
+    body: string;
+    items: WcaMemberTool[];
+  };
   checklistTitle: string;
   checklist: string[];
   faqs: Array<{
@@ -324,9 +332,34 @@ export const servicePages: ServicePage[] = [
         body: 'Partners can expect practical enquiry review, clear information requests, responsive milestone updates, and accountable handoff through the shipment process.',
       },
     ],
+    memberTools: {
+      heading: 'For WCAworld members',
+      title: 'Quote and settle through WCAworld',
+      body: 'If your company is a WCAworld member, you can work with KS WAYS through the network’s own member tools: RFQs through the WCAworld Quotation System and shipment settlement through WCAworld PartnerPay.',
+      items: [
+        {
+          key: 'wqs',
+          name: 'WCAworld Quotation System',
+          body: 'WCAworld’s member-only platform for sending and receiving RFQs. A detailed RFQ — route, cargo, dimensions, Incoterms, and ready date — lets KS WAYS return an accurate quote with less back-and-forth.',
+        },
+        {
+          key: 'partnerpay',
+          name: 'WCAworld PartnerPay',
+          body: 'WCAworld’s company-to-company payment system for its members. Partners can pay and receive shipment settlements with KS WAYS through their PartnerPay account.',
+        },
+      ],
+    },
     checklistTitle: 'Information to send for partner enquiries',
     checklist: ['Company profile', 'Country and main routes', 'Cargo type', 'Expected cooperation scope', 'Current enquiry details if available', 'Preferred communication channel', 'Reporting preference', 'Target lane notes if relevant'],
     faqs: [
+      {
+        question: 'Can WCAworld members send RFQs to KS WAYS through WQS?',
+        answer: 'Yes. WCAworld members can send RFQs to KS WAYS through the WCAworld Quotation System (WQS), WCAworld’s member-only quotation platform. Enquiries can also be sent to info@ksways.co.',
+      },
+      {
+        question: 'Does KS WAYS accept WCAworld PartnerPay?',
+        answer: 'Yes. KS WAYS can settle shipments with WCAworld member partners through WCAworld PartnerPay, the network’s company-to-company payment system.',
+      },
       {
         question: 'Does KS WAYS work with global freight forwarders?',
         answer: 'Yes. KS WAYS supports global freight forwarders that need a trusted global forwarding company for Korea-side logistics coordination.',

@@ -11,6 +11,7 @@ import { ContactActions } from './ContactActions';
 import { MobileNav } from './MobileNav';
 import { SiteFooter } from './SiteFooter';
 import { WcaBadge } from './WcaBadge';
+import { WcaMemberTools } from './WcaMemberTools';
 
 type HomeCopy = (typeof homeContent)[Locale];
 
@@ -269,6 +270,9 @@ export function HomePage({ locale, copy }: Props) {
                 </li>
               ))}
             </ul>
+            <div className="mt-10">
+              <WcaMemberTools heading={copy.network.tools.heading} items={copy.network.tools.items} tone="dark" />
+            </div>
           </div>
         </div>
       </section>

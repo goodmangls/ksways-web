@@ -49,6 +49,19 @@ describe('HomePage render smoke', () => {
     expect(container.querySelectorAll('img[src*="wca-inter-global-badge"]')).toHaveLength(1);
   });
 
+  it('shows the WQS and PartnerPay seals in the network section, in both locales', () => {
+    for (const locale of ['en', 'kr'] as const) {
+      render(<HomePage locale={locale} copy={homeContent[locale]} />);
+      const network = document.getElementById('network')!;
+      expect(within(network).getByRole('img', { name: 'WCAworld Quotation System seal' })).toBeInTheDocument();
+      expect(within(network).getByRole('img', { name: 'WCAworld PartnerPay seal' })).toBeInTheDocument();
+      homeContent[locale].network.tools.items.forEach((item) => {
+        expect(item.body).not.toMatch(/sav(e|es|ing)|fee|free|cheap|guarantee|절감|무료|수수료/i);
+      });
+      cleanup();
+    }
+  });
+
   it('keeps email-signature-only membership details off the site', () => {
     // 회원 ID·만료일이 박힌 WCA JPEG 는 이메일 서명 전용이다 — 사이트 문구로도 노출하지 않는다
     const { container } = render(<HomePage locale="en" copy={homeContent.en} />);

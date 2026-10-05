@@ -335,6 +335,44 @@ Recommended:
 - `Operational accountability`
 - `Korea-connected global coverage`
 
+#### WCAworld member tools (WQS · PartnerPay)
+
+KS WAYS works with WCAworld member partners through two WCAworld member benefits. Shown in the home network section (compact) and on `/network/korea-agent-network` (full section + FAQ).
+
+**Source review** — wcaworld.com/Benefits, wcaworldquotationsystem.com, wcaworldpartnerpay.com (reviewed 2026-10-05):
+
+| | WCAworld Quotation System (WQS) | WCAworld PartnerPay |
+|---|---|---|
+| What it is | A member-only platform for sending and receiving RFQs between WCAworld members worldwide | A company-to-company online payment system for WCAworld members to pay and receive money from partners |
+| Who can use it | WCAworld members (free member benefit) | Every WCAworld registered company, including affiliated networks (free member benefit) |
+| WCAworld's stated value | Specific RFQs → accurate quotes, fewer back-and-forth emails, member verification skipped, fewer payment-term problems; partners compared on value, not only price. iOS/Android "WQS" app | Manage payables and receivables in one place; WCAworld says it is fee-free and the members' payment method of choice |
+
+**How KS WAYS talks about them** — by what they *do* for the partner, never with WCAworld's own marketing claims:
+
+- ✅ "Send RFQs to KS WAYS through WCAworld's member-only quotation platform."
+- ✅ "Settle shipments with KS WAYS through WCAworld's member-to-member payment system."
+- ❌ "Save thousands of dollars", "without any fees", "free transfers", "cheapest" — these are WCAworld's claims about its own service, KS WAYS cannot guarantee them, and they fall under **Words to avoid** (guaranteed savings). Enforced in `ServiceLandingPage.render.test.tsx` and `HomePage.render.test.tsx`.
+- ❌ Don't imply WQS replaces direct contact — `info@ksways.co` stays the default enquiry path.
+- Always write the full product names on first use: `WCAworld Quotation System`, `WCAworld PartnerPay`. `WQS` only after the full name.
+
+**Home — network section (compact)**
+
+| | EN | KR |
+|---|---|---|
+| Heading | `Work with us through WCAworld` | `WCAworld 회원 도구로 협업하기` |
+| WQS | `Send RFQs to KS WAYS through WCAworld’s member-only quotation platform.` | `WCAworld 회원 전용 견적 플랫폼으로 KS WAYS에 RFQ를 보내실 수 있습니다.` |
+| PartnerPay | `Settle shipments with KS WAYS through WCAworld’s member-to-member payment system.` | `WCAworld 회원 간 결제 시스템으로 KS WAYS와 운송 정산을 처리합니다.` |
+
+**Partner network page — full section**
+
+- Kicker: `For WCAworld members`
+- Headline: `Quote and settle through WCAworld`
+- Body: `If your company is a WCAworld member, you can work with KS WAYS through the network’s own member tools: RFQs through the WCAworld Quotation System and shipment settlement through WCAworld PartnerPay.`
+- WQS: `WCAworld’s member-only platform for sending and receiving RFQs. A detailed RFQ — route, cargo, dimensions, Incoterms, and ready date — lets KS WAYS return an accurate quote with less back-and-forth.`
+- PartnerPay: `WCAworld’s company-to-company payment system for its members. Partners can pay and receive shipment settlements with KS WAYS through their PartnerPay account.`
+
+**Seal assets** — official high-resolution sources (WQS 1917px from wcaworldquotationsystem.com, PartnerPay 400px from wcaworldpartnerpay.com), trimmed to 384px: `public/assets/wca-wqs-seal.png`, `public/assets/wca-partnerpay-seal.png`. The 150px / 200px files on the wcaworld.com benefit pages are too soft for retina. Never recolor or crop a seal.
+
 ### How we work section
 
 #### Kicker
@@ -469,6 +507,16 @@ KS WAYS focuses on practical execution in Korea, clear partner communication, an
 
 For quotation, partnership, or consultation enquiries, contact KS WAYS through the official group email `info@ksways.co`. The website CTA can also request a Zoom / Calendly consultation slot.
 
+### Q11. Can WCAworld members send RFQs to KS WAYS through WQS?
+
+Yes. WCAworld members can send RFQs to KS WAYS through the WCAworld Quotation System (WQS), WCAworld’s member-only quotation platform. Enquiries can also be sent to `info@ksways.co`.
+
+### Q12. Does KS WAYS accept WCAworld PartnerPay?
+
+Yes. KS WAYS can settle shipments with WCAworld member partners through WCAworld PartnerPay, the network’s company-to-company payment system.
+
+Q11–Q12 are live on `/network/korea-agent-network` and in its FAQ JSON-LD.
+
 ---
 
 ## 7. Service Page Copy Drafts
@@ -587,6 +635,7 @@ For quotation, partnership, or consultation enquiries, contact KS WAYS through t
 - `Who we work with`
 - `What partners can expect`
 - `How to send an enquiry`
+- `For WCAworld members` — WQS RFQs and PartnerPay settlement (copy: **WCAworld member tools** above)
 - `Partner cooperation principles`
 
 ---

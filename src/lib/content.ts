@@ -6,6 +6,13 @@ type Service = {
   href?: string;
 };
 
+/** WCAworld member benefits KS WAYS works through. Copy rules: COPY.md "WCAworld member tools". */
+export type WcaMemberTool = {
+  key: 'wqs' | 'partnerpay';
+  name: string;
+  body: string;
+};
+
 export type HomeCopy = {
   nav: {
     company: string;
@@ -42,6 +49,7 @@ export type HomeCopy = {
     body: string;
     points: string[];
     membership: { label: string };
+    tools: { heading: string; items: WcaMemberTool[] };
   };
   solutions: {
     headline: string;
@@ -124,6 +132,13 @@ export const homeContent: Record<Locale, HomeCopy> = {
       body: 'As a WCA member, KS WAYS works from its Korea base on global routes, giving global freight forwarders practical routing, responsive updates, and partner-safe handoff control.',
       points: ['WCA member network', 'Korea gateway · Global routes', 'Ocean · Air cargo coordination', 'Partner-safe handoff control'],
       membership: { label: 'WCA Inter Global member' },
+      tools: {
+        heading: 'Work with us through WCAworld',
+        items: [
+          { key: 'wqs', name: 'WCAworld Quotation System', body: 'Send RFQs to KS WAYS through WCAworld’s member-only quotation platform.' },
+          { key: 'partnerpay', name: 'WCAworld PartnerPay', body: 'Settle shipments with KS WAYS through WCAworld’s member-to-member payment system.' },
+        ],
+      },
     },
     solutions: {
       headline: 'A clearer path for every enquiry.',
@@ -236,6 +251,13 @@ export const homeContent: Record<Locale, HomeCopy> = {
       body: 'KS WAYS는 WCA 회원사로서 한국을 거점으로 글로벌 노선을 연결하고, 실질적인 라우팅, 빠른 커뮤니케이션, 책임 있는 핸드오프를 중심으로 글로벌 에이전트 협력을 운영합니다.',
       points: ['WCA 회원 네트워크', '한국 거점 · 글로벌 노선', '30년 이상 항공·해운·포워딩 경험', '글로벌 파트너 커버리지'],
       membership: { label: 'WCA Inter Global 회원사' },
+      tools: {
+        heading: 'WCAworld 회원 도구로 협업하기',
+        items: [
+          { key: 'wqs', name: 'WCAworld Quotation System', body: 'WCAworld 회원 전용 견적 플랫폼으로 KS WAYS에 RFQ를 보내실 수 있습니다.' },
+          { key: 'partnerpay', name: 'WCAworld PartnerPay', body: 'WCAworld 회원 간 결제 시스템으로 KS WAYS와 운송 정산을 처리합니다.' },
+        ],
+      },
     },
     solutions: {
       headline: '모든 문의에 더 명확한 다음 경로를 제시합니다.',
