@@ -1,1 +1,1 @@
-🧪 test(visual): BridgeLogis 문구 변경으로 높이가 바뀐 홈 시각 회귀 기준선 8장(EN·KR × 320/768/1024/1440)을 CI와 같은 Playwright 컨테이너에서 재생성
+♻️ refactor(quote): QuoteForm의 필드 렌더링(중첩 삼항 4갈래, 복잡도 16)을 QuoteField 컴포넌트로 분리 — 5개 운송모드×DG 여부 10개 상태의 렌더 HTML 바이트 동일 확인
