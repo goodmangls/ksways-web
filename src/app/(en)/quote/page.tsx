@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { BrandLogo } from '@/components/BrandLogo';
 import { QuoteFormFromSearch } from '@/components/QuoteFormFromSearch';
 import { SiteFooter } from '@/components/SiteFooter';
+import { BodyText } from '@/components/Typography';
 import { homeContent } from '@/lib/content';
 import { brandName, contactEmail, shareImage, siteUrl } from '@/lib/seo';
 
@@ -44,10 +45,10 @@ export default function QuotePage() {
 
           <div className="max-w-5xl py-10 lg:py-14">
             <p className="text-sm font-black uppercase tracking-[.16em] text-[#e7c99a]">Freight Quote Request</p>
-            <h1 className="mt-5 text-[clamp(42px,6vw,82px)] font-black leading-[.92] tracking-[-.075em] text-balance">Get a quote for ocean, air, and special cargo.</h1>
-            <p className="mt-6 max-w-3xl text-[clamp(16px,1.2vw,20px)] leading-relaxed text-white/70">
+            <h1 className="ks-type-hero mt-5 text-[clamp(40px,6vw,82px)] font-black leading-[1.04] tracking-[-.028em] text-balance sm:leading-[1] sm:tracking-[-.03em]">Get a quote for ocean, air, and special cargo.</h1>
+            <BodyText tone="onDark" measure="default" className="mt-6">
               Start with the transport mode, complete the key cargo facts, then review a prepared email to {contactEmail}. Nothing is sent automatically.
-            </p>
+            </BodyText>
           </div>
         </div>
       </section>

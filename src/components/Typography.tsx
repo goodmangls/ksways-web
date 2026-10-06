@@ -4,8 +4,8 @@ import type { ReactNode } from 'react';
 // 행간·폭·불투명도가 조금씩 어긋난다 — 실제로 1.1 / 1.08, 40em / 34em 처럼 어긋나 있었다.
 //
 // - 섹션 제목(display-section): extrabold, 52px 상한, 행간 1.08
-// - 카드·열 제목(heading-pillar / heading-card): extrabold 22 / 24px
-// - 본문: body-lg 18px 행간 1.65 · body-md 16px 행간 1.6, 폭 34em
+// - 카드·열 제목: heading-pillar 22px·800·행간 1.2 / heading-card 24px·900·행간 1.12
+// - 본문: body-lg 18px 행간 1.65 · body-md 16px 행간 1.6, 폭 34em — 크기를 부모에서 상속하지 않고 직접 지정
 // - 보조 텍스트는 불투명도 토큰만: text-subtle ink 76% · text-dark-subtle white 76%
 //
 // 한국어 값(행간 1.8 / 1.75, 제목 1.22, 폭 36em, 완만한 자간)은 여기서 고르지 않는다.
@@ -23,14 +23,14 @@ export const sectionHeadingSizes = {
 
 export const sectionHeadingBase = 'ks-type-section font-extrabold leading-[1.08] tracking-[-.025em] text-balance';
 
+// 크기마다 토큰이 행간·굵기·자간까지 다르므로 크기별로 통째로 둔다. 행간을 빼면 Tailwind 크기
+// 유틸리티의 기본 행간(22px→1.5, text-2xl→1.33)이 그대로 들어간다.
 export const cardHeadingSizes = {
-  /** heading-pillar 22px — 기둥·원칙 열. */
-  sm: 'text-[22px]',
-  /** heading-card 24px — 진행 단계 열. */
-  md: 'text-2xl',
+  /** heading-pillar 22px / 800 / 1.2 / -0.015em — 기둥·원칙 열. */
+  sm: 'text-[22px] font-extrabold leading-[1.2] tracking-[-.015em]',
+  /** heading-card 24px / 900 / 1.12 / -0.02em — 진행 단계 열. */
+  md: 'text-2xl font-black leading-[1.12] tracking-[-.02em]',
 } as const;
-
-export const cardHeadingBase = 'font-extrabold tracking-[-.015em]';
 
 export const bodyTextVariants = {
   /** body-lg — 섹션 본문·리드. */
@@ -40,8 +40,8 @@ export const bodyTextVariants = {
   },
   /** body-md — 카드·FAQ 답변·행 설명. */
   md: {
-    onLight: 'ks-type-body leading-[1.6] text-[#001112]/76',
-    onDark: 'ks-type-body leading-[1.6] text-white/76',
+    onLight: 'ks-type-body text-base leading-[1.6] text-[#001112]/76',
+    onDark: 'ks-type-body text-base leading-[1.6] text-white/76',
   },
 } as const;
 
@@ -81,7 +81,7 @@ type CardHeadingProps = {
 };
 
 export function CardHeading({ children, size = 'sm', className }: CardHeadingProps) {
-  return <h3 className={cx(className, cardHeadingSizes[size], cardHeadingBase)}>{children}</h3>;
+  return <h3 className={cx(className, cardHeadingSizes[size])}>{children}</h3>;
 }
 
 type BodyTextProps = {
