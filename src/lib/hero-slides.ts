@@ -15,7 +15,7 @@ export type HeroSlide = {
   sourceUrl: string;
 };
 
-// Getty Images via Unsplash+ (KS WAYS Dropbox "WCA LOGO/Images"). Unsplash+ 라이선스 이미지라
+// Getty Images via Unsplash+ (KS WAYS Dropbox "WCA LOGO/Unsp", 원본 4896×3264 → 2048px 로 축소). Unsplash+ 라이선스 이미지라
 // Unsplash API 다운로드 추적·hotlink 대상이 아니다 — approvedUnsplashImages 에 넣지 말 것.
 const courierHandoffSlide: HeroSlide = {
   id: 'BcJ2daQRfxU',
