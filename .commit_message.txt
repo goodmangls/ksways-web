@@ -1,1 +1,1 @@
-♻️ refactor(quote): QuoteForm의 필드 렌더링(중첩 삼항 4갈래, 복잡도 16)을 QuoteField 컴포넌트로 분리 — 5개 운송모드×DG 여부 10개 상태의 렌더 HTML 바이트 동일 확인
+📝 docs(design): Claude Design의 KS WAYS 디자인 시스템을 DESIGN.md에 반영 — Readability 섹션 신설, 텍스트 불투명도 토큰·on-tertiary·border-control·muted 분리·label-caps 12px·한국어 타입 스타일 추가, 코드 미반영 항목 표로 명시
