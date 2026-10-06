@@ -55,4 +55,29 @@ describe('text contrast floors', () => {
   it('keeps white text on dark surfaces at or above the floor', () => {
     expect(offenders(/text-white\/(\d+)/g, DARK_SURFACE_FLOOR)).toEqual([]);
   });
+
+  it('keeps every label at or above the 12px floor', () => {
+    const tiny = sources.flatMap(({ file, text }) =>
+      [...text.matchAll(/text-\[(\d+(?:\.\d+)?)px\]/g)]
+        .filter((match) => Number(match[1]) < 12)
+        .map((match) => `${file}: ${match[0]}`),
+    );
+    expect(tiny).toEqual([]);
+  });
+
+  it('keeps text on the bronze action fill at full-strength ink', () => {
+    // Translucent navy over bronze composites to a mid-tone: 68% measured 3.82:1.
+    const BRONZE = '#b88a5a';
+    expect(contrastRatio(blend(NAVY, BRONZE, 0.68), BRONZE)).toBeLessThan(4.5);
+    const contact = sources.find(({ file }) => file === 'ContactActions.tsx')!.text;
+    expect(contact).not.toMatch(/text-\[#001112\]\/\d+/);
+  });
+
+  it('draws form fields and choice cards with the control border, not a hairline', () => {
+    const field = sources.find(({ file }) => file === 'QuoteField.tsx')!.text;
+    const form = sources.find(({ file }) => file === 'QuoteForm.tsx')!.text;
+    expect(field).toContain('border-[var(--ks-border-control)]');
+    expect(form).toContain('border-[var(--ks-border-control)]');
+    expect(field).not.toMatch(/border-\[#001112\]\/\d+/);
+  });
 });

@@ -15,11 +15,13 @@ colors:
   accent-ink: "#805D3B"
   accent-tint: "#FAF4EC"
   steel: "#5F6F78"
-  muted: "#7D888A"
+  muted: "#677173"
+  muted-on-dark: "#7D888A"
   warning: "#B3261E"
   warning-bright: "#FF8A80"
   border-dark: "#1F3436"
   border-light: "#D9E2E0"
+  border-control: "#808B8D"
 typography:
   display-hero-mobile:
     fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
@@ -59,9 +61,9 @@ typography:
     letterSpacing: "-0.01em"
   label-caps:
     fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
-    fontSize: 0.6875rem
+    fontSize: 0.75rem
     fontWeight: 900
-    lineHeight: 1.1
+    lineHeight: 1.2
     letterSpacing: "0.16em"
 rounded:
   sm: 12px
@@ -145,7 +147,7 @@ components:
     padding: 20px
   dark-muted-label:
     backgroundColor: "{colors.primary}"
-    textColor: "{colors.muted}"
+    textColor: "{colors.muted-on-dark}"
     typography: "{typography.label-caps}"
   dark-divider:
     backgroundColor: "{colors.border-dark}"
@@ -184,7 +186,8 @@ The palette is intentionally narrow. It should create a premium logistics contro
 - **Steel (`#5F6F78`)**: Supporting neutral. Use as a low-emphasis structural tone, never as the main brand color.
 - **Paper (`#F4F7F6`)**: Main light-page background. It should feel cooler and more operational than pure white.
 - **White (`#FFFFFF`)**: Cards, text on dark surfaces, and contrast anchor.
-- **Muted (`#7D888A`)**: Low-emphasis labels on light backgrounds.
+- **Muted (`#677173`)**: Low-emphasis labels on light backgrounds — 4.65:1 on paper, 5.02:1 on white. It was `#7D888A`, which measured 3.38:1 on paper; that value survives as **Muted on dark (`#7D888A`)**, for labels on `primary`/`secondary` only (5.29:1 / 4.80:1). Never swap the two.
+- **Border control (`#808B8D`)**: The boundary of inputs, selects and choice cards — 3.25:1 on paper, 3.50:1 on white. `border-light` and navy at 10–12% are decorative hairlines (1.2–1.3:1) and must never be the only edge of a control.
 - **Warning (`#B3261E`) / Warning Bright (`#FF8A80`) / Warning Text (`#FFB4AB`)**: Reserved for form validation errors and the mailto length notice. `Warning` is for light surfaces; the other two pair together on dark ones. These are **semantic, not brand** — never repurpose them as accents.
 
 ### Semantic colors must not share the brand's hue
@@ -210,6 +213,20 @@ The bronze accent is a mid-tone, so text pairing is not interchangeable:
 | `accent-ink` `#805D3B` | on `white` | 5.92:1 | ✅ AA |
 
 White text on bronze is the one pairing that looks acceptable and is not. Never ship it.
+
+## Readability
+
+Every text colour is checked against each surface it is allowed on. Hold these floors:
+
+| Rule | Floor | Guard |
+|---|---|---|
+| Body and label text | 4.5:1 | `text-contrast.test.ts`, `brand-palette.test.ts` |
+| Control boundaries (inputs, choice cards) | 3:1 — `border-control` | `brand-palette.test.ts` |
+| Smallest type | 12px (`text-xs`); no `text-[11px]` | `text-contrast.test.ts` |
+| Text on bronze (`tertiary`) | solid `ink` only — navy at 68% measured 3.82:1 | `text-contrast.test.ts` |
+| Translucent ink | navy ≥ `/60` on paper/white (`/64` for placeholders), white ≥ `/48` on navy (`/56` for helper text) | `text-contrast.test.ts` |
+
+Korean pages (`lang="ko-KR"`) get their own leading from `globals.css`: body `1.75`, `h1` `1.12`, `h2`/`h3` `1.22`, tracking no tighter than `-0.02em`. Hangul at 900 weight crowds at the English values.
 
 ## Typography
 

@@ -15,6 +15,15 @@
   --ks-accent-soft: #e7c99a;
   --ks-accent-ink: #805d3b;
   --ks-steel: #5f6f78;
+  /* Readability tokens from the KS WAYS design system (DESIGN.md "Readability").
+     `muted` was #7d888a: 3.38:1 on paper, under AA. Darkened in the same hue to
+     4.65:1; the old value survives only on dark surfaces, where it reads (5.29:1).
+     `border-control` is the boundary of inputs and choice cards — navy at 12% was
+     1.29:1, under the 3:1 a control boundary needs. Asserted in
+     src/brand-palette.test.ts. */
+  --ks-muted: #677173;
+  --ks-muted-on-dark: #7d888a;
+  --ks-border-control: #808b8d;
 }
 
 * { box-sizing: border-box; }
@@ -32,6 +41,14 @@ body {
 }
 
 a { color: inherit; }
+
+/* Korean typesetting (DESIGN.md "Readability"). Hangul at 900 weight needs more
+   leading than Latin: the English values (1.0 display, 1.6–1.65 body) let wrapped
+   Korean lines crowd. Unlayered, so these win over the Tailwind utilities on the
+   same elements; scoped to `:lang(ko)` so English pages are untouched. */
+:lang(ko) main :is(p, li, dd) { line-height: 1.75; }
+:lang(ko) main h1 { line-height: 1.12; letter-spacing: -0.02em; }
+:lang(ko) main :is(h2, h3) { line-height: 1.22; letter-spacing: -0.015em; }
 
 :focus-visible {
   /* Two-tone focus ring. Geometry outward from the element edge:

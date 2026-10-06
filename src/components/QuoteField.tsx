@@ -5,7 +5,7 @@ import type { QuoteFormField, QuoteFormValues } from '@/lib/quote-form';
 // DESIGN.md "Focus" for the exact prohibitions, enforced by
 // src/focus-visible.test.ts. The border/background shifts below are supporting
 // affordance, not the indicator.
-const fieldClass = 'min-h-12 w-full rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-4 py-3 text-base font-semibold text-[#001112] transition placeholder:text-[#001112]/60 focus:border-[#b88a5a] focus:bg-white';
+const fieldClass = 'min-h-12 w-full rounded-2xl border border-[var(--ks-border-control)] bg-[#f4f7f6] px-4 py-3 text-base font-semibold text-[#001112] transition placeholder:text-[#001112]/64 focus:border-[#b88a5a] focus:bg-white';
 const commonClass = `mt-2 ${fieldClass}`;
 
 type QuoteFieldProps = {
