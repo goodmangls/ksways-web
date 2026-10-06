@@ -212,7 +212,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
           <div>
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#805d3b]">Quote details</p>
             <h2 className="mt-3 text-[clamp(30px,4.5vw,56px)] font-black leading-[.98] tracking-[-.06em]">Prepare an air or ocean freight request.</h2>
-            <p className="mt-4 max-w-2xl leading-relaxed text-[#001112]/62">
+            <p className="mt-4 max-w-2xl leading-relaxed text-[#001112]/64">
               Choose the transport mode first. The form then keeps the most useful route, cargo, equipment, and special-handling fields visible for KS WAYS review. Nothing is sent automatically; you review the prepared email before sending.
             </p>
           </div>
@@ -266,7 +266,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
 
           <div className="rounded-[28px] border border-[#001112]/10 bg-[#f4f7f6] p-5 lg:hidden">
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#805d3b]">Review</p>
-            <p className="mt-2 text-sm leading-relaxed text-[#001112]/60">
+            <p className="mt-2 text-sm leading-relaxed text-[#001112]/64">
               {canOpenEmail ? 'All required fields are ready.' : `${missingRequiredFields.length} required fields left before opening a clean email draft.`}
             </p>
             {validationMessage ? <p className="mt-3 text-sm font-black text-[#b3261e]">{validationMessage}</p> : null}
@@ -405,7 +405,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             <h2 id="email-options-title" className="mt-3 pr-12 text-3xl font-black leading-tight">
               Choose where to open the draft.
             </h2>
-            <p className="mt-3 text-sm font-bold text-[#001112]/60">To: {contactEmail}</p>
+            <p className="mt-3 text-sm font-bold text-[#001112]/64">To: {contactEmail}</p>
 
             {mailtoOverLimit ? (
               <p role="status" className="mt-5 rounded-2xl border border-[#b3261e]/25 bg-[#b3261e]/8 p-4 text-sm font-bold leading-relaxed text-[#b3261e]">

@@ -302,22 +302,20 @@ Every text color is checked against each surface it is allowed on, and every pai
 - **Not color alone**: errors pair `warning` with an icon and a message; links inside body copy are underlined; the active language and current page carry text or `aria-current`, not only a color shift.
 - **Motion and zoom**: layouts reflow at 200% zoom and 320px width without horizontal scroll; honor `prefers-reduced-motion`.
 
-### Not yet in the site
+### Where each rule is enforced
 
-These rules were adopted on 2026-10-06 from the KS WAYS design system (Claude Design). The code has not caught up yet; until it does, the gaps below are known and tracked here rather than hidden.
+These rules were adopted on 2026-10-06 from the KS WAYS design system (Claude Design) and are now applied across the site. Each one has a test, so a change that breaks it fails CI instead of drifting quietly.
 
-| Rule | Site today |
+| Rule | Enforced by |
 |---|---|
-| Light-surface text floor ink 64% | 4 uses below it (`/60` ×3, `/62` ×1). `src/text-contrast.test.ts` still enforces the old floor of 60 |
-| Dark-surface text floor white 56% | 1 use below it (`/52`). The test still enforces the old floor of 48 |
-| Nothing below 12px; `label-caps` 12px | 2 uses of `text-[11px]` |
-| English body line-height 1.6–1.65 | 10 body paragraphs use `1.7` |
-| Korean body line-height 1.75–1.8, Korean display ≥ 1.12, measure 36em | Korean pages share the English values |
-| Control boundaries use `border-control` | Quote form fields use ink 10–12% (about 1.3:1 on white) |
-| `on-tertiary` at full strength | The primary contact action's helper line is ink 68% (3.82:1) |
-| `muted` is `#677173` on light surfaces | No component uses `muted` today, so nothing renders differently |
+| Text floors — ink 64% on light, white 56% on dark | `src/text-contrast.test.ts` (and the floors are proven to clear AA 4.5:1) |
+| Section headings ≤ 52px at 1.08; body 1.6–1.65; measure ≤ 34em; secondary text at the 76% token | `src/components/Typography.tsx` (`SectionHeading`, `CardHeading`, `BodyText`), checked by `src/components/Typography.test.tsx` |
+| Korean leading 1.75–1.8 body, ≥ 1.12 display, measure 36em, tracking ≥ -0.02em | `:root:lang(ko)` rules in `src/app/globals.css` on the `ks-type-*` / `ks-measure` hooks, checked by `Typography.test.tsx` |
+| Nothing below 12px; no 1.7 body leading | `Typography.test.tsx` scans every component |
+| Control boundaries use `border-control`; DG emphasis uses full-strength `accent-ink` | `src/components/QuoteField.tsx` |
+| `on-tertiary` at full strength | `src/components/ContactActions.tsx` |
 
-When one of these is fixed, remove its row in the same commit, and raise the matching floor in `src/text-contrast.test.ts` so it cannot slip back.
+`muted` (`#677173`) is defined but no component uses it yet. New page text should go through the Typography components rather than hand-written class strings.
 
 ## Typography
 
@@ -330,7 +328,7 @@ Tracking is deliberately moderate (`-0.02em` to `-0.035em`). Earlier revisions u
 - **Proof values** (`proof-value`): `900`, up to `40px`, white on `primary` in the hero proof strip.
 - **Card / row headings**: `heading-row` (service rows, 22px mobile / 26px from `sm`), `heading-pillar` (pillar and process columns, 22px), `heading-card` (card and panel headings, 24px).
 - **Body copy**: `body-lg` (18px, leads and section bodies, measure ≤ 34em) and `body-md` (16px default). Line-height and measure follow **Readability**. Body tone should be practical, specific, and operational.
-- **Secondary text is an opacity of the ink, with a floor** — the text opacity tokens in **Colors**. Floors are ink 64% on light surfaces and white 56% on dark ones; see **Readability › Not yet in the site** for where the code still sits below them.
+- **Secondary text is an opacity of the ink, with a floor** — the text opacity tokens in **Colors**. Floors are ink 64% on light surfaces and white 56% on dark ones, enforced by `src/text-contrast.test.ts`.
 - **Korean** (`display-hero-ko`, `display-section-ko`, `body-lg-ko`, `body-md-ko`): more leading (1.12 / 1.22 display, 1.75–1.8 body) and near-zero tracking. The `/kr` page sets `word-break: keep-all` (`break-keep`); without it the browser breaks Hangul between syllables, splitting words like "글 / 로벌" across lines.
 - **Kickers and badges**: `label-caps` (12px) or `label-mono` (13px), all caps, tracking `0.10em–0.18em`. They should signal systems, routes, network, and proof. The homepage no longer carries per-section kicker eyebrows — headlines stand alone there. Service landing pages keep a single eyebrow above the H1.
 
@@ -471,7 +469,6 @@ The readability reference for controls (quote form): a visible boundary, a legib
 - Field: `white` fill, 1px `border-control`, 16px radius, at least 48px high, value 16px / `600` `ink`, placeholder `text-faint`.
 - Hover border `tertiary-hover`; focus uses the two-tone ring (see **Focus**).
 - Error: 2px `warning` border, `aria-invalid="true"`, and a message in `warning` 14px / `600` with an icon, tied to the field by `aria-describedby`.
-- The quote form does not meet this yet — see **Readability › Not yet in the site**.
 
 ### Contact CTA
 

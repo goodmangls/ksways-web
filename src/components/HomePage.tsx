@@ -10,6 +10,7 @@ import { BrandLogo } from './BrandLogo';
 import { ContactActions } from './ContactActions';
 import { MobileNav } from './MobileNav';
 import { SiteFooter } from './SiteFooter';
+import { BodyText, CardHeading, SectionHeading } from './Typography';
 import { WcaBadge } from './WcaBadge';
 import { WcaMemberTools } from './WcaMemberTools';
 
@@ -22,11 +23,7 @@ type Props = {
 
 const heroBackgroundSlides = getHeroSlides();
 
-// 가독성 기준 (DESIGN.md "Typography"): 섹션 제목은 문장형이라 52px 상한, 행간 1.08.
-// 본문은 navy 78% — 56~62% 는 흰 배경 작은 글자에서 AA(4.5:1) 경계 아래로 떨어졌다.
-const sectionHeadingClass =
-  'text-[clamp(32px,8.5vw,40px)] font-extrabold leading-[1.08] tracking-[-.025em] text-balance sm:text-[clamp(36px,3.6vw,52px)]';
-const sectionBodyClass = 'max-w-[34em] text-lg leading-[1.7] text-[#001112]/78';
+// 섹션 제목·본문의 가독성 기준(DESIGN.md "Readability")은 Typography 컴포넌트가 갖고 있다.
 const monoLabelClass = 'font-mono text-[13px] font-semibold text-[#805d3b]';
 
 function ArrowIcon({ external = false }: { external?: boolean }) {
@@ -165,10 +162,10 @@ export function HomePage({ locale, copy }: Props) {
         <div className="relative z-10 mx-auto grid w-full max-w-[1280px] items-center gap-12 px-6 pb-16 pt-10 sm:px-10 lg:min-h-[640px] lg:grid-cols-[1.05fr_.95fr] lg:gap-14 lg:px-14 lg:pb-20 lg:pt-14">
           <div>
             <p className="font-mono text-[13px] font-semibold uppercase tracking-[.12em] text-[#e7c99a]">{copy.hero.eyebrow}</p>
-            <h1 id="hero-heading" className="mt-6 text-[clamp(40px,11vw,52px)] font-black leading-[1.04] tracking-[-.028em] text-balance sm:text-[clamp(52px,6.2vw,88px)] sm:leading-[1] sm:tracking-[-.03em]">
+            <h1 id="hero-heading" className="ks-type-hero mt-6 text-[clamp(40px,11vw,52px)] font-black leading-[1.04] tracking-[-.028em] text-balance sm:text-[clamp(52px,6.2vw,88px)] sm:leading-[1] sm:tracking-[-.03em]">
               <HighlightedHeadline headline={copy.hero.headline} />
             </h1>
-            <p className="mt-7 max-w-[34em] text-[clamp(17px,1.3vw,19px)] leading-[1.65] text-white/80 text-pretty">{copy.hero.lead}</p>
+            <p className="ks-type-body-lg ks-measure mt-7 max-w-[34em] text-[clamp(17px,1.3vw,19px)] leading-[1.65] text-white/76 text-pretty">{copy.hero.lead}</p>
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <a href={quoteHref} className="inline-flex min-h-[52px] w-full justify-center items-center gap-2.5 rounded-full bg-[#b88a5a] px-7 font-extrabold text-[#001112] transition hover:bg-[#a5794d] sm:w-auto">
                 {copy.hero.primaryCta}
@@ -195,15 +192,15 @@ export function HomePage({ locale, copy }: Props) {
 
       <section id="company" aria-labelledby="company-heading" className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-28">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-end lg:gap-16">
-          <h2 id="company-heading" className={`max-w-[15em] ${sectionHeadingClass}`}>{copy.company.headline}</h2>
-          <p className={sectionBodyClass}>{copy.company.body}</p>
+          <SectionHeading id="company-heading" className="max-w-[15em]">{copy.company.headline}</SectionHeading>
+          <BodyText measure="default">{copy.company.body}</BodyText>
         </div>
         <div className="mt-14 grid gap-10 md:grid-cols-3 lg:mt-18">
           {copy.company.pillars.map((pillar, index) => (
             <article key={pillar.title} className="border-t-2 border-[#001112] pt-6">
               <p className={monoLabelClass}>{String(index + 1).padStart(2, '0')}</p>
-              <h3 className="mt-3 text-[22px] font-extrabold tracking-[-.015em]">{pillar.title}</h3>
-              <p className="mt-3 leading-[1.65] text-[#001112]/76">{pillar.body}</p>
+              <CardHeading className="mt-3">{pillar.title}</CardHeading>
+              <BodyText size="md" className="mt-3">{pillar.body}</BodyText>
             </article>
           ))}
         </div>
@@ -212,8 +209,8 @@ export function HomePage({ locale, copy }: Props) {
       <section id="services" aria-labelledby="services-heading" className="border-y border-[#d9e2e0] bg-white">
         <div className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-26">
           <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-            <h2 id="services-heading" className={`max-w-[15em] ${sectionHeadingClass}`}>{copy.operating.headline}</h2>
-            <p className={sectionBodyClass}>{copy.operating.body}</p>
+            <SectionHeading id="services-heading" className="max-w-[15em]">{copy.operating.headline}</SectionHeading>
+            <BodyText measure="default">{copy.operating.body}</BodyText>
           </div>
           <ul className="mt-12 border-b border-[#d9e2e0] bg-[#f4f7f6] lg:mt-16">
             {copy.operating.services.map((service, index) => {
@@ -223,7 +220,7 @@ export function HomePage({ locale, copy }: Props) {
                 <>
                   <span className={`w-10 shrink-0 ${monoLabelClass}`}>{String(index + 1).padStart(2, '0')}</span>
                   <span className="flex-[1_1_200px] text-[22px] font-extrabold tracking-[-.02em] sm:text-[26px]">{service.title}</span>
-                  <span className="flex-[999_1_320px] leading-[1.6] text-[#001112]/76">{service.body}</span>
+                  <BodyText as="span" size="md" className="flex-[999_1_320px]">{service.body}</BodyText>
                   {service.href ? (
                     <span aria-hidden="true" className="hidden h-11 w-11 shrink-0 place-items-center rounded-full border border-[#001112]/20 sm:grid transition group-hover:border-[#b88a5a] group-hover:bg-[#b88a5a]">
                       <ArrowIcon external={isExternal} />
@@ -257,8 +254,8 @@ export function HomePage({ locale, copy }: Props) {
       <section id="network" aria-labelledby="network-heading" className="bg-[#001112] text-white">
         <div className="mx-auto grid max-w-[1280px] gap-12 px-6 py-20 sm:px-10 lg:grid-cols-2 lg:gap-16 lg:px-14 lg:py-28">
           <div>
-            <h2 id="network-heading" className={`max-w-[13em] ${sectionHeadingClass}`}>{copy.network.headline}</h2>
-            <p className="mt-6 max-w-[32em] text-lg leading-[1.7] text-white/80">{copy.network.body}</p>
+            <SectionHeading id="network-heading" className="max-w-[13em]">{copy.network.headline}</SectionHeading>
+            <BodyText tone="onDark" measure="default" className="mt-6">{copy.network.body}</BodyText>
             <Link href={networkHref} className="mt-8 inline-flex min-h-[52px] items-center gap-2.5 rounded-full border border-[#e7c99a]/60 px-7 font-bold text-[#e7c99a] transition hover:border-[#e7c99a] hover:bg-[#e7c99a]/[.08]">
               {locale === 'kr' ? '파트너 네트워크 자세히 보기' : 'Explore Korea agent network'}
               <ArrowIcon />
@@ -283,8 +280,8 @@ export function HomePage({ locale, copy }: Props) {
 
       <section id="solutions" aria-labelledby="solutions-heading" className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-28">
         <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-          <h2 id="solutions-heading" className={sectionHeadingClass}>{copy.solutions.headline}</h2>
-          <p className={sectionBodyClass}>{copy.solutions.body}</p>
+          <SectionHeading id="solutions-heading">{copy.solutions.headline}</SectionHeading>
+          <BodyText measure="default">{copy.solutions.body}</BodyText>
         </div>
         <ol className="mt-14 grid gap-10 md:grid-cols-3 lg:mt-18">
           {copy.solutions.steps.map((step, index) => {
@@ -298,11 +295,11 @@ export function HomePage({ locale, copy }: Props) {
                   </span>
                   <span className={`h-0.5 flex-1 ${isLast ? 'bg-[#d9e2e0]' : 'bg-[#b88a5a]'}`} />
                 </div>
-                <h3 className="mt-4 text-2xl font-extrabold tracking-[-.015em]">
+                <CardHeading size="md" className="mt-4">
                   <span className="sr-only">{number} · </span>
                   {title ?? step.title}
-                </h3>
-                <p className="mt-3 leading-[1.65] text-[#001112]/76">{step.body}</p>
+                </CardHeading>
+                <BodyText size="md" className="mt-3">{step.body}</BodyText>
               </li>
             );
           })}
@@ -312,14 +309,14 @@ export function HomePage({ locale, copy }: Props) {
       <section id="faq" aria-labelledby="faq-heading" className="mx-auto max-w-[1280px] px-6 pb-20 sm:px-10 lg:px-14 lg:pb-28">
         <div className="grid gap-10 border-t border-[#d9e2e0] pt-20 lg:grid-cols-[.8fr_1.2fr] lg:gap-16 lg:pt-24">
           <div>
-            <h2 id="faq-heading" className="text-[clamp(30px,8vw,36px)] font-extrabold leading-[1.1] tracking-[-.025em] text-balance sm:text-[clamp(32px,3.2vw,44px)]">
+            <SectionHeading id="faq-heading" size="md">
               {locale === 'kr' ? '자주 묻는 물류 문의' : 'Freight questions, answered clearly.'}
-            </h2>
-            <p className="mt-5 max-w-[26em] text-lg leading-[1.7] text-[#001112]/78">
+            </SectionHeading>
+            <BodyText measure="narrow" className="mt-5">
               {locale === 'kr'
                 ? '견적과 파트너십 문의 전에 필요한 핵심 정보를 짧고 명확하게 정리했습니다.'
                 : 'Clear answers for ocean freight, air freight, and WCA partner enquiries.'}
-            </p>
+            </BodyText>
           </div>
           <div className="border-t border-[#001112]">
             {faqs.map((faq) => (
@@ -328,7 +325,7 @@ export function HomePage({ locale, copy }: Props) {
                   <span>{faq.question}</span>
                   <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-[#001112]/25 text-lg transition-transform duration-200 group-open:rotate-45">+</span>
                 </summary>
-                <p className="mb-6 max-w-[40em] leading-[1.7] text-[#001112]/78">{faq.answer}</p>
+                <BodyText size="md" measure="default" className="mb-6">{faq.answer}</BodyText>
               </details>
             ))}
           </div>
@@ -338,8 +335,8 @@ export function HomePage({ locale, copy }: Props) {
       <section id="contact" aria-labelledby="contact-heading" className="mx-auto max-w-[1280px] px-6 pb-20 sm:px-10 lg:px-14 lg:pb-28">
         <div className="rounded-[28px] bg-[#001112] p-8 text-white sm:p-12 lg:flex lg:items-end lg:justify-between lg:gap-16 lg:p-16">
           <div>
-            <h2 id="contact-heading" className="max-w-3xl text-[clamp(34px,9vw,42px)] font-black leading-[1.04] tracking-[-.028em] sm:text-[clamp(40px,4vw,60px)] sm:leading-[1.02] sm:tracking-[-.03em]">{copy.contact.headline}</h2>
-            <p className="mt-5 max-w-[32em] text-lg leading-[1.7] text-white/80">{copy.contact.body}</p>
+            <h2 id="contact-heading" className="ks-type-hero max-w-3xl text-[clamp(34px,9vw,42px)] font-black leading-[1.04] tracking-[-.028em] sm:text-[clamp(40px,4vw,60px)] sm:leading-[1.02] sm:tracking-[-.03em]">{copy.contact.headline}</h2>
+            <BodyText tone="onDark" measure="default" className="mt-5">{copy.contact.body}</BodyText>
             <div className="mt-5 flex flex-col gap-1 text-[15px] font-semibold text-white/86 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-7">
               <a href={`mailto:${copy.contact.email}`} className="inline-flex min-h-11 items-center transition hover:text-[#e7c99a]">{copy.contact.email}</a>
               <a href={contactPhoneHref} className="inline-flex min-h-11 items-center transition hover:text-[#e7c99a]">{copy.contact.phone}</a>

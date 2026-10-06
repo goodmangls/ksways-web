@@ -5,8 +5,14 @@ import type { QuoteFormField, QuoteFormValues } from '@/lib/quote-form';
 // DESIGN.md "Focus" for the exact prohibitions, enforced by
 // src/focus-visible.test.ts. The border/background shifts below are supporting
 // affordance, not the indicator.
-const fieldClass = 'min-h-12 w-full rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-4 py-3 text-base font-semibold text-[#001112] transition placeholder:text-[#001112]/60 focus:border-[#b88a5a] focus:bg-white';
-const commonClass = `mt-2 ${fieldClass}`;
+// Border color and fill are chosen once per field (defaultSurface / highlightedSurface) — two border
+// colors in one class list resolve by stylesheet order, not by intent.
+const fieldClass = 'min-h-12 w-full rounded-2xl border px-4 py-3 text-base font-semibold text-[#001112] transition placeholder:text-[#001112]/64 focus:border-[#b88a5a] focus:bg-white';
+// `border-control` (3.25:1 on paper) — ink 12% measured about 1.3:1, an invisible boundary.
+const defaultSurface = 'border-[#808b8d] bg-[#f4f7f6]';
+// Full-strength accent-ink (5.92:1 on white); at 60% it fell to 2.57:1, under the
+// 3:1 a control boundary needs (DESIGN.md "Readability").
+const highlightedSurface = 'border-[#805d3b] bg-white';
 
 type QuoteFieldProps = {
   field: QuoteFormField;
@@ -25,9 +31,9 @@ function getLabelClass(field: QuoteFormField, highlighted: boolean) {
 }
 
 export function QuoteField({ field, value, highlighted, onChange }: QuoteFieldProps) {
-  // Emphasis via border weight, not a ring: Tailwind rings compile to
+  // Emphasis via border color, not a ring: Tailwind rings compile to
   // box-shadow and would overwrite the focus ring's inner layer.
-  const inputClass = `${commonClass} ${highlighted ? 'border-[#805d3b]/60 bg-white' : ''}`;
+  const inputClass = `mt-2 ${fieldClass} ${highlighted ? highlightedSurface : defaultSurface}`;
   const handleChange = (event: { target: { value: string } }) => onChange(field.name, event.target.value);
 
   return (
@@ -76,7 +82,7 @@ function QuoteFieldControl({ field, value, inputClass, onChange }: QuoteFieldCon
           required={field.required}
           type="text"
           inputMode="decimal"
-          className={`${fieldClass} pr-16`}
+          className={`${fieldClass} ${defaultSurface} pr-16`}
         />
         <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-sm font-black text-[#001112]/66">
           {field.unit}

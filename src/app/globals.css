@@ -50,6 +50,35 @@ a { color: inherit; }
   color: var(--ks-navy);
 }
 
+/* Korean readability — DESIGN.md "Readability". Hangul at heavy weights needs
+   more leading than Latin, and tight tracking crushes it. Components and pages
+   carry English values plus a `ks-type-*` / `ks-measure` hook; on /kr
+   (<html lang="ko-KR">) these rules replace the English values. They are
+   unlayered on purpose: unlayered CSS beats Tailwind's utilities layer, including
+   `sm:` variants, so no component has to know its locale.
+   Asserted in src/components/Typography.test.tsx. */
+:root:lang(ko) .ks-type-hero {
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+:root:lang(ko) .ks-type-section {
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+
+:root:lang(ko) .ks-type-body-lg {
+  line-height: 1.8;
+}
+
+:root:lang(ko) .ks-type-body {
+  line-height: 1.75;
+}
+
+:root:lang(ko) .ks-measure {
+  max-width: 36em;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
