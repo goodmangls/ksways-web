@@ -1,1 +1,1 @@
-📝 docs(design): Claude Design의 KS WAYS 디자인 시스템을 DESIGN.md에 반영 — Readability 섹션 신설, 텍스트 불투명도 토큰·on-tertiary·border-control·muted 분리·label-caps 12px·한국어 타입 스타일 추가, 코드 미반영 항목 표로 명시
+📐 DESIGN.md Readability 규칙을 텍스트 컴포넌트(SectionHeading·CardHeading·BodyText)로 만들어 홈·서비스·견적 페이지에 적용하고 한국어 행간·폭·하한(/64·/56)을 테스트로 고정

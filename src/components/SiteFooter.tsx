@@ -61,7 +61,7 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {footer.credentials.map((item) => (
                 <div key={item.label} className="rounded-3xl border border-white/10 bg-white/[.055] p-5">
-                  <p className="text-[11px] font-black uppercase tracking-[.16em] text-[#e7c99a]">{item.label}</p>
+                  <p className="text-xs font-black uppercase tracking-[.16em] text-[#e7c99a]">{item.label}</p>
                   <p className="mt-3 text-sm font-black leading-snug text-white/78">{item.value}</p>
                 </div>
               ))}
@@ -71,7 +71,7 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
           <nav aria-label="Footer navigation" className="grid gap-8 sm:grid-cols-3">
             {footer.columns.map((column) => (
               <div key={column.title}>
-                <h2 className="font-mono text-[11px] font-black uppercase tracking-[.18em] text-white/72">{column.title}</h2>
+                <h2 className="font-mono text-xs font-black uppercase tracking-[.18em] text-white/72">{column.title}</h2>
                 <ul className="mt-4 space-y-1">
                   {column.links.map((link) => (
                     <li key={link.href + link.label}>
