@@ -15,10 +15,12 @@ colors:
   accent-ink: "#805D3B"
   accent-tint: "#FAF4EC"
   steel: "#5F6F78"
+  on-tertiary: "#001112"
   muted: "#677173"
   muted-on-dark: "#7D888A"
   warning: "#B3261E"
   warning-bright: "#FF8A80"
+  warning-text: "#FFB4AB"
   border-dark: "#1F3436"
   border-light: "#D9E2E0"
   border-control: "#808B8D"
@@ -41,12 +43,30 @@ typography:
     fontWeight: 800
     lineHeight: 1.08
     letterSpacing: "-0.025em"
+  proof-value:
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+    fontSize: 2.5rem
+    fontWeight: 900
+    lineHeight: 1
+    letterSpacing: "-0.025em"
   heading-card:
     fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
     fontSize: 1.5rem
     fontWeight: 900
     lineHeight: 1.12
     letterSpacing: "-0.02em"
+  heading-row:
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+    fontSize: 1.625rem
+    fontWeight: 800
+    lineHeight: 1.15
+    letterSpacing: "-0.02em"
+  heading-pillar:
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+    fontSize: 1.375rem
+    fontWeight: 800
+    lineHeight: 1.2
+    letterSpacing: "-0.015em"
   body-lg:
     fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
     fontSize: 1.125rem
@@ -65,6 +85,36 @@ typography:
     fontWeight: 900
     lineHeight: 1.2
     letterSpacing: "0.16em"
+  label-mono:
+    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+    fontSize: 0.8125rem
+    fontWeight: 600
+    lineHeight: 1.4
+    letterSpacing: "0.12em"
+  display-hero-ko:
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+    fontSize: 5rem
+    fontWeight: 900
+    lineHeight: 1.12
+    letterSpacing: "-0.02em"
+  display-section-ko:
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+    fontSize: 2.875rem
+    fontWeight: 800
+    lineHeight: 1.22
+    letterSpacing: "-0.015em"
+  body-lg-ko:
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+    fontSize: 1.125rem
+    fontWeight: 400
+    lineHeight: 1.8
+    letterSpacing: "-0.005em"
+  body-md-ko:
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+    fontSize: 1rem
+    fontWeight: 400
+    lineHeight: 1.75
+    letterSpacing: "0em"
 rounded:
   sm: 12px
   md: 20px
@@ -101,14 +151,14 @@ components:
     padding: 20px
   button-primary:
     backgroundColor: "{colors.tertiary}"
-    textColor: "{colors.ink}"
+    textColor: "{colors.on-tertiary}"
     typography: "{typography.body-md}"
     rounded: "{rounded.pill}"
     padding: 14px
     height: "{spacing.cta-height}"
   button-primary-hover:
     backgroundColor: "{colors.tertiary-hover}"
-    textColor: "{colors.ink}"
+    textColor: "{colors.on-tertiary}"
     rounded: "{rounded.pill}"
   button-secondary-dark:
     backgroundColor: "{colors.primary}"
@@ -140,6 +190,12 @@ components:
     backgroundColor: "{colors.tertiary}"
     textColor: "{colors.ink}"
     height: 4px
+  form-field:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.ink}"
+    typography: "{typography.body-md}"
+    rounded: 16px
+    height: 48px
   form-review-panel:
     backgroundColor: "{colors.accent-tint}"
     textColor: "{colors.ink}"
@@ -172,6 +228,8 @@ Public naming must stay exact:
 - Preserve `ksways.co` and `info@ksways.co` as machine/domain identifiers.
 - Do not collapse the brand into `KSWAYS` in visible copy, alt text, metadata, or navigation.
 
+Tokens, readability floors, and component guidance here are kept in step with the **KS WAYS design system** in Claude Design (last synced 2026-10-06). That system does not ship code; this file and the tests named below are what the site actually enforces.
+
 ## Colors
 
 The palette is intentionally narrow. It should create a premium logistics control-room feel while keeping CTAs and network proof points highly visible.
@@ -186,8 +244,19 @@ The palette is intentionally narrow. It should create a premium logistics contro
 - **Steel (`#5F6F78`)**: Supporting neutral. Use as a low-emphasis structural tone, never as the main brand color.
 - **Paper (`#F4F7F6`)**: Main light-page background. It should feel cooler and more operational than pure white.
 - **White (`#FFFFFF`)**: Cards, text on dark surfaces, and contrast anchor.
-- **Muted (`#677173`)**: Low-emphasis labels on light backgrounds — 4.65:1 on paper, 5.02:1 on white. It was `#7D888A`, which measured 3.38:1 on paper; that value survives as **Muted on dark (`#7D888A`)**, for labels on `primary`/`secondary` only (5.29:1 / 4.80:1). Never swap the two.
-- **Border control (`#808B8D`)**: The boundary of inputs, selects and choice cards — 3.25:1 on paper, 3.50:1 on white. `border-light` and navy at 10–12% are decorative hairlines (1.2–1.3:1) and must never be the only edge of a control.
+- **On Tertiary (`#001112`, alias of `ink`)**: Text and icons on `tertiary` / `tertiary-hover` — CTA labels and their helper lines, always at full strength. No reduced opacity on bronze: ink at 68% measures 3.82:1.
+- **Muted (`#677173`)**: Low-emphasis labels on `paper`, `white` and `accent-tint` (4.65 / 5.02 / 4.59:1). Darkened from the old `#7D888A` (same hue) so it clears AA on light surfaces.
+- **Muted on Dark (`#7D888A`)**: The old muted value, now for low-emphasis labels on `primary` / `secondary` only (5.29 / 4.80:1). Never swap the two.
+- **Border Control (`#808B8D`)**: Boundary of inputs, selects and checkboxes on `paper`, `white` and `accent-tint` (3.25 / 3.50 / 3.21:1) — the 3:1 non-text minimum that `border-light` and ink 10–12% do not meet.
+- **Text opacity tokens** — secondary text is the ink at a fixed opacity, never an arbitrary one:
+
+  | Token | Value | Allowed on | Ratio |
+  |---|---|---|---|
+  | `text-subtle` | ink 76% | `paper`, `white` | 8.82 / 9.21:1 |
+  | `text-faint` | ink 64% — **floor** | `paper`, `white`, `accent-tint` | 5.69 / 5.85 / 5.67:1 |
+  | `text-dark-subtle` | white 76% | `primary`, `secondary` | 11.19 / 10.43:1 |
+  | `text-dark-faint` | white 56% — **floor** | `primary`, `secondary` | 6.41 / 6.19:1 |
+
 - **Warning (`#B3261E`) / Warning Bright (`#FF8A80`) / Warning Text (`#FFB4AB`)**: Reserved for form validation errors and the mailto length notice. `Warning` is for light surfaces; the other two pair together on dark ones. These are **semantic, not brand** — never repurpose them as accents.
 
 ### Semantic colors must not share the brand's hue
@@ -211,22 +280,42 @@ The bronze accent is a mid-tone, so text pairing is not interchangeable:
 | `tertiary-hover` `#A5794D` | `ink` `#001112` | 5.00:1 | ✅ AA |
 | `accent-soft` `#E7C99A` | on `primary` `#001112` | 12.14:1 | ✅ AA |
 | `accent-ink` `#805D3B` | on `white` | 5.92:1 | ✅ AA |
+| `secondary` `#031D20` | `white` | 17.49:1 | ✅ AA |
+| `paper` `#F4F7F6` | `ink` | 17.89:1 | ✅ AA |
+| `paper` | `text-subtle` (ink 76%) | 8.82:1 | ✅ AA |
+| `paper` | `text-faint` (ink 64%) | 5.69:1 | ✅ AA |
+| `primary` | `text-dark-subtle` (white 76%) | 11.19:1 | ✅ AA |
+| `secondary` | `text-dark-faint` (white 56%) | 6.19:1 | ✅ AA |
+| `accent-tint` `#FAF4EC` | `muted` `#677173` | 4.59:1 | ✅ AA |
 
 White text on bronze is the one pairing that looks acceptable and is not. Never ship it.
 
 ## Readability
 
-Every text colour is checked against each surface it is allowed on. Hold these floors:
+Every text color is checked against each surface it is allowed on, and every pairing passes WCAG AA. Hold these floors in anything built on this system:
 
-| Rule | Floor | Guard |
-|---|---|---|
-| Body and label text | 4.5:1 | `text-contrast.test.ts`, `brand-palette.test.ts` |
-| Control boundaries (inputs, choice cards) | 3:1 — `border-control` | `brand-palette.test.ts` |
-| Smallest type | 12px (`text-xs`); no `text-[11px]` | `text-contrast.test.ts` |
-| Text on bronze (`tertiary`) | solid `ink` only — navy at 68% measured 3.82:1 | `text-contrast.test.ts` |
-| Translucent ink | navy ≥ `/60` on paper/white (`/64` for placeholders), white ≥ `/48` on navy (`/56` for helper text) | `text-contrast.test.ts` |
+- **Contrast**: body and label text ≥ 4.5:1; text 24px+ (or 19px+ bold) ≥ 3:1; input, select and checkbox boundaries ≥ 3:1 — use `border-control`, never `border-light` or ink 12%. Hairlines and arrow discs are decorative and must never be the only way to find a control.
+- **Opacity text**: only through the four text opacity tokens (`text-subtle`, `text-faint`, `text-dark-subtle`, `text-dark-faint`), and only on opaque `paper`, `white`, `accent-tint`, `primary` or `secondary`. Never over photos — put a solid `primary` plate under any text on imagery.
+- **Size**: body copy ≥ 16px (`body-md`); nothing below 12px (`label-caps` is the floor); all-caps only for labels of five words or fewer.
+- **Leading and measure**: body line-height 1.6–1.65 in English, 1.75–1.8 in Korean; display ≥ 1.0 in English, ≥ 1.12 in Korean. Measure 34em in English, 36em in Korean, and at least 20em on mobile.
+- **Korean**: set `lang="ko"` and `word-break: keep-all` on `/kr`; use the Korean styles (`display-hero-ko`, `display-section-ko`, `body-lg-ko`, `body-md-ko`); no tracking tighter than −0.02em on Hangul.
+- **Not color alone**: errors pair `warning` with an icon and a message; links inside body copy are underlined; the active language and current page carry text or `aria-current`, not only a color shift.
+- **Motion and zoom**: layouts reflow at 200% zoom and 320px width without horizontal scroll; honor `prefers-reduced-motion`.
 
-Korean pages (`lang="ko-KR"`) get their own leading from `globals.css`: body `p`/`li` `1.75`, `h1` `1.12`, `h2`/`h3` `1.22`, tracking no tighter than `-0.02em`. Hangul at 900 weight crowds at the English values. The footer and display numerals (`dd` stats) are excluded: they keep their own wide caps tracking and `leading-none`.
+### Where each rule is enforced
+
+These rules were adopted on 2026-10-06 from the KS WAYS design system (Claude Design) and are now applied across the site. Each one has a test, so a change that breaks it fails CI instead of drifting quietly.
+
+| Rule | Enforced by |
+|---|---|
+| Text floors — ink 64% on light, white 56% on dark | `src/text-contrast.test.ts` (and the floors are proven to clear AA 4.5:1) |
+| Section headings ≤ 52px at 1.08; body 1.6–1.65; measure ≤ 34em; secondary text at the 76% token | `src/components/Typography.tsx` (`SectionHeading`, `CardHeading`, `BodyText`), checked by `src/components/Typography.test.tsx` |
+| Korean leading 1.75–1.8 body, ≥ 1.12 display, measure 36em, tracking ≥ -0.02em | `:root:lang(ko)` rules in `src/app/globals.css` on the `ks-type-*` / `ks-measure` hooks, checked by `Typography.test.tsx` |
+| Nothing below 12px; no 1.7 body leading | `Typography.test.tsx` scans every component |
+| Control boundaries use `border-control`; DG emphasis uses full-strength `accent-ink` | `src/components/QuoteField.tsx` |
+| `on-tertiary` at full strength | `src/components/ContactActions.tsx` |
+
+`muted` (`#677173`) is defined but no component uses it yet. New page text should go through the Typography components rather than hand-written class strings.
 
 ## Typography
 
@@ -234,15 +323,16 @@ The current site uses the platform UI sans stack: `ui-sans-serif, system-ui, -ap
 
 Tracking is deliberately moderate (`-0.02em` to `-0.035em`). Earlier revisions used aggressive negative tracking (`-0.062em` to `-0.075em`); that crushed Korean glyphs and is no longer the house style.
 
-- **Hero display**: Very heavy (`900`), up to `88px` on desktop. Line-height never drops below `1.0` (the old `0.92` let wrapped Korean lines touch); mobile relaxes to `1.04`.
-- **Section display**: Extra-bold (`800`), capped at `52px` with `1.08` line-height. Section headlines on this site are full sentences — at the old 74–76px they wrapped into four or five lines and read as a poster, not a statement.
-- **Card / row headings**: Extra-bold (`800`), 22–30px.
-- **Body copy**: 16–18px with relaxed line-height (`1.65–1.7`), measure capped at `34em`–`40em`. Body tone should be practical, specific, and operational.
-- **Secondary text is an opacity of the ink, with a floor.** Navy text on paper/white stays at `/60` or above (`/56` measures 4.34:1 on paper — fails AA); white text on navy stays at `/48` or above (`/40` measured 3.79:1). House values are `/76–/78` for body and `/72` for small labels. Asserted in `src/text-contrast.test.ts`.
-- **Korean wrapping**: the `/kr` page sets `word-break: keep-all` (`break-keep`). Without it the browser breaks Hangul between syllables, splitting words like "글 / 로벌" across lines.
-- **Kickers and badges**: All-caps, very small, bold labels with wide tracking (`0.10em–0.18em`). They should signal systems, routes, network, and proof. The homepage no longer carries per-section kicker eyebrows — headlines stand alone there. Service landing pages keep a single eyebrow above the H1.
+- **Hero display** (`display-hero-desktop` / `display-hero-mobile`): Very heavy (`900`), up to `88px` on desktop. Line-height never drops below `1.0` (the old `0.92` let wrapped Korean lines touch); mobile relaxes to `1.04`.
+- **Section display** (`display-section`): Extra-bold (`800`), capped at `52px` with `1.08` line-height. Section headlines on this site are full sentences — at the old 74–76px they wrapped into four or five lines and read as a poster, not a statement.
+- **Proof values** (`proof-value`): `900`, up to `40px`, white on `primary` in the hero proof strip.
+- **Card / row headings**: `heading-row` (service rows, 22px mobile / 26px from `sm`), `heading-pillar` (pillar and process columns, 22px), `heading-card` (card and panel headings, 24px).
+- **Body copy**: `body-lg` (18px, leads and section bodies, measure ≤ 34em) and `body-md` (16px default). Line-height and measure follow **Readability**. Body tone should be practical, specific, and operational.
+- **Secondary text is an opacity of the ink, with a floor** — the text opacity tokens in **Colors**. Floors are ink 64% on light surfaces and white 56% on dark ones, enforced by `src/text-contrast.test.ts`.
+- **Korean** (`display-hero-ko`, `display-section-ko`, `body-lg-ko`, `body-md-ko`): more leading (1.12 / 1.22 display, 1.75–1.8 body) and near-zero tracking. The `/kr` page sets `word-break: keep-all` (`break-keep`); without it the browser breaks Hangul between syllables, splitting words like "글 / 로벌" across lines.
+- **Kickers and badges**: `label-caps` (12px) or `label-mono` (13px), all caps, tracking `0.10em–0.18em`. They should signal systems, routes, network, and proof. The homepage no longer carries per-section kicker eyebrows — headlines stand alone there. Service landing pages keep a single eyebrow above the H1.
 
-For Korean copy, keep line-height more forgiving than English. Avoid long unbroken English labels on mobile unless the element can wrap without harming touch targets.
+Avoid long unbroken English labels on mobile unless the element can wrap without harming touch targets.
 
 ## Layout
 
@@ -370,6 +460,15 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
   Not on service pages — shippers are not WCAworld members. Sources are the official high-res PNGs from each product's own site (the wcaworld.com benefit pages only carry 150px/200px copies), trimmed to `384px` = 2× the largest display size; `next/image` serves display-size WebP. Seals carry their own edge, so they need no plate on either surface.
 - **Partner cooperation principles** (`/network/korea-agent-network`, paper band after the member tools): numbered items under a 2px navy top rule, `md` 2 columns / `lg` 3 columns. Keep the item count a multiple of the column count (currently 6) so the last row never leaves an orphan — merge related principles rather than adding a seventh. Copy and its Code of Ethics sources: COPY.md §7.4.
 - Copy must position KS WAYS as globally connected, ocean-strong, and accountable—not merely Korea-based.
+
+### Form Field
+
+The readability reference for controls (quote form): a visible boundary, a legible placeholder, and an error that never relies on color alone.
+
+- Label above the field, 14px / `700` `ink`; an optional hint in `text-subtle`. Never use the placeholder as the label.
+- Field: `white` fill, 1px `border-control`, 16px radius, at least 48px high, value 16px / `600` `ink`, placeholder `text-faint`.
+- Hover border `tertiary-hover`; focus uses the two-tone ring (see **Focus**).
+- Error: 2px `warning` border, `aria-invalid="true"`, and a message in `warning` 14px / `600` with an icon, tied to the field by `aria-describedby`.
 
 ### Contact CTA
 

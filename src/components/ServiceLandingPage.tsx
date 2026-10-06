@@ -4,6 +4,7 @@ import { homeContent } from '@/lib/content';
 import { faqJsonLd, serviceJsonLd, siteUrl } from '@/lib/seo';
 import { BrandLogo } from './BrandLogo';
 import { SiteFooter } from './SiteFooter';
+import { BodyText, CardHeading, SectionHeading } from './Typography';
 import { WcaMemberTools } from './WcaMemberTools';
 
 const monoLabelClass = 'font-mono text-xs font-semibold uppercase tracking-[.12em]';
@@ -68,12 +69,12 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
               <li aria-current="page" className="font-semibold text-[#e7c99a]">{page.eyebrow}</li>
             </ol>
           </nav>
-          <h1 id="service-heading" className="mt-4 max-w-[14em] text-[clamp(40px,10.5vw,52px)] font-black leading-[1.04] tracking-[-.028em] text-balance sm:text-[clamp(48px,5.6vw,80px)] sm:leading-[1.02] sm:tracking-[-.03em]">
+          <h1 id="service-heading" className="ks-type-hero mt-4 max-w-[14em] text-[clamp(40px,10.5vw,52px)] font-black leading-[1.04] tracking-[-.028em] text-balance sm:text-[clamp(48px,5.6vw,80px)] sm:leading-[1.02] sm:tracking-[-.03em]">
             {page.title}
           </h1>
           <div className="mt-8 grid max-w-[1120px] gap-5 lg:grid-cols-2 lg:gap-14">
             <p className="text-[clamp(18px,1.5vw,21px)] font-medium leading-[1.55] text-white/92 text-pretty">{lead.first}</p>
-            {lead.rest ? <p className="text-[17px] leading-[1.7] text-white/78 text-pretty">{lead.rest}</p> : null}
+            {lead.rest ? <p className="ks-type-body-lg text-[17px] leading-[1.65] text-white/76 text-pretty">{lead.rest}</p> : null}
           </div>
           <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <a href={quoteHref} className="inline-flex min-h-[52px] w-full items-center justify-center gap-2.5 rounded-full bg-[#b88a5a] px-7 font-extrabold text-[#001112] transition hover:bg-[#a5794d] sm:w-auto">
@@ -95,7 +96,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
                   <article key={card.label} className="border-b border-[#1f3436] py-7 last:border-b-0 lg:border-b-0 lg:border-r lg:pb-10 lg:pr-8 lg:last:border-r-0 lg:[&:not(:first-child)]:pl-8">
                     <p className={`${monoLabelClass} text-white/72`}>{card.label}</p>
                     <h2 className="mt-2.5 text-2xl font-extrabold tracking-[-.02em] text-white">{card.value}</h2>
-                    <p className="mt-2.5 text-[15px] leading-[1.65] text-white/78">{card.body}</p>
+                    <BodyText size="md" tone="onDark" className="mt-2.5">{card.body}</BodyText>
                   </article>
                 ))}
               </div>
@@ -130,7 +131,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
               className={`scroll-mt-8 ${index === 0 ? 'pb-12' : 'border-t border-[#001112] py-12'} last:pb-0`}
             >
               <h2 className="text-[clamp(24px,6vw,28px)] font-extrabold leading-[1.15] tracking-[-.02em] sm:text-[30px]">{section.title}</h2>
-              <p className="mt-4 max-w-[40em] text-lg leading-[1.7] text-[#001112]/78">{section.body}</p>
+              <BodyText measure="default" className="mt-4">{section.body}</BodyText>
               {section.items ? (
                 <ul className="mt-6 grid border-t border-[#d9e2e0] sm:grid-cols-2 sm:gap-x-8">
                   {section.items.map((item) => (
@@ -150,10 +151,10 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         <section aria-labelledby="member-tools-heading" className="border-t border-[#d9e2e0] bg-white">
           <div className="mx-auto grid max-w-[1280px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-16 lg:px-14 lg:py-24">
             <div>
-              <h2 id="member-tools-heading" className="text-[clamp(30px,8vw,36px)] font-extrabold leading-[1.08] tracking-[-.025em] text-balance sm:text-[clamp(32px,3.2vw,44px)]">
+              <SectionHeading id="member-tools-heading" size="md">
                 {page.memberTools.title}
-              </h2>
-              <p className="mt-5 max-w-[34em] text-lg leading-[1.7] text-[#001112]/78">{page.memberTools.body}</p>
+              </SectionHeading>
+              <BodyText measure="default" className="mt-5">{page.memberTools.body}</BodyText>
             </div>
             <WcaMemberTools heading={page.memberTools.heading} items={page.memberTools.items} tone="light" />
           </div>
@@ -166,18 +167,18 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
             <div className="grid gap-6 lg:grid-cols-[.8fr_1.2fr] lg:items-end lg:gap-16">
               <div>
                 <p className={`${monoLabelClass} text-[#805d3b]`}>{page.principles.heading}</p>
-                <h2 id="principles-heading" className="mt-4 text-[clamp(30px,8vw,36px)] font-extrabold leading-[1.08] tracking-[-.025em] text-balance sm:text-[clamp(32px,3.2vw,44px)]">
+                <SectionHeading id="principles-heading" size="md" className="mt-4">
                   {page.principles.title}
-                </h2>
+                </SectionHeading>
               </div>
-              <p className="max-w-[34em] text-lg leading-[1.7] text-[#001112]/78">{page.principles.body}</p>
+              <BodyText measure="default">{page.principles.body}</BodyText>
             </div>
             <ol className="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
               {page.principles.items.map((item, index) => (
                 <li key={item.title} className="border-t-2 border-[#001112] pt-5">
                   <p aria-hidden="true" className="font-mono text-[13px] font-semibold text-[#805d3b]">{String(index + 1).padStart(2, '0')}</p>
-                  <h3 className="mt-2.5 text-xl font-extrabold tracking-[-.015em]">{item.title}</h3>
-                  <p className="mt-2.5 leading-[1.65] text-[#001112]/76">{item.body}</p>
+                  <CardHeading className="mt-2.5">{item.title}</CardHeading>
+                  <BodyText size="md" className="mt-2.5">{item.body}</BodyText>
                 </li>
               ))}
             </ol>
@@ -188,9 +189,9 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
       <section aria-labelledby="checklist-heading" className="bg-[#001112] text-white">
         <div className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-24">
           <div className="flex flex-wrap items-end justify-between gap-x-12 gap-y-6">
-            <h2 id="checklist-heading" className="max-w-[16em] text-[clamp(30px,8vw,36px)] font-extrabold leading-[1.08] tracking-[-.025em] text-balance sm:text-[clamp(32px,3.4vw,48px)]">
+            <SectionHeading id="checklist-heading" size="md" className="max-w-[16em]">
               {page.checklistTitle}
-            </h2>
+            </SectionHeading>
             <a href={quoteHref} className="inline-flex min-h-[52px] w-full items-center justify-center gap-2.5 rounded-full bg-[#b88a5a] px-7 font-extrabold text-[#001112] transition hover:bg-[#a5794d] sm:w-auto">
               Send shipment details
               <ArrowIcon />
@@ -212,9 +213,9 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
           <div>
             <p className={`${monoLabelClass} text-[#5f6f78]`}>FAQ</p>
-            <h2 id="service-faq-heading" className="mt-4 text-[clamp(30px,8vw,36px)] font-extrabold leading-[1.1] tracking-[-.025em] text-balance sm:text-[clamp(32px,3.2vw,44px)]">
+            <SectionHeading id="service-faq-heading" size="md" className="mt-4">
               Practical answers before you ship.
-            </h2>
+            </SectionHeading>
           </div>
           <div className="border-t border-[#001112]">
             {page.faqs.map((faq) => (
@@ -223,7 +224,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
                   <span>{faq.question}</span>
                   <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-[#001112]/25 text-lg transition-transform duration-200 group-open:rotate-45">+</span>
                 </summary>
-                <p className="mb-6 max-w-[40em] leading-[1.7] text-[#001112]/78">{faq.answer}</p>
+                <BodyText size="md" measure="default" className="mb-6">{faq.answer}</BodyText>
               </details>
             ))}
           </div>

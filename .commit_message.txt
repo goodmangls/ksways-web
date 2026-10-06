@@ -1,1 +1,1 @@
-♿ style(a11y): KS WAYS 디자인 시스템 가독성 토큰 반영 — muted #677173(AA)·muted-on-dark·border-control(3:1) 추가, 견적 폼 필드/운송모드 카드 경계 1.29→3.25:1, 견적 CTA 보조문구 잉크 68%→100%(3.82→6.26:1), 푸터 11px→12px, /kr 한글 행간 1.75/1.12/1.22, 가드 테스트 3종 추가
+♿ style(a11y): main(#53·#54) 병합 — 겹치는 구현은 main의 Typography·ks-type-* 훅 방식으로 통일, 이 PR에는 paper #f4f7f6 정정·--ks-muted/--ks-muted-on-dark/--ks-border-control 토큰과 가드 테스트만 남김

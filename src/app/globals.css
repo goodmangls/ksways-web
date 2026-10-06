@@ -42,18 +42,6 @@ body {
 
 a { color: inherit; }
 
-/* Korean typesetting (DESIGN.md "Readability"). Hangul at 900 weight needs more
-   leading than Latin: the English values (1.0 display, 1.6–1.65 body) let wrapped
-   Korean lines crowd. Unlayered, so these win over the Tailwind utilities on the
-   same elements; scoped to `:lang(ko)` so English pages are untouched.
-   Body copy and section headings only: the footer (rendered inside <main>) keeps
-   its wide-tracked caps labels, and `dd` is left out because the hero proof
-   stats are display numerals set `leading-none`, not running text.
-   Asserted in src/text-contrast.test.ts. */
-:lang(ko) main :is(p, li):not(footer *) { line-height: 1.75; }
-:lang(ko) main h1 { line-height: 1.12; letter-spacing: -0.02em; }
-:lang(ko) main :is(h2, h3):not(footer *) { line-height: 1.22; letter-spacing: -0.015em; }
-
 :focus-visible {
   /* Two-tone focus ring. Geometry outward from the element edge:
        0–2px  navy  (box-shadow spread, fills the outline-offset gap)
@@ -72,6 +60,35 @@ a { color: inherit; }
 ::selection {
   background: var(--ks-accent);
   color: var(--ks-navy);
+}
+
+/* Korean readability — DESIGN.md "Readability". Hangul at heavy weights needs
+   more leading than Latin, and tight tracking crushes it. Components and pages
+   carry English values plus a `ks-type-*` / `ks-measure` hook; on /kr
+   (<html lang="ko-KR">) these rules replace the English values. They are
+   unlayered on purpose: unlayered CSS beats Tailwind's utilities layer, including
+   `sm:` variants, so no component has to know its locale.
+   Asserted in src/components/Typography.test.tsx. */
+:root:lang(ko) .ks-type-hero {
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+:root:lang(ko) .ks-type-section {
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+
+:root:lang(ko) .ks-type-body-lg {
+  line-height: 1.8;
+}
+
+:root:lang(ko) .ks-type-body {
+  line-height: 1.75;
+}
+
+:root:lang(ko) .ks-measure {
+  max-width: 36em;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -92,9 +92,9 @@ export function ContactActions({ quoteLabel, partnerLabel, scheduleLabel, email,
           <span className={action.primary ? 'block rounded-[23px] px-6 py-4' : 'block rounded-[23px] px-6 py-4'}>
             <span className="flex items-center justify-between gap-4">
               <span className="text-base font-black tracking-[-.02em]">{action.label}</span>
-              <span aria-hidden="true" className="font-mono text-sm font-black transition group-hover:translate-x-1">→</span>
+              <span className="font-mono text-xs font-black opacity-70 transition group-hover:translate-x-1">→</span>
             </span>
-            <span className={action.primary ? 'mt-1 block text-sm font-semibold text-[#001112]' : 'mt-1 block text-sm font-semibold text-white/76'}>
+            <span className={action.primary ? 'mt-1 block text-sm font-bold text-[#001112]' : 'mt-1 block text-sm font-semibold text-white/58'}>
               {action.helper}
             </span>
           </span>
