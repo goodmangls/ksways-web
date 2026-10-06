@@ -1,1 +1,1 @@
-📐 DESIGN.md Readability 규칙을 텍스트 컴포넌트(SectionHeading·CardHeading·BodyText)로 만들어 홈·서비스·견적 페이지에 적용하고 한국어 행간·폭·하한(/64·/56)을 테스트로 고정
+🖼️ 히어로 택배 인계 사진을 640px 사본에서 원본 기반 2048px 로 교체해 데스크톱 흐림 해소
