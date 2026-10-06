@@ -29,6 +29,16 @@ const globalsCss = readFileSync(join(ROOT, 'src/app/globals.css'), 'utf8');
 const componentSources = readdirSync(join(ROOT, 'src/components'))
   .filter((file) => file.endsWith('.tsx') && !file.includes('.test.'))
   .map((file) => ({ file, text: readFileSync(join(ROOT, 'src/components', file), 'utf8') }));
+/** Components plus every page under src/app — pages carry their own headings and leads. */
+const allSources = [
+  ...componentSources,
+  ...(readdirSync(join(ROOT, 'src/app'), { recursive: true }) as string[])
+    .filter((file) => file.endsWith('.tsx') && !file.includes('.test.'))
+    .map((file) => ({ file: `app/${file}`, text: readFileSync(join(ROOT, 'src/app', file), 'utf8') })),
+];
+/** Class strings on paragraphs: `<p className="…">` literals and template literals. */
+const paragraphClasses = (text: string) =>
+  [...text.matchAll(/<p\b[^>]*?className=(?:"([^"]*)"|\{`([^`]*)`\})/g)].map((m) => m[1] ?? m[2]);
 
 const leadingOf = (classes: string) => Number(classes.match(/leading-\[([\d.]+)\]/)?.[1]);
 
@@ -54,9 +64,13 @@ describe('Typography rules (DESIGN.md "Readability")', () => {
     }
   });
 
-  it('keeps card headings in the 22–30px band', () => {
-    expect(cardHeadingSizes.sm).toBe('text-[22px]');
-    expect(cardHeadingSizes.md).toBe('text-2xl'); // 24px
+  it('gives each card heading its token leading, not the font-size utility default', () => {
+    // heading-pillar 22px / 1.2 and heading-card 24px / 1.12. Without an explicit leading,
+    // Tailwind's size utilities bring their own (22px → 1.5, text-2xl → 1.33).
+    expect(cardHeadingSizes.sm).toMatch(/^text-\[22px\] /);
+    expect(leadingOf(cardHeadingSizes.sm)).toBe(1.2);
+    expect(cardHeadingSizes.md).toMatch(/^text-2xl /);
+    expect(leadingOf(cardHeadingSizes.md)).toBe(1.12);
   });
 
   it('sets English body leading within 1.6–1.65 and text at the 76% token, never smaller than 16px', () => {
@@ -66,7 +80,8 @@ describe('Typography rules (DESIGN.md "Readability")', () => {
         expect(leading, size).toBeGreaterThanOrEqual(BODY_LEADING_EN.min);
         expect(leading, size).toBeLessThanOrEqual(BODY_LEADING_EN.max);
         expect(classes).toMatch(new RegExp(`/${TEXT_TOKEN_OPACITY}\\b`));
-        expect(classes).not.toMatch(/text-(xs|sm|\[1[0-5]px\])/);
+        // The size is set here, not inherited — inside a 14px parent it would otherwise shrink.
+        expect(classes).toMatch(/\btext-(base|lg)\b/);
       }
     }
   });
@@ -107,6 +122,25 @@ describe('Typography rules (DESIGN.md "Readability")', () => {
       expect(displayHeadings.length, file).toBeGreaterThan(0);
       for (const heading of displayHeadings) expect(heading, file).toContain('ks-type-hero');
     }
+  });
+
+  it('sets no line-height below 1.0 anywhere', () => {
+    const offenders = allSources.flatMap(({ file, text }) =>
+      [...text.matchAll(/leading-\[0?\.\d+\]/g)].map((m) => `${file}: ${m[0]}`),
+    );
+    expect(offenders).toEqual([]);
+  });
+
+  it('keeps body-size paragraphs at 16px+ with 1.6–1.65 leading', () => {
+    // A paragraph without a small-text size is body copy. `leading-relaxed` (1.625) and
+    // 1.5x values sit outside the rule, and an unset size inherits whatever the parent is.
+    const offenders = allSources.flatMap(({ file, text }) =>
+      paragraphClasses(text)
+        .filter((classes) => !/\btext-(xs|sm)\b|\btext-\[1[2-5]px\]|uppercase/.test(classes))
+        .filter((classes) => /\bleading-(relaxed|loose|snug|normal|\[1\.[0-5]\d*\])\b|\bleading-\[1\.[0-5]/.test(classes))
+        .map((classes) => `${file}: ${classes}`),
+    );
+    expect(offenders).toEqual([]);
   });
 
   it('leaves no 1.7 body leading or sub-12px text in any component', () => {

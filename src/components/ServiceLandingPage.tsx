@@ -73,7 +73,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
             {page.title}
           </h1>
           <div className="mt-8 grid max-w-[1120px] gap-5 lg:grid-cols-2 lg:gap-14">
-            <p className="text-[clamp(18px,1.5vw,21px)] font-medium leading-[1.55] text-white/92 text-pretty">{lead.first}</p>
+            <p className="text-[clamp(18px,1.5vw,21px)] font-medium leading-[1.6] text-white/92 text-pretty ks-type-body-lg">{lead.first}</p>
             {lead.rest ? <p className="ks-type-body-lg text-[17px] leading-[1.65] text-white/76 text-pretty">{lead.rest}</p> : null}
           </div>
           <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">

@@ -304,18 +304,26 @@ Every text color is checked against each surface it is allowed on, and every pai
 
 ### Where each rule is enforced
 
-These rules were adopted on 2026-10-06 from the KS WAYS design system (Claude Design) and are now applied across the site. Each one has a test, so a change that breaks it fails CI instead of drifting quietly.
+These rules were adopted on 2026-10-06 from the KS WAYS design system (Claude Design). Every rule in the table below is applied to body copy and headings on every page, and has a test, so a change that breaks it fails CI instead of drifting quietly. What is not yet covered is listed under **Still open**.
 
 | Rule | Enforced by |
 |---|---|
 | Text floors — ink 64% on light, white 56% on dark | `src/text-contrast.test.ts` (and the floors are proven to clear AA 4.5:1) |
-| Section headings ≤ 52px at 1.08; body 1.6–1.65; measure ≤ 34em; secondary text at the 76% token | `src/components/Typography.tsx` (`SectionHeading`, `CardHeading`, `BodyText`), checked by `src/components/Typography.test.tsx` |
+| Section headings ≤ 52px at 1.08; card headings at their token leading (`heading-pillar` 1.2, `heading-card` 1.12); body 16px+ (set, not inherited) at 1.6–1.65; measure ≤ 34em; secondary text at the 76% token | `src/components/Typography.tsx` (`SectionHeading`, `CardHeading`, `BodyText`), checked by `src/components/Typography.test.tsx` |
+| Every body-size paragraph (no `text-sm`/`text-xs`) on every page sits at 1.6–1.65; no line-height below 1.0 anywhere | `Typography.test.tsx` scans `src/components` and `src/app` |
 | Korean leading 1.75–1.8 body, ≥ 1.12 display, measure 36em, tracking ≥ -0.02em | `:root:lang(ko)` rules in `src/app/globals.css` on the `ks-type-*` / `ks-measure` hooks, checked by `Typography.test.tsx` |
 | Nothing below 12px; no 1.7 body leading | `Typography.test.tsx` scans every component |
 | Control boundaries use `border-control`; DG emphasis uses full-strength `accent-ink` | `src/components/QuoteField.tsx` |
 | `on-tertiary` at full strength | `src/components/ContactActions.tsx` |
 
-`muted` (`#677173`) is defined but no component uses it yet. New page text should go through the Typography components rather than hand-written class strings.
+#### Still open
+
+| Rule | Site today |
+|---|---|
+| Supporting text (helpers, captions, notices at 12–14px) | The rules above set body copy only. 15 small-text spots use `leading-relaxed` (1.625) or `leading-snug` (1.375) — 12 in `QuoteForm.tsx`, one each in `QuoteField.tsx`, `SiteFooter.tsx`, `WcaBadge.tsx`. They pass contrast and the 12px floor, but no leading rule for small text exists yet |
+| `muted` (`#677173`) | Defined, but no component uses it yet |
+
+New page text should go through the Typography components rather than hand-written class strings.
 
 ## Typography
 

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import type { WcaMemberTool } from '@/lib/content';
+import { BodyText } from './Typography';
 
 // WCAworld 혜택 인장. 원본은 각 서비스 공식 사이트의 고해상도 PNG(WQS 1917px·PartnerPay 400px)를
 // 트림 후 384px 로 줄인 것 — 최대 표시 크기(96px)의 2배 이상을 덮어 레티나에서도 선명하다.
@@ -35,9 +36,9 @@ export function WcaMemberTools({ heading, items, tone }: Props) {
               sizes={`${sealSize}px`}
               className="shrink-0"
             />
-            <p className="leading-snug">
-              <span className={`block font-bold ${dark ? 'text-white' : 'text-lg text-[#001112]'}`}>{item.name}</span>
-              <span className={`mt-1 block text-[15px] leading-[1.55] ${dark ? 'text-white/76' : 'text-[#001112]/76'}`}>{item.body}</span>
+            <p>
+              <span className={`block font-bold leading-snug ${dark ? 'text-white' : 'text-lg text-[#001112]'}`}>{item.name}</span>
+              <BodyText as="span" size="md" tone={dark ? 'onDark' : 'onLight'} className="mt-1 block">{item.body}</BodyText>
             </p>
           </li>
         ))}

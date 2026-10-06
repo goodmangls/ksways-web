@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { FooterCopy } from '@/lib/content';
 import { BrandLogo } from './BrandLogo';
+import { BodyText } from './Typography';
 import { WcaBadge } from './WcaBadge';
 
 function FooterLink({ href, label }: { href: string; label: string }) {
@@ -36,7 +37,7 @@ function FooterAddress({ address }: { address: string }) {
   const streetLine = address.replace(`, ${countryLine}`, '');
 
   return (
-    <p className="mt-2 max-w-xl leading-relaxed text-white/72">
+    <p className="ks-type-body mt-2 max-w-xl text-base leading-[1.6] text-white/72">
       <span className="block">{streetLine}</span>
       <span className="block">{countryLine}</span>
     </p>
@@ -57,7 +58,7 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
               <span aria-hidden="true" className="h-10 w-px bg-white/16" />
               <WcaBadge variant="world" label="WCAworld member" height={52} />
             </div>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/66">{footer.tagline}</p>
+            <BodyText tone="onDark" measure="default" className="mt-6">{footer.tagline}</BodyText>
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {footer.credentials.map((item) => (
                 <div key={item.label} className="rounded-3xl border border-white/10 bg-white/[.055] p-5">
