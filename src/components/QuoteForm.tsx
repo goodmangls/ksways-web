@@ -21,6 +21,7 @@ import {
 } from '@/lib/quote-form';
 import { contactEmail } from '@/lib/seo';
 import { QuoteField } from './QuoteField';
+import { BodyText, SectionHeading } from './Typography';
 
 const sectionLabels = {
   company: 'Company contact',
@@ -211,10 +212,10 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
         <form ref={formRef} className="grid gap-8" aria-label="KS WAYS structured freight quote form" noValidate>
           <div>
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#805d3b]">Quote details</p>
-            <h2 className="mt-3 text-[clamp(30px,4.5vw,56px)] font-black leading-[.98] tracking-[-.06em]">Prepare an air or ocean freight request.</h2>
-            <p className="mt-4 max-w-2xl leading-relaxed text-[#001112]/64">
+            <SectionHeading size="md" className="mt-3">Prepare an air or ocean freight request.</SectionHeading>
+            <BodyText size="md" measure="default" className="mt-4">
               Choose the transport mode first. The form then keeps the most useful route, cargo, equipment, and special-handling fields visible for KS WAYS review. Nothing is sent automatically; you review the prepared email before sending.
-            </p>
+            </BodyText>
           </div>
 
           <fieldset className="rounded-[28px] border border-[#001112]/10 bg-[#f4f7f6] p-4 sm:p-5">
@@ -290,10 +291,10 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             CTA 는 그래서 진행 단계보다 위에 둔다 — 768px 노트북에서도 첫 화면에 남도록. */}
         <aside className="self-start rounded-[30px] bg-[#001112] p-6 text-white shadow-[0_24px_80px_rgba(0,17,18,.22)] sm:p-7 lg:sticky lg:top-8 lg:max-h-[calc(100dvh-4rem)] lg:overflow-y-auto">
           <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#e7c99a]/78">Email handoff</p>
-          <h3 className="mt-4 text-3xl font-black tracking-[-.05em]">Review the draft, then choose your inbox.</h3>
-          <p className="mt-4 leading-relaxed text-white/64">
+          <h3 className="mt-4 text-3xl font-black leading-[1.12] tracking-[-.02em]">Review the draft, then choose your inbox.</h3>
+          <BodyText size="md" tone="onDark" className="mt-4">
             Complete the required basics, then open a prepared email to {contactEmail}. Attach packing list, invoice, MSDS, photos, or equipment drawings in your email client if needed.
-          </p>
+          </BodyText>
           {validationMessage ? (
             <div className="mt-5 rounded-2xl border border-[#ff8a80]/40 bg-[#ff8a80]/12 p-4 text-sm font-bold leading-relaxed text-[#ffb4ab]" role="alert">
               {validationMessage}

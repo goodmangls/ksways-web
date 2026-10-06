@@ -100,7 +100,7 @@ export function ContactActions({ quoteLabel, partnerLabel, scheduleLabel, email,
           </span>
         </a>
       ))}
-      <p className="px-1 text-sm leading-relaxed text-white/56">
+      <p className="ks-type-body px-1 text-base leading-[1.6] text-white/56">
         {locale === 'kr'
           ? `모든 문의는 공식 그룹 이메일 ${email}로 접수되어 담당자가 후속 안내합니다.`
           : `All enquiries are routed to the official group email ${email} for follow-up.`}

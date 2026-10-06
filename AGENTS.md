@@ -72,7 +72,7 @@ CI 를 통과시키려면 이것들을 알고 있어야 한다. 모두 "실제�
 | `src/browser-target.test.ts` | 지원 브라우저 타깃 고정(Next `MODERN_BROWSERSLIST_TARGET`) · `browserslist` 설정파일 부재 |
 | `src/site-quality.test.ts` | 보안 헤더 · CSP · 브랜드 표기 붕괴 · 금지 포지셔닝 |
 | `src/text-contrast.test.ts` | 반투명 본문 잉크 하한 — 밝은 면 `text-[#001112]/64` 이상 · 어두운 면 `text-white/56` 이상 (DESIGN.md「Readability」, 2026-10-06). 하한이 AA 4.5:1 경계(/60 · /48) 위에 있음을 계산으로 증명 |
-| `src/components/Typography.test.tsx` | 텍스트 컴포넌트(`SectionHeading`·`CardHeading`·`BodyText`)의 크기·행간·폭·불투명도, globals.css `:lang(ko)` 한국어 값, 전 컴포넌트 12px 미만·행간 1.7 금지 |
+| `src/components/Typography.test.tsx` | 텍스트 컴포넌트(`SectionHeading`·`CardHeading`·`BodyText`)의 크기·행간·폭·불투명도, globals.css `:lang(ko)` 한국어 값, 카드 제목 토큰 행간, 전 컴포넌트 12px 미만·행간 1.7 금지, `src/components`+`src/app` 의 본문 크기 문단 행간 1.6–1.65·전체 행간 1.0 미만 금지 |
 | `src/components/HomePage.mobile.test.ts` | 디스플레이 행간 하한 1.0 · 자간 상한 `-0.035em`(홈·서비스 템플릿) · `/kr` 한글 `break-keep` · 모바일 터치 타깃 |
 
 **색·포커스·타깃을 건드리면 이 가드들이 먼저 걸린다.** 눈으로 맞추지 말고 값을 계산할 것.
