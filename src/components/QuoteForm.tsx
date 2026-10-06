@@ -230,7 +230,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                     type="button"
                     aria-pressed={isActive}
                     onClick={() => updateTransportMode(option.value)}
-                    className={`rounded-2xl border p-4 text-left transition ${isActive ? 'border-[#805d3b] bg-[#001112] text-white shadow-[0_16px_36px_rgba(0,17,18,.16)]' : 'border-[#001112]/10 bg-white text-[#001112] hover:border-[#b88a5a]'}`}
+                    className={`rounded-2xl border p-4 text-left transition ${isActive ? 'border-[#805d3b] bg-[#001112] text-white shadow-[0_16px_36px_rgba(0,17,18,.16)]' : 'border-[var(--ks-border-control)] bg-white text-[#001112] hover:border-[#b88a5a]'}`}
                   >
                     <span className="block text-lg font-black">{option.label}</span>
                     <span className={`mt-1 block text-xs font-bold leading-snug ${isActive ? 'text-white/64' : 'text-[#001112]/66'}`}>{option.helper}</span>

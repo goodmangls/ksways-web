@@ -9,7 +9,7 @@ import type { QuoteFormField, QuoteFormValues } from '@/lib/quote-form';
 // colors in one class list resolve by stylesheet order, not by intent.
 const fieldClass = 'min-h-12 w-full rounded-2xl border px-4 py-3 text-base font-semibold text-[#001112] transition placeholder:text-[#001112]/64 focus:border-[#b88a5a] focus:bg-white';
 // `border-control` (3.25:1 on paper) — ink 12% measured about 1.3:1, an invisible boundary.
-const defaultSurface = 'border-[#808b8d] bg-[#f4f7f6]';
+const defaultSurface = 'border-[var(--ks-border-control)] bg-[#f4f7f6]';
 // Full-strength accent-ink (5.92:1 on white); at 60% it fell to 2.57:1, under the
 // 3:1 a control boundary needs (DESIGN.md "Readability").
 const highlightedSurface = 'border-[#805d3b] bg-white';

@@ -3,7 +3,10 @@
 :root {
   --ks-navy: #001112;
   --ks-navy-2: #031d20;
-  --ks-paper: #f6f8f8;
+  /* Matches DESIGN.md `paper` and the bg-[#f4f7f6] every <main> already paints.
+     It was #f6f8f8, so the body showed a second, slightly different paper wherever
+     <main> did not cover it. Asserted in src/brand-palette.test.ts. */
+  --ks-paper: #f4f7f6;
   --ks-line: rgba(255, 255, 255, 0.16);
   /* Brand accent family (bronze). Names are role-based so a future palette
      shift changes values here only — see DESIGN.md "Colors". */
@@ -12,6 +15,15 @@
   --ks-accent-soft: #e7c99a;
   --ks-accent-ink: #805d3b;
   --ks-steel: #5f6f78;
+  /* Readability tokens from the KS WAYS design system (DESIGN.md "Readability").
+     `muted` was #7d888a: 3.38:1 on paper, under AA. Darkened in the same hue to
+     4.65:1; the old value survives only on dark surfaces, where it reads (5.29:1).
+     `border-control` is the boundary of inputs and choice cards — navy at 12% was
+     1.29:1, under the 3:1 a control boundary needs. Asserted in
+     src/brand-palette.test.ts. */
+  --ks-muted: #677173;
+  --ks-muted-on-dark: #7d888a;
+  --ks-border-control: #808b8d;
 }
 
 * { box-sizing: border-box; }

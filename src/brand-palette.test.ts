@@ -35,6 +35,10 @@ const PALETTE = {
   accentSoft: '#e7c99a',
   accentInk: '#805d3b',
   steel: '#5f6f78',
+  paper: '#f4f7f6',
+  muted: '#677173',
+  mutedOnDark: '#7d888a',
+  borderControl: '#808b8d',
 } as const;
 
 /** Colors from the retired neon-teal identity. None may survive anywhere in the repo. */
@@ -72,6 +76,10 @@ describe('brand palette', () => {
     expect(globalsCss).toContain(`--ks-accent-soft: ${PALETTE.accentSoft};`);
     expect(globalsCss).toContain(`--ks-accent-ink: ${PALETTE.accentInk};`);
     expect(globalsCss).toContain(`--ks-steel: ${PALETTE.steel};`);
+    expect(globalsCss).toContain(`--ks-paper: ${PALETTE.paper};`);
+    expect(globalsCss).toContain(`--ks-muted: ${PALETTE.muted};`);
+    expect(globalsCss).toContain(`--ks-muted-on-dark: ${PALETTE.mutedOnDark};`);
+    expect(globalsCss).toContain(`--ks-border-control: ${PALETTE.borderControl};`);
   });
 
   it('drives ::selection and :focus-visible from the accent tokens, not literals', () => {
@@ -120,6 +128,16 @@ describe('brand palette', () => {
 
     // The pairing that looks fine and is not — pinned so it cannot creep back.
     expect(contrastRatio(white, PALETTE.accent)).toBeLessThan(4.5);
+
+    // Muted is split by surface: one value cannot clear 4.5:1 on both paper and navy.
+    expect(contrastRatio(PALETTE.muted, PALETTE.paper)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(PALETTE.muted, white)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(PALETTE.mutedOnDark, ink)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(PALETTE.mutedOnDark, PALETTE.paper)).toBeLessThan(4.5);
+
+    // Control boundaries need 3:1 (WCAG 1.4.11) on every light surface a field sits on.
+    expect(contrastRatio(PALETTE.borderControl, PALETTE.paper)).toBeGreaterThanOrEqual(3);
+    expect(contrastRatio(PALETTE.borderControl, white)).toBeGreaterThanOrEqual(3);
   });
 
   it('keeps DESIGN.md frontmatter in step with the implemented palette', () => {
@@ -128,6 +146,10 @@ describe('brand palette', () => {
     expect(designMd).toContain(`accent-soft: "${PALETTE.accentSoft.toUpperCase()}"`);
     expect(designMd).toContain(`accent-ink: "${PALETTE.accentInk.toUpperCase()}"`);
     expect(designMd).toContain(`steel: "${PALETTE.steel.toUpperCase()}"`);
+    expect(designMd).toContain(`paper: "${PALETTE.paper.toUpperCase()}"`);
+    expect(designMd).toContain(`muted: "${PALETTE.muted.toUpperCase()}"`);
+    expect(designMd).toContain(`muted-on-dark: "${PALETTE.mutedOnDark.toUpperCase()}"`);
+    expect(designMd).toContain(`border-control: "${PALETTE.borderControl.toUpperCase()}"`);
   });
 
   it('keeps semantic warning colors off the brand hue', () => {
