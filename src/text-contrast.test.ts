@@ -80,4 +80,18 @@ describe('text contrast floors', () => {
     expect(form).toContain('border-[var(--ks-border-control)]');
     expect(field).not.toMatch(/border-\[#001112\]\/\d+/);
   });
+
+  it('keeps the Korean leading rules off the footer labels and the display stats', () => {
+    // Unlayered, these rules beat every Tailwind leading/tracking utility on the
+    // tags they match. The footer sits inside <main> and its caps h2 labels need
+    // tracking-[.18em]; the hero proof stats are `dd` numerals set leading-none.
+    const css = readFileSync(join(process.cwd(), 'src/app/globals.css'), 'utf8');
+    const koRules = css.split('\n').filter((line) => line.startsWith(':lang(ko) main'));
+    expect(koRules.length).toBeGreaterThan(0);
+    for (const rule of koRules) {
+      const selector = rule.slice(0, rule.indexOf('{'));
+      expect(selector).not.toMatch(/\bdd\b/);
+      if (/\b(p|li|h2|h3)\b/.test(selector)) expect(selector).toContain(':not(footer *)');
+    }
+  });
 });

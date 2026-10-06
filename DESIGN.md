@@ -226,7 +226,7 @@ Every text colour is checked against each surface it is allowed on. Hold these f
 | Text on bronze (`tertiary`) | solid `ink` only — navy at 68% measured 3.82:1 | `text-contrast.test.ts` |
 | Translucent ink | navy ≥ `/60` on paper/white (`/64` for placeholders), white ≥ `/48` on navy (`/56` for helper text) | `text-contrast.test.ts` |
 
-Korean pages (`lang="ko-KR"`) get their own leading from `globals.css`: body `1.75`, `h1` `1.12`, `h2`/`h3` `1.22`, tracking no tighter than `-0.02em`. Hangul at 900 weight crowds at the English values.
+Korean pages (`lang="ko-KR"`) get their own leading from `globals.css`: body `p`/`li` `1.75`, `h1` `1.12`, `h2`/`h3` `1.22`, tracking no tighter than `-0.02em`. Hangul at 900 weight crowds at the English values. The footer and display numerals (`dd` stats) are excluded: they keep their own wide caps tracking and `leading-none`.
 
 ## Typography
 

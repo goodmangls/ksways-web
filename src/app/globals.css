@@ -45,10 +45,14 @@ a { color: inherit; }
 /* Korean typesetting (DESIGN.md "Readability"). Hangul at 900 weight needs more
    leading than Latin: the English values (1.0 display, 1.6–1.65 body) let wrapped
    Korean lines crowd. Unlayered, so these win over the Tailwind utilities on the
-   same elements; scoped to `:lang(ko)` so English pages are untouched. */
-:lang(ko) main :is(p, li, dd) { line-height: 1.75; }
+   same elements; scoped to `:lang(ko)` so English pages are untouched.
+   Body copy and section headings only: the footer (rendered inside <main>) keeps
+   its wide-tracked caps labels, and `dd` is left out because the hero proof
+   stats are display numerals set `leading-none`, not running text.
+   Asserted in src/text-contrast.test.ts. */
+:lang(ko) main :is(p, li):not(footer *) { line-height: 1.75; }
 :lang(ko) main h1 { line-height: 1.12; letter-spacing: -0.02em; }
-:lang(ko) main :is(h2, h3) { line-height: 1.22; letter-spacing: -0.015em; }
+:lang(ko) main :is(h2, h3):not(footer *) { line-height: 1.22; letter-spacing: -0.015em; }
 
 :focus-visible {
   /* Two-tone focus ring. Geometry outward from the element edge:
