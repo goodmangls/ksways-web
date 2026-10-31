@@ -445,7 +445,8 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 - Navigation should be concise: Company, Services, Network, Solutions, Contact/Quote.
 - Maintain `44px` minimum height for logo link, language toggle, contact link, and quote CTA.
 - Desktop navigation may be hidden on smaller screens; preserve the quote CTA and language toggle.
-- **Known gap (design review, 2026-10-27):** the service pages, `/network/korea-agent-network` and `/quote` currently ship reduced headers (logo plus one link) with no navigation or language toggle. That is drift, not precedent. See **The One Desk Rule** in **Overview**. Until Korean service pages exist, the toggle on an English subpage points to `/kr`.
+- Every page renders the one `SiteHeader` (**The One Desk Rule** in **Overview**). On the homepage section links stay in-page (`#services`); on subpages they return to the homepage (`/#services`). Until Korean service pages exist, the toggle on an English subpage points to `/kr`.
+- On mobile the quote CTA stays on one line (`whitespace-nowrap`). Below `360px` the row cannot fit logo, toggle, quote CTA and menu, so the language toggle moves into the mobile menu there; the logo never shrinks.
 
 ### Hero
 

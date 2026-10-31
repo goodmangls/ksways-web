@@ -5,23 +5,28 @@ import type { HomeCopy } from '@/lib/content';
 
 type MobileNavProps = {
   nav: HomeCopy['nav'];
+  /** '' on the homepage (in-page anchors); the locale's home path on subpages. */
+  sectionBase?: string;
+  /** Language toggle, listed only below 360px where the header has no room for its pill. */
+  toggleHref?: string;
 };
 
 // 데스크톱 Primary nav(`hidden lg:flex`)와 Contact(`hidden sm:inline-flex`)가
 // 1024px 미만에서 사라지는 공백을 메우는 모바일 내비 아일랜드.
 // lg 이상에서는 데스크톱 nav 가 있으므로 스스로 사라진다.
-export function MobileNav({ nav }: MobileNavProps) {
+export function MobileNav({ nav, sectionBase = '', toggleHref }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
   // Contact 는 헤더에서 sm(640px) 이상일 때 이미 보인다 — 그 구간에서 메뉴가 메워야 할
   // 공백은 섹션 링크뿐이라, 같은 CTA 를 두 번 노출하지 않도록 sm 부터 감춘다.
-  const links: Array<{ label: string; href: string; className?: string }> = [
-    { label: nav.company, href: '#company' },
-    { label: nav.services, href: '#services' },
-    { label: nav.network, href: '#network' },
-    { label: nav.solutions, href: '#solutions' },
-    { label: nav.contact, href: '#contact', className: 'sm:hidden' },
+  const links: Array<{ label: string; href: string; className?: string; ariaLabel?: string }> = [
+    { label: nav.company, href: `${sectionBase}#company` },
+    { label: nav.services, href: `${sectionBase}#services` },
+    { label: nav.network, href: `${sectionBase}#network` },
+    { label: nav.solutions, href: `${sectionBase}#solutions` },
+    { label: nav.contact, href: `${sectionBase}#contact`, className: 'sm:hidden' },
+    ...(toggleHref ? [{ label: nav.langToggle, href: toggleHref, className: 'min-[360px]:hidden', ariaLabel: 'Toggle language' }] : []),
   ];
 
   function close() {
@@ -72,6 +77,7 @@ export function MobileNav({ nav }: MobileNavProps) {
               <li key={link.href} className={link.className}>
                 <a
                   href={link.href}
+                  aria-label={link.ariaLabel}
                   onClick={close}
                   className="flex min-h-11 items-center rounded-2xl px-4 text-sm font-extrabold text-white/86 transition hover:bg-white/10 hover:text-white"
                 >

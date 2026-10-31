@@ -40,9 +40,12 @@ describe('HomePage mobile optimization classes', () => {
   it('provides a mobile nav disclosure where the desktop nav and contact CTA are hidden', () => {
     // 원설계(c73519d)는 Primary nav 를 `hidden lg:flex`, Contact 를 `hidden sm:inline-flex` 로만
     // 처리해 1024px 미만에서 섹션 이동 수단이 없었다 — MobileNav 아일랜드가 그 공백을 메운다.
+    // 헤더는 모든 페이지가 공유하는 SiteHeader 로 옮겨졌다(DESIGN.md "The One Desk Rule").
     const mobileNavSource = readFileSync(join(process.cwd(), 'src/components/MobileNav.tsx'), 'utf8');
+    const headerSource = readFileSync(join(process.cwd(), 'src/components/SiteHeader.tsx'), 'utf8');
 
-    expect(source).toContain('<MobileNav');
+    expect(source).toContain('<SiteHeader');
+    expect(headerSource).toContain('<MobileNav');
     expect(mobileNavSource).toContain('lg:hidden');
     expect(mobileNavSource).toContain('aria-expanded');
     expect(mobileNavSource).toContain('min-h-11');

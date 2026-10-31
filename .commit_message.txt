@@ -1,1 +1,1 @@
-📝 PRODUCT.md 추가·DESIGN.md 병합 갱신(North Star·One Desk/Say It Once 규칙·히어로 증거띠·서비스 행 현행화)·.impeccable/design.json 사이드카 생성
+🧭 모든 페이지에 공통 헤더(SiteHeader) 적용 — 서브페이지 내비·언어 토글 복구, 모바일 견적 버튼 한 줄 유지
