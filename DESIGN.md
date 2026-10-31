@@ -217,6 +217,22 @@ components:
 
 ## Overview
 
+**Creative North Star: "The Korea Origin Desk"**
+
+The site is the desk an overseas forwarder hands Korea-origin cargo to: calm, accountable and operational. Dark navy carries the authority, bronze marks the route and the next action, and paper keeps the working detail readable. Everything on the page should help a partner decide they can rely on this desk, so precise execution detail always beats decoration or repeated badges.
+
+**Key Characteristics:**
+
+- Narrow navy, bronze, gold and paper palette, with contrast computed rather than eyeballed.
+- Heavy system-sans headlines over practical body copy, tuned separately for English and Korean.
+- Hairline rules and full-width rows instead of stacked card grids.
+- Rounded, high-trust forms: pills for actions, large radii for panels.
+- One recognizable route motif: the bronze route line.
+
+**The One Desk Rule.** Every page presents the same desk: the same header with navigation, the language toggle and the quote CTA, and the same footer. A subpage never gets a reduced header.
+
+**The Say It Once Rule.** A credential (WCA membership, Ocean · Air, 30+ years) appears once where it does its job: the hero proof strip and the footer credential cards. Other bands carry a concrete fact the strip does not.
+
 KS WAYS is presented as a premium global logistics company: ocean-led, air-capable, WCA-networked, and operationally accountable. The visual system should feel like a route control tower for international freight rather than a generic local forwarder.
 
 The core impression is **dark control-tower confidence + warm bronze route intelligence + high-whitespace B2B clarity**. Use the identity to communicate global coverage, sea-freight strength, practical execution, and responsive partner cooperation. Avoid visual clichés that make the brand look small, domestic-only, or commodity freight.
@@ -338,7 +354,7 @@ Tracking is deliberately moderate (`-0.02em` to `-0.035em`). Earlier revisions u
 - **Body copy**: `body-lg` (18px, leads and section bodies, measure ≤ 34em) and `body-md` (16px default). Line-height and measure follow **Readability**. Body tone should be practical, specific, and operational.
 - **Secondary text is an opacity of the ink, with a floor** — the text opacity tokens in **Colors**. Floors are ink 64% on light surfaces and white 56% on dark ones, enforced by `src/text-contrast.test.ts`.
 - **Korean** (`display-hero-ko`, `display-section-ko`, `body-lg-ko`, `body-md-ko`): more leading (1.12 / 1.22 display, 1.75–1.8 body) and near-zero tracking. The `/kr` page sets `word-break: keep-all` (`break-keep`); without it the browser breaks Hangul between syllables, splitting words like "글 / 로벌" across lines.
-- **Kickers and badges**: `label-caps` (12px) or `label-mono` (13px), all caps, tracking `0.10em–0.18em`. They should signal systems, routes, network, and proof. The homepage no longer carries per-section kicker eyebrows — headlines stand alone there. Service landing pages keep a single eyebrow above the H1.
+- **Kickers and badges**: `label-caps` (12px) or `label-mono` (13px), all caps, tracking `0.10em–0.18em`. They should signal systems, routes, network, and proof. The homepage no longer carries per-section kicker eyebrows — headlines stand alone there. Service landing pages keep a single eyebrow above the H1. Never stack two kickers. Use `01/02` numbering only where order is real: process steps and quote steps.
 
 Avoid long unbroken English labels on mobile unless the element can wrap without harming touch targets.
 
@@ -429,19 +445,20 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 - Navigation should be concise: Company, Services, Network, Solutions, Contact/Quote.
 - Maintain `44px` minimum height for logo link, language toggle, contact link, and quote CTA.
 - Desktop navigation may be hidden on smaller screens; preserve the quote CTA and language toggle.
+- **Known gap (design review, 2026-10-27):** the service pages, `/network/korea-agent-network` and `/quote` currently ship reduced headers (logo plus one link) with no navigation or language toggle. That is drift, not precedent. See **The One Desk Rule** in **Overview**. Until Korean service pages exist, the toggle on an English subpage points to `/kr`.
 
 ### Hero
 
 - Hero headline should center the global logistics promise and highlight “global” / “글로벌” in warm gold (`accent-soft`).
 - Primary CTA: quote/contact action with a flat bronze fill (`tertiary`), navy `ink` text, bold weight. Do not reintroduce a gradient fill, and do not use white text.
 - Secondary CTA: partner/network exploration, outlined on dark surfaces.
-- Proof strip: WCA, Ocean/Air, FCL/LCL. Keep proof labels compact and values bold.
+- Proof strip: WCA Member · Ocean · Air · 30+ years. Keep proof labels compact and values bold. This is the page's one full credential set (see **The Say It Once Rule**).
 - Route-control visual should suggest global network, technology, ocean/air/data coordination.
 
 ### Service Cards
 
 - Render services as numbered full-width rows (index · title · description · arrow) on a white band. Each row is one link with a hover fill; the arrow becomes a bronze disc on hover and is hidden below `sm` so it never wraps onto its own line.
-- Service cards should communicate operational ownership: air freight, ocean freight, cross-border, project support, and BridgeLogis.
+- Service rows should communicate operational ownership. The current rows are Ocean Freight, Air Freight, Special Cargo, EXW & Handling, and BridgeLogis (external).
 - For external services, open in a new tab and include accessible labeling.
 - Avoid internal-margin, profit, or operationally sensitive language in public service cards.
 

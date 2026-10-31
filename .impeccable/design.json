@@ -1,0 +1,532 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-31T09:59:34.416Z",
+  "title": "Design System: KS WAYS Global Logistics",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Navy Black",
+        "canonical": "#001112",
+        "oklch": "oklch(16.1% 0.027 199.2)",
+        "tonalRamp": [
+          "#000e0f",
+          "#14292a",
+          "#314748",
+          "#4f6667",
+          "#708889",
+          "#92abab",
+          "#b5cfd0",
+          "#daf5f5"
+        ]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Deep Route Navy",
+        "canonical": "#031d20",
+        "oklch": "oklch(21.2% 0.033 205.5)",
+        "tonalRamp": [
+          "#000e10",
+          "#0f2a2d",
+          "#2d474a",
+          "#4c676a",
+          "#6c888c",
+          "#8eabaf",
+          "#b2d0d3",
+          "#d6f5f9"
+        ]
+      },
+      "tertiary": {
+        "role": "tertiary",
+        "displayName": "Route Bronze",
+        "canonical": "#b88a5a",
+        "oklch": "oklch(66.7% 0.085 66.7)",
+        "tonalRamp": [
+          "#140800",
+          "#371f01",
+          "#5e3804",
+          "#825726",
+          "#a57848",
+          "#ca9b6a",
+          "#efbf8d",
+          "#ffebd7"
+        ]
+      },
+      "tertiary-hover": {
+        "role": "tertiary",
+        "displayName": "Pressed Bronze",
+        "canonical": "#a5794d",
+        "oklch": "oklch(61.0% 0.081 65.3)",
+        "tonalRamp": [
+          "#150800",
+          "#371e02",
+          "#5f3705",
+          "#81572b",
+          "#a4784c",
+          "#c99b6e",
+          "#eebf91",
+          "#feebd8"
+        ]
+      },
+      "neutral": {
+        "role": "neutral",
+        "displayName": "Operations Paper",
+        "canonical": "#f4f7f6",
+        "oklch": "oklch(97.4% 0.003 174.5)",
+        "tonalRamp": [
+          "#0a0c0b",
+          "#232625",
+          "#404342",
+          "#5f6261",
+          "#808382",
+          "#a3a6a5",
+          "#c7cac9",
+          "#ecefee"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Desk Ink",
+        "canonical": "#001112",
+        "oklch": "oklch(16.1% 0.027 199.2)",
+        "tonalRamp": [
+          "#000e0f",
+          "#14292a",
+          "#314748",
+          "#4f6667",
+          "#708889",
+          "#92abab",
+          "#b5cfd0",
+          "#daf5f5"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Operations Paper",
+        "canonical": "#f4f7f6",
+        "oklch": "oklch(97.4% 0.003 174.5)",
+        "tonalRamp": [
+          "#0a0c0b",
+          "#232625",
+          "#404342",
+          "#5f6261",
+          "#808382",
+          "#a3a6a5",
+          "#c7cac9",
+          "#ecefee"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Card White",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "accent-soft": {
+        "role": "tertiary",
+        "displayName": "Warm Gold",
+        "canonical": "#e7c99a",
+        "oklch": "oklch(85.0% 0.070 78.7)",
+        "tonalRamp": [
+          "#120900",
+          "#332100",
+          "#563d0e",
+          "#775c30",
+          "#997e51",
+          "#bda073",
+          "#e2c496",
+          "#ffecce"
+        ]
+      },
+      "accent-ink": {
+        "role": "tertiary",
+        "displayName": "Deep Bronze",
+        "canonical": "#805d3b",
+        "oklch": "oklch(50.7% 0.067 64.5)",
+        "tonalRamp": [
+          "#150800",
+          "#381e02",
+          "#5a3a17",
+          "#7c5937",
+          "#9f7a57",
+          "#c39d79",
+          "#e8c19c",
+          "#ffebd8"
+        ]
+      },
+      "accent-tint": {
+        "role": "tertiary",
+        "displayName": "Bronze Wash",
+        "canonical": "#faf4ec",
+        "oklch": "oklch(97.0% 0.012 75.4)",
+        "tonalRamp": [
+          "#0e0a06",
+          "#29241e",
+          "#46413b",
+          "#65605a",
+          "#87817a",
+          "#aaa49d",
+          "#cec8c0",
+          "#f3ede6"
+        ]
+      },
+      "steel": {
+        "role": "neutral",
+        "displayName": "Steel",
+        "canonical": "#5f6f78",
+        "oklch": "oklch(53.2% 0.024 232.5)",
+        "tonalRamp": [
+          "#020d14",
+          "#19272f",
+          "#36444d",
+          "#54646d",
+          "#75858e",
+          "#97a8b2",
+          "#bbccd6",
+          "#e0f2fc"
+        ]
+      },
+      "on-tertiary": {
+        "role": "neutral",
+        "displayName": "Ink on Bronze",
+        "canonical": "#001112",
+        "oklch": "oklch(16.1% 0.027 199.2)",
+        "tonalRamp": [
+          "#000e0f",
+          "#14292a",
+          "#314748",
+          "#4f6667",
+          "#708889",
+          "#92abab",
+          "#b5cfd0",
+          "#daf5f5"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Label",
+        "canonical": "#677173",
+        "oklch": "oklch(54.1% 0.013 211.0)",
+        "tonalRamp": [
+          "#060d0e",
+          "#1e2728",
+          "#3b4446",
+          "#596365",
+          "#7a8487",
+          "#9da7a9",
+          "#c0cbce",
+          "#e6f1f3"
+        ]
+      },
+      "muted-on-dark": {
+        "role": "neutral",
+        "displayName": "Muted Label on Navy",
+        "canonical": "#7d888a",
+        "oklch": "oklch(61.8% 0.013 209.8)",
+        "tonalRamp": [
+          "#050d0e",
+          "#1e2729",
+          "#3a4446",
+          "#596365",
+          "#7a8587",
+          "#9ca7aa",
+          "#c0ccce",
+          "#e5f1f3"
+        ]
+      },
+      "warning": {
+        "role": "semantic",
+        "displayName": "Error Red",
+        "canonical": "#b3261e",
+        "oklch": "oklch(50.1% 0.178 28.7)",
+        "tonalRamp": [
+          "#1f0000",
+          "#4d0101",
+          "#800304",
+          "#b0221b",
+          "#d84c3f",
+          "#fd7565",
+          "#fdb4a9",
+          "#fee9e5"
+        ]
+      },
+      "warning-bright": {
+        "role": "semantic",
+        "displayName": "Error Red on Navy",
+        "canonical": "#ff8a80",
+        "oklch": "oklch(75.9% 0.144 26.1)",
+        "tonalRamp": [
+          "#1f0001",
+          "#4c0105",
+          "#7d0e13",
+          "#a33733",
+          "#ca5b53",
+          "#f27e75",
+          "#ffb3aa",
+          "#fee9e6"
+        ]
+      },
+      "warning-text": {
+        "role": "semantic",
+        "displayName": "Error Text on Navy",
+        "canonical": "#ffb4ab",
+        "oklch": "oklch(83.8% 0.089 26.8)",
+        "tonalRamp": [
+          "#1f0000",
+          "#470c0b",
+          "#692c27",
+          "#8d4c45",
+          "#b26d65",
+          "#d78f87",
+          "#feb3aa",
+          "#ffe9e6"
+        ]
+      },
+      "border-dark": {
+        "role": "neutral",
+        "displayName": "Navy Hairline",
+        "canonical": "#1f3436",
+        "oklch": "oklch(30.8% 0.027 203.5)",
+        "tonalRamp": [
+          "#000e10",
+          "#14292b",
+          "#314648",
+          "#506668",
+          "#70878a",
+          "#92aaad",
+          "#b6cfd1",
+          "#dbf4f7"
+        ]
+      },
+      "border-light": {
+        "role": "neutral",
+        "displayName": "Paper Hairline",
+        "canonical": "#d9e2e0",
+        "oklch": "oklch(90.5% 0.010 181.4)",
+        "tonalRamp": [
+          "#070d0b",
+          "#202725",
+          "#3c4442",
+          "#5b6361",
+          "#7c8483",
+          "#9fa7a5",
+          "#c2cbc9",
+          "#e8f1ef"
+        ]
+      },
+      "border-control": {
+        "role": "neutral",
+        "displayName": "Control Boundary",
+        "canonical": "#808b8d",
+        "oklch": "oklch(62.8% 0.013 209.8)",
+        "tonalRamp": [
+          "#050d0e",
+          "#1e2729",
+          "#3a4446",
+          "#596365",
+          "#7a8587",
+          "#9ca7aa",
+          "#c0ccce",
+          "#e5f1f3"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display-hero-desktop": {
+        "displayName": "Hero Display",
+        "purpose": "Home and /kr hero headline only; 900 weight, line-height never below 1.0."
+      },
+      "display-section": {
+        "displayName": "Section Display",
+        "purpose": "Full-sentence section headlines, capped at 52px."
+      },
+      "proof-value": {
+        "displayName": "Proof Value",
+        "purpose": "Hero proof strip values, white on navy."
+      },
+      "heading-row": {
+        "displayName": "Service Row Heading",
+        "purpose": "Numbered full-width service rows."
+      },
+      "heading-card": {
+        "displayName": "Card Heading",
+        "purpose": "Card and panel headings."
+      },
+      "body-lg": {
+        "displayName": "Lead Body",
+        "purpose": "Leads and section bodies, measure 34em."
+      },
+      "body-md": {
+        "displayName": "Body",
+        "purpose": "Default body copy, never below 16px."
+      },
+      "label-caps": {
+        "displayName": "Caps Label",
+        "purpose": "Badges and short labels, the 12px floor; five words or fewer."
+      },
+      "label-mono": {
+        "displayName": "Mono Kicker",
+        "purpose": "At most one eyebrow above a service-page H1; never stacked."
+      },
+      "display-hero-ko": {
+        "displayName": "Korean Hero Display",
+        "purpose": "/kr hero; 1.12 leading, near-zero tracking, keep-all breaking."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-ambient",
+        "value": "0 18px 70px rgba(0,17,18,.06)",
+        "purpose": "Soft lift under light cards."
+      },
+      {
+        "name": "card-ambient-lg",
+        "value": "0 24px 90px rgba(0,17,18,.06)",
+        "purpose": "Larger light panels."
+      },
+      {
+        "name": "hero-panel",
+        "value": "0 34px 110px rgba(0,0,0,.44)",
+        "purpose": "Hero visual panel on navy."
+      },
+      {
+        "name": "focus-inner",
+        "value": "0 0 0 2px #001112",
+        "purpose": "Inner navy layer of the two-tone focus ring (outer: 3px #E7C99A outline, 2px offset)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "transition-default",
+        "value": "all 150ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Tailwind `transition` default used for hover fills and border shifts."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Flat bronze pill with ink text: quote and contact actions.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Get a quote</a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;border-radius:999px;background:var(--ks-accent,#b88a5a);color:var(--ks-navy,#001112);font:800 16px/1 ui-sans-serif,system-ui,sans-serif;text-decoration:none;transition:background-color 150ms}.ds-btn-primary:hover{background:var(--ks-accent-strong,#a5794d)}.ds-btn-primary:focus-visible{outline:3px solid #e7c99a;outline-offset:2px;box-shadow:0 0 0 2px #001112}"
+    },
+    {
+      "name": "Outline CTA on Navy",
+      "kind": "button",
+      "refersTo": "button-secondary-dark",
+      "description": "Secondary partner or contact action on dark surfaces.",
+      "html": "<div style=\"background:#001112;padding:24px\"><a class=\"ds-btn-outline\" href=\"#\">Explore Partner Network</a></div>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;border-radius:999px;border:1px solid rgba(255,255,255,.45);color:#fff;font:700 16px/1 ui-sans-serif,system-ui,sans-serif;text-decoration:none;transition:border-color 150ms,background-color 150ms}.ds-btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.06)}.ds-btn-outline:focus-visible{outline:3px solid #e7c99a;outline-offset:2px;box-shadow:0 0 0 2px #001112}"
+    },
+    {
+      "name": "Site Header",
+      "kind": "nav",
+      "description": "The one header every page carries: logo, nav, language pill, contact, quote.",
+      "html": "<header class=\"ds-nav\"><span class=\"ds-nav-logo\">KS WAYS</span><nav class=\"ds-nav-links\"><a href=\"#\">Company</a><a href=\"#\">Services</a><a href=\"#\">Network</a><a href=\"#\">Solutions</a></nav><div class=\"ds-nav-actions\"><a class=\"ds-nav-lang\" href=\"#\">KR</a><a class=\"ds-nav-quote\" href=\"#\">Get a quote</a></div></header>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 24px;background:#001112;color:#fff;font-family:ui-sans-serif,system-ui,sans-serif}.ds-nav-logo{font-weight:900;letter-spacing:.04em}.ds-nav-links{display:flex;gap:24px}.ds-nav-links a{color:rgba(255,255,255,.76);font-size:14px;font-weight:700;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}.ds-nav-links a:hover{color:#e7c99a}.ds-nav-actions{display:flex;gap:8px}.ds-nav-lang{display:grid;place-items:center;height:44px;min-width:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.3);color:#fff;font-size:14px;font-weight:700;text-decoration:none}.ds-nav-lang:hover{border-color:rgba(255,255,255,.7)}.ds-nav-quote{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:#b88a5a;color:#001112;font-size:14px;font-weight:800;text-decoration:none}.ds-nav-quote:hover{background:#a5794d}.ds-nav a:focus-visible{outline:3px solid #e7c99a;outline-offset:2px;box-shadow:0 0 0 2px #001112}"
+    },
+    {
+      "name": "Quote Field",
+      "kind": "input",
+      "refersTo": "form-field",
+      "description": "Label above, white field, control-boundary border, legible placeholder.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Gross weight</span><input class=\"ds-field-input\" placeholder=\"e.g. 480 kg\"></label>",
+      "css": ".ds-field{display:block;font-family:ui-sans-serif,system-ui,sans-serif;max-width:360px}.ds-field-label{display:block;font-size:14px;font-weight:700;color:#001112}.ds-field-input{margin-top:8px;width:100%;min-height:48px;padding:0 16px;border:1px solid var(--ks-border-control,#808b8d);border-radius:16px;background:#fff;color:#001112;font-size:16px;font-weight:600}.ds-field-input::placeholder{color:rgba(0,17,18,.64);font-weight:500}.ds-field-input:hover{border-color:#a5794d}.ds-field-input:focus-visible{outline:3px solid #e7c99a;outline-offset:2px;box-shadow:0 0 0 2px #001112}"
+    },
+    {
+      "name": "Service Row",
+      "kind": "custom",
+      "description": "Numbered full-width service row: index, title, description, arrow disc on hover.",
+      "html": "<a class=\"ds-row\" href=\"#\"><span class=\"ds-row-index\">01</span><span class=\"ds-row-title\">Ocean Freight</span><span class=\"ds-row-body\">Primary FCL/LCL strength with carrier coordination, loading review, and partner handoff.</span><span class=\"ds-row-arrow\">→</span></a>",
+      "css": ".ds-row{display:grid;grid-template-columns:48px 1fr 2fr 44px;gap:24px;align-items:center;padding:28px 24px;border-top:1px solid #d9e2e0;background:#fff;color:#001112;text-decoration:none;font-family:ui-sans-serif,system-ui,sans-serif;transition:background-color 150ms}.ds-row:hover{background:#faf4ec}.ds-row-index{font:600 13px/1.4 ui-monospace,monospace;letter-spacing:.12em;color:#805d3b}.ds-row-title{font-size:26px;font-weight:800;line-height:1.15;letter-spacing:-.02em}.ds-row-body{font-size:16px;line-height:1.6;color:rgba(0,17,18,.76)}.ds-row-arrow{display:grid;place-items:center;width:44px;height:44px;border-radius:999px;border:1px solid #d9e2e0;font-size:18px;transition:background-color 150ms}.ds-row:hover .ds-row-arrow{background:#b88a5a;border-color:#b88a5a}.ds-row:focus-visible{outline:3px solid #e7c99a;outline-offset:2px;box-shadow:0 0 0 2px #001112}"
+    },
+    {
+      "name": "Hero Proof Strip",
+      "kind": "custom",
+      "description": "The page's one full credential set, closed by the bronze route line.",
+      "html": "<div class=\"ds-proof\"><div><span>Global network</span><b>WCA Member</b></div><div><span>Core services</span><b>Ocean · Air</b></div><div><span>Industry experience</span><b>30+ years</b></div></div>",
+      "css": ".ds-proof{display:grid;grid-template-columns:repeat(3,1fr);background:#001112;color:#fff;font-family:ui-sans-serif,system-ui,sans-serif;border-bottom:4px solid #b88a5a}.ds-proof div{padding:24px;border-left:1px solid rgba(255,255,255,.16)}.ds-proof div:first-child{border-left:0}.ds-proof span{display:block;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.56)}.ds-proof b{display:block;margin-top:8px;font-size:40px;font-weight:900;line-height:1;letter-spacing:-.025em}"
+    },
+    {
+      "name": "Network Badge",
+      "kind": "chip",
+      "refersTo": "badge-network",
+      "description": "Compact caps label for network and credential context.",
+      "html": "<span class=\"ds-chip\">WCA Inter Global member</span>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;min-height:32px;padding:0 14px;border-radius:999px;border:1px solid rgba(231,201,154,.4);background:#031d20;color:#e7c99a;font:900 12px/1.2 ui-sans-serif,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Korea Origin Desk",
+    "overview": "The site is the desk an overseas forwarder hands Korea-origin cargo to: calm, accountable and operational. Dark navy carries the authority, bronze marks the route and the next action, and paper keeps the working detail readable. Everything on the page should help a partner decide they can rely on this desk, so precise execution detail always beats decoration or repeated badges.",
+    "keyCharacteristics": [
+      "Narrow navy, bronze, gold and paper palette, with contrast computed rather than eyeballed.",
+      "Heavy system-sans headlines over practical body copy, tuned separately for English and Korean.",
+      "Hairline rules and full-width rows instead of stacked card grids.",
+      "Rounded, high-trust forms: pills for actions, large radii for panels.",
+      "One recognizable route motif: the bronze route line."
+    ],
+    "rules": [
+      {
+        "name": "The One Desk Rule",
+        "body": "Every page presents the same desk: the same header with navigation, the language toggle and the quote CTA, and the same footer. A subpage never gets a reduced header.",
+        "section": "overview"
+      },
+      {
+        "name": "The Say It Once Rule",
+        "body": "A credential (WCA membership, Ocean · Air, 30+ years) appears once where it does its job: the hero proof strip and the footer credential cards. Other bands carry a concrete fact the strip does not.",
+        "section": "overview"
+      }
+    ],
+    "dos": [
+      "Do lead with global ocean and air logistics, WCA network, and ocean freight strength.",
+      "Do use the official KS WAYS logo assets instead of text placeholders.",
+      "Do keep CTAs clear: quote, partner enquiry, schedule consultation.",
+      "Do verify mobile typography, CTA stacking, footer links, and proof cards at `390px` width.",
+      "Do preserve high contrast between dark surfaces and white/gold text, and verify any accent pairing against the contrast table in **Colors** before shipping.",
+      "Do use `KS WAYS` with a space in public-facing brand copy.",
+      "Do keep the public tone polished, concise, and partner-ready."
+    ],
+    "donts": [
+      "Do not describe KS WAYS primarily as a Korea-based local company.",
+      "Do not spell the visible brand as `KSWAYS`, `KSWays`, or `KS Ways` — `KS WAYS` is the only correct form. Enforced by `src/site-quality.test.ts`, which walks the exported copy data rather than grepping files, so identifiers like `NEXT_PUBLIC_KSWAYS_CALENDLY_URL` do not false-positive.",
+      "Do not add arbitrary colors outside the navy/bronze/gold/steel/paper palette.",
+      "Do not place white text on the bronze accent (`#B88A5A`); it measures 3.08:1 and fails WCAG AA.",
+      "Do not change a palette value in one component only — the palette is asserted site-wide by `src/brand-palette.test.ts`.",
+      "Do not distort, recolor, or replace official logo assets with text-only placeholders.",
+      "Do not create mobile CTAs that are narrow, cramped, or under `44px` high.",
+      "Do not leak internal pricing, margin, or private operational assumptions into public copy.",
+      "Do not rely on build success alone for design changes; use screenshot/DOM QA for production-facing UI."
+    ]
+  }
+}
