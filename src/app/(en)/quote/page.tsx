@@ -1,10 +1,12 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
+import { QuoteForm } from '@/components/QuoteForm';
 import { QuoteFormFromSearch } from '@/components/QuoteFormFromSearch';
 import { SiteFooter } from '@/components/SiteFooter';
 import { SiteHeader } from '@/components/SiteHeader';
 import { BodyText } from '@/components/Typography';
 import { homeContent } from '@/lib/content';
+import { getQuoteInitialValues } from '@/lib/quote-form';
 import { brandName, contactEmail, shareImage, siteUrl } from '@/lib/seo';
 
 export const metadata: Metadata = {
@@ -46,7 +48,10 @@ export default function QuotePage() {
         </div>
       </section>
 
-      <Suspense fallback={null}>
+      {/* The fallback is the form itself with default values, so the prerendered HTML already
+          reserves its height. A null fallback painted the footer mid-screen and then pushed it
+          down when the client form arrived: CLS 0.43 (guarded by e2e/layout-shift.spec.ts). */}
+      <Suspense fallback={<QuoteForm initialValues={getQuoteInitialValues(null)} />}>
         <QuoteFormFromSearch />
       </Suspense>
       <SiteFooter footer={homeContent.en.footer} />
