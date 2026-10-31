@@ -1,1 +1,1 @@
-COPY.md 포지셔닝 락: 한국발 전세계 해상·항공 + WCA 파트너 네트워킹 중심으로 전환
+📝 PRODUCT.md 추가·DESIGN.md 병합 갱신(North Star·One Desk/Say It Once 규칙·히어로 증거띠·서비스 행 현행화)·.impeccable/design.json 사이드카 생성
