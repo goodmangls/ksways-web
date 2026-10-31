@@ -30,6 +30,10 @@ export function SiteHeader({ nav, homeHref, toggleHref, quoteHref, isHome = fals
 
   return (
     <header className="relative z-30 mx-auto flex h-[80px] w-full max-w-[1280px] items-center justify-between gap-4 px-6 sm:px-10 lg:px-14">
+      {/* First tab stop on every page (WCAG 2.4.1): hidden until focused, then a bronze pill over the logo. */}
+      <a href="#content" className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-[18px] focus:z-50 focus:inline-flex focus:min-h-11 focus:items-center focus:rounded-full focus:bg-[#b88a5a] focus:px-5 focus:text-sm focus:font-extrabold focus:text-[#001112] sm:focus:left-10 lg:focus:left-14">
+        {nav.skipToContent}
+      </a>
       <BrandLogo href={homeHref} priority />
       <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-[15px] font-semibold text-white/78 lg:flex">
         <a href={section('company')} className="transition hover:text-white">{nav.company}</a>
