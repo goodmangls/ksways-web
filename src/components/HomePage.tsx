@@ -141,7 +141,7 @@ export function HomePage({ locale, copy }: Props) {
       <section aria-labelledby="hero-heading" className="relative isolate bg-[#001112] text-white">
         <SiteHeader nav={copy.nav} homeHref={locale === 'en' ? '/' : '/kr'} toggleHref={toggleHref} quoteHref={quoteHref} isHome />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-[1280px] items-center gap-12 px-6 pb-16 pt-10 sm:px-10 lg:min-h-[640px] lg:grid-cols-[1.05fr_.95fr] lg:gap-14 lg:px-14 lg:pb-20 lg:pt-14">
+        <div id="content" className="relative z-10 mx-auto grid w-full max-w-[1280px] items-center gap-12 px-6 pb-16 pt-10 sm:px-10 lg:min-h-[640px] lg:grid-cols-[1.05fr_.95fr] lg:gap-14 lg:px-14 lg:pb-20 lg:pt-14">
           <div>
             <p className="font-mono text-[13px] font-semibold uppercase tracking-[.12em] text-[#e7c99a]">{copy.hero.eyebrow}</p>
             <h1 id="hero-heading" className="ks-type-hero mt-6 text-[clamp(40px,11vw,52px)] font-black leading-[1.04] tracking-[-.028em] text-balance sm:text-[clamp(52px,6.2vw,88px)] sm:leading-[1] sm:tracking-[-.03em]">

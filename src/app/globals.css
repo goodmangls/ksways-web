@@ -40,7 +40,11 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-a { color: inherit; }
+/* No `a { color: inherit; }` here. Tailwind's preflight already sets it inside
+   @layer base. A copy out here is unlayered, and unlayered CSS beats every layer,
+   so it silently overrode each `text-[…]` utility on a link: the bronze CTAs
+   rendered white on bronze (3.07:1) from launch until 2026-10-31.
+   Guarded by e2e/rendered-color.spec.ts, which checks the computed colour. */
 
 :focus-visible {
   /* Two-tone focus ring. Geometry outward from the element edge:

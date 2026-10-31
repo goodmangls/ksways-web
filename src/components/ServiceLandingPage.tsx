@@ -54,7 +54,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
       <section aria-labelledby="service-heading" className="bg-[#001112] text-white">
         <SiteHeader nav={homeContent.en.nav} homeHref="/" toggleHref="/kr" quoteHref={quoteHref} />
 
-        <div className="mx-auto max-w-[1280px] px-6 pb-16 pt-10 sm:px-10 lg:px-14 lg:pb-20 lg:pt-16">
+        <div id="content" className="mx-auto max-w-[1280px] px-6 pb-16 pt-10 sm:px-10 lg:px-14 lg:pb-20 lg:pt-16">
           <nav aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-2 text-sm text-white/72">
               <li>

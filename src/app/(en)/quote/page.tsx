@@ -35,7 +35,7 @@ export default function QuotePage() {
       <section className="relative overflow-hidden bg-[#001112] text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(184,138,90,.26),transparent_30%),linear-gradient(120deg,rgba(0,17,18,.98),rgba(2,31,34,.88))]" />
         <SiteHeader nav={homeContent.en.nav} homeHref="/" toggleHref="/kr" quoteHref="/quote" />
-        <div className="relative z-10 mx-auto max-w-[1280px] px-6 pb-8 sm:px-10 lg:px-14">
+        <div id="content" className="relative z-10 mx-auto max-w-[1280px] px-6 pb-8 sm:px-10 lg:px-14">
           <div className="max-w-5xl py-10 lg:py-14">
             <p className="text-sm font-black uppercase tracking-[.16em] text-[#e7c99a]">Freight Quote Request</p>
             <h1 className="ks-type-hero mt-5 text-[clamp(40px,6vw,82px)] font-black leading-[1.04] tracking-[-.028em] text-balance sm:leading-[1] sm:tracking-[-.03em]">Get a quote for ocean, air, and special cargo.</h1>

@@ -325,6 +325,8 @@ These rules were adopted on 2026-10-06 from the KS WAYS design system (Claude De
 | Rule | Enforced by |
 |---|---|
 | Text floors — ink 64% on light, white 56% on dark | `src/text-contrast.test.ts` (and the floors are proven to clear AA 4.5:1) |
+| Ink on bronze **as rendered** — every visible bronze surface's text computes to `ink`, at rest and on hover, on every page at 375 and 1440px | `e2e/rendered-color.spec.ts`. Source-reading guards cannot see the cascade: an unlayered `a { color: inherit; }` in `globals.css` overrode every link `text-[…]` utility, and the bronze CTAs shipped white-on-bronze (3.07:1) until 2026-10-31. Never add unlayered element rules (`a {}`, `button {}`, `input {}`); put them in `@layer base` |
+| Skip link — first tab stop on every page, visible on focus, lands after the header | `SiteHeader.tsx` (`#content` on each page's hero content), checked by `e2e/skip-link.spec.ts` |
 | Section headings ≤ 52px at 1.08; card headings at their token leading (`heading-pillar` 1.2, `heading-card` 1.12); body 16px+ (set, not inherited) at 1.6–1.65; measure ≤ 34em; secondary text at the 76% token | `src/components/Typography.tsx` (`SectionHeading`, `CardHeading`, `BodyText`), checked by `src/components/Typography.test.tsx` |
 | Every body-size paragraph (no `text-sm`/`text-xs`) on every page sits at 1.6–1.65; no line-height below 1.0 anywhere | `Typography.test.tsx` scans `src/components` and `src/app` |
 | Korean leading 1.75–1.8 body, ≥ 1.12 display, measure 36em, tracking ≥ -0.02em | `:root:lang(ko)` rules in `src/app/globals.css` on the `ks-type-*` / `ks-measure` hooks, checked by `Typography.test.tsx` |
