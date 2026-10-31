@@ -32,8 +32,10 @@ export function BrandLogo({ href = '/', priority = false }: Props) {
       <Image
         src="/assets/ksways-logo-reverse.png"
         alt="KS WAYS"
-        width={935}
-        height={337}
+        // Intrinsic size = the largest rendered size (36px tall, sm:h-9). With the 935px source
+        // size here, next/image served the 1080w variant for a ~100px mark on every page.
+        width={100}
+        height={36}
         priority={priority}
         className="h-8 w-auto object-contain transition-transform group-hover:scale-[1.03] sm:h-9"
       />
