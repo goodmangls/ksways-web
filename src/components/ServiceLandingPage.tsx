@@ -2,8 +2,8 @@ import Link from 'next/link';
 import type { ServicePage } from '@/lib/service-pages';
 import { homeContent } from '@/lib/content';
 import { faqJsonLd, serviceJsonLd, siteUrl } from '@/lib/seo';
-import { BrandLogo } from './BrandLogo';
 import { SiteFooter } from './SiteFooter';
+import { SiteHeader } from './SiteHeader';
 import { BodyText, CardHeading, SectionHeading } from './Typography';
 import { WcaMemberTools } from './WcaMemberTools';
 
@@ -52,12 +52,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
       />
 
       <section aria-labelledby="service-heading" className="bg-[#001112] text-white">
-        <header className="mx-auto flex h-[80px] max-w-[1280px] items-center justify-between gap-6 px-6 sm:px-10 lg:px-14">
-          <BrandLogo priority />
-          <a href={quoteHref} className="inline-flex min-h-11 items-center rounded-full bg-[#b88a5a] px-5 text-sm font-extrabold text-[#001112] transition hover:bg-[#a5794d]">
-            Get a quote
-          </a>
-        </header>
+        <SiteHeader nav={homeContent.en.nav} homeHref="/" toggleHref="/kr" quoteHref={quoteHref} />
 
         <div className="mx-auto max-w-[1280px] px-6 pb-16 pt-10 sm:px-10 lg:px-14 lg:pb-20 lg:pt-16">
           <nav aria-label="Breadcrumb">

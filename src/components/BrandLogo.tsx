@@ -28,7 +28,7 @@ type Props = {
  */
 export function BrandLogo({ href = '/', priority = false }: Props) {
   return (
-    <Link href={href} aria-label="KS WAYS home" className="group inline-flex min-h-11 items-center">
+    <Link href={href} aria-label="KS WAYS home" className="group inline-flex min-h-11 shrink-0 items-center">
       <Image
         src="/assets/ksways-logo-reverse.png"
         alt="KS WAYS"

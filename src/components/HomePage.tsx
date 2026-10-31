@@ -6,10 +6,9 @@ import { getLocalizedPath } from '@/lib/i18n';
 import type { homeContent } from '@/lib/content';
 import { faqJsonLd, homeFaqs, organizationJsonLd } from '@/lib/seo';
 import { getHeroSlides } from '@/lib/hero-slides';
-import { BrandLogo } from './BrandLogo';
 import { ContactActions } from './ContactActions';
-import { MobileNav } from './MobileNav';
 import { SiteFooter } from './SiteFooter';
+import { SiteHeader } from './SiteHeader';
 import { BodyText, CardHeading, SectionHeading } from './Typography';
 import { WcaBadge } from './WcaBadge';
 import { WcaMemberTools } from './WcaMemberTools';
@@ -140,24 +139,7 @@ export function HomePage({ locale, copy }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }}
       />
       <section aria-labelledby="hero-heading" className="relative isolate bg-[#001112] text-white">
-        {/* z-30: 히어로 콘텐츠·사진 크레딧보다 위 — MobileNav 패널이 가려지면 링크 클릭이 차단된다 (e2e mobile-nav 가드) */}
-        <header className="relative z-30 mx-auto flex h-[80px] w-full max-w-[1280px] items-center justify-between px-6 sm:px-10 lg:px-14">
-          <BrandLogo href={locale === 'en' ? '/' : '/kr'} priority />
-          <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-[15px] font-semibold text-white/78 lg:flex">
-            <a href="#company" className="transition hover:text-white">{copy.nav.company}</a>
-            <a href="#services" className="transition hover:text-white">{copy.nav.services}</a>
-            <a href="#network" className="transition hover:text-white">{copy.nav.network}</a>
-            <a href="#solutions" className="transition hover:text-white">{copy.nav.solutions}</a>
-          </nav>
-          <div className="flex items-center gap-2.5">
-            <Link href={toggleHref} className="grid h-11 min-w-11 place-items-center rounded-full border border-white/30 px-4 text-sm font-bold text-white transition hover:border-white/70" aria-label="Toggle language">
-              {copy.nav.langToggle}
-            </Link>
-            <a href="#contact" className="hidden min-h-11 items-center rounded-full border border-white/45 px-5 text-sm font-bold text-white transition hover:border-white hover:bg-white/[.06] sm:inline-flex">{copy.nav.contact}</a>
-            <a href={quoteHref} className="inline-flex min-h-11 items-center rounded-full bg-[#b88a5a] px-5 text-sm font-extrabold text-[#001112] transition hover:bg-[#a5794d]">{copy.nav.quote}</a>
-            <MobileNav nav={copy.nav} />
-          </div>
-        </header>
+        <SiteHeader nav={copy.nav} homeHref={locale === 'en' ? '/' : '/kr'} toggleHref={toggleHref} quoteHref={quoteHref} isHome />
 
         <div className="relative z-10 mx-auto grid w-full max-w-[1280px] items-center gap-12 px-6 pb-16 pt-10 sm:px-10 lg:min-h-[640px] lg:grid-cols-[1.05fr_.95fr] lg:gap-14 lg:px-14 lg:pb-20 lg:pt-14">
           <div>
