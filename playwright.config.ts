@@ -11,7 +11,7 @@ export default defineConfig({
   testDir: './e2e',
   // prod-smoke(실배포 카나리)와 visual(픽셀 기준선)은 필수 게이트에서 제외한다.
   // 각자 playwright.prod.config.ts / playwright.visual.config.ts 로만 실행된다.
-  testIgnore: /(prod-smoke|visual)\.spec\.ts/,
+  testIgnore: /(prod-smoke|visual|placeholder-fit)\.spec\.ts/,
   timeout: 30_000,
   retries: 0,
   reporter: isCI ? [['list'], ['html', { open: 'never' }]] : [['list']],

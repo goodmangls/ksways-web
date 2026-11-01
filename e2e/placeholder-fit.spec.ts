@@ -4,6 +4,9 @@ import { expect, test } from '@playwright/test';
 // "Factory / warehouse address, Pl" 처럼 단어 중간에서 잘렸다. placeholder 의 렌더 폭은
 // 직접 잴 수 없으므로, 같은 글꼴 굵기로 값에 넣어 scrollWidth 를 잰다. 긴 형식 안내는
 // placeholder 가 아니라 입력칸 아래 helper 줄에 둔다.
+//
+// 글꼴 폭에 좌우되는 측정이라 visual config(공식 playwright 이미지)에서만 돈다. CI e2e 잡은
+// 러너에 직접 설치한 대체 글꼴(DejaVu 계열, 폭이 넓다)로 렌더해 실제 기기(SF·Roboto)와 다르다.
 
 for (const width of [320, 375]) {
   test(`/quote @${width}: every single-line placeholder fits its field`, async ({ page }) => {
