@@ -207,8 +207,10 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
   }
 
   return (
-    <section className="px-6 pb-20 sm:px-10 lg:px-14">
-      <div className="grid gap-8 rounded-[36px] border border-[#001112]/10 bg-white p-6 shadow-[0_24px_90px_rgba(0,17,18,.08)] sm:p-8 lg:grid-cols-[1.2fr_.8fr] lg:p-10">
+    <section className="mx-auto max-w-[1280px] px-6 pb-20 sm:px-10 lg:px-14">
+      {/* Below sm the form sits straight on the page: the white card, its padding and the
+          grey transport panel cost ~50px of a 375px screen (design review F-004). */}
+      <div className="grid gap-8 sm:rounded-[36px] sm:border sm:border-[#001112]/10 sm:bg-white sm:p-8 sm:shadow-[0_24px_90px_rgba(0,17,18,.08)] lg:grid-cols-[1.2fr_.8fr] lg:p-10">
         <form ref={formRef} className="grid gap-8" aria-label="KS WAYS structured freight quote form" noValidate>
           <div>
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#805d3b]">Quote details</p>
@@ -218,8 +220,8 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             </BodyText>
           </div>
 
-          <fieldset className="rounded-[28px] border border-[#001112]/10 bg-[#f4f7f6] p-4 sm:p-5">
-            <legend className="px-2 text-sm font-black uppercase tracking-[.14em] text-[#805d3b]">Transport mode *</legend>
+          <fieldset className="sm:rounded-[28px] sm:border sm:border-[#001112]/10 sm:bg-[#f4f7f6] sm:p-5">
+            <legend className="text-sm font-black uppercase tracking-[.14em] text-[#805d3b] sm:px-2">Transport mode *</legend>
             <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
               {transportModeOptions.map((option) => {
                 const isActive = (values.transportMode ?? 'Not sure') === option.value;
@@ -265,7 +267,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             </div>
           ) : null}
 
-          <div className="rounded-[28px] border border-[#001112]/10 bg-[#f4f7f6] p-5 lg:hidden">
+          <div className="rounded-[28px] border border-[#001112]/10 bg-white p-5 sm:bg-[#f4f7f6] lg:hidden">
             <p className="text-sm font-black uppercase tracking-[.14em] text-[#805d3b]">Review</p>
             <p className="mt-2 text-sm leading-relaxed text-[#001112]/64">
               {canOpenEmail ? 'All required fields are ready.' : `${missingRequiredFields.length} required fields left before opening a clean email draft.`}
@@ -347,7 +349,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
               })}
             </ol>
           </nav>
-          <div className="mt-4 rounded-2xl border border-white/12 bg-white/[.06] p-4 text-sm leading-relaxed">
+          <div className="mt-4 border-t border-white/12 pt-4 text-sm leading-relaxed sm:rounded-2xl sm:border sm:bg-white/[.06] sm:p-4">
             <p className="font-black text-white">Your request so far</p>
             {summaryRows.length > 0 ? (
               <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2">
@@ -362,7 +364,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
               <p className="mt-2 text-white/66">Nothing entered yet.</p>
             )}
           </div>
-          <div className="mt-4 rounded-2xl border border-white/12 bg-white/[.06] p-4 text-sm leading-relaxed text-white/66">
+          <div className="mt-4 border-t border-white/12 pt-4 text-sm leading-relaxed text-white/66 sm:rounded-2xl sm:border sm:bg-white/[.06] sm:p-4">
             <p className="font-black text-white">Recommended attachments</p>
             <ul className="mt-3 grid gap-2">
               <li>• Packing list / commercial invoice</li>
