@@ -1,1 +1,1 @@
-🎨 .impeccable/design.json 사이드카를 현재 DESIGN.md·컴포넌트 기준으로 재생성
+✏️ 영문 견적 CTA 표기를 'Get a Quote'로 통일 — 헤더·히어로·문의 섹션·푸터

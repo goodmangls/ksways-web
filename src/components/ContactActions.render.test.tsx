@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { ContactActions } from './ContactActions';
 
 const baseProps = {
-  quoteLabel: 'Request a quote',
+  quoteLabel: 'Get a Quote',
   partnerLabel: 'Partner with us',
   scheduleLabel: 'Schedule a call',
   email: 'info@ksways.co',
@@ -17,7 +17,7 @@ describe('ContactActions render', () => {
   it('routes quote to the quote page and partner/schedule to prefilled mailto drafts', () => {
     render(<ContactActions {...baseProps} />);
 
-    expect(screen.getByRole('link', { name: /Request a quote/ })).toHaveAttribute('href', '/quote');
+    expect(screen.getByRole('link', { name: /Get a Quote/ })).toHaveAttribute('href', '/quote');
 
     const partner = screen.getByRole('link', { name: /Partner with us/ });
     expect(partner.getAttribute('href')).toContain('mailto:info@ksways.co?subject=');

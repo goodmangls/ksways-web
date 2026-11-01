@@ -51,7 +51,7 @@ test('the header quote CTA keeps ink text on hover', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   // 헤더가 <main> 안에 있어 브라우저는 banner 랜드마크로 노출하지 않는다 — 요소로 찾는다.
-  const cta = page.locator('header').getByRole('link', { name: 'Get a quote' });
+  const cta = page.locator('header').getByRole('link', { name: 'Get a Quote' });
   await cta.hover();
   await expect(cta).toHaveCSS('background-color', BRONZE[1]);
   await expect(cta).toHaveCSS('color', INK);
