@@ -1,1 +1,1 @@
-🎨 .impeccable/design.json 사이드카를 현재 DESIGN.md·컴포넌트 기준으로 재생성
+📝 DESIGN.md·COPY.md를 현재 코드 기준으로 갱신 — 법인명·견적 폼 규칙·라이브 반영 현황
