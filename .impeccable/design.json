@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-31T09:59:34.416Z",
+  "generatedAt": "2026-11-01T05:48:14.000Z",
   "title": "Design System: KS WAYS Global Logistics",
   "extensions": {
     "colorMeta": {
@@ -342,6 +342,10 @@
       }
     },
     "typographyMeta": {
+      "display-hero-mobile": {
+        "displayName": "Hero Display (mobile)",
+        "purpose": "Hero headline below sm; 900 weight, relaxed to 1.04 leading."
+      },
       "display-hero-desktop": {
         "displayName": "Hero Display",
         "purpose": "Home and /kr hero headline only; 900 weight, line-height never below 1.0."
@@ -356,19 +360,27 @@
       },
       "heading-row": {
         "displayName": "Service Row Heading",
-        "purpose": "Numbered full-width service rows."
+        "purpose": "Numbered full-width service rows; 22px mobile, 26px from sm."
+      },
+      "heading-pillar": {
+        "displayName": "Pillar Heading",
+        "purpose": "Pillar and process columns, 22px."
       },
       "heading-card": {
         "displayName": "Card Heading",
-        "purpose": "Card and panel headings."
+        "purpose": "Card and panel headings, 24px; quote-form panel titles."
       },
       "body-lg": {
         "displayName": "Lead Body",
-        "purpose": "Leads and section bodies, measure 34em."
+        "purpose": "Leads and section bodies on every page, measure 34em."
       },
       "body-md": {
         "displayName": "Body",
         "purpose": "Default body copy, never below 16px."
+      },
+      "label-ui": {
+        "displayName": "UI Label",
+        "purpose": "14px nav links, CTA and form labels, helpers, captions, proof-strip labels. Not running body copy."
       },
       "label-caps": {
         "displayName": "Caps Label",
@@ -376,11 +388,23 @@
       },
       "label-mono": {
         "displayName": "Mono Kicker",
-        "purpose": "At most one eyebrow above a service-page H1; never stacked."
+        "purpose": "Row and step indices, and at most one eyebrow above a service-page H1; never stacked."
       },
       "display-hero-ko": {
         "displayName": "Korean Hero Display",
         "purpose": "/kr hero; 1.12 leading, near-zero tracking, keep-all breaking."
+      },
+      "display-section-ko": {
+        "displayName": "Korean Section Display",
+        "purpose": "/kr section headlines; 1.22 leading, -0.015em tracking."
+      },
+      "body-lg-ko": {
+        "displayName": "Korean Lead Body",
+        "purpose": "/kr leads; 1.8 leading, measure 36em."
+      },
+      "body-md-ko": {
+        "displayName": "Korean Body",
+        "purpose": "/kr body copy; 1.75 leading."
       }
     },
     "shadows": [
@@ -436,46 +460,53 @@
       "name": "Primary CTA",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Flat bronze pill with ink text: quote and contact actions.",
-      "html": "<a class=\"ds-btn-primary\" href=\"#\">Get a quote</a>",
-      "css": ".ds-btn-primary{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;border-radius:999px;background:var(--ks-accent,#b88a5a);color:var(--ks-navy,#001112);font:800 16px/1 ui-sans-serif,system-ui,sans-serif;text-decoration:none;transition:background-color 150ms}.ds-btn-primary:hover{background:var(--ks-accent-strong,#a5794d)}.ds-btn-primary:focus-visible{outline:3px solid #e7c99a;outline-offset:2px;box-shadow:0 0 0 2px #001112}"
+      "description": "Flat bronze pill with ink text and the site's one 16px arrow: quote and contact actions. Full-width below sm.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Get a Quote<svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M3 8h10M9 4l4 4-4 4\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;background:var(--ks-accent,#b88a5a);color:var(--ks-navy,#001112);font:800 16px/1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;text-decoration:none;transition:background-color 150ms cubic-bezier(.4,0,.2,1)}.ds-btn-primary:hover{background:var(--ks-accent-strong,#a5794d)}.ds-btn-primary:focus-visible{outline:3px solid var(--ks-accent-soft,#e7c99a);outline-offset:2px;box-shadow:0 0 0 2px var(--ks-navy,#001112)}"
     },
     {
       "name": "Outline CTA on Navy",
       "kind": "button",
       "refersTo": "button-secondary-dark",
       "description": "Secondary partner or contact action on dark surfaces.",
-      "html": "<div style=\"background:#001112;padding:24px\"><a class=\"ds-btn-outline\" href=\"#\">Explore Partner Network</a></div>",
-      "css": ".ds-btn-outline{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;border-radius:999px;border:1px solid rgba(255,255,255,.45);color:#fff;font:700 16px/1 ui-sans-serif,system-ui,sans-serif;text-decoration:none;transition:border-color 150ms,background-color 150ms}.ds-btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.06)}.ds-btn-outline:focus-visible{outline:3px solid #e7c99a;outline-offset:2px;box-shadow:0 0 0 2px #001112}"
+      "html": "<div style=\"background:var(--ks-navy,#001112);padding:24px\"><a class=\"ds-btn-outline\" href=\"#\">Explore Partner Network</a></div>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;border:1px solid rgba(255,255,255,.45);color:#fff;font:700 16px/1 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;text-decoration:none;transition:border-color 150ms,background-color 150ms}.ds-btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.06)}.ds-btn-outline:focus-visible{outline:3px solid var(--ks-accent-soft,#e7c99a);outline-offset:2px;box-shadow:0 0 0 2px var(--ks-navy,#001112)}"
     },
     {
       "name": "Site Header",
       "kind": "nav",
-      "description": "The one header every page carries: logo, nav, language pill, contact, quote.",
-      "html": "<header class=\"ds-nav\"><span class=\"ds-nav-logo\">KS WAYS</span><nav class=\"ds-nav-links\"><a href=\"#\">Company</a><a href=\"#\">Services</a><a href=\"#\">Network</a><a href=\"#\">Solutions</a></nav><div class=\"ds-nav-actions\"><a class=\"ds-nav-lang\" href=\"#\">KR</a><a class=\"ds-nav-quote\" href=\"#\">Get a quote</a></div></header>",
-      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 24px;background:#001112;color:#fff;font-family:ui-sans-serif,system-ui,sans-serif}.ds-nav-logo{font-weight:900;letter-spacing:.04em}.ds-nav-links{display:flex;gap:24px}.ds-nav-links a{color:rgba(255,255,255,.76);font-size:14px;font-weight:700;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}.ds-nav-links a:hover{color:#e7c99a}.ds-nav-actions{display:flex;gap:8px}.ds-nav-lang{display:grid;place-items:center;height:44px;min-width:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.3);color:#fff;font-size:14px;font-weight:700;text-decoration:none}.ds-nav-lang:hover{border-color:rgba(255,255,255,.7)}.ds-nav-quote{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:#b88a5a;color:#001112;font-size:14px;font-weight:800;text-decoration:none}.ds-nav-quote:hover{background:#a5794d}.ds-nav a:focus-visible{outline:3px solid #e7c99a;outline-offset:2px;box-shadow:0 0 0 2px #001112}"
+      "description": "The one header every page carries: logo, four nav links (44px targets), language pill, contact pill, quote pill.",
+      "html": "<header class=\"ds-nav\"><span class=\"ds-nav-logo\">KS WAYS</span><nav class=\"ds-nav-links\" aria-label=\"Primary navigation\"><a href=\"#\">Company</a><a href=\"#\">Services</a><a href=\"#\">Network</a><a href=\"#\">Solutions</a></nav><div class=\"ds-nav-actions\"><a class=\"ds-nav-lang\" href=\"#\">KR</a><a class=\"ds-nav-contact\" href=\"#\">Contact</a><a class=\"ds-nav-quote\" href=\"#\">Get a quote</a></div></header>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:80px;padding:0 24px;background:var(--ks-navy,#001112);color:#fff;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}.ds-nav-logo{font-weight:900;letter-spacing:.04em}.ds-nav-links{display:flex;gap:32px;font-size:14px;font-weight:600}.ds-nav-links a{display:inline-flex;align-items:center;min-height:44px;color:rgba(255,255,255,.78);text-decoration:none;transition:color 150ms}.ds-nav-links a:hover{color:#fff}.ds-nav-actions{display:flex;align-items:center;gap:10px}.ds-nav-lang{display:grid;place-items:center;height:44px;min-width:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.3);color:#fff;font-size:14px;font-weight:700;text-decoration:none;transition:border-color 150ms}.ds-nav-lang:hover{border-color:rgba(255,255,255,.7)}.ds-nav-contact{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid rgba(255,255,255,.45);color:#fff;font-size:14px;font-weight:700;text-decoration:none;transition:border-color 150ms,background-color 150ms}.ds-nav-contact:hover{border-color:#fff;background:rgba(255,255,255,.06)}.ds-nav-quote{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:var(--ks-accent,#b88a5a);color:var(--ks-navy,#001112);font-size:14px;font-weight:800;white-space:nowrap;text-decoration:none;transition:background-color 150ms}.ds-nav-quote:hover{background:var(--ks-accent-strong,#a5794d)}.ds-nav a:focus-visible{outline:3px solid var(--ks-accent-soft,#e7c99a);outline-offset:2px;box-shadow:0 0 0 2px var(--ks-navy,#001112)}"
     },
     {
       "name": "Quote Field",
       "kind": "input",
       "refersTo": "form-field",
-      "description": "Label above, white field, control-boundary border, legible placeholder.",
-      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Gross weight</span><input class=\"ds-field-input\" placeholder=\"e.g. 480 kg\"></label>",
-      "css": ".ds-field{display:block;font-family:ui-sans-serif,system-ui,sans-serif;max-width:360px}.ds-field-label{display:block;font-size:14px;font-weight:700;color:#001112}.ds-field-input{margin-top:8px;width:100%;min-height:48px;padding:0 16px;border:1px solid var(--ks-border-control,#808b8d);border-radius:16px;background:#fff;color:#001112;font-size:16px;font-weight:600}.ds-field-input::placeholder{color:rgba(0,17,18,.64);font-weight:500}.ds-field-input:hover{border-color:#a5794d}.ds-field-input:focus-visible{outline:3px solid #e7c99a;outline-offset:2px;box-shadow:0 0 0 2px #001112}"
+      "description": "Label above, paper field with a control-boundary border, regular-weight muted placeholder starting with 'e.g.', format hint in the helper line.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Pickup place</span><input class=\"ds-field-input\" placeholder=\"e.g. Warehouse address\"><span class=\"ds-field-help\">Add the pickup PIC name and phone.</span></label>",
+      "css": ".ds-field{display:block;max-width:360px;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}.ds-field-label{display:block;font-size:14px;font-weight:900;color:rgba(0,17,18,.76)}.ds-field-input{margin-top:8px;width:100%;min-height:48px;padding:12px 16px;border:1px solid var(--ks-border-control,#808b8d);border-radius:16px;background:var(--ks-paper,#f4f7f6);color:var(--ks-navy,#001112);font-size:16px;font-weight:600;transition:border-color 150ms,background-color 150ms}.ds-field-input::placeholder{color:var(--ks-muted,#677173);font-weight:400}.ds-field-input:focus{border-color:var(--ks-accent,#b88a5a);background:#fff}.ds-field-input:focus-visible{outline:3px solid var(--ks-accent-soft,#e7c99a);outline-offset:2px;box-shadow:0 0 0 2px var(--ks-navy,#001112)}.ds-field-help{display:block;margin-top:8px;font-size:12px;font-weight:600;line-height:1.625;color:rgba(0,17,18,.66)}"
     },
     {
       "name": "Service Row",
       "kind": "custom",
-      "description": "Numbered full-width service row: index, title, description, arrow disc on hover.",
-      "html": "<a class=\"ds-row\" href=\"#\"><span class=\"ds-row-index\">01</span><span class=\"ds-row-title\">Ocean Freight</span><span class=\"ds-row-body\">Primary FCL/LCL strength with carrier coordination, loading review, and partner handoff.</span><span class=\"ds-row-arrow\">→</span></a>",
-      "css": ".ds-row{display:grid;grid-template-columns:48px 1fr 2fr 44px;gap:24px;align-items:center;padding:28px 24px;border-top:1px solid #d9e2e0;background:#fff;color:#001112;text-decoration:none;font-family:ui-sans-serif,system-ui,sans-serif;transition:background-color 150ms}.ds-row:hover{background:#faf4ec}.ds-row-index{font:600 13px/1.4 ui-monospace,monospace;letter-spacing:.12em;color:#805d3b}.ds-row-title{font-size:26px;font-weight:800;line-height:1.15;letter-spacing:-.02em}.ds-row-body{font-size:16px;line-height:1.6;color:rgba(0,17,18,.76)}.ds-row-arrow{display:grid;place-items:center;width:44px;height:44px;border-radius:999px;border:1px solid #d9e2e0;font-size:18px;transition:background-color 150ms}.ds-row:hover .ds-row-arrow{background:#b88a5a;border-color:#b88a5a}.ds-row:focus-visible{outline:3px solid #e7c99a;outline-offset:2px;box-shadow:0 0 0 2px #001112}"
+      "description": "Numbered full-width service row on paper: mono index, title, body, arrow disc that fills bronze on hover (hidden below sm).",
+      "html": "<a class=\"ds-row\" href=\"#\"><span class=\"ds-row-index\">01</span><span class=\"ds-row-title\">Ocean Freight</span><span class=\"ds-row-body\">Primary FCL/LCL strength with carrier coordination, loading review, and partner handoff.</span><span class=\"ds-row-arrow\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M3 8h10M9 4l4 4-4 4\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></a><a class=\"ds-row\" href=\"#\"><span class=\"ds-row-index\">05</span><span class=\"ds-row-title\">BridgeLogis</span><span class=\"ds-row-body\">External service, opens in a new tab.</span><span class=\"ds-row-arrow\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M5 11l6-6M6 5h5v5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></a>",
+      "css": ".ds-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding:28px 24px;border-top:1px solid var(--ks-border-light,#d9e2e0);background:var(--ks-paper,#f4f7f6);color:var(--ks-navy,#001112);text-decoration:none;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;transition:background-color 150ms}.ds-row:hover{background:#fff}.ds-row-index{width:40px;flex-shrink:0;font:600 13px/1.4 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;color:var(--ks-accent-ink,#805d3b)}.ds-row-title{flex:1 1 200px;font-size:26px;font-weight:800;line-height:1.15;letter-spacing:-.02em}.ds-row-body{flex:999 1 320px;font-size:16px;line-height:1.6;color:rgba(0,17,18,.76)}.ds-row-arrow{display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border-radius:999px;border:1px solid rgba(0,17,18,.2);transition:background-color 150ms,border-color 150ms}.ds-row:hover .ds-row-arrow{background:var(--ks-accent,#b88a5a);border-color:var(--ks-accent,#b88a5a)}.ds-row:focus-visible{outline:3px solid var(--ks-accent-soft,#e7c99a);outline-offset:2px;box-shadow:0 0 0 2px var(--ks-navy,#001112)}"
+    },
+    {
+      "name": "Process Steps",
+      "kind": "custom",
+      "description": "Numbered process columns: every badge navy with gold numerals, a bronze connector leading to the next step, none after the last.",
+      "html": "<ol class=\"ds-steps\"><li><div class=\"ds-step-head\"><span class=\"ds-step-badge\">01</span><span class=\"ds-step-line\"></span></div><b>Review</b></li><li><div class=\"ds-step-head\"><span class=\"ds-step-badge\">02</span><span class=\"ds-step-line\"></span></div><b>Route</b></li><li><div class=\"ds-step-head\"><span class=\"ds-step-badge\">03</span><span class=\"ds-step-line ds-step-line-end\"></span></div><b>Execute</b></li></ol>",
+      "css": ".ds-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin:0;padding:0;list-style:none;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--ks-navy,#001112)}.ds-step-head{display:flex;align-items:center;gap:12px}.ds-step-badge{display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border-radius:999px;background:var(--ks-navy,#001112);color:var(--ks-accent-soft,#e7c99a);font:600 14px/1 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}.ds-step-line{height:2px;flex:1;background:var(--ks-accent,#b88a5a)}.ds-step-line-end{visibility:hidden}.ds-steps b{display:block;margin-top:16px;font-size:24px;font-weight:900;line-height:1.12;letter-spacing:-.02em}"
     },
     {
       "name": "Hero Proof Strip",
       "kind": "custom",
-      "description": "The page's one full credential set, closed by the bronze route line.",
-      "html": "<div class=\"ds-proof\"><div><span>Global network</span><b>WCA Member</b></div><div><span>Core services</span><b>Ocean · Air</b></div><div><span>Industry experience</span><b>30+ years</b></div></div>",
-      "css": ".ds-proof{display:grid;grid-template-columns:repeat(3,1fr);background:#001112;color:#fff;font-family:ui-sans-serif,system-ui,sans-serif;border-bottom:4px solid #b88a5a}.ds-proof div{padding:24px;border-left:1px solid rgba(255,255,255,.16)}.ds-proof div:first-child{border-left:0}.ds-proof span{display:block;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.56)}.ds-proof b{display:block;margin-top:8px;font-size:40px;font-weight:900;line-height:1;letter-spacing:-.025em}"
+      "description": "The page's one full credential set: value over 14px label, border-dark hairlines, closed by the 4px bronze route line.",
+      "html": "<dl class=\"ds-proof\"><div><dt>Global network</dt><dd>WCA Member</dd></div><div><dt>Core services</dt><dd>Ocean · Air</dd></div><div><dt>Industry experience</dt><dd>30+ years</dd></div></dl>",
+      "css": ".ds-proof{display:grid;grid-template-columns:repeat(3,1fr);margin:0;padding:0 24px;background:var(--ks-navy,#001112);color:#fff;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;border-bottom:4px solid var(--ks-accent,#b88a5a)}.ds-proof div{display:flex;flex-direction:column-reverse;gap:10px;padding:36px 32px;border-right:1px solid var(--ks-border-dark,#1f3436)}.ds-proof div:first-child{padding-left:0}.ds-proof div:last-child{border-right:0}.ds-proof dt{font-size:14px;color:rgba(255,255,255,.76)}.ds-proof dd{margin:0;font-size:clamp(28px,3vw,40px);font-weight:900;line-height:1;letter-spacing:-.025em}"
     },
     {
       "name": "Network Badge",
@@ -483,7 +514,7 @@
       "refersTo": "badge-network",
       "description": "Compact caps label for network and credential context.",
       "html": "<span class=\"ds-chip\">WCA Inter Global member</span>",
-      "css": ".ds-chip{display:inline-flex;align-items:center;min-height:32px;padding:0 14px;border-radius:999px;border:1px solid rgba(231,201,154,.4);background:#031d20;color:#e7c99a;font:900 12px/1.2 ui-sans-serif,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase}"
+      "css": ".ds-chip{display:inline-flex;align-items:center;min-height:32px;padding:0 14px;border-radius:999px;border:1px solid rgba(231,201,154,.4);background:var(--ks-navy-2,#031d20);color:var(--ks-accent-soft,#e7c99a);font:900 12px/1.2 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;letter-spacing:.16em;text-transform:uppercase}"
     }
   ],
   "narrative": {
@@ -519,7 +550,7 @@
     ],
     "donts": [
       "Do not describe KS WAYS primarily as a Korea-based local company.",
-      "Do not spell the visible brand as `KSWAYS`, `KSWays`, or `KS Ways` — `KS WAYS` is the only correct form. Enforced by `src/site-quality.test.ts`, which walks the exported copy data rather than grepping files, so identifiers like `NEXT_PUBLIC_KSWAYS_CALENDLY_URL` do not false-positive.",
+      "Do not spell the visible brand as `KSWAYS`, `KSWays`, or `KS Ways` — `KS WAYS` is the only correct form. The one exemption is the registered legal name `KSWAYS CO.,LTD.` as an exact string. Enforced by `src/site-quality.test.ts`, which walks the exported copy data rather than grepping files, so identifiers like `NEXT_PUBLIC_KSWAYS_CALENDLY_URL` do not false-positive.",
       "Do not add arbitrary colors outside the navy/bronze/gold/steel/paper palette.",
       "Do not place white text on the bronze accent (`#B88A5A`); it measures 3.08:1 and fails WCAG AA.",
       "Do not change a palette value in one component only — the palette is asserted site-wide by `src/brand-palette.test.ts`.",
