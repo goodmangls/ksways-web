@@ -88,7 +88,7 @@ Make KS WAYS easy for answer engines, AI search, and featured snippets to cite w
 
 ### Primary entity signals
 
-- Company: KS WAYS / KS WAYS CO., LTD.
+- Company: KS WAYS (brand) / KSWAYS CO.,LTD. (registered legal name, 사업자등록번호 196-81-01177).
 - Category: Global logistics company, freight forwarder, Korea origin agent.
 - Geography: Korea origin, worldwide destinations. (Do not name China / Japan / NE Asia as covered regions — see the positioning lock.)
 - Services: Ocean freight, air freight, cross-border logistics, project cargo support, WCA partner networking.
@@ -205,6 +205,8 @@ Future pillar page for Korea-origin ocean & air worldwide / WCA partners could l
 ---
 
 ## 3. Homepage Copy System
+
+> **Live status (checked 2026-11-01).** Sections 3 to 7 mix live text with target copy written to the positioning lock. Sections 3 and 4 are mostly target: only these strings match `src/lib/content.ts` / `src/lib/seo.ts` word for word: meta title 1, the brand H1 `The smart way to global logistics`, the CTAs `Get a Quote` and `Explore Partner Network`, the headline `A clearer path for every enquiry.`, the headline `Ready to move smarter?` and the contact CTA labels. The live hero lead, section bodies, service cards and steps are older wording. Section 5 (Korean) is mostly target as well. Sections 6 (FAQ bank) and 7 (service drafts) are roughly a third and a half live. Moving the site onto this copy is a separate code change. Until it lands, check `content.ts`, `seo.ts` and `service-pages.ts` before treating any string here as live.
 
 ### Meta title options
 
@@ -431,7 +433,7 @@ KS WAYS works with WCAworld member partners through two WCAworld member benefits
 
 #### CTA labels
 
-- `Request a quote`
+- `Get a Quote`
 - `Become a partner`
 - `Schedule consultation`
 
@@ -696,7 +698,7 @@ The WCA certificate confirms KS WAYS has complied with the conditions of members
 
 - ✅ Use: `WCA Inter Global member` — the certificate is the evidence behind this claim.
 - ❌ Do not publish the member ID, the validity date (`valid until …`), the signatories, or the certificate image. Same rule as the email-signature logo: an expiry date in public copy silently goes stale, and the ID is for partner verification on request. Asserted in `ServiceLandingPage.render.test.tsx` and `HomePage.render.test.tsx`.
-- ⚠️ The certificate registers the company as **"KSWays Co., Ltd."**, which conflicts with the official form `KS WAYS CO., LTD.` used on the site (see DESIGN.md naming rules). Under Code of Ethics Art. 16 the member is responsible for keeping WCAworld's company details current — request a correction from WCAworld so the directory and the next certificate match. Until then, the site keeps `KS WAYS CO., LTD.`
+- ⚠️ The certificate registers the company as **"KSWays Co., Ltd."**. The registered legal name is `KSWAYS CO.,LTD.` (사업자등록번호 196-81-01177, supplied 2026-11-01), and the site uses that exact string (see DESIGN.md naming rules). Under Code of Ethics Art. 16 the member is responsible for keeping WCAworld's company details current, so ask WCAworld to correct the directory entry and the next certificate to `KSWAYS CO.,LTD.` The site does not copy the certificate's spelling.
 - 🗓 Renewal: the current certificate is valid until 2027-07-19. Nothing on the site depends on that date, but the membership claim does — renew before it lapses.
 
 #### WCAworld Benefits 2026 brochure — what the site may use
@@ -789,7 +791,9 @@ Use `Organization` or `LocalBusiness` with logistics-specific description.
 Recommended fields:
 
 - `@type`: `Organization`
-- `name`: `KS WAYS CO., LTD.`
+- `name`: `KSWAYS CO.,LTD.`
+- `legalName`: `KSWAYS CO.,LTD.`
+- `taxID`: `196-81-01177`
 - `alternateName`: `KS WAYS`
 - `url`: `https://ksways.co`
 - `email`: `info@ksways.co`
@@ -849,6 +853,25 @@ Recommended services:
 - Avoid vague marketing language.
 - Include operational details such as Incoterms, dimensions, gross weight, cargo ready date, pickup condition, and destination requirements when relevant.
 
+### Company name rules
+
+- The brand is **KS WAYS** in all visible copy, alt text, metadata and navigation.
+- The registered legal name **KSWAYS CO.,LTD.** appears only where a legal entity is named: the footer entity line, the company-section sentence that names the company, and Organization JSON-LD (`name`, `legalName`). Write it exactly. Never use `KS WAYS CO., LTD.`, `KSWays` or `KS Ways`.
+- The business registration number appears once per locale in the footer, under the entity line: `Business Registration No. 196-81-01177` / `사업자등록번호 196-81-01177`, and as `taxID` in JSON-LD.
+- `src/site-quality.test.ts` checks the spelling across the exported copy.
+
+### Quote form copy rules
+
+- The label names the field. The placeholder only shows an example and never stands in for the label.
+- A placeholder that shows a sample value starts with `e.g.` (`e.g. Busan, Korea / KRPUS / ICN`), so it never reads as data already entered. A placeholder that names a format or prompts for input has no `e.g.`: `YYYY-MM-DD`, `EXW / FOB / CIF / DAP / DDP`, `PIC name / mobile or email`, `Optional target rate or budget`, the select prompts and the two free-text notes.
+- A single-line placeholder must fit a 320px-wide field: 36 characters at most. Anything longer goes in the helper line under the field, written as one short instruction (`Include the country code for phone numbers.`, `For OOG cargo, give the overall L x W x H.`).
+- Enforced by `src/lib/quote-form.test.ts` and `e2e/placeholder-fit.spec.ts`.
+
+### Interface labels
+
+- Skip link, the first tab stop on every page: `Skip to content` / `본문으로 건너뛰기`.
+- Header: the same navigation, language toggle (`KR` / `EN`) and quote pill (`Get a Quote` / `견적 문의`) on every page, subpages included (DESIGN.md "The One Desk Rule"). Rule: the English quote CTA is `Get a Quote` everywhere (header, hero, contact section, footer). PR #68 brings the code in line and adds a regression test in `src/lib/content.test.ts`; until it merges, the header reads `Get a quote` and the contact section and footer read `Request a quote`.
+
 ### SEO writing rules
 
 - Use one primary keyword per page.
@@ -861,7 +884,7 @@ Recommended services:
 
 ## 11. Recommended Implementation Next Steps
 
-### Phase 1: Homepage metadata and FAQ
+### Phase 1: Homepage metadata and FAQ — done
 
 1. Update homepage metadata to position KS WAYS as a global ocean and air logistics company.
 2. Add an FAQ section with 5 AEO-ready questions.
@@ -869,9 +892,9 @@ Recommended services:
 4. Add FAQ schema only if FAQ is visible on the page.
 5. Configure `NEXT_PUBLIC_KSWAYS_CALENDLY_URL` only when an official booking link is available; otherwise keep consultation requests routed through `info@ksways.co`.
 
-### Phase 2: Service landing pages
+### Phase 2: Service landing pages — done
 
-Create these pages first:
+Live, plus `/services/special-cargo-korea`:
 
 1. `/services/air-freight-korea`
 2. `/services/ocean-freight-korea`
