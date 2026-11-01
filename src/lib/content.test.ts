@@ -29,9 +29,16 @@ describe('KS WAYS bilingual homepage content', () => {
     const englishContactColumn = homeContent.en.footer.columns.find((column) => column.title === 'Contact');
     expect(englishServicesColumn?.links.map((link) => link.label)).toContain('BridgeLogis');
     expect(englishContactColumn?.links.map((link) => link.label)).not.toContain('BridgeLogis');
-    expect(englishContactColumn?.links).toContainEqual({ label: 'Request a quote', href: '/quote' });
+    expect(englishContactColumn?.links).toContainEqual({ label: 'Get a Quote', href: '/quote' });
     expect(englishContactColumn?.links).toContainEqual({ label: 'info@ksways.co', href: 'mailto:info@ksways.co' });
     expect(englishContactColumn?.links.map((link) => link.label)).not.toContain('Email info@ksways.co');
+  });
+
+  it('uses one English quote CTA label in the header, hero, contact section and footer', () => {
+    // 헤더·히어로·문의 섹션이 'Get a quote' / 'Get a Quote' / 'Request a quote' 로 갈라져 있었다 (2026-11-01).
+    const contactColumn = homeContent.en.footer.columns.find((column) => column.title === 'Contact');
+    const footerQuote = contactColumn?.links.find((link) => link.href === '/quote')?.label;
+    expect(new Set([homeContent.en.nav.quote, homeContent.en.hero.primaryCta, homeContent.en.contact.quote, footerQuote])).toEqual(new Set(['Get a Quote']));
   });
 
   it('positions Korea as the origin gateway to global routes, without claiming China/Japan regional coverage', () => {

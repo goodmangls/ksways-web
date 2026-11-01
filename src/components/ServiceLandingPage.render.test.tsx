@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { getServicePage, servicePages } from '@/lib/service-pages';
 import { ServiceLandingPage } from './ServiceLandingPage';
@@ -86,7 +86,7 @@ describe('ServiceLandingPage render', () => {
   it('links the quote CTA to the plain quote route by default', () => {
     render(<ServiceLandingPage page={airFreight} basePath="services" />);
 
-    expect(screen.getByRole('link', { name: 'Get a quote' })).toHaveAttribute('href', '/quote');
+    expect(within(screen.getByRole('banner')).getByRole('link', { name: 'Get a Quote' })).toHaveAttribute('href', '/quote');
   });
 
   it('propagates quoteServiceKey into the quote CTA when defined', () => {
@@ -94,6 +94,6 @@ describe('ServiceLandingPage render', () => {
 
     render(<ServiceLandingPage page={specialCargo} basePath="services" />);
 
-    expect(screen.getByRole('link', { name: 'Get a quote' })).toHaveAttribute('href', '/quote?service=special-cargo');
+    expect(within(screen.getByRole('banner')).getByRole('link', { name: 'Get a Quote' })).toHaveAttribute('href', '/quote?service=special-cargo');
   });
 });

@@ -1,1 +1,1 @@
-📝 COPY.md 견적 CTA 표기를 'Get a Quote'로 맞춤 (#68)
+✏️ 영문 견적 CTA 표기를 'Get a Quote'로 통일 — 헤더·히어로·문의 섹션·푸터

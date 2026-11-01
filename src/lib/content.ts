@@ -91,7 +91,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       network: 'Network',
       solutions: 'Solutions',
       contact: 'Contact sales',
-      quote: 'Get a quote',
+      quote: 'Get a Quote',
       langToggle: 'KR',
       menuLabel: 'Menu',
       skipToContent: 'Skip to content',
@@ -158,7 +158,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       email: 'info@ksways.co',
       phone: 'Tel. +82 2 6961 5778',
       fax: 'Fax +82 2 6961 5765',
-      quote: 'Request a quote',
+      quote: 'Get a Quote',
       partner: 'Become a partner',
       schedule: 'Schedule consultation',
     },
@@ -197,7 +197,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
         {
           title: 'Contact',
           links: [
-            { label: 'Request a quote', href: '/quote' },
+            { label: 'Get a Quote', href: '/quote' },
             { label: 'info@ksways.co', href: 'mailto:info@ksways.co' },
           ],
         },
