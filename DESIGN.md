@@ -361,8 +361,9 @@ These rules were adopted on 2026-10-06 from the KS WAYS design system (Claude De
 
 | Rule | Site today |
 |---|---|
-| Supporting text (helpers, captions, notices at 12–14px) | The rules above set body copy only. 15 small-text spots use `leading-relaxed` (1.625) or `leading-snug` (1.375) — 12 in `QuoteForm.tsx`, one each in `QuoteField.tsx`, `SiteFooter.tsx`, `WcaBadge.tsx`. They pass contrast and the 12px floor, but no leading rule for small text exists yet |
-| `muted` (`#677173`) | Defined, but no component uses it yet |
+| Supporting text (helpers, captions, notices at 12–14px) | The rules above set body copy only. 17 small-text spots use `leading-relaxed` (1.625) or `leading-snug` (1.375) — 12 in `QuoteForm.tsx`, one each in `QuoteField.tsx`, `SiteFooter.tsx`, `WcaBadge.tsx`, `ServiceLandingPage.tsx` (related-page links) and `WcaMemberTools.tsx` (tool names; 18px on light surfaces, so body-size text at 1.375 that the paragraph scan misses because it is a `<span>`). They pass contrast and the 12px floor, but no leading rule for small text exists yet |
+| Helper line opacity — DESIGN.md allows only the four text opacity tokens | The quote-field helper uses ink 66% (`text-navy/66` in `QuoteField.tsx`), which is not one of them. Move it to `text-faint` (64%) or `text-subtle` (76%) |
+| Per-field form errors — 2px `warning` border, `aria-invalid="true"`, a 14px / `600` `warning` message with an icon, tied to the field by `aria-describedby` | The quote form shows one form-level list of missing fields instead; no field carries `aria-invalid` |
 
 New page text should go through the Typography components rather than hand-written class strings.
 
@@ -518,11 +519,11 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 
 The readability reference for controls (quote form): a visible boundary, a legible placeholder, and an error that never relies on color alone.
 
-- Label above the field, 14px / `700` `ink`; an optional hint in `text-subtle`. Never use the placeholder as the label.
+- Label above the field, 14px / `900` in `text-subtle` (ink 76%), with a bronze `accent-ink` `*` on required fields. Never use the placeholder as the label.
+- Helper line under the field: 12px / `600` ink 66% (off-token, see **Still open**). It carries the format hints that do not fit the placeholder.
 - Placeholder: `muted` at regular weight, so it never reads as typed data next to the `600` value. Example values start with "e.g."; every single-line placeholder fits a 320px-wide field, and longer format hints go in the helper line under the field. Enforced by `src/lib/quote-form.test.ts` and `e2e/placeholder-fit.spec.ts` (design review F-003). The fit check is font-dependent, so it runs in the visual suite inside the pinned Playwright image, not in the e2e job.
-- Field: `white` fill, 1px `border-control`, 16px radius, at least 48px high, value 16px / `600` `ink`, placeholder `text-faint`.
-- Hover border `tertiary-hover`; focus uses the two-tone ring (see **Focus**).
-- Error: 2px `warning` border, `aria-invalid="true"`, and a message in `warning` 14px / `600` with an icon, tied to the field by `aria-describedby`.
+- Field: `paper` fill, 1px `border-control`, 16px radius, at least 48px high, value 16px / `600` `ink`. On focus the fill turns `white` and the border `tertiary`; the indicator itself is the two-tone ring (see **Focus**). DG fields, when the cargo type is DG, switch to a `white` fill with a full-strength `accent-ink` border inside an `accent-tint` group.
+- Missing fields today: one form-level message in `warning` (14px / `900`) lists every required field still empty, and each step tab shows its progress (`2 of 3 required`). Per-field error states are not built yet (see **Still open**).
 
 ### Contact CTA
 

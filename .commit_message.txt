@@ -1,1 +1,1 @@
-🎨 .impeccable/design.json 사이드카를 현재 DESIGN.md·컴포넌트 기준으로 재생성
+📝 COPY.md 견적 CTA 표기를 'Get a Quote'로 맞춤 (#68)
