@@ -3,7 +3,7 @@
 :root {
   --ks-navy: #001112;
   --ks-navy-2: #031d20;
-  /* Matches DESIGN.md `paper` and the bg-[#f4f7f6] every <main> already paints.
+  /* Matches DESIGN.md `paper` and the bg-paper every <main> already paints.
      It was #f6f8f8, so the body showed a second, slightly different paper wherever
      <main> did not cover it. Asserted in src/brand-palette.test.ts. */
   --ks-paper: #f4f7f6;
@@ -24,6 +24,39 @@
   --ks-muted: #677173;
   --ks-muted-on-dark: #7d888a;
   --ks-border-control: #808b8d;
+  /* Remaining DESIGN.md roles that components used to spell as raw hex. */
+  --ks-accent-tint: #faf4ec;
+  --ks-border-dark: #1f3436;
+  --ks-border-light: #d9e2e0;
+  /* Warning family — form validation and the mailto length notice only. Kept
+     ≥20° of hue away from the bronze accents (src/brand-palette.test.ts). */
+  --ks-warning: #b3261e;
+  --ks-warning-bright: #ff8a80;
+  --ks-warning-text: #ffb4ab;
+}
+
+/* Tailwind colour utilities (`bg-navy`, `text-accent-ink/80`, `border-border-light`)
+   for every palette role. `inline` makes each utility emit `var(--ks-…)` itself, so
+   the :root block above stays the only place a value lives. Components must use
+   these names, not `[#hex]` literals; src/brand-palette.test.ts fails on a literal. */
+@theme inline {
+  --color-navy: var(--ks-navy);
+  --color-navy-2: var(--ks-navy-2);
+  --color-paper: var(--ks-paper);
+  --color-accent: var(--ks-accent);
+  --color-accent-strong: var(--ks-accent-strong);
+  --color-accent-soft: var(--ks-accent-soft);
+  --color-accent-ink: var(--ks-accent-ink);
+  --color-accent-tint: var(--ks-accent-tint);
+  --color-steel: var(--ks-steel);
+  --color-muted: var(--ks-muted);
+  --color-muted-on-dark: var(--ks-muted-on-dark);
+  --color-border-control: var(--ks-border-control);
+  --color-border-dark: var(--ks-border-dark);
+  --color-border-light: var(--ks-border-light);
+  --color-warning: var(--ks-warning);
+  --color-warning-bright: var(--ks-warning-bright);
+  --color-warning-text: var(--ks-warning-text);
 }
 
 * { box-sizing: border-box; }

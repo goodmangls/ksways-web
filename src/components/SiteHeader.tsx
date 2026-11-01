@@ -31,15 +31,15 @@ export function SiteHeader({ nav, homeHref, toggleHref, quoteHref, isHome = fals
   return (
     <header className="relative z-30 mx-auto flex h-[80px] w-full max-w-[1280px] items-center justify-between gap-4 px-6 sm:px-10 lg:px-14">
       {/* First tab stop on every page (WCAG 2.4.1): hidden until focused, then a bronze pill over the logo. */}
-      <a href="#content" className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-[18px] focus:z-50 focus:inline-flex focus:min-h-11 focus:items-center focus:rounded-full focus:bg-[#b88a5a] focus:px-5 focus:text-sm focus:font-extrabold focus:text-[#001112] sm:focus:left-10 lg:focus:left-14">
+      <a href="#content" className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-[18px] focus:z-50 focus:inline-flex focus:min-h-11 focus:items-center focus:rounded-full focus:bg-accent focus:px-5 focus:text-sm focus:font-extrabold focus:text-navy sm:focus:left-10 lg:focus:left-14">
         {nav.skipToContent}
       </a>
       <BrandLogo href={homeHref} priority />
       <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-[15px] font-semibold text-white/78 lg:flex">
-        <a href={section('company')} className="transition hover:text-white">{nav.company}</a>
-        <a href={section('services')} className="transition hover:text-white">{nav.services}</a>
-        <a href={section('network')} className="transition hover:text-white">{nav.network}</a>
-        <a href={section('solutions')} className="transition hover:text-white">{nav.solutions}</a>
+        <a href={section('company')} className="inline-flex min-h-11 items-center transition hover:text-white">{nav.company}</a>
+        <a href={section('services')} className="inline-flex min-h-11 items-center transition hover:text-white">{nav.services}</a>
+        <a href={section('network')} className="inline-flex min-h-11 items-center transition hover:text-white">{nav.network}</a>
+        <a href={section('solutions')} className="inline-flex min-h-11 items-center transition hover:text-white">{nav.solutions}</a>
       </nav>
       <div className="flex shrink-0 items-center gap-2 sm:gap-2.5">
         {/* Below 360px the row is ~23px too wide for logo + toggle + quote + menu; the toggle moves into the menu there. */}
@@ -47,7 +47,7 @@ export function SiteHeader({ nav, homeHref, toggleHref, quoteHref, isHome = fals
           {nav.langToggle}
         </Link>
         <a href={section('contact')} className="hidden min-h-11 items-center rounded-full border border-white/45 px-5 text-sm font-bold text-white transition hover:border-white hover:bg-white/[.06] sm:inline-flex">{nav.contact}</a>
-        <a href={quoteHref} className="inline-flex min-h-11 items-center whitespace-nowrap rounded-full bg-[#b88a5a] px-4 text-sm font-extrabold text-[#001112] transition hover:bg-[#a5794d] sm:px-5">{nav.quote}</a>
+        <a href={quoteHref} className="inline-flex min-h-11 items-center whitespace-nowrap rounded-full bg-accent px-4 text-sm font-extrabold text-navy transition hover:bg-accent-strong sm:px-5">{nav.quote}</a>
         <MobileNav nav={nav} sectionBase={sectionBase} toggleHref={toggleHref} />
       </div>
     </header>

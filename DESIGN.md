@@ -275,6 +275,21 @@ The palette is intentionally narrow. It should create a premium logistics contro
 
 - **Warning (`#B3261E`) / Warning Bright (`#FF8A80`) / Warning Text (`#FFB4AB`)**: Reserved for form validation errors and the mailto length notice. `Warning` is for light surfaces; the other two pair together on dark ones. These are **semantic, not brand** — never repurpose them as accents.
 
+### Colors in code
+
+Every role above is a Tailwind utility, defined once in `src/app/globals.css`: the `--ks-*` custom properties hold the values and an `@theme inline` block maps them to names. Write `bg-navy`, `text-accent-ink`, `border-border-light`, `text-navy/76`, never `bg-[#001112]`. A palette hex inside a class (or an SVG `stroke=`/`fill=`) fails `src/brand-palette.test.ts`.
+
+| Utility name | Role |
+|---|---|
+| `navy` | primary / ink |
+| `navy-2` | secondary |
+| `paper` | paper |
+| `accent` · `accent-strong` | tertiary · tertiary-hover |
+| `accent-soft` · `accent-ink` · `accent-tint` | accent-soft · accent-ink · accent-tint |
+| `steel` · `muted` · `muted-on-dark` | steel · muted · muted-on-dark |
+| `border-control` · `border-dark` · `border-light` | the three border roles |
+| `warning` · `warning-bright` · `warning-text` | warning family |
+
 ### Semantic colors must not share the brand's hue
 
 The warning family used to be amber (`#A15C00` / `#FFB84D` / `#FFE8BD`). Measured against the bronze accents, every one of those sat within **1–3° of hue** — the palette's only separator was saturation, which is a weak signal and close to useless for anyone with reduced color discrimination. On the quote form's dark aside it was worse: the brand gold label (`#E7C99A`, H37) and the warning box (`#FFE8BD`, H39) sat in the same panel, 2° apart.
@@ -326,6 +341,8 @@ These rules were adopted on 2026-10-06 from the KS WAYS design system (Claude De
 |---|---|
 | Text floors — ink 64% on light, white 56% on dark | `src/text-contrast.test.ts` (and the floors are proven to clear AA 4.5:1) |
 | Ink on bronze **as rendered** — every visible bronze surface's text computes to `ink`, at rest and on hover, on every page at 375 and 1440px | `e2e/rendered-color.spec.ts`. Source-reading guards cannot see the cascade: an unlayered `a { color: inherit; }` in `globals.css` overrode every link `text-[…]` utility, and the bronze CTAs shipped white-on-bronze (3.07:1) until 2026-10-31. Never add unlayered element rules (`a {}`, `button {}`, `input {}`); put them in `@layer base` |
+| Palette by token — no `[#hex]` palette literal in any component class or SVG stroke/fill | `src/brand-palette.test.ts`. The source-reading guards above match token names (`text-navy/NN`), so a literal would slip past them; this guard closes that gap |
+| Header targets ≥ 44px — every visible header link and button, as rendered, at 375 and 1440px | `e2e/target-size.spec.ts` |
 | Skip link — first tab stop on every page, visible on focus, lands after the header | `SiteHeader.tsx` (`#content` on each page's hero content), checked by `e2e/skip-link.spec.ts` |
 | Section headings ≤ 52px at 1.08; card headings at their token leading (`heading-pillar` 1.2, `heading-card` 1.12); body 16px+ (set, not inherited) at 1.6–1.65; measure ≤ 34em; secondary text at the 76% token | `src/components/Typography.tsx` (`SectionHeading`, `CardHeading`, `BodyText`), checked by `src/components/Typography.test.tsx` |
 | Every body-size paragraph (no `text-sm`/`text-xs`) on every page sits at 1.6–1.65; no line-height below 1.0 anywhere | `Typography.test.tsx` scans `src/components` and `src/app` |
@@ -445,7 +462,7 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 
 - Use the official reverse KS WAYS logo on dark surfaces.
 - Navigation should be concise: Company, Services, Network, Solutions, Contact/Quote.
-- Maintain `44px` minimum height for logo link, language toggle, contact link, and quote CTA.
+- Maintain `44px` minimum height for every header control: logo link, the four desktop navigation links, language toggle, contact link, quote CTA and menu button. Measured on the rendered page at 375 and 1440px by `e2e/target-size.spec.ts` (the desktop links were 23px until 2026-11-01).
 - Desktop navigation may be hidden on smaller screens; preserve the quote CTA and language toggle.
 - Every page renders the one `SiteHeader` (**The One Desk Rule** in **Overview**). On the homepage section links stay in-page (`#services`); on subpages they return to the homepage (`/#services`). Until Korean service pages exist, the toggle on an English subpage points to `/kr`.
 - On mobile the quote CTA stays on one line (`whitespace-nowrap`). Below `360px` the row cannot fit logo, toggle, quote CTA and menu, so the language toggle moves into the mobile menu there; the logo never shrinks.

@@ -6,7 +6,7 @@ import { contrastRatio } from './test-utils/contrast';
 /**
  * Opacity floors for text drawn as a translucent ink over the brand surfaces.
  *
- * The pages express secondary text as `text-[#001112]/NN` on paper/white and
+ * The pages express secondary text as `text-navy/NN` on paper/white and
  * `text-white/NN` on navy. Those opacities drifted low enough to fail WCAG AA:
  * navy at 56% measures 4.34:1 on paper, and the 11px footer labels at white/40
  * measured 3.79:1 on navy. The floors below are the smallest opacity that still
@@ -60,7 +60,7 @@ describe('text contrast floors', () => {
   });
 
   it('keeps navy text on light surfaces at or above the floor', () => {
-    expect(offenders(/text-\[#001112\]\/(\d+)/g, LIGHT_SURFACE_FLOOR)).toEqual([]);
+    expect(offenders(/\btext-navy\/(\d+)/g, LIGHT_SURFACE_FLOOR)).toEqual([]);
   });
 
   it('keeps white text on dark surfaces at or above the floor', () => {
@@ -81,14 +81,14 @@ describe('text contrast floors', () => {
     const BRONZE = '#b88a5a';
     expect(contrastRatio(blend(NAVY, BRONZE, 0.68), BRONZE)).toBeLessThan(4.5);
     const contact = sources.find(({ file }) => file === 'ContactActions.tsx')!.text;
-    expect(contact).not.toMatch(/text-\[#001112\]\/\d+/);
+    expect(contact).not.toMatch(/\btext-navy\/\d+/);
   });
 
   it('draws form fields and choice cards with the control border, not a hairline', () => {
     const field = sources.find(({ file }) => file === 'QuoteField.tsx')!.text;
     const form = sources.find(({ file }) => file === 'QuoteForm.tsx')!.text;
-    expect(field).toContain('border-[var(--ks-border-control)]');
-    expect(form).toContain('border-[var(--ks-border-control)]');
-    expect(field).not.toMatch(/border-\[#001112\]\/\d+/);
+    expect(field).toContain('border-border-control');
+    expect(form).toContain('border-border-control');
+    expect(field).not.toMatch(/\bborder-navy\/\d+/);
   });
 });
