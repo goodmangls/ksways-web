@@ -94,4 +94,12 @@ describe('HomePage render smoke', () => {
       expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     });
   });
+
+  it('gives every process step the same badge, so the list reads as steps, not progress stuck on 03', () => {
+    // Design review F-007: step 03 alone was bronze.
+    const { container } = render(<HomePage locale="en" copy={homeContent.en} />);
+    const badges = [...container.querySelectorAll('#solutions-heading ~ * ol > li span.rounded-full, section[aria-labelledby="solutions-heading"] ol > li span.rounded-full')];
+    expect(badges.length).toBe(homeContent.en.solutions.steps.length);
+    expect(new Set(badges.map((badge) => badge.className)).size).toBe(1);
+  });
 });

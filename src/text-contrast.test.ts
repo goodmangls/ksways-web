@@ -90,5 +90,9 @@ describe('text contrast floors', () => {
     expect(field).toContain('border-border-control');
     expect(form).toContain('border-border-control');
     expect(field).not.toMatch(/\bborder-navy\/\d+/);
+    // Placeholders are a lighter, regular-weight muted token so an example never
+    // reads as typed data (design review F-003). Muted clears 4.5:1 on paper/white.
+    expect(field).toContain('placeholder:font-normal placeholder:text-muted');
+    expect(field).not.toMatch(/placeholder:text-navy/);
   });
 });

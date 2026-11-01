@@ -13,7 +13,7 @@ KS WAYS brand landing page built with Next.js 16, TypeScript, Tailwind CSS v4, a
 ## Brand Direction
 
 - Family look from Goodman GLS: deep navy, large editorial headline, logistics control-tower card, proof panels.
-- KS WAYS accent identity: Electric Teal/Cyan (`#21D4C2`, `#6FFFE7`).
+- KS WAYS accent identity: Route Bronze (`#B88A5A`) for actions, Warm Gold (`#E7C99A`) for highlights on dark surfaces. The earlier Electric Teal/Cyan identity is retired; `src/brand-palette.test.ts` fails if it returns. Components use palette tokens (`bg-navy`, `text-accent-ink`), never hex.
 - Public terminology avoids “Network Marketing”; uses Partner Network / Agent Network / referral-based logistics cooperation.
 - `DESIGN.md` is the source of truth for visual tokens, component rules, brand spelling, mobile touch-target standards, and global logistics positioning.
 

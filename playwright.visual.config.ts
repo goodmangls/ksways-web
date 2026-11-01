@@ -8,7 +8,8 @@ const isCI = !!process.env.CI;
 // (playwright 공식 이미지 = CI 와 같은 렌더링 스택).
 export default defineConfig({
   testDir: './e2e',
-  testMatch: /visual\.spec\.ts/,
+  // placeholder-fit 도 글꼴 폭에 좌우되므로 같은 고정 렌더링 스택(공식 이미지)에서만 돈다.
+  testMatch: /(visual|placeholder-fit)\.spec\.ts/,
   timeout: 60_000,
   retries: 0,
   reporter: isCI ? [['list'], ['html', { open: 'never' }]] : [['list']],
