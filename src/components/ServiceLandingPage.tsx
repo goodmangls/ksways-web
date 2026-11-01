@@ -68,8 +68,8 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
             {page.title}
           </h1>
           <div className="mt-8 grid max-w-[1120px] gap-5 lg:grid-cols-2 lg:gap-14">
-            <p className="text-[clamp(18px,1.5vw,21px)] font-medium leading-[1.6] text-white/92 text-pretty ks-type-body-lg">{lead.first}</p>
-            {lead.rest ? <p className="ks-type-body-lg text-[17px] leading-[1.65] text-white/76 text-pretty">{lead.rest}</p> : null}
+            <p className="text-lg font-medium leading-[1.65] text-white/92 text-pretty ks-type-body-lg">{lead.first}</p>
+            {lead.rest ? <p className="ks-type-body-lg text-lg leading-[1.65] text-white/76 text-pretty">{lead.rest}</p> : null}
           </div>
           <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <a href={quoteHref} className="inline-flex min-h-[52px] w-full items-center justify-center gap-2.5 rounded-full bg-accent px-7 font-extrabold text-navy transition hover:bg-accent-strong sm:w-auto">
@@ -109,7 +109,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
               <li key={section.title}>
                 <a
                   href={`#${sectionAnchor(section.title)}`}
-                  className="flex min-h-11 items-center border-l-2 border-border-light py-2 pl-4 text-[15px] font-semibold leading-snug text-navy/78 transition hover:border-accent hover:text-navy"
+                  className="flex min-h-11 items-center border-l-2 border-border-light py-2 pl-4 text-sm font-semibold leading-snug text-navy/78 transition hover:border-accent hover:text-navy"
                 >
                   {section.title}
                 </a>
@@ -125,7 +125,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
               id={sectionAnchor(section.title)}
               className={`scroll-mt-8 ${index === 0 ? 'pb-12' : 'border-t border-navy py-12'} last:pb-0`}
             >
-              <h2 className="text-[clamp(24px,6vw,28px)] font-extrabold leading-[1.15] tracking-[-.02em] sm:text-[30px]">{section.title}</h2>
+              <h2 className="text-[22px] font-extrabold leading-[1.2] tracking-[-.02em] sm:text-[26px]">{section.title}</h2>
               <BodyText measure="default" className="mt-4">{section.body}</BodyText>
               {section.items ? (
                 <ul className="mt-6 grid border-t border-border-light sm:grid-cols-2 sm:gap-x-8">
@@ -194,7 +194,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
           </div>
           <ol className="mt-10 grid border-t border-border-dark md:grid-cols-2 md:gap-x-10 lg:grid-cols-3">
             {page.checklist.map((item, index) => (
-              <li key={item} className="flex items-baseline gap-4 border-b border-border-dark py-5 text-[17px] font-semibold">
+              <li key={item} className="flex items-baseline gap-4 border-b border-border-dark py-5 text-lg font-semibold">
                 <span aria-hidden="true" className="w-7 shrink-0 font-mono text-[13px] text-accent-soft">{String(index + 1).padStart(2, '0')}</span>
                 {item}
               </li>
@@ -215,7 +215,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
           <div className="border-t border-navy">
             {page.faqs.map((faq) => (
               <details key={faq.question} className="group border-b border-border-light py-1">
-                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 py-3 text-[19px] font-bold tracking-[-.01em] text-navy marker:hidden">
+                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 py-3 text-lg font-bold tracking-[-.01em] text-navy marker:hidden">
                   <span>{faq.question}</span>
                   <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-navy/25 text-lg transition-transform duration-200 group-open:rotate-45">+</span>
                 </summary>

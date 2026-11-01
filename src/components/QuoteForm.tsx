@@ -293,7 +293,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             CTA 는 그래서 진행 단계보다 위에 둔다 — 768px 노트북에서도 첫 화면에 남도록. */}
         <aside className="self-start rounded-[30px] bg-navy p-6 text-white shadow-[0_24px_80px_rgba(0,17,18,.22)] sm:p-7 lg:sticky lg:top-8 lg:max-h-[calc(100dvh-4rem)] lg:overflow-y-auto">
           <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-accent-soft/78">Email handoff</p>
-          <h3 className="mt-4 text-3xl font-black leading-[1.12] tracking-[-.02em]">Review the draft, then choose your inbox.</h3>
+          <h3 className="mt-4 text-2xl font-black leading-[1.12] tracking-[-.02em]">Review the draft, then choose your inbox.</h3>
           <BodyText size="md" tone="onDark" className="mt-4">
             Complete the required basics, then open a prepared email to {contactEmail}. Attach packing list, invoice, MSDS, photos, or equipment drawings in your email client if needed.
           </BodyText>
@@ -405,7 +405,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             </button>
 
             <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-accent-ink">Email handoff</p>
-            <h2 id="email-options-title" className="mt-3 pr-12 text-3xl font-black leading-tight">
+            <h2 id="email-options-title" className="mt-3 pr-12 text-2xl font-black leading-[1.12] tracking-[-.02em]">
               Choose where to open the draft.
             </h2>
             <p className="mt-3 text-sm font-bold text-navy/64">To: {contactEmail}</p>

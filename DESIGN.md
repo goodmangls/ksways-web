@@ -79,6 +79,12 @@ typography:
     fontWeight: 400
     lineHeight: 1.6
     letterSpacing: "-0.01em"
+  label-ui:
+    fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+    fontSize: 0.875rem
+    fontWeight: 600
+    lineHeight: 1.43
+    letterSpacing: "0em"
   label-caps:
     fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
     fontSize: 0.75rem
@@ -373,6 +379,8 @@ Tracking is deliberately moderate (`-0.02em` to `-0.035em`). Earlier revisions u
 - **Body copy**: `body-lg` (18px, leads and section bodies, measure ≤ 34em) and `body-md` (16px default). Line-height and measure follow **Readability**. Body tone should be practical, specific, and operational.
 - **Secondary text is an opacity of the ink, with a floor** — the text opacity tokens in **Colors**. Floors are ink 64% on light surfaces and white 56% on dark ones, enforced by `src/text-contrast.test.ts`.
 - **Korean** (`display-hero-ko`, `display-section-ko`, `body-lg-ko`, `body-md-ko`): more leading (1.12 / 1.22 display, 1.75–1.8 body) and near-zero tracking. The `/kr` page sets `word-break: keep-all` (`break-keep`); without it the browser breaks Hangul between syllables, splitting words like "글 / 로벌" across lines.
+- **UI labels** (`label-ui`, 14px, `600`–`800`): navigation links, button and CTA labels, form labels and helpers, captions, proof-strip labels, the contact line under the closing CTA. Not for running body copy.
+- **The scale is closed**: 12 · 13 · 14 · 16 · 18 · 22 · 24 · 26, and `clamp()` only for display roles (28px floor). One role is one size on every page: hero leads are `body-lg` on the homepage and every service page; FAQ questions are 18px bold. 15/17/19/30px and fluid body sizes were removed on 2026-11-01. Enforced by `src/components/Typography.test.tsx`.
 - **Kickers and badges**: `label-caps` (12px) or `label-mono` (13px), all caps, tracking `0.10em–0.18em`. They should signal systems, routes, network, and proof. The homepage no longer carries per-section kicker eyebrows — headlines stand alone there. Service landing pages keep a single eyebrow above the H1. Never stack two kickers. Use `01/02` numbering only where order is real: process steps and quote steps.
 
 Avoid long unbroken English labels on mobile unless the element can wrap without harming touch targets.
