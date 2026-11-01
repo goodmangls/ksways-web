@@ -149,6 +149,35 @@ describe('Typography rules (DESIGN.md "Readability")', () => {
     );
     expect(offenders).toEqual([]);
   });
+
+  it('draws every fixed font size from the DESIGN.md type scale', () => {
+    // label-caps 12 · label-mono 13 · label-ui 14 · body-md 16 · body-lg 18 ·
+    // heading-pillar/row 22 · heading-card 24 · heading-row (sm+) 26.
+    // 15/17/19/30px crept in one component at a time (impeccable audit 2026-10-31):
+    // the same role — a hero lead, an FAQ question — measured differently per page.
+    const SCALE_PX = new Set([12, 13, 14, 16, 18, 22, 24, 26]);
+    const UTILITY_PX: Record<string, number> = { xs: 12, sm: 14, base: 16, lg: 18, xl: 20, '2xl': 24, '3xl': 30, '4xl': 36, '5xl': 48, '6xl': 60 };
+    const offenders = allSources.flatMap(({ file, text }) => [
+      ...[...text.matchAll(/\btext-\[(\d+(?:\.\d+)?)px\]/g)]
+        .filter((m) => !SCALE_PX.has(Number(m[1])))
+        .map((m) => `${file}: ${m[0]}`),
+      ...[...text.matchAll(/\btext-(xs|sm|base|lg|xl|[2-6]xl)\b/g)]
+        .filter((m) => !SCALE_PX.has(UTILITY_PX[m[1]]))
+        .map((m) => `${file}: ${m[0]}`),
+    ]);
+    expect(offenders).toEqual([]);
+  });
+
+  it('keeps fluid clamp() sizes for display roles only (28px floor)', () => {
+    // A fluid body or label size is off-scale at almost every width in between:
+    // clamp(17px,1.3vw,19px) never rendered the 18px body-lg it stood in for.
+    const offenders = allSources.flatMap(({ file, text }) =>
+      [...text.matchAll(/\btext-\[clamp\((\d+)px,[^\]]+\]/g)]
+        .filter((m) => Number(m[1]) < 28)
+        .map((m) => `${file}: ${m[0]}`),
+    );
+    expect(offenders).toEqual([]);
+  });
 });
 
 describe('Typography components', () => {

@@ -35,7 +35,7 @@ export function SiteHeader({ nav, homeHref, toggleHref, quoteHref, isHome = fals
         {nav.skipToContent}
       </a>
       <BrandLogo href={homeHref} priority />
-      <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-[15px] font-semibold text-white/78 lg:flex">
+      <nav aria-label="Primary navigation" className="hidden items-center gap-8 text-sm font-semibold text-white/78 lg:flex">
         <a href={section('company')} className="inline-flex min-h-11 items-center transition hover:text-white">{nav.company}</a>
         <a href={section('services')} className="inline-flex min-h-11 items-center transition hover:text-white">{nav.services}</a>
         <a href={section('network')} className="inline-flex min-h-11 items-center transition hover:text-white">{nav.network}</a>

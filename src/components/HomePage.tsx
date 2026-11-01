@@ -89,7 +89,7 @@ function HeroPhotoPanel({ caption }: { caption: string }) {
         ))}
       </div>
       <figcaption className="absolute inset-x-3 bottom-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-[18px] border border-white/12 bg-navy/85 px-5 py-3.5 sm:inset-x-5 sm:bottom-5">
-        <span className="text-[15px] font-bold text-white">{caption}</span>
+        <span className="text-sm font-bold text-white">{caption}</span>
         <span className="grid text-xs font-semibold text-white/72">
           {heroBackgroundSlides.map((slide, index) => (
             <span
@@ -147,7 +147,7 @@ export function HomePage({ locale, copy }: Props) {
             <h1 id="hero-heading" className="ks-type-hero mt-6 text-[clamp(40px,11vw,52px)] font-black leading-[1.04] tracking-[-.028em] text-balance sm:text-[clamp(52px,6.2vw,88px)] sm:leading-[1] sm:tracking-[-.03em]">
               <HighlightedHeadline headline={copy.hero.headline} />
             </h1>
-            <p className="ks-type-body-lg ks-measure mt-7 max-w-[34em] text-[clamp(17px,1.3vw,19px)] leading-[1.65] text-white/76 text-pretty">{copy.hero.lead}</p>
+            <p className="ks-type-body-lg ks-measure mt-7 max-w-[34em] text-lg leading-[1.65] text-white/76 text-pretty">{copy.hero.lead}</p>
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <a href={quoteHref} className="inline-flex min-h-[52px] w-full justify-center items-center gap-2.5 rounded-full bg-accent px-7 font-extrabold text-navy transition hover:bg-accent-strong sm:w-auto">
                 {copy.hero.primaryCta}
@@ -163,7 +163,7 @@ export function HomePage({ locale, copy }: Props) {
           <dl className="mx-auto grid max-w-[1280px] px-6 sm:grid-cols-3 sm:px-10 lg:px-14" aria-label="Key proof points">
             {copy.hero.proof.map((item) => (
               <div key={item.label} className="flex flex-col-reverse gap-2.5 border-b border-border-dark py-7 last:border-b-0 sm:border-b-0 sm:border-r sm:py-9 sm:pr-8 sm:last:border-r-0 sm:[&:not(:first-child)]:pl-8">
-                <dt className="text-[15px] text-white/76">{item.label}</dt>
+                <dt className="text-sm text-white/76">{item.label}</dt>
                 <dd className="text-[clamp(28px,3vw,40px)] font-black leading-none tracking-[-.025em] text-white">{item.value}</dd>
               </div>
             ))}
@@ -303,7 +303,7 @@ export function HomePage({ locale, copy }: Props) {
           <div className="border-t border-navy">
             {faqs.map((faq) => (
               <details key={faq.question} className="group border-b border-border-light py-1">
-                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 py-3 text-[19px] font-bold tracking-[-.01em] text-navy marker:hidden">
+                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 py-3 text-lg font-bold tracking-[-.01em] text-navy marker:hidden">
                   <span>{faq.question}</span>
                   <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-navy/25 text-lg transition-transform duration-200 group-open:rotate-45">+</span>
                 </summary>
@@ -319,7 +319,7 @@ export function HomePage({ locale, copy }: Props) {
           <div>
             <h2 id="contact-heading" className="ks-type-hero max-w-3xl text-[clamp(34px,9vw,42px)] font-black leading-[1.04] tracking-[-.028em] sm:text-[clamp(40px,4vw,60px)] sm:leading-[1.02] sm:tracking-[-.03em]">{copy.contact.headline}</h2>
             <BodyText tone="onDark" measure="default" className="mt-5">{copy.contact.body}</BodyText>
-            <div className="mt-5 flex flex-col gap-1 text-[15px] font-semibold text-white/86 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-7">
+            <div className="mt-5 flex flex-col gap-1 text-sm font-semibold text-white/86 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-7">
               <a href={`mailto:${copy.contact.email}`} className="inline-flex min-h-11 items-center transition hover:text-accent-soft">{copy.contact.email}</a>
               <a href={contactPhoneHref} className="inline-flex min-h-11 items-center transition hover:text-accent-soft">{copy.contact.phone}</a>
               <span className="inline-flex min-h-11 items-center text-white/76">{copy.contact.fax}</span>
