@@ -1,1 +1,1 @@
-✨ 디자인 리뷰 빠른 수정 — 견적 폼 placeholder(muted·e.g.·320px 맞춤·안내는 helper), 과정 배지 통일, CTA 화살표 SVG화, README 청록 표기 정리
+🎨 .impeccable/design.json 사이드카를 현재 DESIGN.md·컴포넌트 기준으로 재생성
