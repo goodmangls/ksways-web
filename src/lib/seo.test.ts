@@ -73,5 +73,9 @@ describe('KS WAYS technical SEO plumbing', () => {
     expect(contactFax).toBe('+82 2 6961 5765');
     expect(organizationJsonLd('en')).toMatchObject({ telephone: '+82 2 6961 5778', faxNumber: '+82 2 6961 5765' });
     expect(organizationJsonLd('kr')).toMatchObject({ telephone: '+82 2 6961 5778', faxNumber: '+82 2 6961 5765' });
+    // Legal entity as registered (supplied by KS WAYS 2026-11-01). Brand stays `KS WAYS`.
+    for (const locale of ['en', 'kr'] as const) {
+      expect(organizationJsonLd(locale)).toMatchObject({ legalName: 'KSWAYS CO.,LTD.', taxID: '196-81-01177', alternateName: 'KS WAYS' });
+    }
   });
 });

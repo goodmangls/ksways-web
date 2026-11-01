@@ -70,6 +70,7 @@ export type HomeCopy = {
   footer: {
     tagline: string;
     companyName: string;
+    businessRegistration: string;
     address: string;
     email: string;
     phone: string;
@@ -111,7 +112,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
     },
     company: {
       headline: 'A global logistics company built for ocean and air freight execution.',
-      body: 'KS WAYS CO., LTD. combines 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding with WCA partner access across global trade lanes.',
+      body: 'KSWAYS CO.,LTD. combines 30+ years of industry experience across airline cargo, express logistics, shipping line operations, and global forwarding with WCA partner access across global trade lanes.',
       pillars: [
         { title: 'Ocean freight strength', body: 'FCL/LCL planning, carrier coordination, loading review, and partner handoff for sea freight movements.' },
         { title: 'Global partner communication', body: 'Structured shipment questions, clear milestone updates, and accountable handoff help partners review Korea-connected cargo with confidence.' },
@@ -163,7 +164,8 @@ export const homeContent: Record<Locale, HomeCopy> = {
     },
     footer: {
       tagline: 'A trusted global ocean and air logistics / global forwarding company for global freight forwarders: Korea’s strategic gateway to global routes, ocean-led execution, WCA-backed partner cooperation, and 30+ years of airline, shipping line, and global forwarding experience.',
-      companyName: 'KS WAYS CO., LTD.',
+      companyName: 'KSWAYS CO.,LTD.',
+      businessRegistration: 'Business Registration No. 196-81-01177',
       address: 'RM 909, Gangseo IT Valley, 82, Hwagok-ro 68-gil, Gangseo-gu, Seoul 07566, Republic of Korea',
       email: 'info@ksways.co',
       phone: 'Tel. +82 2 6961 5778',
@@ -231,7 +233,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
     },
     company: {
       headline: '해상과 항공 운송 실행력을 갖춘 글로벌 물류회사.',
-      body: 'KS WAYS CO., LTD.는 항공화물, 특송 물류, 해운사 운영, 글로벌 포워딩 전반에서 축적한 30년 이상 Industry Experience와 WCA 기반의 글로벌 파트너 접근성을 결합합니다.',
+      body: 'KSWAYS CO.,LTD.는 항공화물, 특송 물류, 해운사 운영, 글로벌 포워딩 전반에서 축적한 30년 이상 Industry Experience와 WCA 기반의 글로벌 파트너 접근성을 결합합니다.',
       pillars: [
         { title: '해상물류 강점', body: 'FCL/LCL 라우팅, 운송사 조율, 적입 검토, 파트너 핸드오프까지 해운 중심 실행을 지원합니다.' },
         { title: 'WCA 네트워크 회원사', body: '세계 최대 글로벌 물류 네트워크 기반의 에이전트 협력으로 국제 커버리지를 확장합니다.' },
@@ -283,7 +285,8 @@ export const homeContent: Record<Locale, HomeCopy> = {
     },
     footer: {
       tagline: 'KS WAYS는 한국을 거점으로 글로벌 노선을 잇는 실행력, 해운 중심 강점, WCA 기반 파트너 협력, 30년 이상 항공사·해운사·글로벌 포워딩 경험을 갖춘 글로벌 해상·항공 물류회사입니다.',
-      companyName: 'KS WAYS CO., LTD.',
+      companyName: 'KSWAYS CO.,LTD.',
+      businessRegistration: '사업자등록번호 196-81-01177',
       address: 'RM 909, Gangseo IT Valley, 82, Hwagok-ro 68-gil, Gangseo-gu, Seoul 07566, Republic of Korea',
       email: 'info@ksways.co',
       phone: 'Tel. +82 2 6961 5778',

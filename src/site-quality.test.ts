@@ -10,6 +10,11 @@ import { homeContent } from '@/lib/content';
 /** Brand spellings that must never appear in copy. `KS WAYS` is the only correct form. */
 const COLLAPSED_BRAND_SPELLINGS = ['KSWAYS', 'KSWays', 'KS Ways'] as const;
 
+/** The registered legal entity is spelled `KSWAYS CO.,LTD.` (business registration,
+ *  supplied 2026-11-01). It is a legal fact, not the brand, so exactly this string is
+ *  exempt; `KSWAYS` anywhere else is still a collapsed brand. */
+const LEGAL_ENTITY_NAME = 'KSWAYS CO.,LTD.';
+
 /** Positioning DESIGN.md explicitly rules out of public copy. */
 const FORBIDDEN_COPY = [
   'MLM',
@@ -106,7 +111,7 @@ describe('site quality hardening', () => {
     // identifier noise — `NEXT_PUBLIC_KSWAYS_CALENDLY_URL` and `utm_source=ksways`
     // are code, not copy, and would trip a raw file scan.
     const offenders = copyStrings().filter(({ value }) =>
-      COLLAPSED_BRAND_SPELLINGS.some((term) => value.includes(term)),
+      COLLAPSED_BRAND_SPELLINGS.some((term) => value.replaceAll(LEGAL_ENTITY_NAME, '').includes(term)),
     );
 
     expect(offenders).toEqual([]);

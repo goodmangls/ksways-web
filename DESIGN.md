@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: KS WAYS Global Logistics
-description: Premium ocean-led global logistics identity for KS WAYS CO., LTD.; dark control-tower confidence, warm bronze route intelligence, and crisp B2B execution.
+description: Premium ocean-led global logistics identity for KS WAYS (legal entity KSWAYS CO.,LTD.); dark control-tower confidence, warm bronze route intelligence, and crisp B2B execution.
 colors:
   primary: "#001112"
   secondary: "#031D20"
@@ -240,7 +240,7 @@ The core impression is **dark control-tower confidence + warm bronze route intel
 Public naming must stay exact:
 
 - Use **KS WAYS** for the brand.
-- Use **KS WAYS CO., LTD.** for the legal company name.
+- Use **KSWAYS CO.,LTD.** for the legal company name, exactly as registered (사업자등록번호 196-81-01177, supplied 2026-11-01). It appears only where a legal entity is named: the footer entity line, the About section sentence that names the company, and Organization JSON-LD `name`/`legalName`. Everywhere else the brand is **KS WAYS**.
 - Preserve `ksways.co` and `info@ksways.co` as machine/domain identifiers.
 - Do not collapse the brand into `KSWAYS` in visible copy, alt text, metadata, or navigation.
 
@@ -509,7 +509,7 @@ The readability reference for controls (quote form): a visible boundary, a legib
 - Footer is a trust-closing surface, not a decorative afterthought.
 - Include the official logo, global logistics tagline, WCA/ocean/air credential cards, company/service/contact navigation, legal company name, email, and copyright.
 - Footer links must be at least `44px` high on mobile.
-- Footer text must preserve `KS WAYS CO., LTD.` and `info@ksways.co`.
+- Footer text must preserve the legal entity line `KSWAYS CO.,LTD.`, its business registration number (`196-81-01177`), and `info@ksways.co`.
 
 ## Do's and Don'ts
 
@@ -526,7 +526,7 @@ The readability reference for controls (quote form): a visible boundary, a legib
 ### Don't
 
 - Do not describe KS WAYS primarily as a Korea-based local company.
-- Do not spell the visible brand as `KSWAYS`, `KSWays`, or `KS Ways` — `KS WAYS` is the only correct form. Enforced by `src/site-quality.test.ts`, which walks the exported copy data rather than grepping files, so identifiers like `NEXT_PUBLIC_KSWAYS_CALENDLY_URL` do not false-positive.
+- Do not spell the visible brand as `KSWAYS`, `KSWays`, or `KS Ways` — `KS WAYS` is the only correct form. The one exemption is the registered legal name `KSWAYS CO.,LTD.` as an exact string. Enforced by `src/site-quality.test.ts`, which walks the exported copy data rather than grepping files, so identifiers like `NEXT_PUBLIC_KSWAYS_CALENDLY_URL` do not false-positive.
 - Do not add arbitrary colors outside the navy/bronze/gold/steel/paper palette.
 - Do not place white text on the bronze accent (`#B88A5A`); it measures 3.08:1 and fails WCAG AA.
 - Do not change a palette value in one component only — the palette is asserted site-wide by `src/brand-palette.test.ts`.

@@ -13,7 +13,7 @@ web
 
 ## Product Purpose
 
-ksways.co is the public site of KS WAYS CO., LTD., a Korea-origin ocean and air logistics company. It exists to win **partner appointments**: an overseas forwarder decides to make KS WAYS its Korea origin agent and makes contact by email (`info@ksways.co`), WCAworld WQS or a consultation call. Quote requests through `/quote` matter, but they come after that relationship (confirmed 2026-10-31).
+ksways.co is the public site of KSWAYS CO.,LTD. (brand: KS WAYS), a Korea-origin ocean and air logistics company. It exists to win **partner appointments**: an overseas forwarder decides to make KS WAYS its Korea origin agent and makes contact by email (`info@ksways.co`), WCAworld WQS or a consultation call. Quote requests through `/quote` matter, but they come after that relationship (confirmed 2026-10-31).
 
 Success means a forwarder leaves understanding three things: what KS WAYS executes on the Korea side, that it is a real WCA member with industry depth, and how to start working together.
 
@@ -46,7 +46,7 @@ What a neighbouring forwarder can't copy: Korea-side execution (pickup, carrier 
   - Prefer: Korea origin, worldwide destinations, WCA partner networking, Korea origin agent, shipment coordination, clear handoff.
   - Never use MLM, network marketing, passive income, guaranteed savings, cheapest rate, risk-free, or anything that reads as recruitment or a financial promise.
   - Don't promise outcomes that depend on carriers, customs or third parties.
-- **Brand spelling:** "KS WAYS" (legal name KS WAYS CO., LTD.).
+- **Brand spelling:** "KS WAYS" (legal name KSWAYS CO.,LTD., 사업자등록번호 196-81-01177).
 - **Open decision:** whether Korean service pages get built, and how the English subpages' language toggle should resolve until they do.
 
 ## Brand Commitments
