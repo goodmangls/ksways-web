@@ -12,6 +12,7 @@ import { SiteHeader } from './SiteHeader';
 import { BodyText, CardHeading, SectionHeading } from './Typography';
 import { WcaBadge } from './WcaBadge';
 import { WcaMemberTools } from './WcaMemberTools';
+import { ArrowIcon } from './ArrowIcon';
 
 type HomeCopy = (typeof homeContent)[Locale];
 
@@ -24,20 +25,6 @@ const heroBackgroundSlides = getHeroSlides();
 
 // 섹션 제목·본문의 가독성 기준(DESIGN.md "Readability")은 Typography 컴포넌트가 갖고 있다.
 const monoLabelClass = 'font-mono text-[13px] font-semibold text-accent-ink';
-
-function ArrowIcon({ external = false }: { external?: boolean }) {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path
-        d={external ? 'M5 11l6-6M6 5h5v5' : 'M3 8h10M9 4l4 4-4 4'}
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 function CheckIcon() {
   return (
@@ -272,10 +259,11 @@ export function HomePage({ locale, copy }: Props) {
             return (
               <li key={step.title}>
                 <div className="flex items-center gap-3" aria-hidden="true">
-                  <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-full font-mono text-sm font-semibold ${isLast ? 'bg-accent text-navy' : 'bg-navy text-accent-soft'}`}>
+                  <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-full font-mono text-sm font-semibold bg-navy text-accent-soft`}>
                     {number}
                   </span>
-                  <span className={`h-0.5 flex-1 ${isLast ? 'bg-border-light' : 'bg-accent'}`} />
+                  {/* The line leads to the next step; the last step has none to lead to (design review F-007). */}
+                  <span className={`h-0.5 flex-1 ${isLast ? 'invisible' : 'bg-accent'}`} />
                 </div>
                 <CardHeading size="md" className="mt-4">
                   <span className="sr-only">{number} · </span>

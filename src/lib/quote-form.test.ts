@@ -335,3 +335,32 @@ describe('quote form mailto builder', () => {
     expect(mailto.body).toContain('- Special cargo notes: Special cargo review');
   });
 });
+
+describe('quote form placeholders (design review F-003, 2026-10-27)', () => {
+  // Example values like "Acme Trading Co." and "2.88" looked prefilled while the
+  // summary said "Nothing entered yet", and long hints were cut mid-word on a
+  // 375px screen. Examples now say so, and format hints live in helper text.
+  const singleLine = quoteFormFields.filter((field) => !field.type || field.type === 'email');
+  const EXAMPLE_FIELDS = ['companyName', 'contactName', 'emailOrPhone', 'origin', 'destination', 'commodity', 'hsCode', 'packageCount', 'grossWeight', 'dimensions', 'cbm', 'containerQuantity', 'temperatureRange', 'unNumber', 'dgClass', 'targetSchedule', 'pickupPlace'];
+
+  it('marks example values as examples', () => {
+    const unmarked = quoteFormFields
+      .filter((field) => EXAMPLE_FIELDS.includes(field.name))
+      .filter((field) => !field.placeholder.startsWith('e.g. '))
+      .map((field) => `${field.name}: ${field.placeholder}`);
+    expect(unmarked).toEqual([]);
+  });
+
+  it('keeps single-line placeholders short enough to show whole in a 327px mobile field', () => {
+    const long = singleLine.filter((field) => field.placeholder.length > 36).map((field) => `${field.name}: ${field.placeholder}`);
+    expect(long).toEqual([]);
+  });
+
+  it('moves the format hints that used to be cut off into helper text', () => {
+    const byName = (name: string) => quoteFormFields.find((field) => field.name === name);
+    expect(byName('unNumber')?.helper).toContain('Leave blank for general cargo');
+    expect(byName('pickupPlace')?.helper).toContain('PIC name and phone');
+    expect(byName('targetSchedule')?.helper).toContain('arrival deadline');
+    expect(byName('dimensions')?.helper).toContain('L x W x H');
+  });
+});

@@ -519,6 +519,7 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 The readability reference for controls (quote form): a visible boundary, a legible placeholder, and an error that never relies on color alone.
 
 - Label above the field, 14px / `700` `ink`; an optional hint in `text-subtle`. Never use the placeholder as the label.
+- Placeholder: `muted` at regular weight, so it never reads as typed data next to the `600` value. Example values start with "e.g."; every single-line placeholder fits a 320px-wide field, and longer format hints go in the helper line under the field. Enforced by `src/lib/quote-form.test.ts` and `e2e/placeholder-fit.spec.ts` (design review F-003).
 - Field: `white` fill, 1px `border-control`, 16px radius, at least 48px high, value 16px / `600` `ink`, placeholder `text-faint`.
 - Hover border `tertiary-hover`; focus uses the two-tone ring (see **Focus**).
 - Error: 2px `warning` border, `aria-invalid="true"`, and a message in `warning` 14px / `600` with an icon, tied to the field by `aria-describedby`.

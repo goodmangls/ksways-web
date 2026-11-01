@@ -1,3 +1,5 @@
+import { ArrowIcon } from './ArrowIcon';
+
 type Props = {
   quoteLabel: string;
   partnerLabel: string;
@@ -92,7 +94,7 @@ export function ContactActions({ quoteLabel, partnerLabel, scheduleLabel, email,
           <span className={action.primary ? 'block rounded-[23px] px-6 py-4' : 'block rounded-[23px] px-6 py-4'}>
             <span className="flex items-center justify-between gap-4">
               <span className="text-base font-black tracking-[-.02em]">{action.label}</span>
-              <span className="font-mono text-xs font-black opacity-70 transition group-hover:translate-x-1">→</span>
+              <span className="shrink-0 opacity-70 transition group-hover:translate-x-1"><ArrowIcon external={action.external} /></span>
             </span>
             <span className={action.primary ? 'mt-1 block text-sm font-bold text-navy' : 'mt-1 block text-sm font-semibold text-white/58'}>
               {action.helper}

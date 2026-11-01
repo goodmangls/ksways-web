@@ -1,1 +1,1 @@
-🔤 글자 크기 스케일 정리 — 15/17/19/30px·유동 본문 크기를 DESIGN.md 역할(14·18·22/26·24px)로 통일, label-ui 역할 추가, 스케일 가드 테스트
+✨ 디자인 리뷰 빠른 수정 — 견적 폼 placeholder(muted·e.g.·320px 맞춤·안내는 helper), 과정 배지 통일, CTA 화살표 SVG화, README 청록 표기 정리

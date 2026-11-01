@@ -7,7 +7,7 @@ import type { QuoteFormField, QuoteFormValues } from '@/lib/quote-form';
 // affordance, not the indicator.
 // Border color and fill are chosen once per field (defaultSurface / highlightedSurface) — two border
 // colors in one class list resolve by stylesheet order, not by intent.
-const fieldClass = 'min-h-12 w-full rounded-2xl border px-4 py-3 text-base font-semibold text-navy transition placeholder:text-navy/64 focus:border-accent focus:bg-white';
+const fieldClass = 'min-h-12 w-full rounded-2xl border px-4 py-3 text-base font-semibold text-navy transition placeholder:font-normal placeholder:text-muted focus:border-accent focus:bg-white';
 // `border-control` (3.25:1 on paper) — ink 12% measured about 1.3:1, an invisible boundary.
 const defaultSurface = 'border-border-control bg-paper';
 // Full-strength accent-ink (5.92:1 on white); at 60% it fell to 2.57:1, under the

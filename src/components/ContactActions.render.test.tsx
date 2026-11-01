@@ -36,4 +36,14 @@ describe('ContactActions render', () => {
     expect(schedule).toHaveAttribute('target', '_blank');
     expect(schedule).toHaveAttribute('rel', 'noopener noreferrer');
   });
+
+  it('draws the card arrow as an icon, not a 12px text glyph', () => {
+    // Design review F-012: "→" in text-xs read as a stray character.
+    const { container } = render(<ContactActions {...baseProps} />);
+    expect(container.textContent).not.toContain('→');
+    const links = screen.getAllByRole('link');
+    for (const link of links) {
+      expect(link.querySelector('svg[aria-hidden="true"]')).not.toBeNull();
+    }
+  });
 });
