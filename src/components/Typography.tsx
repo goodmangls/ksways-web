@@ -35,12 +35,12 @@ export const cardHeadingSizes = {
 export const bodyTextVariants = {
   /** body-lg — 섹션 본문·리드. */
   lg: {
-    onLight: 'ks-type-body-lg text-lg leading-[1.65] text-[#001112]/76',
+    onLight: 'ks-type-body-lg text-lg leading-[1.65] text-navy/76',
     onDark: 'ks-type-body-lg text-lg leading-[1.65] text-white/76',
   },
   /** body-md — 카드·FAQ 답변·행 설명. */
   md: {
-    onLight: 'ks-type-body text-base leading-[1.6] text-[#001112]/76',
+    onLight: 'ks-type-body text-base leading-[1.6] text-navy/76',
     onDark: 'ks-type-body text-base leading-[1.6] text-white/76',
   },
 } as const;

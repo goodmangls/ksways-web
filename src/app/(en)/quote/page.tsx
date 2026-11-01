@@ -33,13 +33,13 @@ export const metadata: Metadata = {
 
 export default function QuotePage() {
   return (
-    <main className="min-h-screen bg-[#f4f7f6] text-[#001112]">
-      <section className="relative overflow-hidden bg-[#001112] text-white">
+    <main className="min-h-screen bg-paper text-navy">
+      <section className="relative overflow-hidden bg-navy text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(184,138,90,.26),transparent_30%),linear-gradient(120deg,rgba(0,17,18,.98),rgba(2,31,34,.88))]" />
         <SiteHeader nav={homeContent.en.nav} homeHref="/" toggleHref="/kr" quoteHref="/quote" />
         <div id="content" className="relative z-10 mx-auto max-w-[1280px] px-6 pb-8 sm:px-10 lg:px-14">
           <div className="max-w-5xl py-10 lg:py-14">
-            <p className="text-sm font-black uppercase tracking-[.16em] text-[#e7c99a]">Freight Quote Request</p>
+            <p className="text-sm font-black uppercase tracking-[.16em] text-accent-soft">Freight Quote Request</p>
             <h1 className="ks-type-hero mt-5 text-[clamp(40px,6vw,82px)] font-black leading-[1.04] tracking-[-.028em] text-balance sm:leading-[1] sm:tracking-[-.03em]">Get a quote for ocean, air, and special cargo.</h1>
             <BodyText tone="onDark" measure="default" className="mt-6">
               Start with the transport mode, complete the key cargo facts, then review a prepared email to {contactEmail}. Nothing is sent automatically.

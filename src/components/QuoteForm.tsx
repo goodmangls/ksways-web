@@ -44,7 +44,7 @@ const sectionAnchor = (section: keyof typeof sectionLabels) => `quote-section-${
 // 완료 표시는 bronze 위 ink 텍스트(DESIGN.md 대비 규칙). 두 갈래를 한 줄에 두면
 // brand-palette 가드가 한 줄 안의 bronze·white 를 짝으로 오인하므로 줄을 나눈다.
 const stepMarkerClass = 'inline-flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-black';
-const stepMarkerDoneClass = 'bg-[#b88a5a] text-[#001112]';
+const stepMarkerDoneClass = 'bg-accent text-navy';
 const stepMarkerPendingClass = 'border border-white/24 text-white/70';
 
 function getStepStatus({ requiredTotal, requiredDone, filledCount, complete }: QuoteSectionProgress) {
@@ -210,18 +210,18 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
     <section className="mx-auto max-w-[1280px] px-6 pb-20 sm:px-10 lg:px-14">
       {/* Below sm the form sits straight on the page: the white card, its padding and the
           grey transport panel cost ~50px of a 375px screen (design review F-004). */}
-      <div className="grid gap-8 sm:rounded-[36px] sm:border sm:border-[#001112]/10 sm:bg-white sm:p-8 sm:shadow-[0_24px_90px_rgba(0,17,18,.08)] lg:grid-cols-[1.2fr_.8fr] lg:p-10">
+      <div className="grid gap-8 sm:rounded-[36px] sm:border sm:border-navy/10 sm:bg-white sm:p-8 sm:shadow-[0_24px_90px_rgba(0,17,18,.08)] lg:grid-cols-[1.2fr_.8fr] lg:p-10">
         <form ref={formRef} className="grid gap-8" aria-label="KS WAYS structured freight quote form" noValidate>
           <div>
-            <p className="text-sm font-black uppercase tracking-[.14em] text-[#805d3b]">Quote details</p>
+            <p className="text-sm font-black uppercase tracking-[.14em] text-accent-ink">Quote details</p>
             <SectionHeading size="md" className="mt-3">Prepare an air or ocean freight request.</SectionHeading>
             <BodyText size="md" measure="default" className="mt-4">
               Choose the transport mode first. The form then keeps the most useful route, cargo, equipment, and special-handling fields visible for KS WAYS review. Nothing is sent automatically; you review the prepared email before sending.
             </BodyText>
           </div>
 
-          <fieldset className="sm:rounded-[28px] sm:border sm:border-[#001112]/10 sm:bg-[#f4f7f6] sm:p-5">
-            <legend className="text-sm font-black uppercase tracking-[.14em] text-[#805d3b] sm:px-2">Transport mode *</legend>
+          <fieldset className="sm:rounded-[28px] sm:border sm:border-navy/10 sm:bg-paper sm:p-5">
+            <legend className="text-sm font-black uppercase tracking-[.14em] text-accent-ink sm:px-2">Transport mode *</legend>
             <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
               {transportModeOptions.map((option) => {
                 const isActive = (values.transportMode ?? 'Not sure') === option.value;
@@ -232,10 +232,10 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                     type="button"
                     aria-pressed={isActive}
                     onClick={() => updateTransportMode(option.value)}
-                    className={`rounded-2xl border p-4 text-left transition ${isActive ? 'border-[#805d3b] bg-[#001112] text-white shadow-[0_16px_36px_rgba(0,17,18,.16)]' : 'border-[var(--ks-border-control)] bg-white text-[#001112] hover:border-[#b88a5a]'}`}
+                    className={`rounded-2xl border p-4 text-left transition ${isActive ? 'border-accent-ink bg-navy text-white shadow-[0_16px_36px_rgba(0,17,18,.16)]' : 'border-border-control bg-white text-navy hover:border-accent'}`}
                   >
                     <span className="block text-lg font-black">{option.label}</span>
-                    <span className={`mt-1 block text-xs font-bold leading-snug ${isActive ? 'text-white/64' : 'text-[#001112]/66'}`}>{option.helper}</span>
+                    <span className={`mt-1 block text-xs font-bold leading-snug ${isActive ? 'text-white/64' : 'text-navy/66'}`}>{option.helper}</span>
                   </button>
                 );
               })}
@@ -244,8 +244,8 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
 
           {visibleSections.map((section) => (
             <fieldset key={section} id={sectionAnchor(section)} className="grid scroll-mt-8 gap-4">
-              <legend className="text-lg font-black tracking-[-.03em] text-[#001112]">{sectionLabels[section]}</legend>
-              <p className="text-sm leading-relaxed text-[#001112]/70">{sectionDescriptions[section]}</p>
+              <legend className="text-lg font-black tracking-[-.03em] text-navy">{sectionLabels[section]}</legend>
+              <p className="text-sm leading-relaxed text-navy/70">{sectionDescriptions[section]}</p>
               <div className="grid gap-4 md:grid-cols-2">
                 {quoteFormFields
                   .filter((field) => field.section === section)
@@ -262,26 +262,26 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             </fieldset>
           ))}
           {dgSelected ? (
-            <div className="rounded-[26px] border border-[#805d3b]/20 bg-[#faf4ec] p-5 text-sm font-bold leading-relaxed text-[#001112]/70">
+            <div className="rounded-[26px] border border-accent-ink/20 bg-accent-tint p-5 text-sm font-bold leading-relaxed text-navy/70">
               DG cargo selected — please add UN No., DG class, and attach MSDS / DG declaration when the email draft opens.
             </div>
           ) : null}
 
-          <div className="rounded-[28px] border border-[#001112]/10 bg-white p-5 sm:bg-[#f4f7f6] lg:hidden">
-            <p className="text-sm font-black uppercase tracking-[.14em] text-[#805d3b]">Review</p>
-            <p className="mt-2 text-sm leading-relaxed text-[#001112]/64">
+          <div className="rounded-[28px] border border-navy/10 bg-white p-5 sm:bg-paper lg:hidden">
+            <p className="text-sm font-black uppercase tracking-[.14em] text-accent-ink">Review</p>
+            <p className="mt-2 text-sm leading-relaxed text-navy/64">
               {canOpenEmail ? 'All required fields are ready.' : `${missingRequiredFields.length} required fields left before opening a clean email draft.`}
             </p>
-            {validationMessage ? <p className="mt-3 text-sm font-black text-[#b3261e]">{validationMessage}</p> : null}
+            {validationMessage ? <p className="mt-3 text-sm font-black text-warning">{validationMessage}</p> : null}
             {mailtoOverLimit ? (
-              <p role="status" className="mt-3 rounded-2xl border border-[#b3261e]/25 bg-[#b3261e]/8 p-4 text-sm font-bold leading-relaxed text-[#b3261e]">
+              <p role="status" className="mt-3 rounded-2xl border border-warning/25 bg-warning/8 p-4 text-sm font-bold leading-relaxed text-warning">
                 {lengthWarning}
               </p>
             ) : null}
             <button
               type="button"
               onClick={handleChooseEmailApp}
-              className="mt-4 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-[#001112] px-6 text-center font-black text-white transition hover:bg-[#805d3b]"
+              className="mt-4 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-navy px-6 text-center font-black text-white transition hover:bg-accent-ink"
             >
               Choose email app
             </button>
@@ -291,37 +291,37 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
         {/* 진행 단계·요약이 붙어 패널이 뷰포트보다 길어질 수 있다. sticky 요소가 뷰포트보다 길면
             아랫부분이 스크롤 끝까지 안 보이므로, 데스크톱에서는 패널 자체가 스크롤되게 한다.
             CTA 는 그래서 진행 단계보다 위에 둔다 — 768px 노트북에서도 첫 화면에 남도록. */}
-        <aside className="self-start rounded-[30px] bg-[#001112] p-6 text-white shadow-[0_24px_80px_rgba(0,17,18,.22)] sm:p-7 lg:sticky lg:top-8 lg:max-h-[calc(100dvh-4rem)] lg:overflow-y-auto">
-          <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#e7c99a]/78">Email handoff</p>
+        <aside className="self-start rounded-[30px] bg-navy p-6 text-white shadow-[0_24px_80px_rgba(0,17,18,.22)] sm:p-7 lg:sticky lg:top-8 lg:max-h-[calc(100dvh-4rem)] lg:overflow-y-auto">
+          <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-accent-soft/78">Email handoff</p>
           <h3 className="mt-4 text-3xl font-black leading-[1.12] tracking-[-.02em]">Review the draft, then choose your inbox.</h3>
           <BodyText size="md" tone="onDark" className="mt-4">
             Complete the required basics, then open a prepared email to {contactEmail}. Attach packing list, invoice, MSDS, photos, or equipment drawings in your email client if needed.
           </BodyText>
           {validationMessage ? (
-            <div className="mt-5 rounded-2xl border border-[#ff8a80]/40 bg-[#ff8a80]/12 p-4 text-sm font-bold leading-relaxed text-[#ffb4ab]" role="alert">
+            <div className="mt-5 rounded-2xl border border-warning-bright/40 bg-warning-bright/12 p-4 text-sm font-bold leading-relaxed text-warning-text" role="alert">
               {validationMessage}
             </div>
           ) : null}
           {mailtoOverLimit ? (
-            <p role="status" className="mt-4 rounded-2xl border border-[#ff8a80]/40 bg-[#ff8a80]/12 p-4 text-sm font-bold leading-relaxed text-[#ffb4ab]">
+            <p role="status" className="mt-4 rounded-2xl border border-warning-bright/40 bg-warning-bright/12 p-4 text-sm font-bold leading-relaxed text-warning-text">
               {lengthWarning}
             </p>
           ) : null}
           <button
             type="button"
             onClick={handleChooseEmailApp}
-            className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-[#b88a5a] px-6 text-center font-black text-[#001112] shadow-[0_18px_46px_rgba(184,138,90,.24)] transition hover:scale-[1.015]"
+            className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-accent px-6 text-center font-black text-navy shadow-[0_18px_46px_rgba(184,138,90,.24)] transition hover:scale-[1.015]"
           >
             Choose email app
           </button>
           <button
             type="button"
             onClick={handleCopySummary}
-            className="mt-3 inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-white/16 px-6 text-center font-black text-white transition hover:border-[#e7c99a]/70 hover:bg-white/[.08]"
+            className="mt-3 inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-white/16 px-6 text-center font-black text-white transition hover:border-accent-soft/70 hover:bg-white/[.08]"
           >
             Copy request summary
           </button>
-          {copyStatus ? <p className="mt-3 text-sm font-bold text-[#e7c99a]">{copyStatus}</p> : null}
+          {copyStatus ? <p className="mt-3 text-sm font-bold text-accent-soft">{copyStatus}</p> : null}
           <p className="mt-4 text-xs font-semibold leading-relaxed text-white/66">
             The prepared draft is addressed to {contactEmail}. Nothing is submitted to a server from this page.
           </p>
@@ -341,7 +341,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                       </span>
                       <span className="min-w-0">
                         <span className="block text-sm font-black text-white">{sectionLabels[step.section]}</span>
-                        <span className={`block text-xs font-bold ${done ? 'text-[#e7c99a]' : 'text-white/56'}`}>{getStepStatus(step)}</span>
+                        <span className={`block text-xs font-bold ${done ? 'text-accent-soft' : 'text-white/56'}`}>{getStepStatus(step)}</span>
                       </span>
                     </a>
                   </li>
@@ -378,7 +378,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
 
       {emailOptionsOpen ? (
         <div
-          className="fixed inset-0 z-[80] grid place-items-center bg-[#001112]/72 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[80] grid place-items-center bg-navy/72 p-4 backdrop-blur-sm"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) {
               closeEmailOptions();
@@ -392,26 +392,26 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             aria-labelledby="email-options-title"
             tabIndex={-1}
             onKeyDown={handleEmailOptionsKeyDown}
-            className="relative max-h-[calc(100dvh-2rem)] w-full max-w-2xl overflow-y-auto rounded-[30px] bg-white p-6 text-[#001112] shadow-[0_32px_120px_rgba(0,17,18,.38)] sm:p-8"
+            className="relative max-h-[calc(100dvh-2rem)] w-full max-w-2xl overflow-y-auto rounded-[30px] bg-white p-6 text-navy shadow-[0_32px_120px_rgba(0,17,18,.38)] sm:p-8"
           >
             <button
               type="button"
               aria-label="Close email options"
               title="Close"
               onClick={closeEmailOptions}
-              className="absolute right-5 top-5 inline-flex size-11 items-center justify-center rounded-full border border-[#001112]/12 bg-[#f4f7f6] transition hover:border-[#b88a5a] hover:bg-white"
+              className="absolute right-5 top-5 inline-flex size-11 items-center justify-center rounded-full border border-navy/12 bg-paper transition hover:border-accent hover:bg-white"
             >
               <X aria-hidden="true" className="size-5" />
             </button>
 
-            <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-[#805d3b]">Email handoff</p>
+            <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-accent-ink">Email handoff</p>
             <h2 id="email-options-title" className="mt-3 pr-12 text-3xl font-black leading-tight">
               Choose where to open the draft.
             </h2>
-            <p className="mt-3 text-sm font-bold text-[#001112]/64">To: {contactEmail}</p>
+            <p className="mt-3 text-sm font-bold text-navy/64">To: {contactEmail}</p>
 
             {mailtoOverLimit ? (
-              <p role="status" className="mt-5 rounded-2xl border border-[#b3261e]/25 bg-[#b3261e]/8 p-4 text-sm font-bold leading-relaxed text-[#b3261e]">
+              <p role="status" className="mt-5 rounded-2xl border border-warning/25 bg-warning/8 p-4 text-sm font-bold leading-relaxed text-warning">
                 {lengthWarning}
               </p>
             ) : null}
@@ -420,7 +420,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
               <a
                 href={href}
                 onClick={handleDefaultEmailClick}
-                className="flex min-h-[76px] items-center gap-4 rounded-2xl border border-[#001112]/12 bg-[#001112] px-5 py-4 text-white transition hover:bg-[#805d3b]"
+                className="flex min-h-[76px] items-center gap-4 rounded-2xl border border-navy/12 bg-navy px-5 py-4 text-white transition hover:bg-accent-ink"
               >
                 <Mail aria-hidden="true" className="size-6 shrink-0 text-white" />
                 <span>
@@ -432,7 +432,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                 href={gmailHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex min-h-[76px] items-center justify-between gap-4 rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-5 py-4 transition hover:border-[#b88a5a] hover:bg-white"
+                className="flex min-h-[76px] items-center justify-between gap-4 rounded-2xl border border-navy/12 bg-paper px-5 py-4 transition hover:border-accent hover:bg-white"
               >
                 <span className="font-black">Gmail</span>
                 <ExternalLink aria-hidden="true" className="size-5 shrink-0" />
@@ -441,7 +441,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                 href={outlookHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex min-h-[76px] items-center justify-between gap-4 rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-5 py-4 transition hover:border-[#b88a5a] hover:bg-white"
+                className="flex min-h-[76px] items-center justify-between gap-4 rounded-2xl border border-navy/12 bg-paper px-5 py-4 transition hover:border-accent hover:bg-white"
               >
                 <span className="font-black">Outlook Web</span>
                 <ExternalLink aria-hidden="true" className="size-5 shrink-0" />
@@ -449,15 +449,15 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
               <button
                 type="button"
                 onClick={handleCopySummary}
-                className="flex min-h-[76px] items-center justify-between gap-4 rounded-2xl border border-[#001112]/12 bg-[#f4f7f6] px-5 py-4 text-left transition hover:border-[#b88a5a] hover:bg-white"
+                className="flex min-h-[76px] items-center justify-between gap-4 rounded-2xl border border-navy/12 bg-paper px-5 py-4 text-left transition hover:border-accent hover:bg-white"
               >
                 <span className="font-black">Copy request summary</span>
                 <Copy aria-hidden="true" className="size-5 shrink-0" />
               </button>
             </div>
 
-            {copyStatus ? <p role="status" className="mt-4 text-sm font-black text-[#805d3b]">{copyStatus}</p> : null}
-            <p className="mt-5 text-xs font-semibold leading-relaxed text-[#001112]/66">
+            {copyStatus ? <p role="status" className="mt-4 text-sm font-black text-accent-ink">{copyStatus}</p> : null}
+            <p className="mt-5 text-xs font-semibold leading-relaxed text-navy/66">
               If the default app does not open, use Gmail, Outlook Web, or copy the request into another email service.
             </p>
           </div>

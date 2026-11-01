@@ -29,7 +29,7 @@ describe('KS WAYS global logistics footer', () => {
     // renders it rather than carrying its own copy.
     expect(footerSource).toContain('<BrandLogo');
     expect(footerSource).toContain("from './BrandLogo'");
-    expect(footerSource).not.toContain('tracking-[.18em] text-[#e7c99a]">KS WAYS</p>');
+    expect(footerSource).not.toContain('tracking-[.18em] text-accent-soft">KS WAYS</p>');
 
     const brandLogoSource = readFileSync(join(process.cwd(), 'src/components/BrandLogo.tsx'), 'utf8');
     expect(brandLogoSource).toContain('src="/assets/ksways-logo-reverse.png"');

@@ -70,7 +70,7 @@ export function MobileNav({ nav, sectionBase = '', toggleHref }: MobileNavProps)
         <nav
           id="mobile-nav-menu"
           aria-label="Mobile navigation"
-          className="absolute right-0 top-[calc(100%+10px)] z-30 w-56 rounded-3xl border border-white/12 bg-[#021f22]/97 p-3 shadow-[0_28px_80px_rgba(0,0,0,.45)] backdrop-blur-xl"
+          className="absolute right-0 top-[calc(100%+10px)] z-30 w-56 rounded-3xl border border-white/12 bg-navy-2/97 p-3 shadow-[0_28px_80px_rgba(0,0,0,.45)] backdrop-blur-xl"
         >
           <ul className="grid gap-1">
             {links.map((link) => (

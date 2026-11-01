@@ -107,11 +107,29 @@ describe('brand palette', () => {
         .map((line, index) => ({ line, index }))
         .filter(
           ({ line }) =>
-            (line.includes(`bg-[${PALETTE.accent}]`) || line.includes(`bg-[${PALETTE.accentStrong}]`)) &&
+            /\bbg-accent(?:-strong)?(?![-\w])/.test(line) &&
             /\btext-white\b/.test(line),
         )
         .map(({ index }) => `${file.replace(`${ROOT}/`, '')}:${index + 1}`),
     );
+
+    expect(offenders).toEqual([]);
+  });
+
+  it('names palette colours by token, never as a hex literal in a class', () => {
+    // Every palette role is a Tailwind utility (`bg-navy`, `text-accent-ink/80`)
+    // backed by the --ks-* custom properties in globals.css. Components used to
+    // spell 126 lines of `bg-[#001112]`-style literals, so the source-reading
+    // guards in this suite and text-contrast.test.ts had to know each hex, and a
+    // value changed in one place left the rest behind. A literal now fails here.
+    const palette = new Set(['#001112', '#031d20', '#021f22', ...Object.values(PALETTE), '#faf4ec', '#1f3436', '#d9e2e0', '#b3261e', '#ff8a80', '#ffb4ab']);
+    const offenders = sourceFiles
+      .filter((file) => file.startsWith(join(ROOT, 'src') + '/') && /\.tsx?$/.test(file) && !file.includes('.test.'))
+      .flatMap((file) =>
+        [...readFileSync(file, 'utf8').matchAll(/(?:-\[|stroke="|fill=")(#[0-9a-fA-F]{6})\b/g)]
+          .filter((match) => palette.has(match[1].toLowerCase()))
+          .map((match) => `${file.replace(`${ROOT}/`, '')} → ${match[0]}`),
+      );
 
     expect(offenders).toEqual([]);
   });

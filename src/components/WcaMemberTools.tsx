@@ -23,7 +23,7 @@ export function WcaMemberTools({ heading, items, tone }: Props) {
 
   return (
     <div>
-      <p className={`font-mono text-xs font-semibold uppercase tracking-[.12em] ${dark ? 'text-[#e7c99a]' : 'text-[#805d3b]'}`}>{heading}</p>
+      <p className={`font-mono text-xs font-semibold uppercase tracking-[.12em] ${dark ? 'text-accent-soft' : 'text-accent-ink'}`}>{heading}</p>
       {/* light 판은 설명이 길어 2열이면 본문 폭이 ~150px 로 눌린다 — 한 줄에 하나씩 쌓는다 */}
       <ul className={`mt-5 grid ${dark ? 'gap-6 sm:grid-cols-2' : 'gap-8'}`}>
         {items.map((item) => (
@@ -37,7 +37,7 @@ export function WcaMemberTools({ heading, items, tone }: Props) {
               className="shrink-0"
             />
             <p>
-              <span className={`block font-bold leading-snug ${dark ? 'text-white' : 'text-lg text-[#001112]'}`}>{item.name}</span>
+              <span className={`block font-bold leading-snug ${dark ? 'text-white' : 'text-lg text-navy'}`}>{item.name}</span>
               <BodyText as="span" size="md" tone={dark ? 'onDark' : 'onLight'} className="mt-1 block">{item.body}</BodyText>
             </p>
           </li>

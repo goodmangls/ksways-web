@@ -85,8 +85,8 @@ export function ContactActions({ quoteLabel, partnerLabel, scheduleLabel, email,
           rel={action.external ? 'noopener noreferrer' : undefined}
           className={
             action.primary
-              ? 'group rounded-[24px] bg-[#b88a5a] p-[1px] text-[#001112] shadow-[0_18px_46px_rgba(184,138,90,.22)] transition hover:scale-[1.015]'
-              : 'group rounded-[24px] border border-white/16 bg-white/[.06] p-[1px] text-white transition hover:border-[#e7c99a]/60 hover:bg-white/[.09]'
+              ? 'group rounded-[24px] bg-accent p-[1px] text-navy shadow-[0_18px_46px_rgba(184,138,90,.22)] transition hover:scale-[1.015]'
+              : 'group rounded-[24px] border border-white/16 bg-white/[.06] p-[1px] text-white transition hover:border-accent-soft/60 hover:bg-white/[.09]'
           }
         >
           <span className={action.primary ? 'block rounded-[23px] px-6 py-4' : 'block rounded-[23px] px-6 py-4'}>
@@ -94,7 +94,7 @@ export function ContactActions({ quoteLabel, partnerLabel, scheduleLabel, email,
               <span className="text-base font-black tracking-[-.02em]">{action.label}</span>
               <span className="font-mono text-xs font-black opacity-70 transition group-hover:translate-x-1">→</span>
             </span>
-            <span className={action.primary ? 'mt-1 block text-sm font-bold text-[#001112]' : 'mt-1 block text-sm font-semibold text-white/58'}>
+            <span className={action.primary ? 'mt-1 block text-sm font-bold text-navy' : 'mt-1 block text-sm font-semibold text-white/58'}>
               {action.helper}
             </span>
           </span>

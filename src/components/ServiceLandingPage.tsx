@@ -37,7 +37,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
   const crumb = basePath === 'network' ? { label: 'Network', href: '/#network' } : { label: 'Services', href: '/#services' };
 
   return (
-    <main className="min-h-screen bg-[#f4f7f6] text-[#001112]">
+    <main className="min-h-screen bg-paper text-navy">
       <script
         id={`service-jsonld-${page.slug}`}
         type="application/ld+json"
@@ -51,7 +51,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(page.faqs)) }}
       />
 
-      <section aria-labelledby="service-heading" className="bg-[#001112] text-white">
+      <section aria-labelledby="service-heading" className="bg-navy text-white">
         <SiteHeader nav={homeContent.en.nav} homeHref="/" toggleHref="/kr" quoteHref={quoteHref} />
 
         <div id="content" className="mx-auto max-w-[1280px] px-6 pb-16 pt-10 sm:px-10 lg:px-14 lg:pb-20 lg:pt-16">
@@ -61,7 +61,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
                 <Link href={crumb.href} className="inline-flex min-h-11 items-center transition hover:text-white">{crumb.label}</Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page" className="font-semibold text-[#e7c99a]">{page.eyebrow}</li>
+              <li aria-current="page" className="font-semibold text-accent-soft">{page.eyebrow}</li>
             </ol>
           </nav>
           <h1 id="service-heading" className="ks-type-hero mt-4 max-w-[14em] text-[clamp(40px,10.5vw,52px)] font-black leading-[1.04] tracking-[-.028em] text-balance sm:text-[clamp(48px,5.6vw,80px)] sm:leading-[1.02] sm:tracking-[-.03em]">
@@ -72,7 +72,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
             {lead.rest ? <p className="ks-type-body-lg text-[17px] leading-[1.65] text-white/76 text-pretty">{lead.rest}</p> : null}
           </div>
           <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <a href={quoteHref} className="inline-flex min-h-[52px] w-full items-center justify-center gap-2.5 rounded-full bg-[#b88a5a] px-7 font-extrabold text-[#001112] transition hover:bg-[#a5794d] sm:w-auto">
+            <a href={quoteHref} className="inline-flex min-h-[52px] w-full items-center justify-center gap-2.5 rounded-full bg-accent px-7 font-extrabold text-navy transition hover:bg-accent-strong sm:w-auto">
               Send shipment details
               <ArrowIcon />
             </a>
@@ -83,12 +83,12 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         </div>
 
         {page.trustCards ? (
-          <div className="border-t border-[#1f3436]">
+          <div className="border-t border-border-dark">
             <div className="mx-auto max-w-[1280px] px-6 pt-8 sm:px-10 lg:px-14">
-              <p className={`${monoLabelClass} text-[#e7c99a]`}>Partner confidence</p>
+              <p className={`${monoLabelClass} text-accent-soft`}>Partner confidence</p>
               <div className="grid lg:grid-cols-3">
                 {page.trustCards.map((card) => (
-                  <article key={card.label} className="border-b border-[#1f3436] py-7 last:border-b-0 lg:border-b-0 lg:border-r lg:pb-10 lg:pr-8 lg:last:border-r-0 lg:[&:not(:first-child)]:pl-8">
+                  <article key={card.label} className="border-b border-border-dark py-7 last:border-b-0 lg:border-b-0 lg:border-r lg:pb-10 lg:pr-8 lg:last:border-r-0 lg:[&:not(:first-child)]:pl-8">
                     <p className={`${monoLabelClass} text-white/72`}>{card.label}</p>
                     <h2 className="mt-2.5 text-2xl font-extrabold tracking-[-.02em] text-white">{card.value}</h2>
                     <BodyText size="md" tone="onDark" className="mt-2.5">{card.body}</BodyText>
@@ -98,18 +98,18 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
             </div>
           </div>
         ) : null}
-        <div className="h-1 bg-[#b88a5a]" />
+        <div className="h-1 bg-accent" />
       </section>
 
       <div className="mx-auto flex max-w-[1280px] flex-wrap items-start gap-x-18 gap-y-10 px-6 py-20 sm:px-10 lg:px-14 lg:py-24">
         <nav aria-label="On this page" className="flex-[1_1_240px]">
-          <p className={`${monoLabelClass} text-[#5f6f78]`}>On this page</p>
+          <p className={`${monoLabelClass} text-steel`}>On this page</p>
           <ul className="mt-3">
             {page.sections.map((section) => (
               <li key={section.title}>
                 <a
                   href={`#${sectionAnchor(section.title)}`}
-                  className="flex min-h-11 items-center border-l-2 border-[#d9e2e0] py-2 pl-4 text-[15px] font-semibold leading-snug text-[#001112]/78 transition hover:border-[#b88a5a] hover:text-[#001112]"
+                  className="flex min-h-11 items-center border-l-2 border-border-light py-2 pl-4 text-[15px] font-semibold leading-snug text-navy/78 transition hover:border-accent hover:text-navy"
                 >
                   {section.title}
                 </a>
@@ -123,15 +123,15 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
             <article
               key={section.title}
               id={sectionAnchor(section.title)}
-              className={`scroll-mt-8 ${index === 0 ? 'pb-12' : 'border-t border-[#001112] py-12'} last:pb-0`}
+              className={`scroll-mt-8 ${index === 0 ? 'pb-12' : 'border-t border-navy py-12'} last:pb-0`}
             >
               <h2 className="text-[clamp(24px,6vw,28px)] font-extrabold leading-[1.15] tracking-[-.02em] sm:text-[30px]">{section.title}</h2>
               <BodyText measure="default" className="mt-4">{section.body}</BodyText>
               {section.items ? (
-                <ul className="mt-6 grid border-t border-[#d9e2e0] sm:grid-cols-2 sm:gap-x-8">
+                <ul className="mt-6 grid border-t border-border-light sm:grid-cols-2 sm:gap-x-8">
                   {section.items.map((item) => (
-                    <li key={item} className="flex gap-3 border-b border-[#d9e2e0] py-4 font-semibold leading-normal">
-                      <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-[2px] bg-[#b88a5a]" />
+                    <li key={item} className="flex gap-3 border-b border-border-light py-4 font-semibold leading-normal">
+                      <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-[2px] bg-accent" />
                       {item}
                     </li>
                   ))}
@@ -143,7 +143,7 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
       </div>
 
       {page.memberTools ? (
-        <section aria-labelledby="member-tools-heading" className="border-t border-[#d9e2e0] bg-white">
+        <section aria-labelledby="member-tools-heading" className="border-t border-border-light bg-white">
           <div className="mx-auto grid max-w-[1280px] gap-10 px-6 py-20 sm:px-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-16 lg:px-14 lg:py-24">
             <div>
               <SectionHeading id="member-tools-heading" size="md">
@@ -157,11 +157,11 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
       ) : null}
 
       {page.principles ? (
-        <section aria-labelledby="principles-heading" className="border-t border-[#d9e2e0]">
+        <section aria-labelledby="principles-heading" className="border-t border-border-light">
           <div className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-24">
             <div className="grid gap-6 lg:grid-cols-[.8fr_1.2fr] lg:items-end lg:gap-16">
               <div>
-                <p className={`${monoLabelClass} text-[#805d3b]`}>{page.principles.heading}</p>
+                <p className={`${monoLabelClass} text-accent-ink`}>{page.principles.heading}</p>
                 <SectionHeading id="principles-heading" size="md" className="mt-4">
                   {page.principles.title}
                 </SectionHeading>
@@ -170,8 +170,8 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
             </div>
             <ol className="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
               {page.principles.items.map((item, index) => (
-                <li key={item.title} className="border-t-2 border-[#001112] pt-5">
-                  <p aria-hidden="true" className="font-mono text-[13px] font-semibold text-[#805d3b]">{String(index + 1).padStart(2, '0')}</p>
+                <li key={item.title} className="border-t-2 border-navy pt-5">
+                  <p aria-hidden="true" className="font-mono text-[13px] font-semibold text-accent-ink">{String(index + 1).padStart(2, '0')}</p>
                   <CardHeading className="mt-2.5">{item.title}</CardHeading>
                   <BodyText size="md" className="mt-2.5">{item.body}</BodyText>
                 </li>
@@ -181,43 +181,43 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         </section>
       ) : null}
 
-      <section aria-labelledby="checklist-heading" className="bg-[#001112] text-white">
+      <section aria-labelledby="checklist-heading" className="bg-navy text-white">
         <div className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-24">
           <div className="flex flex-wrap items-end justify-between gap-x-12 gap-y-6">
             <SectionHeading id="checklist-heading" size="md" className="max-w-[16em]">
               {page.checklistTitle}
             </SectionHeading>
-            <a href={quoteHref} className="inline-flex min-h-[52px] w-full items-center justify-center gap-2.5 rounded-full bg-[#b88a5a] px-7 font-extrabold text-[#001112] transition hover:bg-[#a5794d] sm:w-auto">
+            <a href={quoteHref} className="inline-flex min-h-[52px] w-full items-center justify-center gap-2.5 rounded-full bg-accent px-7 font-extrabold text-navy transition hover:bg-accent-strong sm:w-auto">
               Send shipment details
               <ArrowIcon />
             </a>
           </div>
-          <ol className="mt-10 grid border-t border-[#1f3436] md:grid-cols-2 md:gap-x-10 lg:grid-cols-3">
+          <ol className="mt-10 grid border-t border-border-dark md:grid-cols-2 md:gap-x-10 lg:grid-cols-3">
             {page.checklist.map((item, index) => (
-              <li key={item} className="flex items-baseline gap-4 border-b border-[#1f3436] py-5 text-[17px] font-semibold">
-                <span aria-hidden="true" className="w-7 shrink-0 font-mono text-[13px] text-[#e7c99a]">{String(index + 1).padStart(2, '0')}</span>
+              <li key={item} className="flex items-baseline gap-4 border-b border-border-dark py-5 text-[17px] font-semibold">
+                <span aria-hidden="true" className="w-7 shrink-0 font-mono text-[13px] text-accent-soft">{String(index + 1).padStart(2, '0')}</span>
                 {item}
               </li>
             ))}
           </ol>
         </div>
-        <div className="h-1 bg-[#b88a5a]" />
+        <div className="h-1 bg-accent" />
       </section>
 
       <section aria-labelledby="service-faq-heading" className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-28">
         <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
           <div>
-            <p className={`${monoLabelClass} text-[#5f6f78]`}>FAQ</p>
+            <p className={`${monoLabelClass} text-steel`}>FAQ</p>
             <SectionHeading id="service-faq-heading" size="md" className="mt-4">
               Practical answers before you ship.
             </SectionHeading>
           </div>
-          <div className="border-t border-[#001112]">
+          <div className="border-t border-navy">
             {page.faqs.map((faq) => (
-              <details key={faq.question} className="group border-b border-[#d9e2e0] py-1">
-                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 py-3 text-[19px] font-bold tracking-[-.01em] text-[#001112] marker:hidden">
+              <details key={faq.question} className="group border-b border-border-light py-1">
+                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 py-3 text-[19px] font-bold tracking-[-.01em] text-navy marker:hidden">
                   <span>{faq.question}</span>
-                  <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-[#001112]/25 text-lg transition-transform duration-200 group-open:rotate-45">+</span>
+                  <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-navy/25 text-lg transition-transform duration-200 group-open:rotate-45">+</span>
                 </summary>
                 <BodyText size="md" measure="default" className="mb-6">{faq.answer}</BodyText>
               </details>

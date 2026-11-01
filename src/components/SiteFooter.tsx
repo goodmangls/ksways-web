@@ -7,7 +7,7 @@ import { WcaBadge } from './WcaBadge';
 function FooterLink({ href, label }: { href: string; label: string }) {
   const isExternal = href.startsWith('http');
   const isInternalRoute = href.startsWith('/');
-  const className = 'inline-flex min-h-11 items-center text-sm font-bold text-white/78 transition hover:text-[#e7c99a]';
+  const className = 'inline-flex min-h-11 items-center text-sm font-bold text-white/78 transition hover:text-accent-soft';
 
   if (isExternal) {
     return (
@@ -48,7 +48,7 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
   const phoneHref = `tel:${footer.phone.replace(/[^+\d]/g, '')}`;
 
   return (
-    <footer aria-label="KS WAYS global logistics footer" className="relative overflow-hidden bg-[#001112] px-6 pb-8 pt-20 text-white sm:px-10 lg:px-14">
+    <footer aria-label="KS WAYS global logistics footer" className="relative overflow-hidden bg-navy px-6 pb-8 pt-20 text-white sm:px-10 lg:px-14">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_0%,rgba(184,138,90,.16),transparent_28%),linear-gradient(145deg,rgba(255,255,255,.05),transparent_38%)]" />
       <div className="relative z-10 mx-auto max-w-[1280px]">
         <div className="grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1.12fr_.88fr] lg:items-start">
@@ -62,7 +62,7 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {footer.credentials.map((item) => (
                 <div key={item.label} className="rounded-3xl border border-white/10 bg-white/[.055] p-5">
-                  <p className="text-xs font-black uppercase tracking-[.16em] text-[#e7c99a]">{item.label}</p>
+                  <p className="text-xs font-black uppercase tracking-[.16em] text-accent-soft">{item.label}</p>
                   <p className="mt-3 text-sm font-black leading-snug text-white/78">{item.value}</p>
                 </div>
               ))}
@@ -93,8 +93,8 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
             <FooterAddress address={footer.address} />
           </div>
           <div className="flex max-w-xl flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-1 lg:justify-end lg:text-right">
-            <a href={`mailto:${footer.email}`} className="inline-flex min-h-11 items-center font-bold text-white/78 transition hover:text-[#e7c99a] lg:justify-end">{footer.email}</a>
-            <a href={phoneHref} className="inline-flex min-h-11 items-center font-bold text-white/78 transition hover:text-[#e7c99a] lg:justify-end">{footer.phone}</a>
+            <a href={`mailto:${footer.email}`} className="inline-flex min-h-11 items-center font-bold text-white/78 transition hover:text-accent-soft lg:justify-end">{footer.email}</a>
+            <a href={phoneHref} className="inline-flex min-h-11 items-center font-bold text-white/78 transition hover:text-accent-soft lg:justify-end">{footer.phone}</a>
             <span className="inline-flex min-h-11 items-center font-bold text-white/78 lg:justify-end">{footer.fax}</span>
             <span className="basis-full text-white/66">© {new Date().getFullYear()} KS WAYS. All rights reserved.</span>
           </div>
