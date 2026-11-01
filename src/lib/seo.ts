@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import type { Locale } from './i18n';
 
 export const siteUrl = 'https://ksways.co';
-export const companyName = 'KS WAYS CO., LTD.';
+// Registered legal entity and business registration number (사업자등록번호), as supplied
+// by KS WAYS on 2026-11-01. `brandName` stays the public-facing name.
+export const companyName = 'KSWAYS CO.,LTD.';
+export const businessRegistrationNumber = '196-81-01177';
 export const brandName = 'KS WAYS';
 export const contactEmail = 'info@ksways.co';
 export const contactTelephone = '+82 2 6961 5778';
@@ -151,6 +154,8 @@ export function organizationJsonLd(locale: Locale) {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: companyName,
+    legalName: companyName,
+    taxID: businessRegistrationNumber,
     alternateName: brandName,
     url: siteUrl,
     email: contactEmail,

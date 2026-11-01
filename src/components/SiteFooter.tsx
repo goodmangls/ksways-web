@@ -88,6 +88,7 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
         <div className="grid gap-6 pb-32 pt-8 text-sm text-white/72 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start lg:justify-between lg:pb-28">
           <div className="max-w-2xl">
             <p className="font-black text-white">{footer.companyName}</p>
+            <p className="mt-1">{footer.businessRegistration}</p>
             <p className="mt-1">{footer.legal}</p>
             <FooterAddress address={footer.address} />
           </div>

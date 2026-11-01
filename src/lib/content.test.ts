@@ -18,7 +18,8 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.en.operating.services.find((service) => service.title === 'BridgeLogis')?.href).toBe('https://bridgelogis.com');
     expect(homeContent.en.footer.tagline).toContain('global ocean and air logistics');
     expect(homeContent.en.footer.credentials.map((item) => item.label)).toEqual(['WCA Member', 'Ocean strength', 'Industry Experience']);
-    expect(homeContent.en.footer.companyName).toBe('KS WAYS CO., LTD.');
+    expect(homeContent.en.footer.companyName).toBe('KSWAYS CO.,LTD.');
+    expect(homeContent.en.footer.businessRegistration).toBe('Business Registration No. 196-81-01177');
     expect(homeContent.en.footer.address).toBe('RM 909, Gangseo IT Valley, 82, Hwagok-ro 68-gil, Gangseo-gu, Seoul 07566, Republic of Korea');
     expect(homeContent.en.footer.email).toBe('info@ksways.co');
     expect(homeContent.en.footer.phone).toBe('Tel. +82 2 6961 5778');
@@ -125,7 +126,8 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.kr.operating.services.find((service) => service.title === 'EXW & 핸들링')?.href).toBe('/services/exw-pickup-korea');
     expect(homeContent.kr.footer.tagline).toContain('글로벌 해상·항공 물류회사');
     expect(homeContent.kr.footer.credentials.map((item) => item.label)).toEqual(['WCA 회원사', '해운 강점', 'Industry Experience']);
-    expect(homeContent.kr.footer.companyName).toBe('KS WAYS CO., LTD.');
+    expect(homeContent.kr.footer.companyName).toBe('KSWAYS CO.,LTD.');
+    expect(homeContent.kr.footer.businessRegistration).toBe('사업자등록번호 196-81-01177');
     expect(homeContent.kr.footer.address).toBe('RM 909, Gangseo IT Valley, 82, Hwagok-ro 68-gil, Gangseo-gu, Seoul 07566, Republic of Korea');
     expect(homeContent.kr.footer.email).toBe('info@ksways.co');
     expect(homeContent.kr.footer.phone).toBe('Tel. +82 2 6961 5778');
