@@ -1,1 +1,1 @@
-📝 DESIGN.md·COPY.md를 현재 코드 기준으로 갱신 — 법인명·견적 폼 규칙·라이브 반영 현황
+📝 COPY.md 견적 CTA 표기를 'Get a Quote'로 맞춤 (#68)

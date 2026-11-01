@@ -433,7 +433,7 @@ KS WAYS works with WCAworld member partners through two WCAworld member benefits
 
 #### CTA labels
 
-- `Request a quote`
+- `Get a Quote`
 - `Become a partner`
 - `Schedule consultation`
 
@@ -870,7 +870,7 @@ Recommended services:
 ### Interface labels
 
 - Skip link, the first tab stop on every page: `Skip to content` / `본문으로 건너뛰기`.
-- Header: the same navigation, language toggle (`KR` / `EN`) and quote pill (`Get a quote` / `견적 문의`) on every page, subpages included (DESIGN.md "The One Desk Rule").
+- Header: the same navigation, language toggle (`KR` / `EN`) and quote pill (`Get a Quote` / `견적 문의`) on every page, subpages included (DESIGN.md "The One Desk Rule"). Rule: the English quote CTA is `Get a Quote` everywhere (header, hero, contact section, footer). PR #68 brings the code in line and adds a regression test in `src/lib/content.test.ts`; until it merges, the header reads `Get a quote` and the contact section and footer read `Request a quote`.
 
 ### SEO writing rules
 
