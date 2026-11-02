@@ -49,7 +49,7 @@ export function SiteFooter({ footer }: { footer: FooterCopy }) {
 
   return (
     <footer aria-label="KS WAYS global logistics footer" className="relative overflow-hidden bg-navy px-6 pb-8 pt-20 text-white sm:px-10 lg:px-14">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_0%,rgba(184,138,90,.16),transparent_28%),linear-gradient(145deg,rgba(255,255,255,.05),transparent_38%)]" />
+      <div className="absolute inset-0 bg-glow-footer" />
       <div className="relative z-10 mx-auto max-w-[1280px]">
         <div className="grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1.12fr_.88fr] lg:items-start">
           <div>

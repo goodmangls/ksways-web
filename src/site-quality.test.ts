@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import nextConfig, { buildContentSecurityPolicy } from '../next.config';
@@ -6,6 +6,15 @@ import sitemap from '@/app/sitemap';
 import { homeSeo, shareImage } from '@/lib/seo';
 import { servicePages } from '@/lib/service-pages';
 import { homeContent } from '@/lib/content';
+
+/** Every file under `dirs` whose path matches `pattern`, recursively. */
+function listSourceFiles(dirs: string[], pattern: RegExp): string[] {
+  return dirs.flatMap((dir) =>
+    readdirSync(join(process.cwd(), dir), { recursive: true, encoding: 'utf8' })
+      .map((entry) => join(dir, entry))
+      .filter((file) => pattern.test(file)),
+  );
+}
 
 /** Brand spellings that must never appear in copy. `KS WAYS` is the only correct form. */
 const COLLAPSED_BRAND_SPELLINGS = ['KSWAYS', 'KSWays', 'KS Ways'] as const;
@@ -135,6 +144,38 @@ describe('site quality hardening', () => {
     expect(css).toContain('@media (prefers-reduced-motion: reduce)');
     expect(css).toContain('scroll-behavior: auto');
     expect(css).toContain('animation-duration: 0.01ms');
+  });
+
+  it('keeps colour and opacity feedback under reduced motion instead of killing every transition', () => {
+    const css = readFileSync(join(process.cwd(), 'src/app/globals.css'), 'utf8');
+    const reduced = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce)'));
+
+    expect(reduced).not.toContain('transition-duration: 0.01ms');
+    expect(reduced).toMatch(/transition-property: opacity, color, background-color[^;]*!important;/);
+    expect(reduced).not.toMatch(/transition-property:[^;]*\btransform\b/);
+  });
+
+  it('pauses the hero slideshow and its credits together', () => {
+    const css = readFileSync(join(process.cwd(), 'src/app/globals.css'), 'utf8');
+
+    expect(css).toMatch(/\[data-paused='true'\] \.ks-hero-bg-slide,\s*\[data-paused='true'\] \.ks-hero-bg-attribution\s*\{\s*animation-play-state: paused;/);
+  });
+
+  it('keeps shadow and gradient colours in tokens, not raw rgba() inside arbitrary classes', () => {
+    // brand-palette.test.ts only sees hex. An rgba() spelling of navy or bronze
+    // inside `shadow-[…]` or `bg-[…]` would slip past a palette change, so every
+    // such value lives in globals.css (--ks-shadow-*, bg-glow-*) instead.
+    const offenders = listSourceFiles(['src/components', 'src/app'], /\.tsx$/)
+      .filter((file) => !/\.test\.tsx$/.test(file))
+      .flatMap((file) =>
+        readFileSync(file, 'utf8')
+          .split('\n')
+          .map((line, index) => ({ file, line: index + 1, text: line }))
+          .filter(({ text }) => /\[[^\]]*(rgba?|hsla?)\(/.test(text)),
+      )
+      .map(({ file, line }) => `${file}:${line}`);
+
+    expect(offenders).toEqual([]);
   });
 
   // FAQ affordance·CTA·trustCards·히어로 슬라이드 마크업 검증은 소스-grep에서 렌더 테스트로 이관됨:

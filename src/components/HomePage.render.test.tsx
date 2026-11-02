@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, render, screen, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { homeContent } from '@/lib/content';
 import { getHeroSlides } from '@/lib/hero-slides';
@@ -93,6 +93,23 @@ describe('HomePage render smoke', () => {
       expect(link?.getAttribute('href')).toContain('unsplash.com');
       expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     });
+  });
+
+  it('lets visitors pause and resume the hero slideshow (WCAG 2.2.2)', () => {
+    const { container } = render(<HomePage locale="en" copy={homeContent.en} />);
+    const figure = container.querySelector('img.ks-hero-bg-slide')?.closest('figure');
+    expect(figure).toHaveAttribute('data-paused', 'false');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Pause photo slideshow' }));
+    expect(figure).toHaveAttribute('data-paused', 'true');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Play photo slideshow' }));
+    expect(figure).toHaveAttribute('data-paused', 'false');
+  });
+
+  it('labels the slideshow control in Korean on /kr', () => {
+    render(<HomePage locale="kr" copy={homeContent.kr} />);
+    expect(screen.getByRole('button', { name: '사진 슬라이드 멈추기' })).toBeInTheDocument();
   });
 
   it('gives every process step the same badge, so the list reads as steps, not progress stuck on 03', () => {

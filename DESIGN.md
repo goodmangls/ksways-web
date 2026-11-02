@@ -337,7 +337,7 @@ Every text color is checked against each surface it is allowed on, and every pai
 - **Leading and measure**: body line-height 1.6–1.65 in English, 1.75–1.8 in Korean; display ≥ 1.0 in English, ≥ 1.12 in Korean. Measure 34em in English, 36em in Korean, and at least 20em on mobile.
 - **Korean**: set `lang="ko"` and `word-break: keep-all` on `/kr`; use the Korean styles (`display-hero-ko`, `display-section-ko`, `body-lg-ko`, `body-md-ko`); no tracking tighter than −0.02em on Hangul.
 - **Not color alone**: errors pair `warning` with an icon and a message; links inside body copy are underlined; the active language and current page carry text or `aria-current`, not only a color shift.
-- **Motion and zoom**: layouts reflow at 200% zoom and 320px width without horizontal scroll; honor `prefers-reduced-motion`.
+- **Motion and zoom**: layouts reflow at 200% zoom and 320px width without horizontal scroll; honor `prefers-reduced-motion` by removing movement, not feedback: animations stop and transforms (hover scale, icon rotation) snap, but colour and opacity transitions keep their authored duration (`src/app/globals.css`, asserted in `src/site-quality.test.ts`).
 
 ### Where each rule is enforced
 
@@ -363,7 +363,6 @@ These rules were adopted on 2026-10-06 from the KS WAYS design system (Claude De
 |---|---|
 | Supporting text (helpers, captions, notices at 12–14px) | The rules above set body copy only. 17 small-text spots use `leading-relaxed` (1.625) or `leading-snug` (1.375) — 12 in `QuoteForm.tsx`, one each in `QuoteField.tsx`, `SiteFooter.tsx`, `WcaBadge.tsx`, `ServiceLandingPage.tsx` (related-page links) and `WcaMemberTools.tsx` (tool names; 18px on light surfaces, so body-size text at 1.375 that the paragraph scan misses because it is a `<span>`). They pass contrast and the 12px floor, but no leading rule for small text exists yet |
 | Helper line opacity — DESIGN.md allows only the four text opacity tokens | The quote-field helper uses ink 66% (`text-navy/66` in `QuoteField.tsx`), which is not one of them. Move it to `text-faint` (64%) or `text-subtle` (76%) |
-| Per-field form errors — 2px `warning` border, `aria-invalid="true"`, a 14px / `600` `warning` message with an icon, tied to the field by `aria-describedby` | The quote form shows one form-level list of missing fields instead; no field carries `aria-invalid` |
 
 New page text should go through the Typography components rather than hand-written class strings.
 
@@ -405,8 +404,18 @@ No horizontal overflow is acceptable on `390px` mobile width. Any visual proof c
 
 Depth should feel like premium SaaS/logistics instrumentation, not decorative glassmorphism for its own sake.
 
-- Use soft, large shadows for cards: examples include `0 18px 70px rgba(0,17,18,.06)` and `0 24px 90px rgba(0,17,18,.06)`.
-- Use stronger dark-surface shadows for hero visual panels: examples include `0 34px 110px rgba(0,0,0,.44)`.
+- Shadows come from tokens, never raw `rgba()` in a class. Each one is built from the palette with `color-mix`, defined once in `src/app/globals.css` (`--ks-shadow-*`) and exposed as a Tailwind utility:
+
+  | Utility | Value | Use |
+  |---|---|---|
+  | `shadow-surface` | 0 24px 90px, navy 8% | Large light panels (quote form card) |
+  | `shadow-raised` | 0 16px 36px, navy 16% | A selected choice card |
+  | `shadow-panel` | 0 24px 80px, navy 22% | Dark sticky panels on paper (quote aside) |
+  | `shadow-overlay` | 0 28px 80px, navy 45% | Menus over dark bands (mobile nav) |
+  | `shadow-dialog` | 0 32px 120px, navy 38% | Modal dialogs |
+  | `shadow-cta` | 0 18px 46px, bronze 24% | Primary bronze CTAs |
+
+- Dark-band glows are utilities too: `bg-glow-hero` (quote page header) and `bg-glow-footer`. `src/site-quality.test.ts` fails on any `rgba()`/`hsla()` inside an arbitrary class in `src/components` or `src/app`, because `brand-palette.test.ts` only sees hex.
 - Use inset white highlights at 4–8% opacity on dark glass panels to create depth.
 - Bronze glow may be used behind highlighted words, badges, or route lines, but keep it restrained and operational. The header/footer logos carry no glow — the official asset stands on its own.
 - Avoid harsh drop shadows, neon-heavy effects, or consumer-gaming glow.
@@ -483,6 +492,7 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 - Secondary CTA: partner/network exploration, outlined on dark surfaces.
 - Proof strip: WCA Member · Ocean · Air · 30+ years. Keep proof labels compact and values bold. This is the page's one full credential set (see **The Say It Once Rule**).
 - Route-control visual should suggest global network, technology, ocean/air/data coordination.
+- The photo panel crossfades four slides every 7s, and the credit line changes with them. Because it moves on its own for more than 5 seconds, it carries a 44px pause/play button in its top-right corner (WCAG 2.2.2 Pause, Stop, Hide), labelled in the page language. Pausing freezes the slide and its credit together. Under `prefers-reduced-motion` the first slide stays put and the button is hidden.
 
 ### Service Cards
 
@@ -523,7 +533,8 @@ The readability reference for controls (quote form): a visible boundary, a legib
 - Helper line under the field: 12px / `600` ink 66% (off-token, see **Still open**). It carries the format hints that do not fit the placeholder.
 - Placeholder: `muted` at regular weight, so it never reads as typed data next to the `600` value. Example values start with "e.g."; every single-line placeholder fits a 320px-wide field, and longer format hints go in the helper line under the field. Enforced by `src/lib/quote-form.test.ts` and `e2e/placeholder-fit.spec.ts` (design review F-003). The fit check is font-dependent, so it runs in the visual suite inside the pinned Playwright image, not in the e2e job.
 - Field: `paper` fill, 1px `border-control`, 16px radius, at least 48px high, value 16px / `600` `ink`. On focus the fill turns `white` and the border `tertiary`; the indicator itself is the two-tone ring (see **Focus**). DG fields, when the cargo type is DG, switch to a `white` fill with a full-strength `accent-ink` border inside an `accent-tint` group.
-- Missing fields today: one form-level message in `warning` (14px / `900`) lists every required field still empty, and each step tab shows its progress (`2 of 3 required`). Per-field error states are not built yet (see **Still open**).
+- Missing fields: one form-level message in `warning` (14px / `900`) lists every required field still empty, and each step tab shows its progress (`2 of 3 required`).
+- Per-field errors, shown from the first failed "Choose email app" press until the field is filled: a 2px `warning` border, `aria-invalid="true"`, and a 14px / `600` `warning` message with an alert icon ("Enter company name to continue."), tied to the field by `aria-describedby`. Nothing is flagged before the visitor tries to continue. Enforced by `QuoteForm.render.test.tsx`.
 
 ### Contact CTA
 
