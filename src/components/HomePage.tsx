@@ -1,6 +1,4 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import type { CSSProperties } from 'react';
 import type { Locale } from '@/lib/i18n';
 import { getLocalizedPath } from '@/lib/i18n';
 import type { homeContent } from '@/lib/content';
@@ -13,6 +11,7 @@ import { BodyText, CardHeading, SectionHeading } from './Typography';
 import { WcaBadge } from './WcaBadge';
 import { WcaMemberTools } from './WcaMemberTools';
 import { ArrowIcon } from './ArrowIcon';
+import { HeroPhotoPanel } from './HeroPhotoPanel';
 
 type HomeCopy = (typeof homeContent)[Locale];
 
@@ -57,53 +56,6 @@ function HighlightedHeadline({ headline }: { headline: string }) {
   return headline;
 }
 
-/** 히어로 사진 패널. 전면 배경 대신 우측 패널로 옮겨 헤드라인이 사진 위에 얹히지 않게 했다. */
-function HeroPhotoPanel({ caption }: { caption: string }) {
-  return (
-    <figure className="relative isolate m-0 aspect-[4/3] overflow-hidden rounded-[28px] border border-border-dark bg-navy-2 lg:aspect-[4/4.4]">
-      <div className="absolute inset-0 -z-10" aria-label="Rotating hero images for ocean freight, air cargo, and express courier logistics">
-        {heroBackgroundSlides.map((slide, index) => (
-          <Image
-            key={slide.id}
-            src={slide.src}
-            alt={slide.alt}
-            fill
-            priority={index === 0}
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="ks-hero-bg-slide object-cover"
-            style={{ '--ks-slide-index': index } as CSSProperties}
-          />
-        ))}
-      </div>
-      <figcaption className="absolute inset-x-3 bottom-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 rounded-[18px] border border-white/12 bg-navy/85 px-5 py-3.5 sm:inset-x-5 sm:bottom-5">
-        <span className="text-sm font-bold text-white">{caption}</span>
-        <span className="grid text-xs font-semibold text-white/72">
-          {heroBackgroundSlides.map((slide, index) => (
-            <span
-              key={`${slide.id}-credit`}
-              className="ks-hero-bg-attribution col-start-1 row-start-1"
-              style={{ '--ks-slide-index': index } as CSSProperties}
-            >
-              Photo:{' '}
-              {slide.creditUrl ? (
-                <a href={slide.creditUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition hover:text-white hover:underline">
-                  {slide.credit}
-                </a>
-              ) : (
-                slide.credit
-              )}{' '}
-              /{' '}
-              <a href={slide.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 transition hover:text-white hover:underline">
-                {slide.sourceLabel}
-              </a>
-            </span>
-          ))}
-        </span>
-      </figcaption>
-    </figure>
-  );
-}
-
 export function HomePage({ locale, copy }: Props) {
   const alternateLocale: Locale = locale === 'en' ? 'kr' : 'en';
   const toggleHref = getLocalizedPath(locale === 'en' ? '/' : '/kr', alternateLocale);
@@ -143,7 +95,7 @@ export function HomePage({ locale, copy }: Props) {
               <a href="#network" className="inline-flex min-h-[52px] w-full justify-center items-center rounded-full border border-white/45 px-7 font-bold text-white transition hover:border-white hover:bg-white/[.06] sm:w-auto">{copy.hero.secondaryCta}</a>
             </div>
           </div>
-          <HeroPhotoPanel caption={copy.hero.controlTitle} />
+          <HeroPhotoPanel caption={copy.hero.controlTitle} slides={heroBackgroundSlides} locale={locale} />
         </div>
 
         <div className="border-t border-border-dark">

@@ -33,6 +33,16 @@
   --ks-warning: #b3261e;
   --ks-warning-bright: #ff8a80;
   --ks-warning-text: #ffb4ab;
+  /* Depth and overlay tokens (DESIGN.md "Depth"). Built from the palette with
+     color-mix so a palette change carries through to every shadow and glow.
+     Components used to spell these as raw rgba() inside arbitrary classes, which
+     brand-palette.test.ts cannot see; site-quality.test.ts now bans that. */
+  --ks-shadow-surface: 0 24px 90px color-mix(in srgb, var(--ks-navy) 8%, transparent);
+  --ks-shadow-raised: 0 16px 36px color-mix(in srgb, var(--ks-navy) 16%, transparent);
+  --ks-shadow-panel: 0 24px 80px color-mix(in srgb, var(--ks-navy) 22%, transparent);
+  --ks-shadow-overlay: 0 28px 80px color-mix(in srgb, var(--ks-navy) 45%, transparent);
+  --ks-shadow-dialog: 0 32px 120px color-mix(in srgb, var(--ks-navy) 38%, transparent);
+  --ks-shadow-cta: 0 18px 46px color-mix(in srgb, var(--ks-accent) 24%, transparent);
 }
 
 /* Tailwind colour utilities (`bg-navy`, `text-accent-ink/80`, `border-border-light`)
@@ -57,6 +67,25 @@
   --color-warning: var(--ks-warning);
   --color-warning-bright: var(--ks-warning-bright);
   --color-warning-text: var(--ks-warning-text);
+  --shadow-surface: var(--ks-shadow-surface);
+  --shadow-raised: var(--ks-shadow-raised);
+  --shadow-panel: var(--ks-shadow-panel);
+  --shadow-overlay: var(--ks-shadow-overlay);
+  --shadow-dialog: var(--ks-shadow-dialog);
+  --shadow-cta: var(--ks-shadow-cta);
+}
+
+/* Dark-band glows: a bronze radial plus a faint highlight sweep. */
+@utility bg-glow-footer {
+  background-image:
+    radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--ks-accent) 16%, transparent), transparent 28%),
+    linear-gradient(145deg, color-mix(in srgb, white 5%, transparent), transparent 38%);
+}
+
+@utility bg-glow-hero {
+  background-image:
+    radial-gradient(circle at 78% 10%, color-mix(in srgb, var(--ks-accent) 26%, transparent), transparent 30%),
+    linear-gradient(120deg, color-mix(in srgb, var(--ks-navy) 98%, transparent), color-mix(in srgb, var(--ks-navy-2) 88%, transparent));
 }
 
 * { box-sizing: border-box; }
@@ -135,7 +164,17 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
+    /* Reduced motion means less movement, not no feedback. Transforms (hover
+       scale, menu icon rotation, arrow nudges) now snap, but colour and opacity
+       still fade at their authored duration, so state changes stay legible.
+       This used to force every transition to a near-zero duration, which made
+       every hover, the mobile menu and the email dialog cut instantly. */
+    transition-property: opacity, color, background-color, border-color, outline-color, text-decoration-color, fill, stroke !important;
+  }
+
+  /* The slideshow is static here, so its pause control has nothing to do. */
+  .ks-hero-motion-toggle {
+    display: none !important;
   }
 
   /* Same pairing as the keyframes, and it matters more here: with the animation
@@ -192,6 +231,14 @@ body {
 .ks-hero-bg-attribution:first-child {
   opacity: 1;
   visibility: visible;
+}
+
+/* WCAG 2.2.2 Pause, Stop, Hide: the slideshow and its credit links update on
+   their own every 7s, so HeroPhotoPanel's button freezes them in place. Pausing
+   keeps whichever slide is showing; visibility still follows the frozen keyframe. */
+[data-paused='true'] .ks-hero-bg-slide,
+[data-paused='true'] .ks-hero-bg-attribution {
+  animation-play-state: paused;
 }
 
 /* `visibility` tracks `opacity` here on purpose. Opacity alone leaves an element

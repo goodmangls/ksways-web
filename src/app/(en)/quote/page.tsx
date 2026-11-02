@@ -35,7 +35,7 @@ export default function QuotePage() {
   return (
     <main className="min-h-screen bg-paper text-navy">
       <section className="relative overflow-hidden bg-navy text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_10%,rgba(184,138,90,.26),transparent_30%),linear-gradient(120deg,rgba(0,17,18,.98),rgba(2,31,34,.88))]" />
+        <div className="absolute inset-0 bg-glow-hero" />
         <SiteHeader nav={homeContent.en.nav} homeHref="/" toggleHref="/kr" quoteHref="/quote" />
         <div id="content" className="relative z-10 mx-auto max-w-[1280px] px-6 pb-8 sm:px-10 lg:px-14">
           <div className="max-w-5xl py-10 lg:py-14">

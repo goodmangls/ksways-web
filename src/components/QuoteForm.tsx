@@ -15,6 +15,7 @@ import {
   isDgCargo,
   QUOTE_MAILTO_LENGTH_LIMIT,
   quoteFormFields,
+  requiredQuoteFieldNames,
   transportModeOptions,
   type QuoteFormValues,
   type QuoteSectionProgress,
@@ -79,6 +80,9 @@ type QuoteFormProps = {
 export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmentType: 'Not sure' }, navigate }: QuoteFormProps) {
   const [values, setValues] = useState<QuoteFormValues>(initialValues);
   const [validationMessage, setValidationMessage] = useState('');
+  // Set by the first failed "Choose email app" press; from then on each empty
+  // required field carries aria-invalid and its own message until it is filled.
+  const [showFieldErrors, setShowFieldErrors] = useState(false);
   const [copyStatus, setCopyStatus] = useState('');
   const [emailOptionsOpen, setEmailOptionsOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -132,7 +136,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
   }
 
   function focusFirstMissingField() {
-    const firstMissingName = ['companyName', 'contactName', 'emailOrPhone', 'origin', 'destination', 'commodity'].find((name) => !values[name as keyof QuoteFormValues]?.trim());
+    const firstMissingName = requiredQuoteFieldNames.find((name) => !values[name]?.trim());
     const field = firstMissingName ? formRef.current?.querySelector<HTMLElement>(`[name="${firstMissingName}"]`) : null;
     field?.focus();
     field?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -143,6 +147,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
 
     if (missing.length > 0) {
       setValidationMessage(`Please complete required fields: ${missing.join(', ')}.`);
+      setShowFieldErrors(true);
       focusFirstMissingField();
       return;
     }
@@ -210,7 +215,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
     <section className="mx-auto max-w-[1280px] px-6 pb-20 sm:px-10 lg:px-14">
       {/* Below sm the form sits straight on the page: the white card, its padding and the
           grey transport panel cost ~50px of a 375px screen (design review F-004). */}
-      <div className="grid gap-8 sm:rounded-[36px] sm:border sm:border-navy/10 sm:bg-white sm:p-8 sm:shadow-[0_24px_90px_rgba(0,17,18,.08)] lg:grid-cols-[1.2fr_.8fr] lg:p-10">
+      <div className="grid gap-8 sm:rounded-[36px] sm:border sm:border-navy/10 sm:bg-white sm:p-8 sm:shadow-surface lg:grid-cols-[1.2fr_.8fr] lg:p-10">
         <form ref={formRef} className="grid gap-8" aria-label="KS WAYS structured freight quote form" noValidate>
           <div>
             <p className="text-sm font-black uppercase tracking-[.14em] text-accent-ink">Quote details</p>
@@ -232,7 +237,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                     type="button"
                     aria-pressed={isActive}
                     onClick={() => updateTransportMode(option.value)}
-                    className={`rounded-2xl border p-4 text-left transition ${isActive ? 'border-accent-ink bg-navy text-white shadow-[0_16px_36px_rgba(0,17,18,.16)]' : 'border-border-control bg-white text-navy hover:border-accent'}`}
+                    className={`rounded-2xl border p-4 text-left transition ${isActive ? 'border-accent-ink bg-navy text-white shadow-raised' : 'border-border-control bg-white text-navy hover:border-accent'}`}
                   >
                     <span className="block text-lg font-black">{option.label}</span>
                     <span className={`mt-1 block text-xs font-bold leading-snug ${isActive ? 'text-white/64' : 'text-navy/66'}`}>{option.helper}</span>
@@ -255,6 +260,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
                       field={field}
                       value={values[field.name] ?? ''}
                       highlighted={dgSelected && (field.name === 'unNumber' || field.name === 'dgClass')}
+                      invalid={showFieldErrors && Boolean(field.required) && !values[field.name]?.trim()}
                       onChange={update}
                     />
                   ))}
@@ -291,7 +297,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
         {/* 진행 단계·요약이 붙어 패널이 뷰포트보다 길어질 수 있다. sticky 요소가 뷰포트보다 길면
             아랫부분이 스크롤 끝까지 안 보이므로, 데스크톱에서는 패널 자체가 스크롤되게 한다.
             CTA 는 그래서 진행 단계보다 위에 둔다 — 768px 노트북에서도 첫 화면에 남도록. */}
-        <aside className="self-start rounded-[30px] bg-navy p-6 text-white shadow-[0_24px_80px_rgba(0,17,18,.22)] sm:p-7 lg:sticky lg:top-8 lg:max-h-[calc(100dvh-4rem)] lg:overflow-y-auto">
+        <aside className="self-start rounded-[30px] bg-navy p-6 text-white shadow-panel sm:p-7 lg:sticky lg:top-8 lg:max-h-[calc(100dvh-4rem)] lg:overflow-y-auto">
           <p className="font-mono text-xs font-black uppercase tracking-[.18em] text-accent-soft/78">Email handoff</p>
           <h3 className="mt-4 text-2xl font-black leading-[1.12] tracking-[-.02em]">Review the draft, then choose your inbox.</h3>
           <BodyText size="md" tone="onDark" className="mt-4">
@@ -310,7 +316,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
           <button
             type="button"
             onClick={handleChooseEmailApp}
-            className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-accent px-6 text-center font-black text-navy shadow-[0_18px_46px_rgba(184,138,90,.24)] transition hover:scale-[1.015]"
+            className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center rounded-full bg-accent px-6 text-center font-black text-navy shadow-cta transition hover:scale-[1.015]"
           >
             Choose email app
           </button>
@@ -392,7 +398,7 @@ export function QuoteForm({ initialValues = { transportMode: 'Not sure', shipmen
             aria-labelledby="email-options-title"
             tabIndex={-1}
             onKeyDown={handleEmailOptionsKeyDown}
-            className="relative max-h-[calc(100dvh-2rem)] w-full max-w-2xl overflow-y-auto rounded-[30px] bg-white p-6 text-navy shadow-[0_32px_120px_rgba(0,17,18,.38)] sm:p-8"
+            className="relative max-h-[calc(100dvh-2rem)] w-full max-w-2xl overflow-y-auto rounded-[30px] bg-white p-6 text-navy shadow-dialog sm:p-8"
           >
             <button
               type="button"

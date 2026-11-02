@@ -1,1 +1,1 @@
-🔒 Next.js 16.4.4·source-map-js 1.2.2 로 올려 프로덕션 보안 권고(critical·high) 해소
+♿ 히어로 슬라이드 일시정지·필드별 오류 표시·감속 모션 개선·그림자 토큰화 (impeccable audit)

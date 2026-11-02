@@ -256,6 +256,30 @@ describe('QuoteForm interactions', () => {
     expect(steps[4]).toHaveTextContent('Optional');
   });
 
+  it('marks each empty required field invalid after a failed submit, and clears it once filled', async () => {
+    const user = userEvent.setup();
+    render(<QuoteForm />);
+    const company = document.querySelector<HTMLInputElement>('[name="companyName"]') as HTMLInputElement;
+
+    // Nothing is flagged before the visitor tries to continue.
+    expect(company).not.toHaveAttribute('aria-invalid');
+
+    await user.click(getDesktopSubmitButton());
+
+    for (const name of Object.keys(REQUIRED_VALUES)) {
+      const field = document.querySelector(`[name="${name}"]`) as HTMLElement;
+      expect(field, name).toHaveAttribute('aria-invalid', 'true');
+      const message = document.getElementById(field.getAttribute('aria-describedby') ?? '');
+      expect(message, name).not.toBeNull();
+      expect(message).toHaveTextContent(/to continue/);
+    }
+
+    await user.type(company, 'Acme Trading');
+    expect(company).not.toHaveAttribute('aria-invalid');
+    expect(company).not.toHaveAttribute('aria-describedby');
+    expect(document.querySelector('[name="contactName"]')).toHaveAttribute('aria-invalid', 'true');
+  });
+
   it('marks a step done once its required fields are filled', async () => {
     const user = userEvent.setup();
     render(<QuoteForm />);

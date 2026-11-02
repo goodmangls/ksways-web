@@ -87,7 +87,7 @@ export function ContactActions({ quoteLabel, partnerLabel, scheduleLabel, email,
           rel={action.external ? 'noopener noreferrer' : undefined}
           className={
             action.primary
-              ? 'group rounded-[24px] bg-accent p-[1px] text-navy shadow-[0_18px_46px_rgba(184,138,90,.22)] transition hover:scale-[1.015]'
+              ? 'group rounded-[24px] bg-accent p-[1px] text-navy shadow-cta transition hover:scale-[1.015]'
               : 'group rounded-[24px] border border-white/16 bg-white/[.06] p-[1px] text-white transition hover:border-accent-soft/60 hover:bg-white/[.09]'
           }
         >
