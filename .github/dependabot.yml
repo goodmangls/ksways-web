@@ -1,0 +1,49 @@
+# Dependabot 버전 업데이트 (2026-11-03 도입).
+# 계기: Next.js 16.3.8 이 critical 보안 권고 3건을 단 채 아무도 모르게 남아 있었다(#70).
+# CI(quality·build·e2e·visual)가 매 PR 을 검증하므로 여기서는 PR 이 "오게"만 한다.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Seoul
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "⬆️"
+      prefix-development: "⬆️ dev"
+    # minor·patch 는 주 1회 런타임/개발 묶음 PR 두 개로. major 는 개별 PR 로 따로 판단한다.
+    groups:
+      production:
+        dependency-type: production
+        update-types: [minor, patch]
+      development:
+        dependency-type: development
+        update-types: [minor, patch]
+    ignore:
+      # @playwright/test 는 CI visual 잡의 컨테이너 이미지
+      # (mcr.microsoft.com/playwright:v1.62.1-noble)와 package.json 의
+      # test:visual:update:docker 이미지 태그와 같은 버전이어야 한다. minor 가 바뀌면
+      # 브라우저 리비전이 달라져 visual 잡이 깨지는데, Dependabot 은 그 두 태그를 못 고친다.
+      # 세 곳을 함께 올리는 수동 작업으로 둔다.
+      - dependency-name: "@playwright/test"
+        update-types: [version-update:semver-minor, version-update:semver-major]
+      # 타입 정의 major 는 런타임 Node 버전(CI·Vercel)과 맞춰 수동으로 올린다 —
+      # Dependabot 은 최신 major(런타임보다 앞선 버전)를 제안한다.
+      - dependency-name: "@types/node"
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Seoul
+    commit-message:
+      prefix: "⬆️ ci"
+    groups:
+      actions:
+        patterns: ["*"]

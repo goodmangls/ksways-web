@@ -1,1 +1,1 @@
-♿ 히어로 슬라이드 일시정지·필드별 오류 표시·감속 모션 개선·그림자 토큰화 (impeccable audit)
+🤖 Dependabot 버전 업데이트 도입 — npm 주간 묶음 PR·Actions, Playwright·@types/node major 제외
