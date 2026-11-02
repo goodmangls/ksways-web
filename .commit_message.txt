@@ -1,1 +1,1 @@
-📝 COPY.md에서 #68 머지 전 상태 문구 정리
+🔒 Next.js 16.4.4·source-map-js 1.2.2 로 올려 프로덕션 보안 권고(critical·high) 해소
