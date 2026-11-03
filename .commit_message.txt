@@ -1,1 +1,1 @@
-🤖 Dependabot: @playwright/test 는 patch 포함 전 버전 제외 (Docker 이미지 태그와 버전 동기화)
+🔒 dev 의존성 보안 권고 해소 — vitest 4.1.12·brace-expansion·browserslist·js-yaml
