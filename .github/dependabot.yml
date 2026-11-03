@@ -15,7 +15,13 @@ updates:
       prefix: "⬆️"
       prefix-development: "⬆️ dev"
     # minor·patch 는 주 1회 런타임/개발 묶음 PR 두 개로. major 는 개별 PR 로 따로 판단한다.
+    # 그룹은 위에서부터 첫 일치 하나에만 들어간다 — 짝 그룹을 일반 묶음보다 먼저 둔다.
     groups:
+      # vitest 와 @vitest/*(coverage-v8 등)는 같은 버전이어야 한다. 따로 올리면
+      # coverage-v8 5 + vitest 4 처럼 어긋나 test:coverage 가 깨진다(#77).
+      # update-types 를 비워 major 까지 포함 — 짝은 major 에서 가장 잘 어긋난다.
+      vitest:
+        patterns: ["vitest", "@vitest/*"]
       production:
         dependency-type: production
         update-types: [minor, patch]
