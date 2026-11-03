@@ -65,7 +65,7 @@ npm run build        # ⚠️ 로컬 macOS 에서는 실패한다
 
 `.github/dependabot.yml` — 매주 월요일 09:00(KST)에 npm minor·patch 를 런타임/개발 묶음 PR 두 개로, major 는 개별 PR 로, GitHub Actions 는 한 묶음으로 연다. CI 전 잡이 그대로 검증한다.
 
-- **`@playwright/test` 의 minor·major 는 Dependabot 이 올리지 않는다.** CI `visual` 잡의 `container:` 이미지와 `package.json` `test:visual:update:docker` 의 이미지 태그가 같은 버전이어야 하는데 Dependabot 은 이 두 태그를 못 고친다. 올릴 땐 세 곳을 함께 바꾸고 기준선을 같은 이미지에서 다시 확인한다.
+- **`@playwright/test` 는 patch 까지 포함해 Dependabot 이 올리지 않는다.** CI `visual` 잡의 `container:` 이미지와 `package.json` `test:visual:update:docker` 의 이미지 태그가 같은 버전이어야 하는데(patch 에서도 브라우저 리비전이 바뀔 수 있다) Dependabot 은 이 두 태그를 못 고친다. 올릴 땐 세 곳을 함께 바꾸고 기준선을 같은 이미지에서 다시 확인한다.
 - `@types/node` major 도 제외 — 런타임 Node 버전(CI·Vercel)과 맞춰 수동으로 올린다.
 
 ## 가드 테스트

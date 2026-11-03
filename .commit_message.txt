@@ -1,1 +1,1 @@
-🤖 Dependabot 버전 업데이트 도입 — npm 주간 묶음 PR·Actions, Playwright·@types/node major 제외
+🤖 Dependabot: @playwright/test 는 patch 포함 전 버전 제외 (Docker 이미지 태그와 버전 동기화)

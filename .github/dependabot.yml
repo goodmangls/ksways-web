@@ -25,11 +25,11 @@ updates:
     ignore:
       # @playwright/test 는 CI visual 잡의 컨테이너 이미지
       # (mcr.microsoft.com/playwright:v1.62.1-noble)와 package.json 의
-      # test:visual:update:docker 이미지 태그와 같은 버전이어야 한다. minor 가 바뀌면
-      # 브라우저 리비전이 달라져 visual 잡이 깨지는데, Dependabot 은 그 두 태그를 못 고친다.
-      # 세 곳을 함께 올리는 수동 작업으로 둔다.
+      # test:visual:update:docker 이미지 태그와 같은 버전이어야 한다. patch 에서도
+      # 브라우저 리비전이 바뀔 수 있고(visual 잡은 브라우저를 따로 설치하지 않는다),
+      # Dependabot 은 그 두 태그를 못 고친다. 그러면 development 묶음 PR 전체가 깨진다.
+      # 모든 버전을 제외하고 세 곳을 함께 올리는 수동 작업으로 둔다.
       - dependency-name: "@playwright/test"
-        update-types: [version-update:semver-minor, version-update:semver-major]
       # 타입 정의 major 는 런타임 Node 버전(CI·Vercel)과 맞춰 수동으로 올린다 —
       # Dependabot 은 최신 major(런타임보다 앞선 버전)를 제안한다.
       - dependency-name: "@types/node"
