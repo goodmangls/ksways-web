@@ -1,1 +1,1 @@
-♿ 히어로 슬라이드 일시정지·필드별 오류 표시·감속 모션 개선·그림자 토큰화 (impeccable audit)
+🤖 Dependabot: @playwright/test 는 patch 포함 전 버전 제외 (Docker 이미지 태그와 버전 동기화)
