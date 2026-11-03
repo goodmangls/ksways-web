@@ -1,1 +1,1 @@
-🔒 dev 의존성 보안 권고 해소 — vitest 4.1.12·brace-expansion·browserslist·js-yaml
+🤖 Dependabot: vitest·@vitest/* 를 한 그룹으로 묶어 버전 어긋남 방지

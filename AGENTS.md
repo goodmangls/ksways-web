@@ -67,6 +67,7 @@ npm run build        # ⚠️ 로컬 macOS 에서는 실패한다
 
 - **`@playwright/test` 는 patch 까지 포함해 Dependabot 이 올리지 않는다.** CI `visual` 잡의 `container:` 이미지와 `package.json` `test:visual:update:docker` 의 이미지 태그가 같은 버전이어야 하는데(patch 에서도 브라우저 리비전이 바뀔 수 있다) Dependabot 은 이 두 태그를 못 고친다. 올릴 땐 세 곳을 함께 바꾸고 기준선을 같은 이미지에서 다시 확인한다.
 - `@types/node` major 도 제외 — 런타임 Node 버전(CI·Vercel)과 맞춰 수동으로 올린다.
+- `vitest` 와 `@vitest/*` 는 `vitest` 그룹으로 major 까지 **항상 한 PR** 에서 함께 오른다. 둘의 버전이 어긋나면 `test:coverage` 가 깨진다(#77 은 coverage-v8 만 5 로 올려 닫았다).
 
 ## 가드 테스트
 
