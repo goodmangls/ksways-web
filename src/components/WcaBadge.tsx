@@ -5,7 +5,7 @@ import Image from 'next/image';
 //
 // 용도 분리 (DESIGN.md "Network Section"):
 //  - world        WCAworld 상위 브랜드. 인지도가 가장 높아 전 페이지 푸터에 쓴다.
-//  - inter-global KS WAYS 가 속한 WCA Inter Global 네트워크. 홈 네트워크 섹션 한 곳에서만 쓴다.
+//  - inter-global KS WAYS 가 속한 WCA Inter Global 네트워크. 홈 히어로 실적 띠 한 곳에서만 쓴다.
 // 회원 ID·만료일이 박힌 JPEG 는 이메일 서명 전용이라 사이트에 쓰지 않는다.
 const MARKS = {
   world: { src: '/assets/wcaworld-logo.svg', ratio: 359 / 206 },
