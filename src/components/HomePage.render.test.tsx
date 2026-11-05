@@ -34,20 +34,26 @@ describe('HomePage render smoke', () => {
     });
   });
 
-  it('uses WCA Inter Global only in the network section and WCAworld in the site-wide footer', () => {
-    const { container } = render(<HomePage locale="en" copy={homeContent.en} />);
+  it('shows WCA Inter Global once, in the hero proof strip, and WCAworld in the site-wide footer', () => {
+    for (const locale of ['en', 'kr'] as const) {
+      const { container } = render(<HomePage locale={locale} copy={homeContent[locale]} />);
+      const membership = homeContent[locale].hero.proof.find((item) => item.mark === 'inter-global')!;
 
-    const network = document.getElementById('network')!;
-    const interGlobal = within(network).getByRole('img', { name: 'WCA Inter Global' });
-    expect(interGlobal.getAttribute('src')).toContain('/assets/wca-inter-global-badge.svg');
-    expect(within(network).getByText(homeContent.en.network.membership.label)).toBeInTheDocument();
+      // 첫 화면에서 회원 자격이 보이도록 히어로 실적 띠의 텍스트 대신 공식 마크를 쓴다
+      const proofStrip = container.querySelector('dl[aria-label="Key proof points"]') as HTMLElement;
+      const interGlobal = within(proofStrip).getByRole('img', { name: membership.value });
+      expect(interGlobal.getAttribute('src')).toContain('/assets/wca-inter-global-badge.svg');
+      expect(within(proofStrip).getByText(membership.label)).toBeInTheDocument();
 
-    // 푸터는 모든 페이지에 붙으므로 사이트 전역 마크는 인지도가 높은 WCAworld 상위 브랜드다
-    const footer = screen.getByRole('contentinfo');
-    expect(within(footer).getByRole('img', { name: 'WCAworld member' }).getAttribute('src')).toContain('/assets/wcaworld-logo.svg');
+      // Say It Once — 네트워크 섹션에는 다시 붙이지 않는다
+      expect(document.getElementById('network')!.querySelector('img[src*="wca-inter-global-badge"]')).toBeNull();
+      expect(container.querySelectorAll('img[src*="wca-inter-global-badge"]')).toHaveLength(1);
 
-    // Inter Global 마크는 네트워크 섹션 한 곳으로 제한한다
-    expect(container.querySelectorAll('img[src*="wca-inter-global-badge"]')).toHaveLength(1);
+      // 푸터는 모든 페이지에 붙으므로 사이트 전역 마크는 인지도가 높은 WCAworld 상위 브랜드다
+      const footer = screen.getByRole('contentinfo');
+      expect(within(footer).getByRole('img', { name: 'WCAworld member' }).getAttribute('src')).toContain('/assets/wcaworld-logo.svg');
+      cleanup();
+    }
   });
 
   it('shows the WQS and PartnerPay seals in the network section, in both locales', () => {

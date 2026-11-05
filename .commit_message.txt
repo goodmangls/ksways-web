@@ -1,1 +1,1 @@
-🤖 Dependabot: vitest·@vitest/* 를 한 그룹으로 묶어 버전 어긋남 방지
+🏅 홈 히어로 실적 띠의 WCA 회원 표시를 텍스트에서 WCA Inter Global 공식 마크로 바꾸고, 네트워크 섹션의 중복 마크는 제거

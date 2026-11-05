@@ -31,7 +31,8 @@ export type HomeCopy = {
     lead: string;
     primaryCta: string;
     secondaryCta: string;
-    proof: Array<{ label: string; value: string }>;
+    /** `mark` 가 있으면 값 텍스트 대신 공식 WCA 마크를 그린다. 이때 `value` 는 마크의 대체 텍스트다. */
+    proof: Array<{ label: string; value: string; mark?: 'inter-global' }>;
     controlTitle: string;
     controlCenter: string;
   };
@@ -49,7 +50,6 @@ export type HomeCopy = {
     headline: string;
     body: string;
     points: string[];
-    membership: { label: string };
     tools: { heading: string; items: WcaMemberTool[] };
   };
   solutions: {
@@ -103,7 +103,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       primaryCta: 'Get a Quote',
       secondaryCta: 'Explore Partner Network',
       proof: [
-        { label: 'Global network', value: 'WCA Member' },
+        { label: 'Global network', value: 'WCA Inter Global member', mark: 'inter-global' },
         { label: 'Core services', value: 'Ocean · Air' },
         { label: 'Industry Experience', value: '30+ years' },
       ],
@@ -134,7 +134,6 @@ export const homeContent: Record<Locale, HomeCopy> = {
       headline: 'WCA-backed cooperation for global cargo movement.',
       body: 'As a WCA member, KS WAYS works from its Korea base on global routes, giving global freight forwarders practical routing, responsive updates, and partner-safe handoff control.',
       points: ['WCA member network', 'Korea gateway · Global routes', 'Ocean · Air cargo coordination', 'Partner-safe handoff control'],
-      membership: { label: 'WCA Inter Global member' },
       tools: {
         heading: 'Work with us through WCAworld',
         items: [
@@ -224,7 +223,7 @@ export const homeContent: Record<Locale, HomeCopy> = {
       primaryCta: '견적 문의',
       secondaryCta: '파트너 네트워크 보기',
       proof: [
-        { label: '글로벌 네트워크', value: 'WCA 회원사' },
+        { label: '글로벌 네트워크', value: 'WCA Inter Global 회원사', mark: 'inter-global' },
         { label: '핵심 서비스', value: '해상 · 항공' },
         { label: '경력 기반', value: '30년 이상' },
       ],
@@ -255,7 +254,6 @@ export const homeContent: Record<Locale, HomeCopy> = {
       headline: '글로벌 화물 이동을 위한 WCA 기반 에이전트 협력.',
       body: 'KS WAYS는 WCA 회원사로서 한국을 거점으로 글로벌 노선을 연결하고, 실질적인 라우팅, 빠른 커뮤니케이션, 책임 있는 핸드오프를 중심으로 글로벌 에이전트 협력을 운영합니다.',
       points: ['WCA 회원 네트워크', '한국 거점 · 글로벌 노선', '30년 이상 항공·해운·포워딩 경험', '글로벌 파트너 커버리지'],
-      membership: { label: 'WCA Inter Global 회원사' },
       tools: {
         heading: 'WCAworld 회원 도구로 협업하기',
         items: [

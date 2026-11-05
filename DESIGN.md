@@ -490,7 +490,7 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 - Hero headline should center the global logistics promise and highlight “global” / “글로벌” in warm gold (`accent-soft`).
 - Primary CTA: quote/contact action with a flat bronze fill (`tertiary`), navy `ink` text, bold weight. Do not reintroduce a gradient fill, and do not use white text.
 - Secondary CTA: partner/network exploration, outlined on dark surfaces.
-- Proof strip: WCA Member · Ocean · Air · 30+ years. Keep proof labels compact and values bold. This is the page's one full credential set (see **The Say It Once Rule**).
+- Proof strip: WCA Inter Global mark · Ocean · Air · 30+ years. Keep proof labels compact and values bold. The membership cell shows the official WCA Inter Global mark (`56px`) in place of a text value, so the credential is visible on the first screen; its `alt` is "WCA Inter Global member". This is the page's one full credential set (see **The Say It Once Rule**).
 - Route-control visual should suggest global network, technology, ocean/air/data coordination.
 - The photo panel crossfades four slides every 7s, and the credit line changes with them. Because it moves on its own for more than 5 seconds, it carries a 44px pause/play button in its top-right corner (WCAG 2.2.2 Pause, Stop, Hide), labelled in the page language. Pausing freezes the slide and its credit together. Under `prefers-reduced-motion` the first slide stays put and the button is hidden.
 
@@ -510,7 +510,7 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
   | Mark | File | Where | Height |
   |---|---|---|---|
   | **WCAworld** (umbrella brand, most recognized) | `public/assets/wcaworld-logo.svg` | Footer, next to the KS WAYS logo — every page | `52px` |
-  | **WCA Inter Global** (the network KS WAYS belongs to) | `public/assets/wca-inter-global-badge.svg` | Home › Network section only, captioned "WCA Inter Global member" | `64px` |
+  | **WCA Inter Global** (the network KS WAYS belongs to) | `public/assets/wca-inter-global-badge.svg` | Home › hero proof strip only, labelled "Global network" (alt "WCA Inter Global member"). Moved from the Network section on 2026-11-05 so membership shows on the first screen; it is not repeated there | `56px` |
 
   Both are the "for black & color background" variants: the light plate is part of the mark and is what makes it legible on navy. On a paper/white surface use the matching "for white background" variant from the same package instead. Never recolor, crop, or re-letter a mark. Below `52px` the WCAworld "world" lettering stops being legible.
 - **Email-signature asset stays off the site.** The WCA JPEG with the member ID and expiry date baked in is for email signatures only. Neither the image nor its ID/expiry text appears on the site (asserted in `HomePage.render.test.tsx`) — an expiry date in public copy silently goes stale.

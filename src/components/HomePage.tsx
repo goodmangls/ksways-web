@@ -103,7 +103,13 @@ export function HomePage({ locale, copy }: Props) {
             {copy.hero.proof.map((item) => (
               <div key={item.label} className="flex flex-col-reverse gap-2.5 border-b border-border-dark py-7 last:border-b-0 sm:border-b-0 sm:border-r sm:py-9 sm:pr-8 sm:last:border-r-0 sm:[&:not(:first-child)]:pl-8">
                 <dt className="text-sm text-white/76">{item.label}</dt>
-                <dd className="text-[clamp(28px,3vw,40px)] font-black leading-none tracking-[-.025em] text-white">{item.value}</dd>
+                {item.mark ? (
+                  <dd>
+                    <WcaBadge variant={item.mark} label={item.value} height={56} />
+                  </dd>
+                ) : (
+                  <dd className="text-[clamp(28px,3vw,40px)] font-black leading-none tracking-[-.025em] text-white">{item.value}</dd>
+                )}
               </div>
             ))}
           </dl>
@@ -183,8 +189,7 @@ export function HomePage({ locale, copy }: Props) {
             </Link>
           </div>
           <div className="self-center">
-            <WcaBadge variant="inter-global" label="WCA Inter Global" caption={copy.network.membership.label} height={64} />
-            <ul className="mt-8 grid border-t border-border-dark sm:grid-cols-2 sm:gap-x-8">
+            <ul className="grid border-t border-border-dark sm:grid-cols-2 sm:gap-x-8">
               {copy.network.points.map((point) => (
                 <li key={point} className="flex items-start gap-4 border-b border-border-dark py-7 text-lg font-bold">
                   <CheckIcon />
