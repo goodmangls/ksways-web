@@ -1,9 +1,5 @@
 export const UNSPLASH_APP_NAME = 'ksways';
 
-/** /api/unsplash live 모드의 클라이언트(IP)당 분당 요청 상한. */
-export const UNSPLASH_LIVE_MODE_MAX_REQUESTS = 10;
-export const UNSPLASH_CACHE_REVALIDATE_SECONDS = 60 * 60 * 24;
-
 export const ALLOWED_UNSPLASH_TOPICS = {
   ocean: 'ocean freight container ship port terminal',
   air: 'air cargo freight aircraft logistics',
@@ -38,10 +34,6 @@ export type UnsplashApiPhoto = {
   };
 };
 
-export type UnsplashSearchResponse = {
-  results: UnsplashApiPhoto[];
-};
-
 export type NormalizedUnsplashImage = {
   id: string;
   alt: string;
@@ -63,27 +55,11 @@ export type ApprovedUnsplashImage = NormalizedUnsplashImage & {
   selectionNote: string;
 };
 
-type SearchUnsplashOptions = {
-  topic: string;
-  accessKey?: string;
-  appName?: string;
-  perPage?: number;
-  fetcher?: typeof fetch;
-};
-
-export type SearchUnsplashResult =
-  | { images: NormalizedUnsplashImage[]; fallback: false }
-  | { images: []; fallback: true; reason: 'missing_access_key' | 'unsplash_error' };
-
 function withReferralParams(url: string, appName: string) {
   const parsed = new URL(url);
   parsed.searchParams.set('utm_source', appName);
   parsed.searchParams.set('utm_medium', 'referral');
   return parsed.toString();
-}
-
-function resolveTopic(topic: string): UnsplashTopic {
-  return topic in ALLOWED_UNSPLASH_TOPICS ? (topic as UnsplashTopic) : 'global';
 }
 
 export function normalizeUnsplashPhoto(photo: UnsplashApiPhoto, appName = UNSPLASH_APP_NAME): NormalizedUnsplashImage {
@@ -101,45 +77,6 @@ export function normalizeUnsplashPhoto(photo: UnsplashApiPhoto, appName = UNSPLA
     unsplashUrl: withReferralParams(photo.links.html, appName),
     downloadLocation: photo.links.download_location,
   };
-}
-
-export async function searchUnsplashImages({
-  topic,
-  accessKey,
-  appName = UNSPLASH_APP_NAME,
-  perPage = 6,
-  fetcher = fetch,
-}: SearchUnsplashOptions): Promise<SearchUnsplashResult> {
-  if (!accessKey) {
-    return { images: [], fallback: true, reason: 'missing_access_key' };
-  }
-
-  const safeTopic = resolveTopic(topic);
-  const url = new URL('https://api.unsplash.com/search/photos');
-  url.searchParams.set('query', ALLOWED_UNSPLASH_TOPICS[safeTopic]);
-  url.searchParams.set('orientation', 'landscape');
-  url.searchParams.set('per_page', String(perPage));
-
-  try {
-    const response = await fetcher(url, {
-      headers: {
-        Authorization: `Client-ID ${accessKey}`,
-      },
-      next: { revalidate: UNSPLASH_CACHE_REVALIDATE_SECONDS },
-    });
-
-    if (!response.ok) {
-      return { images: [], fallback: true, reason: 'unsplash_error' };
-    }
-
-    const data = (await response.json()) as UnsplashSearchResponse;
-    return {
-      images: data.results.map((photo) => normalizeUnsplashPhoto(photo, appName)),
-      fallback: false,
-    };
-  } catch {
-    return { images: [], fallback: true, reason: 'unsplash_error' };
-  }
 }
 
 const approvedUnsplashImages = [
@@ -314,15 +251,6 @@ const approvedUnsplashImages = [
     downloadLocation: 'https://api.unsplash.com/photos/z1d-LP8sjuI/download',
   },
 ] satisfies ApprovedUnsplashImage[];
-
-export function getApprovedUnsplashImages(topic?: string) {
-  if (!topic) {
-    return approvedUnsplashImages;
-  }
-
-  const safeTopic = resolveTopic(topic);
-  return approvedUnsplashImages.filter((image) => image.topic === safeTopic);
-}
 
 export function getHeroUnsplashImages() {
   return approvedUnsplashImages.filter((image) => image.brandUse === 'approved-hero-candidate');
