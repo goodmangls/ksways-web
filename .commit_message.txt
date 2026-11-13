@@ -1,1 +1,1 @@
-🧭 EXW 단독 노출을 인코텀즈 허브(/services/incoterms-korea, 2020 규칙 11개 E/F/C/D 그리드)와 서비스별 인코텀즈 띠로 넓히고 홈 카드·푸터·FAQ·견적 예시에 FCA·FOB·CIF·DAP·DDP 반영
+🩹 Bugbot 지적 3건 반영 — FCA 위험 이전 지점을 지정 장소별로 구분, 항공 띠 제외 목록에 FAS 추가, 영문 FAQ 에 규칙 11개 전부 명시(회귀 가드 3개)

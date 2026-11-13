@@ -404,7 +404,7 @@ export const servicePages: ServicePage[] = [
               code: 'FCA',
               name: 'Free Carrier',
               mode: 'any',
-              delivery: 'Seller delivers, cleared for export, to the carrier the buyer names at the agreed place. Risk passes once loading has taken place.',
+              delivery: 'Seller delivers, cleared for export, to the carrier the buyer names. At the seller’s premises, risk passes once the goods are loaded; at any other named place, once they arrive ready for unloading.',
             },
             {
               code: 'FAS',

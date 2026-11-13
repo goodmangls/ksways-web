@@ -100,7 +100,7 @@ function IncotermsStrip({ scope }: { scope: NonNullable<ServicePage['incotermsSt
       </h2>
       <BodyText measure="default" className="mt-4">
         {scope === 'air'
-          ? 'Whether the buyer nominates KS WAYS under EXW or FCA, or the Korean seller books under CPT, CIP, DAP, or DDP, we confirm where cost and risk change hands before quoting. FOB, CFR, and CIF are sea rules and are not used for air cargo.'
+          ? 'Whether the buyer nominates KS WAYS under EXW or FCA, or the Korean seller books under CPT, CIP, DAP, or DDP, we confirm where cost and risk change hands before quoting. FAS, FOB, CFR, and CIF are sea rules and are not used for air cargo.'
           : 'Whether the buyer nominates KS WAYS under EXW, FCA, or FOB, or the Korean seller books under CFR, CIF, DAP, or DDP, we confirm where cost and risk change hands before quoting.'}
       </BodyText>
       <ul aria-label="Incoterms rules" className="mt-6 flex flex-wrap gap-2">

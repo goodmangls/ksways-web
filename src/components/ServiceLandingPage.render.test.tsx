@@ -1,7 +1,8 @@
 // @vitest-environment jsdom
 import { cleanup, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
-import { getServicePage, servicePages } from '@/lib/service-pages';
+import { getServicePage, incotermTerms, servicePages } from '@/lib/service-pages';
+import { homeFaqs } from '@/lib/seo';
 import { ServiceLandingPage } from './ServiceLandingPage';
 
 const airFreight = getServicePage('air-freight-korea')!;
@@ -88,10 +89,30 @@ describe('ServiceLandingPage render', () => {
     // 항공에는 해상 전용 규칙(FAS·FOB·CFR·CIF)을 내놓지 않는다
     render(<ServiceLandingPage page={airFreight} basePath="services" />);
     expect(stripCodes()).toEqual(['EXW', 'FCA', 'CPT', 'CIP', 'DAP', 'DPU', 'DDP']);
+    // 빠진 칩과 설명 문구의 제외 목록이 일치해야 한다(Bugbot #86: FAS 누락)
+    const strip = screen.getByRole('list', { name: 'Incoterms rules' }).closest('aside')!;
+    ['FAS', 'FOB', 'CFR', 'CIF'].forEach((code) => expect(strip.textContent).toContain(code));
     cleanup();
 
     render(<ServiceLandingPage page={getServicePage('exw-pickup-korea')!} basePath="services" />);
     expect(screen.queryByRole('list', { name: 'Incoterms rules' })).toBeNull();
+  });
+
+  it('states the FCA risk point for both kinds of named place', () => {
+    // Incoterms® 2020 FCA: 매도인 영업소면 적재 시, 그 밖의 지정 장소면 양하 준비 상태 도착 시 위험 이전(Bugbot #86)
+    const fca = incotermTerms().find((term) => term.code === 'FCA')!;
+    expect(fca.delivery).toMatch(/seller’s premises.*loaded/);
+    expect(fca.delivery).toMatch(/other named place.*ready for unloading/);
+  });
+
+  it('names every rule wherever copy claims all eleven', () => {
+    // '11개 전부' 라고 하면서 9개만 나열하면 누락으로 읽힌다(Bugbot #86, 홈 FAQ JSON-LD)
+    const codes = incotermTerms().map((term) => term.code);
+    const claims = [...homeFaqs.en, ...homeFaqs.kr, ...servicePages.flatMap((page) => page.faqs)]
+      .map((faq) => faq.answer)
+      .filter((answer) => /all eleven|11개 전부/.test(answer));
+    expect(claims.length).toBeGreaterThan(0);
+    claims.forEach((answer) => codes.forEach((code) => expect(answer).toContain(code)));
   });
 
   it('frames DDP as a case-by-case review, never a flat promise', () => {

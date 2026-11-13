@@ -118,7 +118,7 @@ export const homeFaqs: Record<Locale, FaqItem[]> = {
     },
     {
       question: 'Which Incoterms does KS WAYS handle from Korea?',
-      answer: 'KS WAYS can review Korea-origin shipments under all eleven Incoterms® 2020 rules, including EXW, FCA, FOB, CIF, CPT, CIP, DAP, DPU, and DDP. Overseas buyers can nominate KS WAYS under EXW, FCA, or FOB; Korean exporters can book with KS WAYS under C and D rules. DDP is reviewed case by case with destination partners.',
+      answer: 'KS WAYS can review Korea-origin shipments under all eleven Incoterms® 2020 rules: EXW, FCA, FAS, FOB, CPT, CIP, CFR, CIF, DAP, DPU, and DDP. Overseas buyers can nominate KS WAYS under EXW, FCA, or FOB; Korean exporters can book with KS WAYS under C and D rules. DDP is reviewed case by case with destination partners.',
     },
     {
       question: 'What information is needed for a freight quote?',
