@@ -21,7 +21,7 @@ Success means a forwarder leaves understanding three things: what KS WAYS execut
 
 Locked in COPY.md, 2026-09-09:
 
-1. **Offer:** ocean and air freight **from Korea to worldwide destinations**. Ocean-led, with air as the core companion mode. EXW pickup, special cargo and cross-border support round it out.
+1. **Offer:** ocean and air freight **from Korea to worldwide destinations**. Ocean-led, with air as the core companion mode. Pickup under any Incoterms® 2020 rule (EXW, FCA, FOB, CIF, DAP, DDP and the rest), special cargo and cross-border support round it out.
 2. **Model:** global forwarding through **WCA partner networking**. KS WAYS is the Korea origin agent, not a marketplace or a rate shop.
 3. **Never claim China, Japan or Northeast Asia regional coverage.** This is enforced by `content.test.ts`, `seo.test.ts` and `service-pages.test.ts`.
 
@@ -35,7 +35,7 @@ What a neighbouring forwarder can't copy: Korea-side execution (pickup, carrier 
   - `/quote`, a structured form that builds a `mailto:`. There is no backend submission, and the sidebar summarises what has been entered.
   - Zoom or Calendly consultations.
   - An Intercom chat launcher.
-- Routes: `/`, `/kr`, `/quote`, `/services/{air-freight,ocean-freight,special-cargo,exw-pickup}-korea`, `/network/korea-agent-network`. Planned in COPY.md: a cross-border service page, an insights guide, a contact page.
+- Routes: `/`, `/kr`, `/quote`, `/services/{air-freight,ocean-freight,special-cargo,exw-pickup,incoterms}-korea`, `/network/korea-agent-network`. Planned in COPY.md: a cross-border service page, an insights guide, a contact page.
 - Language: English is the primary and `x-default`. Korean lives at `/kr`. Korean service pages don't exist yet, but expanding `/kr` for Korean shippers is in scope.
 
 ## Capabilities and Constraints

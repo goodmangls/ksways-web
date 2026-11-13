@@ -75,13 +75,14 @@ export function SectionHeading({ children, id, size = 'lg', className }: Section
 
 type CardHeadingProps = {
   children: ReactNode;
+  id?: string;
   size?: keyof typeof cardHeadingSizes;
   /** 배치용 클래스만. */
   className?: string;
 };
 
-export function CardHeading({ children, size = 'sm', className }: CardHeadingProps) {
-  return <h3 className={cx(className, cardHeadingSizes[size])}>{children}</h3>;
+export function CardHeading({ children, id, size = 'sm', className }: CardHeadingProps) {
+  return <h3 id={id} className={cx(className, cardHeadingSizes[size])}>{children}</h3>;
 }
 
 type BodyTextProps = {

@@ -10,4 +10,5 @@ export const SMOKE_PAGES: ReadonlyArray<{ path: string; lang: string }> = [
   { path: '/services/ocean-freight-korea', lang: 'en' },
   { path: '/services/special-cargo-korea', lang: 'en' },
   { path: '/services/exw-pickup-korea', lang: 'en' },
+  { path: '/services/incoterms-korea', lang: 'en' },
 ];

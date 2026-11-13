@@ -1,1 +1,1 @@
-🏅 홈 히어로 실적 띠의 WCA 회원 표시를 텍스트에서 WCA Inter Global 공식 마크로 바꾸고, 네트워크 섹션의 중복 마크는 제거
+🖼️ 인코텀즈 허브 반영에 맞춰 시각 회귀 기준선 16장 갱신(home-en·home-kr·quote·service-air × 4폭, Docker 공식 이미지)

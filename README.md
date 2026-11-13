@@ -32,7 +32,7 @@ npm run start -- --hostname 127.0.0.1 --port 3010
 - Unit tests: 5 passed
 - ESLint: passed
 - Production build: passed
-- Static routes generated: `/`, `/_not-found`, `/kr`, `/quote`, `/services/air-freight-korea`, `/services/ocean-freight-korea`, `/services/special-cargo-korea`, `/services/exw-pickup-korea`, `/network/korea-agent-network`, `/robots.txt`, `/sitemap.xml`
+- Static routes generated: `/`, `/_not-found`, `/kr`, `/quote`, `/services/air-freight-korea`, `/services/ocean-freight-korea`, `/services/special-cargo-korea`, `/services/exw-pickup-korea`, `/services/incoterms-korea`, `/network/korea-agent-network`, `/robots.txt`, `/sitemap.xml`
 - Browser QA: desktop/mobile EN/KR screenshots, no console errors, no page errors, no horizontal overflow
 
 ## Deployment Notes
