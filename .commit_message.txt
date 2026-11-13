@@ -1,1 +1,1 @@
-💬 docs(quote-form.test): required-field 하드코딩된 리터럴이 유일한 drift guard임을 명시
+🧮 AGENTS.md 테스트 수 갱신 — /api/unsplash·레이트리미터 테스트 삭제 반영(194→183)
