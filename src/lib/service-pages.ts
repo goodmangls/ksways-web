@@ -2,6 +2,25 @@ import type { Metadata } from 'next';
 import type { WcaMemberTool } from './content';
 import { shareImage } from './seo';
 
+export type IncotermTerm = {
+  code: string;
+  name: string;
+  /** 'sea' = sea and inland waterway only (FAS, FOB, CFR, CIF). Everything else works with any mode. */
+  mode: 'any' | 'sea';
+  /** Where the seller delivers and where risk passes, per the WCAworld Incoterms® 2020 chart. */
+  delivery: string;
+  href?: string;
+  linkLabel?: string;
+};
+
+export type IncotermGroup = {
+  family: 'E' | 'F' | 'C' | 'D';
+  title: string;
+  /** Who books the main carriage, and what KS WAYS does from the Korea side. */
+  body: string;
+  terms: IncotermTerm[];
+};
+
 export type ServicePage = {
   slug: string;
   quoteServiceKey?: string;
@@ -33,6 +52,21 @@ export type ServicePage = {
     body: string;
     items: Array<{ title: string; body: string }>;
   };
+  /** Incoterms® 2020 term grid — the Incoterms hub only. Copy rules and source: COPY.md §7.3a "Incoterms rules". */
+  incoterms?: {
+    heading: string;
+    title: string;
+    body: string;
+    groups: IncotermGroup[];
+  };
+  /**
+   * Compact Incoterms strip on a freight service page, linking to the hub (pattern from the
+   * 2026-11-05 benchmark: SAR repeats an Incoterm block on every service page). 'air' shows the
+   * all-mode rules only — FAS, FOB, CFR, and CIF are sea and inland waterway rules.
+   */
+  incotermsStrip?: 'air' | 'all';
+  /** Cross-links shown under the sections, e.g. EXW detail ↔ Incoterms hub. */
+  related?: Array<{ label: string; body: string; href: string }>;
   checklistTitle: string;
   checklist: string[];
   faqs: Array<{
@@ -112,6 +146,7 @@ export const servicePages: ServicePage[] = [
         body: 'Every air shipment is different. KS WAYS uses practical Industry Experience to structure each enquiry around cargo facts, schedule targets, service mode, consolidation potential, temperature-control needs, destination handoff, and professional customer service so the proposed solution fits the shipment rather than forcing a generic route.',
       },
     ],
+    incotermsStrip: 'air',
     checklistTitle: 'Information needed for an air freight quote',
     checklist: ['Origin and destination', 'Cargo description and HS code if available', 'Package count', 'Dimensions and gross weight', 'Incoterms', 'Cargo ready date', 'Required delivery timing', 'Commodity sensitivity or DG/perishable status', 'Pickup, customs, or airport handling requirements'],
     faqs: [
@@ -164,6 +199,7 @@ export const servicePages: ServicePage[] = [
         body: 'Cargo dimensions, gross weight, packaging, loading method, and site access can affect container choice and local handling requirements.',
       },
     ],
+    incotermsStrip: 'all',
     checklistTitle: 'Information needed for an ocean freight quote',
     checklist: ['Origin and destination port or address', 'FCL or LCL preference', 'Cargo dimensions', 'Gross weight', 'Package count', 'Incoterms', 'Cargo ready date', 'Loading and stuffing conditions'],
     faqs: [
@@ -222,6 +258,7 @@ export const servicePages: ServicePage[] = [
         body: 'For cross-border special cargo, the handoff between shipper, pickup provider, carrier, customs broker, overseas agent, and consignee must be explicit. KS WAYS keeps the key facts visible so exceptions can be handled early.',
       },
     ],
+    incotermsStrip: 'all',
     checklistTitle: 'Information needed for special cargo review',
     checklist: ['Origin and destination address or port/airport', 'Commodity description and HS code if available', 'Cargo photos, packing details, and handling marks', 'Dimensions, gross weight, and package count', 'MSDS, DG declaration, temperature range, or certificates if applicable', 'Cargo ready date and required delivery window', 'Incoterms and pickup conditions', 'Customs, insurance, or security requirements'],
     faqs: [
@@ -274,6 +311,13 @@ export const servicePages: ServicePage[] = [
         items: ['Confirm cargo is packed and ready', 'Check forklift or crane availability', 'Verify truck access', 'Prepare packing list and commercial documents'],
       },
     ],
+    related: [
+      {
+        label: 'Incoterms from Korea',
+        body: 'Shipping under FCA, FOB, CIF, DAP, DDP, or another Incoterms® 2020 rule? See where cost and risk change hands, and what KS WAYS handles from the Korea side.',
+        href: '/services/incoterms-korea',
+      },
+    ],
     checklistTitle: 'Information needed for EXW pickup review',
     checklist: ['Shipper address', 'Contact person', 'Cargo ready date', 'Dimensions and gross weight', 'Packaging photos', 'Loading equipment availability', 'Vehicle access limits', 'Container stuffing requirements'],
     faqs: [
@@ -284,6 +328,174 @@ export const servicePages: ServicePage[] = [
       {
         question: 'Why can EXW pickup cost change after review?',
         answer: 'EXW pickup cost can change when cargo dimensions, loading equipment, site access, or container stuffing requirements differ from the initial information.',
+      },
+    ],
+  },
+  {
+    slug: 'incoterms-korea',
+    meta: {
+      title: 'Incoterms from Korea — EXW, FCA, FOB, CIF, DAP, DDP | KS WAYS',
+      description: 'KS WAYS ships from Korea under every Incoterms® 2020 rule — EXW, FCA, FAS, FOB, CPT, CIP, CFR, CIF, DAP, DPU, and DDP — and plans pickup, export handling, and handoff around where cost and risk change hands.',
+      alternates: { canonical: '/services/incoterms-korea' },
+      openGraph: {
+        title: 'Incoterms from Korea — EXW, FCA, FOB, CIF, DAP, DDP | KS WAYS',
+        description: 'Korea-origin shipments under any Incoterms® 2020 rule, planned around where cost and risk change hands.',
+        url: 'https://ksways.co/services/incoterms-korea',
+        siteName: 'KS WAYS',
+        type: 'website',
+        images: [shareImage],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Incoterms from Korea — EXW, FCA, FOB, CIF, DAP, DDP | KS WAYS',
+        description: 'Korea-origin shipments under any Incoterms® 2020 rule, planned around where cost and risk change hands.',
+        images: [shareImage],
+      },
+    },
+    eyebrow: 'Incoterms from Korea',
+    title: 'Shipping from Korea under any Incoterms® 2020 rule',
+    lead: 'The agreed Incoterms rule decides who books the main carriage, who clears export, and where risk passes from seller to buyer. Overseas buyers and their forwarders nominate KS WAYS under EXW, FCA, or FOB; Korean exporters book with us under CIF, CPT, DAP, or DDP. We read the term and the named place first, then quote and plan the Korea-side work to match.',
+    sections: [
+      {
+        title: 'Why the term changes the job',
+        body: 'Two shipments with the same cargo and route can need different work in Korea. Under EXW the buyer’s side loads at the seller’s premises and handles export clearance; under FCA or FOB the seller clears export and hands over at the named place or port; under C and D rules the seller pays the main carriage, and under D rules also carries the risk to destination. Checking the term before quoting keeps the quote to the scope the sales contract actually agreed.',
+      },
+      {
+        title: 'Buyer-nominated and seller-arranged shipments',
+        body: 'KS WAYS works on both sides of a Korea export. Who contacts us depends on the term.',
+        items: [
+          'EXW · FCA · FAS · FOB — the overseas buyer or its forwarder books, and nominates KS WAYS in Korea',
+          'CPT · CIP · CFR · CIF — the Korean seller books the main carriage to destination',
+          'DAP · DPU · DDP — the Korean seller delivers at destination, coordinated with WCA partners',
+          'FAS, FOB, CFR, and CIF are sea and inland waterway rules in Incoterms® 2020; for air cargo, the any-mode rules FCA, CPT, and CIP describe the handover',
+        ],
+      },
+      {
+        title: 'What the term does not settle',
+        body: 'Incoterms rules set delivery, cost, and risk points. They do not set price, payment terms, or transfer of ownership, and the named place matters as much as the three letters. KS WAYS explains what a term means for pickup and handoff; which term to agree is a commercial decision between buyer and seller.',
+      },
+    ],
+    incoterms: {
+      heading: 'Incoterms® 2020',
+      title: 'Eleven rules, four families',
+      body: 'Grouped the way the rules are named: E for ex works, F for free (main carriage unpaid), C for carriage paid, D for delivered. Delivery and risk points follow the WCAworld Incoterms® 2020 chart.',
+      groups: [
+        {
+          family: 'E',
+          title: 'Pickup at the seller’s door',
+          body: 'The buyer’s side does everything from the seller’s premises. KS WAYS reviews pickup, loading, and Korean export clearance for the overseas buyer or its forwarder.',
+          terms: [
+            {
+              code: 'EXW',
+              name: 'Ex Works',
+              mode: 'any',
+              delivery: 'Goods made available at the seller’s premises, not loaded and not cleared for export. The buyer bears the risk from there.',
+              href: '/services/exw-pickup-korea',
+              linkLabel: 'EXW pickup in Korea',
+            },
+          ],
+        },
+        {
+          family: 'F',
+          title: 'Main carriage booked by the buyer',
+          body: 'The seller clears export and hands over in Korea; the buyer books the main carriage. Overseas forwarders nominate KS WAYS as their Korea origin agent to receive the cargo and book on their instructions.',
+          terms: [
+            {
+              code: 'FCA',
+              name: 'Free Carrier',
+              mode: 'any',
+              delivery: 'Seller delivers, cleared for export, to the carrier the buyer names at the agreed place. Risk passes once loading has taken place.',
+            },
+            {
+              code: 'FAS',
+              name: 'Free Alongside Ship',
+              mode: 'sea',
+              delivery: 'Seller places the goods alongside the ship at the port of departure. Risk passes there.',
+            },
+            {
+              code: 'FOB',
+              name: 'Free on Board',
+              mode: 'sea',
+              delivery: 'Seller loads the goods on board the ship at the port of departure. Risk passes once they are on board.',
+            },
+          ],
+        },
+        {
+          family: 'C',
+          title: 'Main carriage paid by the seller',
+          body: 'The Korean seller pays for carriage to destination, but risk passes in Korea. KS WAYS books the main carriage for the exporter and, under CIP and CIF, cargo insurance as the contract requires.',
+          terms: [
+            {
+              code: 'CPT',
+              name: 'Carriage Paid To',
+              mode: 'any',
+              delivery: 'Seller hands the goods to the first carrier and pays transport to the named destination. Risk passes at handover.',
+            },
+            {
+              code: 'CIP',
+              name: 'Carriage and Insurance Paid To',
+              mode: 'any',
+              delivery: 'As CPT, and the seller also pays cargo insurance to the named destination. Risk passes at handover.',
+            },
+            {
+              code: 'CFR',
+              name: 'Cost and Freight',
+              mode: 'sea',
+              delivery: 'Seller pays freight to the named port of destination, duty unpaid. Risk passes once the goods are on board.',
+            },
+            {
+              code: 'CIF',
+              name: 'Cost, Insurance and Freight',
+              mode: 'sea',
+              delivery: 'As CFR, and the seller also pays cargo insurance to the port of destination. Risk passes once the goods are on board.',
+            },
+          ],
+        },
+        {
+          family: 'D',
+          title: 'Delivered at destination',
+          body: 'The Korean seller carries cost and risk to the destination. KS WAYS coordinates the origin side and the final delivery with WCA partners at destination.',
+          terms: [
+            {
+              code: 'DAP',
+              name: 'Delivered at Place',
+              mode: 'any',
+              delivery: 'Seller delivers at the agreed place, ready for unloading from the arriving vehicle. Import clearance and duties stay with the buyer.',
+            },
+            {
+              code: 'DPU',
+              name: 'Delivered at Place Unloaded',
+              mode: 'any',
+              delivery: 'Seller delivers the goods unloaded at the agreed place. Risk passes once unloading is complete.',
+            },
+            {
+              code: 'DDP',
+              name: 'Delivered Duty Paid',
+              mode: 'any',
+              delivery: 'Seller delivers at destination and pays import duties and taxes. Feasibility depends on destination rules, so KS WAYS reviews it case by case.',
+            },
+          ],
+        },
+      ],
+    },
+    checklistTitle: 'Information to send with an Incoterms-based enquiry',
+    checklist: ['Agreed Incoterms® rule and named place', 'Seller and buyer, and who is enquiring', 'Who handles export clearance', 'Pickup address or port of loading', 'Destination address or port', 'Cargo description and HS code', 'Dimensions and gross weight', 'Cargo ready date', 'Insurance requirement (CIP / CIF)', 'Import duty and tax arrangements (DDP)'],
+    faqs: [
+      {
+        question: 'Which Incoterms can KS WAYS work with?',
+        answer: 'KS WAYS can review Korea-origin shipments under all eleven Incoterms® 2020 rules: EXW, FCA, FAS, FOB, CPT, CIP, CFR, CIF, DAP, DPU, and DDP. The term and the named place decide which parts of the job sit with KS WAYS, the seller, and the buyer.',
+      },
+      {
+        question: 'Can KS WAYS act as the nominated agent for an FCA or FOB shipment from Korea?',
+        answer: 'Yes. Overseas buyers and forwarders can nominate KS WAYS to receive cargo at the named place or port in Korea and book the main carriage on their instructions. Send the sales term, named place, shipper contact, and cargo details.',
+      },
+      {
+        question: 'Can KS WAYS ship DDP from Korea?',
+        answer: 'Under DDP the seller pays import duties and taxes and handles import clearance at destination. KS WAYS reviews DDP enquiries case by case with WCA partners at destination; whether it works depends on the destination country’s rules and who can act for the seller there.',
+      },
+      {
+        question: 'Should FOB be used for air freight?',
+        answer: 'Incoterms® 2020 lists FOB as a sea and inland waterway rule. For air cargo, and often for containers handed over at an inland point, FCA describes the handover more closely. The choice of term remains a commercial decision between buyer and seller.',
       },
     ],
   },
@@ -399,6 +611,11 @@ export const servicePages: ServicePage[] = [
     ],
   },
 ];
+
+/** All eleven Incoterms® 2020 rules in hub order — the single source for the hub grid and the service-page strips. */
+export function incotermTerms(): IncotermTerm[] {
+  return getServicePage('incoterms-korea')?.incoterms?.groups.flatMap((group) => group.terms) ?? [];
+}
 
 export function getServicePage(slug: string) {
   return servicePages.find((page) => page.slug === slug);

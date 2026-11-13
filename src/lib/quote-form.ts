@@ -108,7 +108,7 @@ export const quoteFormFields: QuoteFormField[] = [
   { name: 'emailOrPhone', label: 'Email / phone', placeholder: 'e.g. jane@example.com / +82...', section: 'company', required: true, type: 'email' },
   { name: 'origin', label: 'Origin city / port / airport', placeholder: 'e.g. Busan, Korea / KRPUS / ICN', section: 'route', required: true },
   { name: 'destination', label: 'Destination city / port / airport', placeholder: 'e.g. Los Angeles / USLAX / LAX', section: 'route', required: true },
-  { name: 'incoterms', label: 'Incoterms', placeholder: 'EXW / FOB / CIF / DAP / DDP', section: 'route' },
+  { name: 'incoterms', label: 'Incoterms', placeholder: 'EXW / FCA / FOB / DAP / DDP', section: 'route' },
   { name: 'pickupDeliveryScope', label: 'Pickup / delivery scope', placeholder: 'e.g. CY-CY, CFS-CFS, door-to-door', section: 'route' },
   { name: 'pickupDate', label: 'Pickup date', placeholder: 'YYYY-MM-DD', section: 'route', type: 'date' },
   { name: 'pickupPlace', label: 'Pickup place', placeholder: 'e.g. Warehouse address', section: 'route', helper: 'Add the pickup PIC name and phone.' },

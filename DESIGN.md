@@ -497,7 +497,7 @@ Do not introduce sharp industrial corners unless the entire system is intentiona
 ### Service Cards
 
 - Render services as numbered full-width rows (index · title · description · arrow) on a white band. Each row is one link with a hover fill; the arrow becomes a bronze disc on hover and is hidden below `sm` so it never wraps onto its own line.
-- Service rows should communicate operational ownership. The current rows are Ocean Freight, Air Freight, Special Cargo, EXW & Handling, and BridgeLogis (external).
+- Service rows should communicate operational ownership. The current rows are Ocean Freight, Air Freight, Special Cargo, Incoterms & Pickup, and BridgeLogis (external).
 - For external services, open in a new tab and include accessible labeling.
 - Avoid internal-margin, profit, or operationally sensitive language in public service cards.
 

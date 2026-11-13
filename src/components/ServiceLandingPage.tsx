@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { ServicePage } from '@/lib/service-pages';
+import { incotermTerms, type IncotermTerm, type ServicePage } from '@/lib/service-pages';
 import { homeContent } from '@/lib/content';
 import { faqJsonLd, serviceJsonLd, siteUrl } from '@/lib/seo';
 import { SiteFooter } from './SiteFooter';
@@ -27,6 +27,94 @@ function ArrowIcon() {
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
       <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
+  );
+}
+
+const incotermsAnchor = 'incoterms-2020-rules';
+
+const modeLabel: Record<IncotermTerm['mode'], string> = {
+  any: 'All modes',
+  sea: 'Sea & inland waterway only',
+};
+
+/** Incoterms® 2020 규칙 11개를 E/F/C/D 묶음으로 — 누가 본선 운송을 잡는지가 묶음의 기준이다. */
+function IncotermsGrid({ incoterms }: { incoterms: NonNullable<ServicePage['incoterms']> }) {
+  return (
+    <section id={incotermsAnchor} aria-labelledby="incoterms-heading" className="scroll-mt-8 border-t border-border-light bg-white">
+      <div className="mx-auto max-w-[1280px] px-6 py-20 sm:px-10 lg:px-14 lg:py-24">
+        <div className="grid gap-6 lg:grid-cols-[.8fr_1.2fr] lg:items-end lg:gap-16">
+          <div>
+            <p className={`${monoLabelClass} text-accent-ink`}>{incoterms.heading}</p>
+            <SectionHeading id="incoterms-heading" size="md" className="mt-4">
+              {incoterms.title}
+            </SectionHeading>
+          </div>
+          <BodyText measure="default">{incoterms.body}</BodyText>
+        </div>
+
+        <div className="mt-14 grid gap-14">
+          {incoterms.groups.map((group) => (
+            <article key={group.family} aria-labelledby={`incoterms-family-${group.family}`} className="grid gap-8 border-t-2 border-navy pt-8 lg:grid-cols-[.8fr_2.2fr] lg:gap-16">
+              <div>
+                <p aria-hidden="true" className="font-mono text-[26px] font-semibold leading-none text-accent-ink">{group.family}</p>
+                <CardHeading id={`incoterms-family-${group.family}`} className="mt-4">
+                  <span className="sr-only">{group.family} — </span>
+                  {group.title}
+                </CardHeading>
+                <BodyText size="md" className="mt-2.5">{group.body}</BodyText>
+              </div>
+              <ul className="grid gap-x-8 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
+                {group.terms.map((term) => (
+                  <li key={term.code} className="border-t border-border-light pt-5">
+                    <dl>
+                      <dt className="font-mono text-2xl font-semibold tracking-[.04em] text-navy">{term.code}</dt>
+                      <dd className="mt-1 font-bold text-navy">{term.name}</dd>
+                    </dl>
+                    <p className={`${monoLabelClass} mt-3 ${term.mode === 'sea' ? 'text-accent-ink' : 'text-steel'}`}>{modeLabel[term.mode]}</p>
+                    <BodyText size="md" className="mt-2.5">{term.delivery}</BodyText>
+                    {term.href ? (
+                      <Link href={term.href} className="mt-2 inline-flex min-h-11 items-center gap-2 font-extrabold text-navy underline decoration-accent decoration-2 underline-offset-[6px] transition hover:decoration-navy">
+                        {term.linkLabel ?? term.code}
+                        <ArrowIcon />
+                      </Link>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** 서비스 페이지마다 같은 인코텀즈 띠를 둔다 — 한 조건만 강조되지 않게(벤치마킹: SAR). */
+function IncotermsStrip({ scope }: { scope: NonNullable<ServicePage['incotermsStrip']> }) {
+  const terms = incotermTerms().filter((term) => scope === 'all' || term.mode === 'any');
+  return (
+    <aside aria-labelledby="incoterms-strip-heading" className="mt-12 border-t border-navy pt-10">
+      <p className={`${monoLabelClass} text-steel`}>Incoterms® 2020</p>
+      <h2 id="incoterms-strip-heading" className="mt-3 text-[22px] font-extrabold leading-[1.2] tracking-[-.02em] sm:text-[26px]">
+        {scope === 'air' ? 'The rules that work for air freight' : 'Shipments under any of the eleven rules'}
+      </h2>
+      <BodyText measure="default" className="mt-4">
+        {scope === 'air'
+          ? 'Whether the buyer nominates KS WAYS under EXW or FCA, or the Korean seller books under CPT, CIP, DAP, or DDP, we confirm where cost and risk change hands before quoting. FOB, CFR, and CIF are sea rules and are not used for air cargo.'
+          : 'Whether the buyer nominates KS WAYS under EXW, FCA, or FOB, or the Korean seller books under CFR, CIF, DAP, or DDP, we confirm where cost and risk change hands before quoting.'}
+      </BodyText>
+      <ul aria-label="Incoterms rules" className="mt-6 flex flex-wrap gap-2">
+        {terms.map((term) => (
+          <li key={term.code} title={term.name} className="rounded-full border border-border-light px-3.5 py-1.5 font-mono text-sm font-semibold tracking-[.04em] text-navy">
+            {term.code}
+          </li>
+        ))}
+      </ul>
+      <Link href="/services/incoterms-korea" className="mt-4 inline-flex min-h-11 items-center gap-2 font-extrabold text-navy underline decoration-accent decoration-2 underline-offset-[6px] transition hover:decoration-navy">
+        How each rule splits cost and risk
+        <ArrowIcon />
+      </Link>
+    </aside>
   );
 }
 
@@ -105,10 +193,10 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
         <nav aria-label="On this page" className="flex-[1_1_240px]">
           <p className={`${monoLabelClass} text-steel`}>On this page</p>
           <ul className="mt-3">
-            {page.sections.map((section) => (
-              <li key={section.title}>
+            {[...page.sections.map((section) => ({ title: section.title, anchor: sectionAnchor(section.title) })), ...(page.incoterms ? [{ title: page.incoterms.title, anchor: incotermsAnchor }] : [])].map((section) => (
+              <li key={section.anchor}>
                 <a
-                  href={`#${sectionAnchor(section.title)}`}
+                  href={`#${section.anchor}`}
                   className="flex min-h-11 items-center border-l-2 border-border-light py-2 pl-4 text-sm font-semibold leading-snug text-navy/78 transition hover:border-accent hover:text-navy"
                 >
                   {section.title}
@@ -139,8 +227,27 @@ export function ServiceLandingPage({ page, basePath }: { page: ServicePage; base
               ) : null}
             </article>
           ))}
+          {page.incotermsStrip ? <IncotermsStrip scope={page.incotermsStrip} /> : null}
+          {page.related ? (
+            <aside aria-label="Related pages" className="mt-12 border-t border-navy pt-10">
+              <p className={`${monoLabelClass} text-steel`}>Related</p>
+              <ul className="mt-4 grid gap-6">
+                {page.related.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="inline-flex min-h-11 items-center gap-2 text-lg font-extrabold tracking-[-.01em] text-navy underline decoration-accent decoration-2 underline-offset-[6px] transition hover:decoration-navy">
+                      {link.label}
+                      <ArrowIcon />
+                    </Link>
+                    <BodyText size="md" measure="default" className="mt-1.5">{link.body}</BodyText>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          ) : null}
         </div>
       </div>
+
+      {page.incoterms ? <IncotermsGrid incoterms={page.incoterms} /> : null}
 
       {page.memberTools ? (
         <section aria-labelledby="member-tools-heading" className="border-t border-border-light bg-white">

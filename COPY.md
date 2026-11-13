@@ -24,7 +24,7 @@ KS WAYS is a Korea-origin ocean and air logistics company that moves cargo from 
 
 ### Short positioning paragraph
 
-KS WAYS is a Korea-origin global logistics company providing ocean freight and air freight from Korea to worldwide destinations. Our primary role is Korea origin agent for overseas freight forwarders and WCA partners: we handle local pickup, carrier coordination, documentation, and shipment execution so partners can offer Korea-origin lanes with confidence. Ocean freight is our core strength, air freight is a core companion mode, and EXW pickup, special cargo handling, and cross-border support round out our service capability. WCA partner networking drives our global reach.
+KS WAYS is a Korea-origin global logistics company providing ocean freight and air freight from Korea to worldwide destinations. Our primary role is Korea origin agent for overseas freight forwarders and WCA partners: we handle local pickup, carrier coordination, documentation, and shipment execution so partners can offer Korea-origin lanes with confidence. Ocean freight is our core strength, air freight is a core companion mode, and pickup under any Incoterms® rule (EXW, FCA, FOB, CIF, DAP, DDP), special cargo handling, and cross-border support round out our service capability. WCA partner networking drives our global reach.
 
 ### What KS WAYS should sound like
 
@@ -103,6 +103,7 @@ Current homepage should become the trust and conversion hub. Future SEO pages sh
 - `/services/air-freight-korea` — Air freight from/to Korea.
 - `/services/ocean-freight-korea` — Ocean freight from/to Korea.
 - `/services/exw-pickup-korea` — EXW pickup and local handling in Korea.
+- `/services/incoterms-korea` — Shipping from Korea under any Incoterms® 2020 rule (hub; links to the EXW page).
 - `/services/cross-border-logistics-korea` — Cross-border and e-commerce logistics.
 - `/network/korea-agent-network` — Partner and agent cooperation.
 - `/insights/korea-freight-forwarding-guide` — Educational pillar content.
@@ -473,7 +474,7 @@ Recommended default:
 
 ### Korean positioning paragraph
 
-`KS WAYS는 한국발 전세계 해상·항공 물류를 책임지는 글로벌 물류회사입니다. WCA 파트너 네트워킹을 기반으로 해외 포워더 및 WCA 파트너의 한국 오리진 에이전트로서, 현지 픽업·선사 조율·서류·선적 실행을 담당합니다. 해상물류가 핵심 강점이며, 항공물류·크로스보더·EXW 픽업·프로젝트 화물 지원까지 실무 중심의 라우팅과 명확한 커뮤니케이션으로 운송 과정을 조율합니다.`
+`KS WAYS는 한국발 전세계 해상·항공 물류를 책임지는 글로벌 물류회사입니다. WCA 파트너 네트워킹을 기반으로 해외 포워더 및 WCA 파트너의 한국 오리진 에이전트로서, 현지 픽업·선사 조율·서류·선적 실행을 담당합니다. 해상물류가 핵심 강점이며, 항공물류·크로스보더·인코텀즈별 픽업(EXW·FCA·FOB·CIF·DAP·DDP)·프로젝트 화물 지원까지 실무 중심의 라우팅과 명확한 커뮤니케이션으로 운송 과정을 조율합니다.`
 
 ### Korean FAQ style answer
 
@@ -638,6 +639,30 @@ Q11–Q13 are live on `/network/korea-agent-network` and in its FAQ JSON-LD.
 - 2020 has 11 terms. All modes: EXW, FCA, CPT, CIP, DAP, DPU, DDP. Sea and inland waterway only: FAS, FOB, CFR, CIF. Don't offer FOB/CFR/CIF as air-freight terms in examples. Use FCA instead.
 - EXW, as the page states it: the seller only makes the goods available at its premises. The buyer then carries cost and risk from there, including loading onto the collecting vehicle and export clearance, unless the sales contract says otherwise. That is the business reason the EXW page exists: who loads, and whether the site can support it, is open until checked.
 - Explain what a term means for pickup and handoff. Do not give trade or legal advice on which term a customer should choose.
+- Don't let one term stand for the whole service. Naming EXW alone reads as "EXW specialist". Wherever the site names terms in a card, menu, or FAQ, name several (EXW, FCA, FOB, CIF, DAP, DDP) and point to the hub.
+
+### 7.3a Incoterms from Korea (hub)
+
+#### URL
+
+`/services/incoterms-korea`
+
+#### Meta title
+
+`Incoterms from Korea — EXW, FCA, FOB, CIF, DAP, DDP | KS WAYS`
+
+#### H1
+
+`Shipping from Korea under any Incoterms® 2020 rule`
+
+#### Structure
+
+- Lead: the term decides who books the main carriage, who clears export, and where risk passes. Name both sides: buyer-nominated (EXW, FCA, FOB) and seller-arranged (C and D rules).
+- Term grid: all 11 rules in E / F / C / D families (structure borrowed from the 2026-11-05 benchmark, Asia Shipping's Incoterms article, but on the 2020 rules, not their 2010 list). Each card has the code, name, mode (`All modes` / `Sea & inland waterway only`), and the delivery and risk point from the WCAworld 2020 chart. Each family states who books the main carriage and what KS WAYS does in Korea.
+- EXW card links to `/services/exw-pickup-korea`; the EXW page links back under "Related".
+- DDP is always framed as a case-by-case review with destination partners, since the seller pays import duties and taxes. Asserted in `ServiceLandingPage.render.test.tsx`.
+- State what the term does not settle (price, payment, ownership) and that choosing a term is between buyer and seller.
+- Freight service pages (air, ocean, special cargo) repeat a compact Incoterms strip that links to the hub. This follows SAR from the 2026-11-05 benchmark, which repeats an Incoterm block on every service page. The air strip lists the all-mode rules only. The codes come from the hub data, so the strip and the grid never drift apart.
 
 ### 7.4 Partner Network Korea
 
@@ -863,7 +888,7 @@ Recommended services:
 ### Quote form copy rules
 
 - The label names the field. The placeholder only shows an example and never stands in for the label.
-- A placeholder that shows a sample value starts with `e.g.` (`e.g. Busan, Korea / KRPUS / ICN`), so it never reads as data already entered. A placeholder that names a format or prompts for input has no `e.g.`: `YYYY-MM-DD`, `EXW / FOB / CIF / DAP / DDP`, `PIC name / mobile or email`, `Optional target rate or budget`, the select prompts and the two free-text notes.
+- A placeholder that shows a sample value starts with `e.g.` (`e.g. Busan, Korea / KRPUS / ICN`), so it never reads as data already entered. A placeholder that names a format or prompts for input has no `e.g.`: `YYYY-MM-DD`, `EXW / FCA / FOB / DAP / DDP`, `PIC name / mobile or email`, `Optional target rate or budget`, the select prompts and the two free-text notes.
 - A single-line placeholder must fit a 320px-wide field: 36 characters at most. Anything longer goes in the helper line under the field, written as one short instruction (`Include the country code for phone numbers.`, `For OOG cargo, give the overall L x W x H.`).
 - Enforced by `src/lib/quote-form.test.ts` and `e2e/placeholder-fit.spec.ts`.
 

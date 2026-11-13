@@ -14,7 +14,8 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.en.operating.services.find((service) => service.title === 'Air Freight')?.href).toBe('/services/air-freight-korea');
     expect(homeContent.en.operating.services.find((service) => service.title === 'Ocean Freight')?.href).toBe('/services/ocean-freight-korea');
     expect(homeContent.en.operating.services.find((service) => service.title === 'Special Cargo')?.href).toBe('/services/special-cargo-korea');
-    expect(homeContent.en.operating.services.find((service) => service.title === 'EXW & Handling')?.href).toBe('/services/exw-pickup-korea');
+    expect(homeContent.en.operating.services.find((service) => service.title === 'Incoterms & Pickup')?.href).toBe('/services/incoterms-korea');
+    expect(homeContent.en.operating.services.find((service) => service.title === 'Incoterms & Pickup')?.body).toMatch(/EXW.*FCA.*FOB.*DAP.*DDP/);
     expect(homeContent.en.operating.services.find((service) => service.title === 'BridgeLogis')?.href).toBe('https://bridgelogis.com');
     expect(homeContent.en.footer.tagline).toContain('global ocean and air logistics');
     expect(homeContent.en.footer.credentials.map((item) => item.label)).toEqual(['WCA Member', 'Ocean strength', 'Industry Experience']);
@@ -130,7 +131,8 @@ describe('KS WAYS bilingual homepage content', () => {
     expect(homeContent.kr.operating.services.find((service) => service.title === '항공 운송')?.href).toBe('/services/air-freight-korea');
     expect(homeContent.kr.operating.services.find((service) => service.title === '해상 운송')?.href).toBe('/services/ocean-freight-korea');
     expect(homeContent.kr.operating.services.find((service) => service.title === '특수 화물')?.href).toBe('/services/special-cargo-korea');
-    expect(homeContent.kr.operating.services.find((service) => service.title === 'EXW & 핸들링')?.href).toBe('/services/exw-pickup-korea');
+    // EXW 단독 카드는 '특정 조건 전문' 으로 읽혀 인코텀즈 허브로 바꿨다(2026-11-13)
+    expect(homeContent.kr.operating.services.find((service) => service.title === '인코텀즈·픽업')?.href).toBe('/services/incoterms-korea');
     expect(homeContent.kr.footer.tagline).toContain('글로벌 해상·항공 물류회사');
     expect(homeContent.kr.footer.credentials.map((item) => item.label)).toEqual(['WCA 회원사', '해운 강점', 'Industry Experience']);
     expect(homeContent.kr.footer.companyName).toBe('KSWAYS CO.,LTD.');

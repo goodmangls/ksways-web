@@ -51,6 +51,58 @@ describe('ServiceLandingPage render', () => {
     expect(allCopy).not.toMatch(/\bDAT\b|Incoterms(®)? 2010/);
   });
 
+  it('lays out all 11 Incoterms 2020 rules on the hub, grouped E/F/C/D with sea-only rules flagged', () => {
+    const hub = getServicePage('incoterms-korea')!;
+    render(<ServiceLandingPage page={hub} basePath="services" />);
+
+    // EXW 하나만 강조하면 '특정 조건 전문' 으로 읽힌다 — 2020 규칙 11개 전부를 같은 무게로 보여 준다
+    const grid = screen.getByRole('heading', { name: hub.incoterms!.title }).closest('section')!;
+    const codes = within(grid).getAllByRole('term').map((node) => node.textContent);
+    expect(codes).toEqual(['EXW', 'FCA', 'FAS', 'FOB', 'CPT', 'CIP', 'CFR', 'CIF', 'DAP', 'DPU', 'DDP']);
+
+    // 해상·내수로 전용은 FAS·FOB·CFR·CIF 뿐 — 항공에 FOB 를 권하지 않는다(COPY.md Incoterms rules)
+    const seaOnly = hub.incoterms!.groups.flatMap((group) => group.terms).filter((term) => term.mode === 'sea').map((term) => term.code);
+    expect(seaOnly).toEqual(['FAS', 'FOB', 'CFR', 'CIF']);
+    expect(within(grid).getAllByText('Sea & inland waterway only')).toHaveLength(4);
+
+    // EXW 카드는 상세 페이지로, 상세 페이지는 다시 허브로 연결된다
+    expect(within(grid).getByRole('link', { name: /EXW pickup in Korea/ }).getAttribute('href')).toBe('/services/exw-pickup-korea');
+    expect(document.body.textContent).toContain('Incoterms® 2020');
+    cleanup();
+
+    const exw = getServicePage('exw-pickup-korea')!;
+    render(<ServiceLandingPage page={exw} basePath="services" />);
+    const related = screen.getByRole('complementary', { name: 'Related pages' });
+    expect(within(related).getByRole('link', { name: /Incoterms from Korea/ }).getAttribute('href')).toBe('/services/incoterms-korea');
+  });
+
+  it('repeats a mode-aware Incoterms strip on freight service pages, linking to the hub', () => {
+    // 벤치마킹(SAR): 서비스 페이지마다 같은 인코텀즈 블록 — 한 조건이 서비스 전체를 대표하지 않게
+    const stripCodes = () => within(screen.getByRole('list', { name: 'Incoterms rules' })).getAllByRole('listitem').map((li) => li.textContent);
+
+    render(<ServiceLandingPage page={getServicePage('ocean-freight-korea')!} basePath="services" />);
+    expect(stripCodes()).toEqual(['EXW', 'FCA', 'FAS', 'FOB', 'CPT', 'CIP', 'CFR', 'CIF', 'DAP', 'DPU', 'DDP']);
+    expect(screen.getByRole('link', { name: /How each rule splits cost and risk/ }).getAttribute('href')).toBe('/services/incoterms-korea');
+    cleanup();
+
+    // 항공에는 해상 전용 규칙(FAS·FOB·CFR·CIF)을 내놓지 않는다
+    render(<ServiceLandingPage page={airFreight} basePath="services" />);
+    expect(stripCodes()).toEqual(['EXW', 'FCA', 'CPT', 'CIP', 'DAP', 'DPU', 'DDP']);
+    cleanup();
+
+    render(<ServiceLandingPage page={getServicePage('exw-pickup-korea')!} basePath="services" />);
+    expect(screen.queryByRole('list', { name: 'Incoterms rules' })).toBeNull();
+  });
+
+  it('frames DDP as a case-by-case review, never a flat promise', () => {
+    const hub = getServicePage('incoterms-korea')!;
+    const ddp = hub.incoterms!.groups.flatMap((group) => group.terms).find((term) => term.code === 'DDP')!;
+    const ddpCopy = [ddp.delivery, ...hub.faqs.filter((faq) => /DDP/.test(faq.question)).map((faq) => faq.answer)].join(' ');
+    // DDP 는 매도인이 수입국 관세·통관까지 부담 — 목적지 규정과 파트너에 따라 불가능할 수 있다
+    expect(ddpCopy).toMatch(/import duties/);
+    expect(ddpCopy).toMatch(/case by case/);
+  });
+
   it('states Gold Medallion enrolment on the network page only, always tied to the programme terms', () => {
     const network = getServicePage('korea-agent-network')!;
     const goldCopy = [network.memberTools!.body, ...network.faqs.flatMap((f) => [f.question, f.answer])].filter((t) => /Gold Medallion/.test(t));

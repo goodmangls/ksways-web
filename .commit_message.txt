@@ -1,1 +1,1 @@
-🏅 홈 히어로 실적 띠의 WCA 회원 표시를 텍스트에서 WCA Inter Global 공식 마크로 바꾸고, 네트워크 섹션의 중복 마크는 제거
+🧭 EXW 단독 노출을 인코텀즈 허브(/services/incoterms-korea, 2020 규칙 11개 E/F/C/D 그리드)와 서비스별 인코텀즈 띠로 넓히고 홈 카드·푸터·FAQ·견적 예시에 FCA·FOB·CIF·DAP·DDP 반영

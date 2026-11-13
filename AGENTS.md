@@ -51,7 +51,7 @@ Single-context — 루트 `CONTEXT.md` + `docs/adr/`. See `docs/agents/domain.md
 npm run dev          # 개발 서버
 npm run lint         # ESLint
 npm run type-check   # tsc --noEmit
-npm run test:run     # vitest (현재 106)
+npm run test:run     # vitest (현재 192)
 npm run build        # ⚠️ 로컬 macOS 에서는 실패한다
 ```
 

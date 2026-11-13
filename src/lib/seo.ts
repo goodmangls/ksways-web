@@ -117,6 +117,10 @@ export const homeFaqs: Record<Locale, FaqItem[]> = {
       answer: 'KS WAYS can review EXW pickup requirements in Korea, including shipper location, cargo dimensions, loading conditions, vehicle access, stuffing requirements, and local handling needs. Final feasibility depends on the cargo and pickup site conditions.',
     },
     {
+      question: 'Which Incoterms does KS WAYS handle from Korea?',
+      answer: 'KS WAYS can review Korea-origin shipments under all eleven Incoterms® 2020 rules, including EXW, FCA, FOB, CIF, CPT, CIP, DAP, DPU, and DDP. Overseas buyers can nominate KS WAYS under EXW, FCA, or FOB; Korean exporters can book with KS WAYS under C and D rules. DDP is reviewed case by case with destination partners.',
+    },
+    {
       question: 'What information is needed for a freight quote?',
       answer: 'A freight quote usually requires origin, destination, Incoterms, cargo description, dimensions, gross weight, package count, cargo ready date, service mode, pickup conditions, and any special handling requirements.',
     },
@@ -137,6 +141,10 @@ export const homeFaqs: Record<Locale, FaqItem[]> = {
     {
       question: 'KS WAYS는 한국 EXW 픽업을 지원하나요?',
       answer: 'KS WAYS는 한국 내 EXW 픽업 조건을 검토할 수 있습니다. 화주 위치, 화물 규격, 상차 조건, 차량 접근성, 적입 필요 여부, 현장 핸들링 조건에 따라 가능 여부와 방식이 달라집니다.',
+    },
+    {
+      question: 'KS WAYS는 어떤 인코텀즈 조건으로 수출을 지원하나요?',
+      answer: 'KS WAYS는 Incoterms® 2020 규칙 11개 전부(EXW, FCA, FAS, FOB, CPT, CIP, CFR, CIF, DAP, DPU, DDP)로 한국발 화물을 검토할 수 있습니다. EXW·FCA·FOB는 해외 바이어나 포워더가 KS WAYS를 지정하고, C·D 조건은 한국 수출자가 KS WAYS에 운송을 맡깁니다. DDP는 목적지 파트너와 함께 건별로 검토합니다.',
     },
     {
       question: '운임 견적에는 어떤 정보가 필요한가요?',
@@ -172,6 +180,7 @@ export function organizationJsonLd(locale: Locale) {
       'Ocean freight',
       'Cross-border logistics',
       'EXW pickup',
+      'Incoterms 2020 (EXW, FCA, FOB, CIF, DAP, DDP)',
       'Korea logistics',
       'Partner network',
     ],
