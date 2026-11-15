@@ -1,1 +1,1 @@
-🧮 AGENTS.md 테스트 수 갱신 — /api/unsplash·레이트리미터 테스트 삭제 반영(194→183)
+⬆️ vitest 5 짝 맞춤 — @vitest/coverage-v8 5.1.0·@types/node 24(런타임 Node 24 와 일치)
